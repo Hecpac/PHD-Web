@@ -1,0 +1,222 @@
+/**
+ * tokens.material.css — Steel Slate / Dark
+ * Maps Material Design variables into runtime tokens
+ * Exposes Tailwind v4 theme variables
+ */
+
+@theme {
+  /* Colors */
+  --color-canvas: var(--token-canvas);
+  --color-ink: var(--token-ink);
+
+  --color-surface: var(--token-surface);
+  --color-surface-2: var(--token-surface-2);
+
+  --color-muted: var(--token-muted);
+  --color-subtle: var(--token-subtle);
+  --color-line: var(--token-line);
+
+  --color-accent: var(--token-accent);
+  --color-accent-hover: var(--token-accent-hover);
+  --color-accent-pressed: var(--token-accent-pressed);
+  --color-accent-ink: var(--token-accent-ink);
+  --color-accent-soft: var(--token-accent-soft);
+  --color-accent-soft-ink: var(--token-accent-soft-ink);
+  --color-on-accent: var(--token-on-accent);
+
+  --color-danger: var(--token-danger);
+  --color-danger-ink: var(--token-danger-ink);
+  --color-danger-soft: var(--token-danger-soft);
+  --color-danger-soft-ink: var(--token-danger-soft-ink);
+
+  --color-blueprint: var(--token-blueprint);
+
+  /* Typography — Swiss: Helvetica Neue stack */
+  --font-sans: "Helvetica Neue", Helvetica, Arial, -apple-system, system-ui, sans-serif;
+  --font-mono: "Courier New", Courier, ui-monospace, monospace;
+
+  /* Radius — Swiss: near-zero geometry */
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+}
+
+/* Runtime mapping — Light (Steel Slate) */
+.light {
+  color-scheme: dark;
+
+  --token-canvas: var(--md-sys-color-background);
+  --token-ink: var(--md-sys-color-on-background);
+
+  --token-surface: var(--md-sys-color-surface);
+  --token-surface-2: var(--md-sys-color-surface-variant);
+
+  --token-muted: var(--md-sys-color-on-surface-variant);
+  --token-subtle: rgb(195 198 202);
+  --token-line: var(--md-sys-color-outline-variant);
+
+  --token-accent: var(--md-sys-color-primary);
+  --token-accent-hover: rgb(255 200 196);
+  --token-accent-pressed: rgb(255 183 178);
+  --token-accent-ink: var(--md-sys-color-on-primary);
+  --token-accent-soft: var(--md-sys-color-primary-container);
+  --token-accent-soft-ink: var(--md-sys-color-on-primary-container);
+  --token-on-accent: rgb(35 38 45);
+
+  --token-danger: var(--md-sys-color-error);
+  --token-danger-ink: var(--md-sys-color-on-error);
+  --token-danger-soft: var(--md-sys-color-error-container);
+  --token-danger-soft-ink: var(--md-sys-color-on-error-container);
+
+  --token-blueprint: rgb(199 56 52 / 0.15);
+}
+
+/* Runtime mapping — Dark */
+.dark {
+  color-scheme: dark;
+
+  --token-canvas: var(--md-sys-color-background);
+  --token-ink: var(--md-sys-color-on-background);
+
+  --token-surface: var(--md-sys-color-surface);
+  --token-surface-2: var(--md-sys-color-surface-variant);
+
+  --token-muted: var(--md-sys-color-on-surface-variant);
+  --token-subtle: rgb(144 144 142);
+  --token-line: var(--md-sys-color-outline-variant);
+
+  --token-accent: var(--md-sys-color-primary);
+  --token-accent-hover: rgb(225 80 76);
+  --token-accent-pressed: rgb(169 48 44);
+  --token-accent-ink: var(--md-sys-color-on-primary);
+  --token-accent-soft: var(--md-sys-color-primary-container);
+  --token-accent-soft-ink: var(--md-sys-color-on-primary-container);
+  --token-on-accent: rgb(255 255 255);
+
+  --token-danger: var(--md-sys-color-error);
+  --token-danger-ink: var(--md-sys-color-on-error);
+  --token-danger-soft: var(--md-sys-color-error-container);
+  --token-danger-soft-ink: var(--md-sys-color-on-error-container);
+
+  --token-blueprint: rgb(199 56 52 / 0.10);
+}
+
+/* Runtime mapping — Light High Contrast (Warm Paper) */
+.light-hc {
+  color-scheme: light;
+
+  --token-canvas: var(--md-sys-color-background);
+  --token-ink: var(--md-sys-color-on-background);
+
+  --token-surface: var(--md-sys-color-surface);
+  --token-surface-2: var(--md-sys-color-surface-variant);
+
+  --token-muted: var(--md-sys-color-on-surface-variant);
+  --token-subtle: rgb(96 93 87);
+  --token-line: var(--md-sys-color-outline-variant);
+
+  --token-accent: var(--md-sys-color-primary);
+  --token-accent-hover: rgb(116 32 29);
+  --token-accent-pressed: rgb(96 26 24);
+  --token-accent-ink: var(--md-sys-color-on-primary);
+  --token-accent-soft: var(--md-sys-color-primary-container);
+  --token-accent-soft-ink: var(--md-sys-color-on-primary-container);
+  --token-on-accent: rgb(255 255 255);
+
+  --token-danger: var(--md-sys-color-error);
+  --token-danger-ink: var(--md-sys-color-on-error);
+  --token-danger-soft: var(--md-sys-color-error-container);
+  --token-danger-soft-ink: var(--md-sys-color-on-error-container);
+
+  --token-blueprint: rgb(199 56 52 / 0.10);
+}
+
+/* Runtime mapping — Light Medium Contrast (Warm Paper) */
+.light-mc {
+  color-scheme: light;
+
+  --token-canvas: var(--md-sys-color-background);
+  --token-ink: var(--md-sys-color-on-background);
+
+  --token-surface: var(--md-sys-color-surface);
+  --token-surface-2: var(--md-sys-color-surface-variant);
+
+  --token-muted: var(--md-sys-color-on-surface-variant);
+  --token-subtle: rgb(120 120 118);
+  --token-line: var(--md-sys-color-outline-variant);
+
+  --token-accent: var(--md-sys-color-primary);
+  --token-accent-hover: rgb(146 40 37);
+  --token-accent-pressed: rgb(126 34 31);
+  --token-accent-ink: var(--md-sys-color-on-primary);
+  --token-accent-soft: var(--md-sys-color-primary-container);
+  --token-accent-soft-ink: var(--md-sys-color-on-primary-container);
+  --token-on-accent: rgb(255 255 255);
+
+  --token-danger: var(--md-sys-color-error);
+  --token-danger-ink: var(--md-sys-color-on-error);
+  --token-danger-soft: var(--md-sys-color-error-container);
+  --token-danger-soft-ink: var(--md-sys-color-on-error-container);
+
+  --token-blueprint: rgb(199 56 52 / 0.08);
+}
+
+/* Runtime mapping — Dark High Contrast */
+.dark-hc {
+  color-scheme: dark;
+
+  --token-canvas: var(--md-sys-color-background);
+  --token-ink: var(--md-sys-color-on-background);
+
+  --token-surface: var(--md-sys-color-surface);
+  --token-surface-2: var(--md-sys-color-surface-variant);
+
+  --token-muted: var(--md-sys-color-on-surface-variant);
+  --token-subtle: rgb(196 191 182);
+  --token-line: var(--md-sys-color-outline-variant);
+
+  --token-accent: var(--md-sys-color-primary);
+  --token-accent-hover: rgb(255 235 232);
+  --token-accent-pressed: rgb(255 210 207);
+  --token-accent-ink: var(--md-sys-color-on-primary);
+  --token-accent-soft: var(--md-sys-color-primary-container);
+  --token-accent-soft-ink: var(--md-sys-color-on-primary-container);
+  --token-on-accent: rgb(0 0 0);
+
+  --token-danger: var(--md-sys-color-error);
+  --token-danger-ink: var(--md-sys-color-on-error);
+  --token-danger-soft: var(--md-sys-color-error-container);
+  --token-danger-soft-ink: var(--md-sys-color-on-error-container);
+
+  --token-blueprint: rgb(255 220 217 / 0.12);
+}
+
+/* Runtime mapping — Dark Medium Contrast */
+.dark-mc {
+  color-scheme: dark;
+
+  --token-canvas: var(--md-sys-color-background);
+  --token-ink: var(--md-sys-color-on-background);
+
+  --token-surface: var(--md-sys-color-surface);
+  --token-surface-2: var(--md-sys-color-surface-variant);
+
+  --token-muted: var(--md-sys-color-on-surface-variant);
+  --token-subtle: rgb(160 155 148);
+  --token-line: var(--md-sys-color-outline-variant);
+
+  --token-accent: var(--md-sys-color-primary);
+  --token-accent-hover: rgb(248 195 192);
+  --token-accent-pressed: rgb(235 172 169);
+  --token-accent-ink: var(--md-sys-color-on-primary);
+  --token-accent-soft: var(--md-sys-color-primary-container);
+  --token-accent-soft-ink: var(--md-sys-color-on-primary-container);
+  --token-on-accent: rgb(0 0 0);
+
+  --token-danger: var(--md-sys-color-error);
+  --token-danger-ink: var(--md-sys-color-on-error);
+  --token-danger-soft: var(--md-sys-color-error-container);
+  --token-danger-soft-ink: var(--md-sys-color-on-error-container);
+
+  --token-blueprint: rgb(241 180 177 / 0.10);
+}

@@ -1,0 +1,63 @@
+/**
+ * Swiss Warm Paper — Dark Medium Contrast
+ * Balanced contrast, warm charcoal base
+ */
+
+.dark-mc {
+  /* Primary - Lightened brand red for medium contrast */
+  --md-sys-color-primary: rgb(241 180 177);
+  --md-sys-color-surface-tint: rgb(241 205 204);
+  --md-sys-color-on-primary: rgb(80 22 20);
+  --md-sys-color-primary-container: rgb(199 90 86);
+  --md-sys-color-on-primary-container: rgb(0 0 0);
+
+  /* Secondary — Warm Neutral */
+  --md-sys-color-secondary: rgb(241 230 222);
+  --md-sys-color-on-secondary: rgb(45 43 40);
+  --md-sys-color-secondary-container: rgb(160 155 148);
+  --md-sys-color-on-secondary-container: rgb(0 0 0);
+
+  /* Tertiary — Warm Neutral */
+  --md-sys-color-tertiary: rgb(241 230 222);
+  --md-sys-color-on-tertiary: rgb(45 43 40);
+  --md-sys-color-tertiary-container: rgb(160 155 148);
+  --md-sys-color-on-tertiary-container: rgb(0 0 0);
+
+  /* Error */
+  --md-sys-color-error: rgb(255 210 204);
+  --md-sys-color-on-error: rgb(84 0 3);
+  --md-sys-color-error-container: rgb(255 84 73);
+  --md-sys-color-on-error-container: rgb(0 0 0);
+
+  /* Background & Surface — Warm Dark */
+  --md-sys-color-background: rgb(22 21 20);
+  --md-sys-color-on-background: rgb(241 239 233);
+  --md-sys-color-surface: rgb(22 21 20);
+  --md-sys-color-on-surface: rgb(255 255 255);
+
+  /* Surface Variants */
+  --md-sys-color-surface-variant: rgb(55 53 50);
+  --md-sys-color-on-surface-variant: rgb(227 222 214);
+
+  /* Outline — Medium warm dark borders */
+  --md-sys-color-outline: rgb(180 175 168);
+  --md-sys-color-outline-variant: rgb(144 140 134);
+
+  /* Shadow & Scrim */
+  --md-sys-color-shadow: rgb(0 0 0);
+  --md-sys-color-scrim: rgb(0 0 0);
+
+  /* Inverse */
+  --md-sys-color-inverse-surface: rgb(241 239 233);
+  --md-sys-color-inverse-on-surface: rgb(35 34 32);
+  --md-sys-color-inverse-primary: rgb(139 39 36);
+
+  /* Surface Containers — Warm dark scale */
+  --md-sys-color-surface-dim: rgb(22 21 20);
+  --md-sys-color-surface-bright: rgb(60 58 54);
+  --md-sys-color-surface-container-lowest: rgb(10 9 8);
+  --md-sys-color-surface-container-low: rgb(28 27 25);
+  --md-sys-color-surface-container: rgb(40 38 36);
+  --md-sys-color-surface-container-high: rgb(50 48 45);
+  --md-sys-color-surface-container-highest: rgb(60 58 54);
+}

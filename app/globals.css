@@ -1,26 +1,184 @@
 @import "tailwindcss";
+@import "../theme/material/light.css";
+@import "../theme/material/dark.css";
+@import "../theme/material/light-hc.css";
+@import "../theme/material/light-mc.css";
+@import "../theme/material/dark-hc.css";
+@import "../theme/material/dark-mc.css";
+@import "../theme/tokens.material.css";
+@import "../theme/swiss-grid.css";
+@import "../theme/swiss-typography.css";
+
+/* ──────────────────────────────────────────────
+   Swiss International Style — Foundation
+   ────────────────────────────────────────────── */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Baseline grid: 8px base unit */
+  --baseline: 8px;
+
+  /* Swiss Grid System */
+  --grid-columns: 16;
+  --grid-gutter: 24px;
+  --grid-margin: 48px;
+
+  /* Spacing scale (multiples of 8) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-12: 96px;
+  --space-16: 128px;
+
+  /* Reading width */
+  --reading-width: 72ch;
+
+  /* Font stacks (inherited from tokens) */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@media (max-width: 768px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --grid-margin: 24px;
   }
 }
 
+/* ── Global resets ─────────────────────────── */
+
+* {
+  border-color: var(--color-line);
+}
+
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Swiss typography: bold headings, tight tracking */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-accent), transparent 65%);
+}
+
+/* Accessibility: touch targets */
+a,
+button,
+input,
+textarea,
+select {
+  min-height: 24px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ── Swiss Grid & Layout ───────────────────── */
+
+.container-swiss {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);
+}
+
+.section-shell {
+  padding-block: clamp(3rem, 8vw, 6rem);
+}
+
+.text-reading {
+  max-width: var(--reading-width);
+}
+
+/* Minimal transitions — Swiss-lite */
+a,
+button {
+  transition-property: opacity, color, background-color, border-color;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+}
+
+/* ── Alternating Section: Bone White ────── */
+
+.section-bone {
+  --color-canvas: rgb(245 242 237);
+  --color-ink: rgb(29 29 28);
+  --color-surface: rgb(251 250 247);
+  --color-surface-2: rgb(241 239 233);
+  --color-muted: rgb(96 96 93);
+  --color-subtle: rgb(120 120 118);
+  --color-line: rgb(227 222 214);
+  --color-accent: rgb(199 56 52);
+  --color-accent-hover: rgb(169 48 44);
+  --color-accent-pressed: rgb(139 39 36);
+  --color-on-accent: rgb(255 255 255);
+  --color-accent-ink: rgb(255 255 255);
+  --color-accent-soft: rgb(241 205 204);
+  --color-accent-soft-ink: rgb(139 39 36);
+  --color-danger: rgb(186 26 26);
+  --color-danger-ink: rgb(255 255 255);
+  --color-blueprint: rgb(199 56 52 / 0.10);
+  background: rgb(245 242 237);
+  color: rgb(29 29 28);
+}
+
+/* ── Alternating Section: Dark ────────────── */
+
+.section-dark {
+  --color-canvas: rgb(34 32 30);
+  --color-ink: rgb(245 242 237);
+  --color-surface: rgb(48 46 43);
+  --color-surface-2: rgb(55 53 50);
+  --color-muted: rgb(160 158 154);
+  --color-subtle: rgb(130 128 125);
+  --color-line: rgb(68 65 61);
+  --color-accent: rgb(199 56 52);
+  --color-accent-hover: rgb(220 70 65);
+  --color-accent-pressed: rgb(180 50 46);
+  --color-on-accent: rgb(255 255 255);
+  --color-accent-ink: rgb(255 255 255);
+  --color-accent-soft: rgb(60 40 40);
+  --color-accent-soft-ink: rgb(220 130 128);
+  --color-danger: rgb(220 80 80);
+  --color-danger-ink: rgb(255 255 255);
+  --color-blueprint: rgb(199 56 52 / 0.15);
+  background: rgb(34 32 30);
+  color: rgb(245 242 237);
+}
+
+/* ── Backdrop Blur Header ────────────────── */
+
+.backdrop-blur-header {
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+}
+
+/* ── Swiss Marquee Animation ─────────────── */
+
+@keyframes swiss-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

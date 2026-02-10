@@ -1,0 +1,64 @@
+/**
+ * Steel Slate — Light Theme
+ * Cool slate gray base (#4F525A) + brand red accent (#C73834)
+ * Mid-tone corporate palette with subtle elevation
+ */
+
+.light {
+  /* Primary - Brand Red Accent (lightened for 3:1 on dark canvas) */
+  --md-sys-color-primary: rgb(255 180 174);
+  --md-sys-color-surface-tint: rgb(255 180 174);
+  --md-sys-color-on-primary: rgb(35 38 45);
+  --md-sys-color-primary-container: rgb(80 22 20);
+  --md-sys-color-on-primary-container: rgb(241 205 204);
+
+  /* Secondary — Cool Neutral */
+  --md-sys-color-secondary: rgb(185 188 196);
+  --md-sys-color-on-secondary: rgb(35 38 45);
+  --md-sys-color-secondary-container: rgb(62 65 72);
+  --md-sys-color-on-secondary-container: rgb(220 222 228);
+
+  /* Tertiary — Cool Neutral */
+  --md-sys-color-tertiary: rgb(185 188 196);
+  --md-sys-color-on-tertiary: rgb(35 38 45);
+  --md-sys-color-tertiary-container: rgb(62 65 72);
+  --md-sys-color-on-tertiary-container: rgb(220 222 228);
+
+  /* Error */
+  --md-sys-color-error: rgb(255 200 194);
+  --md-sys-color-on-error: rgb(105 0 5);
+  --md-sys-color-error-container: rgb(80 10 8);
+  --md-sys-color-on-error-container: rgb(255 230 228);
+
+  /* Background & Surface — Steel Slate */
+  --md-sys-color-background: rgb(79 82 90);
+  --md-sys-color-on-background: rgb(237 238 242);
+  --md-sys-color-surface: rgb(88 91 99);
+  --md-sys-color-on-surface: rgb(237 238 242);
+
+  /* Surface Variants — Slate tones */
+  --md-sys-color-surface-variant: rgb(68 71 78);
+  --md-sys-color-on-surface-variant: rgb(210 213 217);
+
+  /* Surface Containers — Cool slate scale */
+  --md-sys-color-surface-dim: rgb(65 68 75);
+  --md-sys-color-surface-bright: rgb(100 103 111);
+  --md-sys-color-surface-container-lowest: rgb(52 55 62);
+  --md-sys-color-surface-container-low: rgb(68 71 78);
+  --md-sys-color-surface-container: rgb(79 82 90);
+  --md-sys-color-surface-container-high: rgb(88 91 99);
+  --md-sys-color-surface-container-highest: rgb(98 101 109);
+
+  /* Outline — Visible on slate */
+  --md-sys-color-outline: rgb(120 123 131);
+  --md-sys-color-outline-variant: rgb(170 173 177);
+
+  /* Shadow & Scrim */
+  --md-sys-color-shadow: rgb(0 0 0);
+  --md-sys-color-scrim: rgb(0 0 0);
+
+  /* Inverse — Flip to light */
+  --md-sys-color-inverse-surface: rgb(237 238 242);
+  --md-sys-color-inverse-on-surface: rgb(35 38 45);
+  --md-sys-color-inverse-primary: rgb(255 180 174);
+}
