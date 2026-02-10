@@ -46,7 +46,7 @@ export default async function ProjectsPage() {
             <article key={project.id} className="overflow-hidden rounded-2xl border border-line bg-surface">
               <div className="relative aspect-[16/10] border-b border-line/80">
                 <Image
-                  src={project.gallery[0]?.src ?? "/hero-dfw.svg"}
+                  src={project.gallery[0]?.src ?? "/projects/north-dallas-courtyard-residence/hero.jpg"}
                   alt={project.gallery[0]?.alt ?? `${project.title} project image`}
                   fill
                   sizes="(min-width: 768px) 50vw, 95vw"

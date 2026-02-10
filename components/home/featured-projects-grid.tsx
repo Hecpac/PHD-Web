@@ -51,7 +51,7 @@ export function FeaturedProjectsGrid({ projects, prioritizeFirst = false }: Feat
             {/* Image with overlay label */}
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src={cardImage?.src ?? "/hero-dfw.svg"}
+                src={cardImage?.src ?? "/projects/north-dallas-courtyard-residence/hero.jpg"}
                 alt={cardImage?.alt ?? `${project.title} in ${project.location.city}`}
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"

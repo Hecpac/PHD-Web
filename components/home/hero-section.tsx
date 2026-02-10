@@ -17,14 +17,13 @@ export function HeroSection() {
       {/* Full-width hero image with cinematic treatment */}
       <div className="absolute inset-0">
         <Image
-          src="/hero-architecture.svg"
-          alt="Modern architecture in Dallas-Fort Worth"
+          src="/projects/north-dallas-courtyard-residence/hero.jpg"
+          alt="Front elevation of a modern custom home in Dallas-Fort Worth"
           fill
           priority
           fetchPriority="high"
           className="object-cover opacity-32"
           sizes="100vw"
-          unoptimized
         />
       </div>
       {/* Gradient overlay */}

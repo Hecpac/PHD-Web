@@ -43,10 +43,10 @@ export function HeroVisual() {
     <div ref={containerRef} className="relative overflow-hidden rounded-sm border border-line bg-surface shadow-2xl">
       <motion.div style={{ y: shouldReduceMotion ? 0 : imageY }}>
         <Image
-          src="/hero-dfw.svg"
-          alt="Modern custom home planning for Dallas-Fort Worth"
-          width={1600}
-          height={1000}
+          src="/projects/north-dallas-courtyard-residence/living.jpg"
+          alt="Modern custom home interior in Dallas-Fort Worth"
+          width={2000}
+          height={2998}
           className="h-full w-full object-cover"
           priority
           fetchPriority="high"
