@@ -17,6 +17,7 @@ export function ScrollRevealImage({
     className,
     direction = "up",
     delay = 0,
+    alt,
     ...props
 }: ScrollRevealImageProps) {
     const ref = useRef<HTMLDivElement>(null);
@@ -49,7 +50,7 @@ export function ScrollRevealImage({
     if (shouldReduceMotion) {
         return (
             <div className={cn("relative overflow-hidden", wrapperClassName)}>
-                <Image className={cn("object-cover", className)} {...props} />
+                <Image alt={alt} className={cn("object-cover", className)} {...props} />
             </div>
         );
     }
@@ -62,7 +63,7 @@ export function ScrollRevealImage({
                 animate={isInView ? "visible" : "hidden"}
                 variants={variants}
             >
-                <Image className={cn("object-cover", className)} {...props} />
+                <Image alt={alt} className={cn("object-cover", className)} {...props} />
             </motion.div>
         </div>
     );

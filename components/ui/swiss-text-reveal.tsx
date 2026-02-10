@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import React, { useRef, type ReactNode } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
@@ -17,6 +17,8 @@ type SwissTextRevealProps = {
   stagger?: number;
   /** Only animate once when entering viewport */
   once?: boolean;
+  /** Skip initial hidden state so text is visible before hydration (use for LCP content) */
+  noInitialHide?: boolean;
 };
 
 const springTransition = { type: "spring" as const, stiffness: 70, damping: 18 };
@@ -33,6 +35,7 @@ export function SwissTextReveal({
   as: Tag = "div",
   stagger = 0.06,
   once = true,
+  noInitialHide = false,
 }: SwissTextRevealProps) {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once, margin: "-10%" });
@@ -49,14 +52,14 @@ export function SwissTextReveal({
     const chars = text.split("");
 
     return (
-      <Tag ref={ref as any} className={cn("inline-block", className)} aria-label={text}>
+      <Tag ref={ref as React.RefObject<HTMLElement & HTMLDivElement>} className={cn("inline-block", className)} aria-label={text}>
         {chars.map((char, i) => (
           <motion.span
             key={`${i}-${char}`}
             className="inline-block"
             aria-hidden="true"
-            initial={{ opacity: 0, y: 16 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            initial={noInitialHide ? false : { opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : noInitialHide ? undefined : { opacity: 0, y: 16 }}
             transition={{ ...springTransition, delay: i * stagger }}
           >
             {char === " " ? "\u00A0" : char}
@@ -71,14 +74,14 @@ export function SwissTextReveal({
     const words = text.split(" ");
 
     return (
-      <Tag ref={ref as any} className={cn("inline-block", className)} aria-label={text}>
+      <Tag ref={ref as React.RefObject<HTMLElement & HTMLDivElement>} className={cn("inline-block", className)} aria-label={text}>
         {words.map((word, i) => (
           <span key={`${i}-${word}`} className="inline-block whitespace-nowrap">
             <motion.span
               className="inline-block"
               aria-hidden="true"
-              initial={{ opacity: 0, y: 16 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+              initial={noInitialHide ? false : { opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : noInitialHide ? undefined : { opacity: 0, y: 16 }}
               transition={{ ...springTransition, delay: i * stagger }}
             >
               {word}
@@ -95,13 +98,13 @@ export function SwissTextReveal({
   const lines = text ? text.split("\n") : [children];
 
   return (
-    <Tag ref={ref as any} className={className}>
+    <Tag ref={ref as React.RefObject<HTMLElement & HTMLDivElement>} className={className}>
       {lines.map((line, i) => (
         <span key={i} className="block overflow-hidden">
           <motion.span
             className="block"
-            initial={{ opacity: 0, y: "100%" }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: "100%" }}
+            initial={noInitialHide ? false : { opacity: 0, y: "100%" }}
+            animate={isInView ? { opacity: 1, y: 0 } : noInitialHide ? undefined : { opacity: 0, y: "100%" }}
             transition={{ ...springTransition, delay: i * stagger }}
           >
             {line}
