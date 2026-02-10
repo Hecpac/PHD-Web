@@ -1,0 +1,73 @@
+/* ──────────────────────────────────────────────
+   Micro-Interactions — CSS-only utilities
+   ────────────────────────────────────────────── */
+
+/* Card lift on hover: subtle translateY + shadow */
+.mi-card-lift {
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.mi-card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.08);
+}
+
+/* Press effect: scale down on active */
+.mi-press:active {
+  transform: scale(0.97);
+}
+
+/* Underline reveal on hover via ::after pseudo */
+.mi-underline-reveal {
+  position: relative;
+}
+.mi-underline-reveal::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease;
+}
+.mi-underline-reveal:hover::after,
+.mi-underline-reveal:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Dropdown enter animation */
+@keyframes mi-dropdown-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.mi-dropdown-enter {
+  animation: mi-dropdown-enter 150ms ease forwards;
+}
+
+/* ── Reduced Motion ────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .mi-card-lift,
+  .mi-card-lift:hover {
+    transform: none;
+    box-shadow: none;
+    transition: none;
+  }
+  .mi-press:active {
+    transform: none;
+  }
+  .mi-underline-reveal::after {
+    transform: scaleX(1);
+    transition: none;
+  }
+  .mi-dropdown-enter {
+    animation: none;
+  }
+}

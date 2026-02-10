@@ -41,9 +41,9 @@
   --radius-lg: 2px;
 }
 
-/* Runtime mapping — Light (Steel Slate) */
+/* Runtime mapping — Light (Warm Cream) */
 .light {
-  color-scheme: dark;
+  color-scheme: light;
 
   --token-canvas: var(--md-sys-color-background);
   --token-ink: var(--md-sys-color-on-background);
@@ -52,23 +52,23 @@
   --token-surface-2: var(--md-sys-color-surface-variant);
 
   --token-muted: var(--md-sys-color-on-surface-variant);
-  --token-subtle: rgb(195 198 202);
+  --token-subtle: rgb(120 116 109);
   --token-line: var(--md-sys-color-outline-variant);
 
   --token-accent: var(--md-sys-color-primary);
-  --token-accent-hover: rgb(255 200 196);
-  --token-accent-pressed: rgb(255 183 178);
+  --token-accent-hover: rgb(240 120 51);
+  --token-accent-pressed: rgb(224 104 37);
   --token-accent-ink: var(--md-sys-color-on-primary);
   --token-accent-soft: var(--md-sys-color-primary-container);
   --token-accent-soft-ink: var(--md-sys-color-on-primary-container);
-  --token-on-accent: rgb(35 38 45);
+  --token-on-accent: rgb(33 31 26);
 
   --token-danger: var(--md-sys-color-error);
   --token-danger-ink: var(--md-sys-color-on-error);
   --token-danger-soft: var(--md-sys-color-error-container);
   --token-danger-soft-ink: var(--md-sys-color-on-error-container);
 
-  --token-blueprint: rgb(199 56 52 / 0.15);
+  --token-blueprint: rgb(255 131 59 / 0.12);
 }
 
 /* Runtime mapping — Dark */

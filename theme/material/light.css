@@ -1,64 +1,63 @@
 /**
- * Steel Slate — Light Theme
- * Cool slate gray base (#4F525A) + brand red accent (#C73834)
- * Mid-tone corporate palette with subtle elevation
+ * Architectured-inspired Warm Cream — Light Theme
+ * Warm cream base + deep ink + orange/amber accents
  */
 
 .light {
-  /* Primary - Brand Red Accent (lightened for 3:1 on dark canvas) */
-  --md-sys-color-primary: rgb(255 180 174);
-  --md-sys-color-surface-tint: rgb(255 180 174);
-  --md-sys-color-on-primary: rgb(35 38 45);
-  --md-sys-color-primary-container: rgb(80 22 20);
-  --md-sys-color-on-primary-container: rgb(241 205 204);
+  /* Primary - Warm Orange */
+  --md-sys-color-primary: rgb(255 131 59);
+  --md-sys-color-surface-tint: rgb(255 131 59);
+  --md-sys-color-on-primary: rgb(33 31 26);
+  --md-sys-color-primary-container: rgb(255 248 235);
+  --md-sys-color-on-primary-container: rgb(33 31 26);
 
-  /* Secondary — Cool Neutral */
-  --md-sys-color-secondary: rgb(185 188 196);
-  --md-sys-color-on-secondary: rgb(35 38 45);
-  --md-sys-color-secondary-container: rgb(62 65 72);
-  --md-sys-color-on-secondary-container: rgb(220 222 228);
+  /* Secondary - Warm Amber */
+  --md-sys-color-secondary: rgb(222 174 0);
+  --md-sys-color-on-secondary: rgb(33 31 26);
+  --md-sys-color-secondary-container: rgb(255 248 235);
+  --md-sys-color-on-secondary-container: rgb(33 31 26);
 
-  /* Tertiary — Cool Neutral */
-  --md-sys-color-tertiary: rgb(185 188 196);
-  --md-sys-color-on-tertiary: rgb(35 38 45);
-  --md-sys-color-tertiary-container: rgb(62 65 72);
-  --md-sys-color-on-tertiary-container: rgb(220 222 228);
+  /* Tertiary - Neutral Ink */
+  --md-sys-color-tertiary: rgb(33 32 27);
+  --md-sys-color-on-tertiary: rgb(255 251 245);
+  --md-sys-color-tertiary-container: rgb(247 242 233);
+  --md-sys-color-on-tertiary-container: rgb(33 31 26);
 
   /* Error */
-  --md-sys-color-error: rgb(255 200 194);
-  --md-sys-color-on-error: rgb(105 0 5);
-  --md-sys-color-error-container: rgb(80 10 8);
-  --md-sys-color-on-error-container: rgb(255 230 228);
+  --md-sys-color-error: rgb(186 26 26);
+  --md-sys-color-on-error: rgb(255 255 255);
+  --md-sys-color-error-container: rgb(255 218 214);
+  --md-sys-color-on-error-container: rgb(65 0 2);
 
-  /* Background & Surface — Steel Slate */
-  --md-sys-color-background: rgb(79 82 90);
-  --md-sys-color-on-background: rgb(237 238 242);
-  --md-sys-color-surface: rgb(88 91 99);
-  --md-sys-color-on-surface: rgb(237 238 242);
+  /* Background & Surface - Warm Cream */
+  --md-sys-color-background: rgb(247 245 240);
+  --md-sys-color-on-background: rgb(33 32 27);
+  --md-sys-color-surface: rgb(255 251 245);
+  --md-sys-color-on-surface: rgb(33 32 27);
 
-  /* Surface Variants — Slate tones */
-  --md-sys-color-surface-variant: rgb(68 71 78);
-  --md-sys-color-on-surface-variant: rgb(210 213 217);
+  /* Surface Variants - Warm Paper */
+  --md-sys-color-surface-variant: rgb(241 239 233);
+  --md-sys-color-on-surface-variant: rgb(110 104 94);
 
-  /* Surface Containers — Cool slate scale */
-  --md-sys-color-surface-dim: rgb(65 68 75);
-  --md-sys-color-surface-bright: rgb(100 103 111);
-  --md-sys-color-surface-container-lowest: rgb(52 55 62);
-  --md-sys-color-surface-container-low: rgb(68 71 78);
-  --md-sys-color-surface-container: rgb(79 82 90);
-  --md-sys-color-surface-container-high: rgb(88 91 99);
-  --md-sys-color-surface-container-highest: rgb(98 101 109);
+  /* Surface Containers */
+  --md-sys-color-surface-dim: rgb(235 233 227);
+  --md-sys-color-surface-bright: rgb(247 245 240);
+  --md-sys-color-surface-container-lowest: rgb(255 255 255);
+  --md-sys-color-surface-container-low: rgb(251 250 247);
+  --md-sys-color-surface-container: rgb(247 245 240);
+  --md-sys-color-surface-container-high: rgb(241 239 233);
+  --md-sys-color-surface-container-highest: rgb(227 222 214);
 
-  /* Outline — Visible on slate */
-  --md-sys-color-outline: rgb(120 123 131);
-  --md-sys-color-outline-variant: rgb(170 173 177);
+  /* Outline */
+  --md-sys-color-outline: rgb(20 20 20 / 0.24);
+  --md-sys-color-outline-variant: rgb(20 20 20 / 0.14);
 
   /* Shadow & Scrim */
   --md-sys-color-shadow: rgb(0 0 0);
   --md-sys-color-scrim: rgb(0 0 0);
 
-  /* Inverse — Flip to light */
-  --md-sys-color-inverse-surface: rgb(237 238 242);
-  --md-sys-color-inverse-on-surface: rgb(35 38 45);
-  --md-sys-color-inverse-primary: rgb(255 180 174);
+  /* Inverse */
+  --md-sys-color-inverse-surface: rgb(33 31 26);
+  --md-sys-color-inverse-on-surface: rgb(247 245 240);
+  --md-sys-color-inverse-primary: rgb(255 131 59);
 }

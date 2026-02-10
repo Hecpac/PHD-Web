@@ -1,0 +1,184 @@
+/**
+ * Swiss Grid System
+ * International Typographic Style — 12-column modular grid
+ *
+ * Based on mathematical ratios with 8px baseline alignment.
+ * Supports asymmetric layouts (2/3 + 1/3, golden ratio, halves).
+ */
+
+/* ── Grid Foundation ──────────────────────────────── */
+
+.swiss-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gutter, 24px);
+  width: 100%;
+}
+
+/* ── Column Spans ─────────────────────────────────── */
+
+.swiss-col-1  { grid-column: span 1; }
+.swiss-col-2  { grid-column: span 2; }
+.swiss-col-3  { grid-column: span 3; }
+.swiss-col-4  { grid-column: span 4; }
+.swiss-col-5  { grid-column: span 5; }
+.swiss-col-6  { grid-column: span 6; }
+.swiss-col-7  { grid-column: span 7; }
+.swiss-col-8  { grid-column: span 8; }
+.swiss-col-9  { grid-column: span 9; }
+.swiss-col-10 { grid-column: span 10; }
+.swiss-col-11 { grid-column: span 11; }
+.swiss-col-12 { grid-column: span 12; }
+
+/* ── Column Offsets ───────────────────────────────── */
+
+.swiss-offset-1  { grid-column-start: 2; }
+.swiss-offset-2  { grid-column-start: 3; }
+.swiss-offset-3  { grid-column-start: 4; }
+.swiss-offset-4  { grid-column-start: 5; }
+.swiss-offset-5  { grid-column-start: 6; }
+.swiss-offset-6  { grid-column-start: 7; }
+.swiss-offset-7  { grid-column-start: 8; }
+.swiss-offset-8  { grid-column-start: 9; }
+.swiss-offset-9  { grid-column-start: 10; }
+.swiss-offset-10 { grid-column-start: 11; }
+.swiss-offset-11 { grid-column-start: 12; }
+
+/* ── Asymmetric Layout Presets ────────────────────── */
+
+/* 2/3 + 1/3 — classic Swiss asymmetric split */
+.swiss-grid-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--grid-gutter, 24px);
+  width: 100%;
+}
+
+/* 1/3 + 2/3 — reversed asymmetric */
+.swiss-grid-1-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--grid-gutter, 24px);
+  width: 100%;
+}
+
+/* Golden ratio (~1.618 : 1) */
+.swiss-grid-golden {
+  display: grid;
+  grid-template-columns: 1.618fr 1fr;
+  gap: var(--grid-gutter, 24px);
+  width: 100%;
+}
+
+/* Golden ratio reversed */
+.swiss-grid-golden-reverse {
+  display: grid;
+  grid-template-columns: 1fr 1.618fr;
+  gap: var(--grid-gutter, 24px);
+  width: 100%;
+}
+
+/* Equal halves */
+.swiss-grid-halves {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--grid-gutter, 24px);
+  width: 100%;
+}
+
+/* Equal thirds */
+.swiss-grid-thirds {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gutter, 24px);
+  width: 100%;
+}
+
+/* Equal quarters */
+.swiss-grid-quarters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--grid-gutter, 24px);
+  width: 100%;
+}
+
+/* ── Alignment Utilities ──────────────────────────── */
+
+.swiss-align-start   { align-items: start; }
+.swiss-align-center  { align-items: center; }
+.swiss-align-end     { align-items: end; }
+.swiss-align-stretch { align-items: stretch; }
+
+/* ── Baseline Grid Debug Overlay ──────────────────── */
+
+.swiss-baseline-debug {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--color-accent), transparent 90%) 1px,
+    transparent 1px
+  );
+  background-size: 100% 8px;
+}
+
+/* ── Responsive Breakpoints ───────────────────────── */
+
+/* Mobile: single column stack */
+@media (max-width: 639px) {
+  .swiss-grid,
+  .swiss-grid-2-1,
+  .swiss-grid-1-2,
+  .swiss-grid-golden,
+  .swiss-grid-golden-reverse,
+  .swiss-grid-halves,
+  .swiss-grid-thirds,
+  .swiss-grid-quarters {
+    grid-template-columns: 1fr;
+  }
+
+  .swiss-col-1,
+  .swiss-col-2,
+  .swiss-col-3,
+  .swiss-col-4,
+  .swiss-col-5,
+  .swiss-col-6,
+  .swiss-col-7,
+  .swiss-col-8,
+  .swiss-col-9,
+  .swiss-col-10,
+  .swiss-col-11,
+  .swiss-col-12 {
+    grid-column: span 1;
+  }
+
+  .swiss-offset-1,
+  .swiss-offset-2,
+  .swiss-offset-3,
+  .swiss-offset-4,
+  .swiss-offset-5,
+  .swiss-offset-6,
+  .swiss-offset-7,
+  .swiss-offset-8,
+  .swiss-offset-9,
+  .swiss-offset-10,
+  .swiss-offset-11 {
+    grid-column-start: auto;
+  }
+}
+
+/* Tablet: 6-column grid */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .swiss-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .swiss-col-7,
+  .swiss-col-8,
+  .swiss-col-9,
+  .swiss-col-10,
+  .swiss-col-11,
+  .swiss-col-12 {
+    grid-column: span 6;
+  }
+}
+
+/* Desktop (1024+): full 12-column grid — default above */

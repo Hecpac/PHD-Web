@@ -1,0 +1,25 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9EEEC"/>
+      <stop offset="1" stop-color="#E9D1CE"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFFFF" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect x="130" y="180" width="1340" height="640" rx="26" fill="#312522" opacity="0.08"/>
+  <rect x="170" y="220" width="1260" height="560" rx="22" fill="#F6E4E1"/>
+  <rect x="210" y="260" width="540" height="480" rx="14" fill="#FDF8F7"/>
+  <rect x="790" y="260" width="600" height="260" rx="14" fill="#FDF8F7"/>
+  <rect x="790" y="540" width="600" height="200" rx="14" fill="#F2DDDA"/>
+  <path d="M210 520H1390" stroke="#9C7D79" stroke-opacity="0.4" stroke-width="4"/>
+  <path d="M790 260V740" stroke="#9C7D79" stroke-opacity="0.4" stroke-width="4"/>
+  <rect x="250" y="300" width="460" height="390" rx="8" fill="url(#glass)"/>
+  <rect x="840" y="300" width="500" height="160" rx="8" fill="url(#glass)"/>
+  <rect x="840" y="575" width="500" height="130" rx="8" fill="#F9ECEA"/>
+  <text x="240" y="145" fill="#5E4A47" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="600">Dallas-Fort Worth Design-Build</text>
+  <text x="240" y="890" fill="#6D5551" font-family="'Courier New', monospace" font-size="24" letter-spacing="2">DFW ONLY • MODERN CUSTOM HOMES</text>
+</svg>

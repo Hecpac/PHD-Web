@@ -1,10 +1,10 @@
 import Link from "next/link";
 
+import { AnimatedNavLink } from "@/components/layout/animated-nav-link";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 import { NavDropdown } from "@/components/layout/nav-dropdown";
 import { CtaLink } from "@/components/ui/cta-link";
 import { getCtaConfig, siteConfig, siteNavigation } from "@/lib/config/site";
-import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const ctaConfig = getCtaConfig();
@@ -13,7 +13,7 @@ export function SiteHeader() {
     <>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-canvas"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-on-accent"
       >
         Skip to main content
       </a>
@@ -33,16 +33,13 @@ export function SiteHeader() {
                   items={item.children}
                 />
               ) : (
-                <Link
+                <AnimatedNavLink
                   key={item.href}
                   href={item.href}
-                  className={cn(
-                    "text-sm text-muted hover:text-ink focus-visible:outline-none",
-                    item.href === "/contact" && "text-ink",
-                  )}
+                  className={item.href === "/contact" ? "text-ink" : undefined}
                 >
                   {item.label}
-                </Link>
+                </AnimatedNavLink>
               ),
             )}
           </nav>

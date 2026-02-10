@@ -1,13 +1,11 @@
 @import "tailwindcss";
 @import "../theme/material/light.css";
-@import "../theme/material/dark.css";
 @import "../theme/material/light-hc.css";
 @import "../theme/material/light-mc.css";
-@import "../theme/material/dark-hc.css";
-@import "../theme/material/dark-mc.css";
 @import "../theme/tokens.material.css";
 @import "../theme/swiss-grid.css";
 @import "../theme/swiss-typography.css";
+@import "../theme/micro-interactions.css";
 
 /* ──────────────────────────────────────────────
    Swiss International Style — Foundation
@@ -120,49 +118,25 @@ button {
 /* ── Alternating Section: Bone White ────── */
 
 .section-bone {
-  --color-canvas: rgb(245 242 237);
-  --color-ink: rgb(29 29 28);
-  --color-surface: rgb(251 250 247);
-  --color-surface-2: rgb(241 239 233);
-  --color-muted: rgb(96 96 93);
-  --color-subtle: rgb(120 120 118);
-  --color-line: rgb(227 222 214);
-  --color-accent: rgb(199 56 52);
-  --color-accent-hover: rgb(169 48 44);
-  --color-accent-pressed: rgb(139 39 36);
-  --color-on-accent: rgb(255 255 255);
-  --color-accent-ink: rgb(255 255 255);
-  --color-accent-soft: rgb(241 205 204);
-  --color-accent-soft-ink: rgb(139 39 36);
+  --color-canvas: rgb(255 248 235);
+  --color-ink: rgb(33 32 27);
+  --color-surface: rgb(255 251 245);
+  --color-surface-2: rgb(247 242 233);
+  --color-muted: rgb(110 104 94);
+  --color-subtle: rgb(20 20 20 / 0.55);
+  --color-line: rgb(20 20 20 / 0.14);
+  --color-accent: rgb(255 131 59);
+  --color-accent-hover: rgb(240 120 51);
+  --color-accent-pressed: rgb(224 104 37);
+  --color-on-accent: rgb(33 31 26);
+  --color-accent-ink: rgb(33 31 26);
+  --color-accent-soft: rgb(255 248 235);
+  --color-accent-soft-ink: rgb(33 31 26);
   --color-danger: rgb(186 26 26);
   --color-danger-ink: rgb(255 255 255);
-  --color-blueprint: rgb(199 56 52 / 0.10);
-  background: rgb(245 242 237);
-  color: rgb(29 29 28);
-}
-
-/* ── Alternating Section: Dark ────────────── */
-
-.section-dark {
-  --color-canvas: rgb(34 32 30);
-  --color-ink: rgb(245 242 237);
-  --color-surface: rgb(48 46 43);
-  --color-surface-2: rgb(55 53 50);
-  --color-muted: rgb(160 158 154);
-  --color-subtle: rgb(130 128 125);
-  --color-line: rgb(68 65 61);
-  --color-accent: rgb(199 56 52);
-  --color-accent-hover: rgb(220 70 65);
-  --color-accent-pressed: rgb(180 50 46);
-  --color-on-accent: rgb(255 255 255);
-  --color-accent-ink: rgb(255 255 255);
-  --color-accent-soft: rgb(60 40 40);
-  --color-accent-soft-ink: rgb(220 130 128);
-  --color-danger: rgb(220 80 80);
-  --color-danger-ink: rgb(255 255 255);
-  --color-blueprint: rgb(199 56 52 / 0.15);
-  background: rgb(34 32 30);
-  color: rgb(245 242 237);
+  --color-blueprint: rgb(255 131 59 / 0.12);
+  background: rgb(255 248 235);
+  color: rgb(33 32 27);
 }
 
 /* ── Backdrop Blur Header ────────────────── */

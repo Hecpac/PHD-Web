@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="60%" stop-color="#16213e"/>
+      <stop offset="100%" stop-color="#0f3460"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a2a3e" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0.7"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#e2b97f" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#e2b97f" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <!-- Sky gradient -->
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+
+  <!-- Architectural grid overlay -->
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+
+  <!-- Ground plane -->
+  <rect x="0" y="680" width="1920" height="400" fill="#0a0a14"/>
+
+  <!-- Main building — tall glass tower -->
+  <rect x="720" y="180" width="280" height="500" fill="#12121e" stroke="#2a2a3e" stroke-width="1"/>
+  <!-- Window grid on tower -->
+  <g fill="#1e2a4a" opacity="0.6">
+    <rect x="730" y="195" width="55" height="28" rx="1"/>
+    <rect x="795" y="195" width="55" height="28" rx="1"/>
+    <rect x="860" y="195" width="55" height="28" rx="1"/>
+    <rect x="925" y="195" width="55" height="28" rx="1"/>
+    <rect x="730" y="233" width="55" height="28" rx="1"/>
+    <rect x="795" y="233" width="55" height="28" rx="1"/>
+    <rect x="860" y="233" width="55" height="28" rx="1"/>
+    <rect x="925" y="233" width="55" height="28" rx="1"/>
+    <rect x="730" y="271" width="55" height="28" rx="1"/>
+    <rect x="795" y="271" width="55" height="28" rx="1"/>
+    <rect x="860" y="271" width="55" height="28" rx="1"/>
+    <rect x="925" y="271" width="55" height="28" rx="1"/>
+    <rect x="730" y="309" width="55" height="28" rx="1"/>
+    <rect x="795" y="309" width="55" height="28" rx="1"/>
+    <rect x="860" y="309" width="55" height="28" rx="1"/>
+    <rect x="925" y="309" width="55" height="28" rx="1"/>
+    <rect x="730" y="347" width="55" height="28" rx="1"/>
+    <rect x="795" y="347" width="55" height="28" rx="1"/>
+    <rect x="860" y="347" width="55" height="28" rx="1"/>
+    <rect x="925" y="347" width="55" height="28" rx="1"/>
+    <rect x="730" y="385" width="55" height="28" rx="1"/>
+    <rect x="795" y="385" width="55" height="28" rx="1"/>
+    <rect x="860" y="385" width="55" height="28" rx="1"/>
+    <rect x="925" y="385" width="55" height="28" rx="1"/>
+    <rect x="730" y="423" width="55" height="28" rx="1"/>
+    <rect x="795" y="423" width="55" height="28" rx="1"/>
+    <rect x="860" y="423" width="55" height="28" rx="1"/>
+    <rect x="925" y="423" width="55" height="28" rx="1"/>
+    <rect x="730" y="461" width="55" height="28" rx="1"/>
+    <rect x="795" y="461" width="55" height="28" rx="1"/>
+    <rect x="860" y="461" width="55" height="28" rx="1"/>
+    <rect x="925" y="461" width="55" height="28" rx="1"/>
+    <rect x="730" y="499" width="55" height="28" rx="1"/>
+    <rect x="795" y="499" width="55" height="28" rx="1"/>
+    <rect x="860" y="499" width="55" height="28" rx="1"/>
+    <rect x="925" y="499" width="55" height="28" rx="1"/>
+    <rect x="730" y="537" width="55" height="28" rx="1"/>
+    <rect x="795" y="537" width="55" height="28" rx="1"/>
+    <rect x="860" y="537" width="55" height="28" rx="1"/>
+    <rect x="925" y="537" width="55" height="28" rx="1"/>
+    <rect x="730" y="575" width="55" height="28" rx="1"/>
+    <rect x="795" y="575" width="55" height="28" rx="1"/>
+    <rect x="860" y="575" width="55" height="28" rx="1"/>
+    <rect x="925" y="575" width="55" height="28" rx="1"/>
+    <rect x="730" y="613" width="55" height="28" rx="1"/>
+    <rect x="795" y="613" width="55" height="28" rx="1"/>
+    <rect x="860" y="613" width="55" height="28" rx="1"/>
+    <rect x="925" y="613" width="55" height="28" rx="1"/>
+    <rect x="730" y="651" width="55" height="28" rx="1"/>
+    <rect x="795" y="651" width="55" height="28" rx="1"/>
+    <rect x="860" y="651" width="55" height="28" rx="1"/>
+    <rect x="925" y="651" width="55" height="28" rx="1"/>
+  </g>
+  <!-- Warm light in a few windows -->
+  <g fill="#e2b97f" opacity="0.25">
+    <rect x="795" y="537" width="55" height="28" rx="1"/>
+    <rect x="860" y="575" width="55" height="28" rx="1"/>
+    <rect x="730" y="613" width="55" height="28" rx="1"/>
+    <rect x="925" y="461" width="55" height="28" rx="1"/>
+  </g>
+
+  <!-- Left residential wing — low modern -->
+  <rect x="300" y="480" width="420" height="200" fill="#0e0e1a" stroke="#1e1e2e" stroke-width="1"/>
+  <!-- Flat roof overhang -->
+  <rect x="280" y="470" width="460" height="12" fill="#161626"/>
+  <!-- Floor-to-ceiling windows -->
+  <g fill="#162040" opacity="0.5">
+    <rect x="310" y="490" width="90" height="180" rx="1"/>
+    <rect x="410" y="490" width="90" height="180" rx="1"/>
+    <rect x="510" y="490" width="90" height="180" rx="1"/>
+    <rect x="610" y="490" width="90" height="180" rx="1"/>
+  </g>
+  <!-- Interior warm glow -->
+  <g fill="#e2b97f" opacity="0.12">
+    <rect x="310" y="490" width="90" height="180" rx="1"/>
+    <rect x="510" y="490" width="90" height="180" rx="1"/>
+  </g>
+
+  <!-- Right cantilevered volume -->
+  <rect x="1000" y="380" width="360" height="300" fill="#10101c" stroke="#1e1e2e" stroke-width="1"/>
+  <rect x="980" y="370" width="400" height="12" fill="#161626"/>
+  <!-- Cantilevered upper -->
+  <rect x="1060" y="280" width="240" height="100" fill="#0c0c18" stroke="#1a1a2a" stroke-width="1"/>
+  <rect x="1050" y="272" width="260" height="10" fill="#141424"/>
+  <!-- Windows -->
+  <g fill="#162040" opacity="0.5">
+    <rect x="1070" y="290" width="100" height="80" rx="1"/>
+    <rect x="1185" y="290" width="100" height="80" rx="1"/>
+    <rect x="1010" y="395" width="75" height="120" rx="1"/>
+    <rect x="1095" y="395" width="75" height="120" rx="1"/>
+    <rect x="1180" y="395" width="75" height="120" rx="1"/>
+    <rect x="1265" y="395" width="75" height="120" rx="1"/>
+  </g>
+  <g fill="#e2b97f" opacity="0.18">
+    <rect x="1070" y="290" width="100" height="80" rx="1"/>
+    <rect x="1265" y="395" width="75" height="120" rx="1"/>
+  </g>
+
+  <!-- Far-right accent structure -->
+  <rect x="1460" y="520" width="200" height="160" fill="#0c0c18" stroke="#1a1a2a" stroke-width="0.5"/>
+  <rect x="1450" y="512" width="220" height="10" fill="#141424"/>
+  <g fill="#162040" opacity="0.4">
+    <rect x="1470" y="535" width="80" height="135" rx="1"/>
+    <rect x="1565" y="535" width="80" height="135" rx="1"/>
+  </g>
+
+  <!-- Landscape elements — trees/shrubs as abstract forms -->
+  <g fill="#0a0a14" opacity="0.8">
+    <ellipse cx="220" cy="660" rx="60" ry="90"/>
+    <ellipse cx="150" cy="670" rx="40" ry="60"/>
+    <ellipse cx="1550" cy="660" rx="50" ry="80"/>
+    <ellipse cx="1700" cy="670" rx="70" ry="70"/>
+    <ellipse cx="1800" cy="665" rx="45" ry="75"/>
+  </g>
+
+  <!-- Reflection pool / driveway -->
+  <rect x="600" y="690" width="500" height="6" rx="3" fill="#1a2a4a" opacity="0.3"/>
+
+  <!-- Warm ambient glow from ground -->
+  <rect x="0" y="680" width="1920" height="400" fill="url(#warm)"/>
+
+  <!-- Subtle horizontal lines — architectural precision -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="0.5">
+    <line x1="0" y1="680" x2="1920" y2="680"/>
+    <line x1="0" y1="470" x2="1920" y2="470"/>
+    <line x1="0" y1="370" x2="1920" y2="370"/>
+    <line x1="0" y1="180" x2="1920" y2="180"/>
+  </g>
+
+  <!-- Film grain texture overlay -->
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+  <rect width="1920" height="1080" filter="url(#grain)" opacity="0.035"/>
+</svg>
