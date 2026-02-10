@@ -48,15 +48,15 @@ function StepCard({
       </div>
 
       <div className="mt-6 flex flex-1 flex-col space-y-4">
-        <h3 className="text-3xl font-bold text-ink">{step.title}</h3>
+        <h2 className="text-3xl font-bold text-ink">{step.title}</h2>
         <p className="text-lg leading-relaxed text-muted">{step.description}</p>
 
         {/* Deliverables */}
         {step.deliverables.length > 0 && (
           <div className="pt-4">
-            <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.05em] text-muted">
+            <h3 className="mb-3 font-mono text-xs uppercase tracking-[0.05em] text-muted">
               Deliverables
-            </h4>
+            </h3>
             <ul className="space-y-2">
               {step.deliverables.map((item) => (
                 <li key={item} className="flex gap-3">
@@ -271,16 +271,16 @@ function VerticalBlueprint({ steps }: { steps: ProcessStep[] }) {
 
           {/* Content */}
           <div className="space-y-4">
-            <h3 className="text-3xl font-bold text-ink">{step.title}</h3>
+            <h2 className="text-3xl font-bold text-ink">{step.title}</h2>
             <p className="text-lg leading-relaxed text-muted">
               {step.description}
             </p>
 
             {step.deliverables.length > 0 && (
               <div className="pt-4">
-                <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.05em] text-muted">
+                <h3 className="mb-3 font-mono text-xs uppercase tracking-[0.05em] text-muted">
                   Deliverables
-                </h4>
+                </h3>
                 <ul className="space-y-2">
                   {step.deliverables.map((item) => (
                     <li key={item} className="flex gap-3">
@@ -317,7 +317,7 @@ export function BlueprintSection({
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id={id} className="section-shell border-t border-line">
+    <section id={id} className="section-shell overflow-x-clip border-t border-line">
       <Container swiss>
         {withHeading ? (
           <SectionHeading

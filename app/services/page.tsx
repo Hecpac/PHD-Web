@@ -55,9 +55,9 @@ export default async function ServicesPage() {
               >
                 <div>
                   <p className="type-mono-label text-muted">{detail.icon}</p>
-                  <h3 className="mt-2 type-heading text-ink group-hover:text-accent">
+                  <h2 className="mt-2 type-heading text-ink group-hover:text-accent">
                     {detail.title}
-                  </h3>
+                  </h2>
                   <p className="mt-2 text-sm leading-6 text-muted">
                     {detail.summary}
                   </p>

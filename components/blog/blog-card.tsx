@@ -50,14 +50,14 @@ export function BlogCard({ post, className }: BlogCardProps) {
             <span className="type-mono-label text-accent">{post.category}</span>
             <span className="text-xs text-muted">{post.readTime}</span>
           </div>
-          <h3 className="type-heading transition-colors duration-150 group-hover:text-accent">
+          <h2 className="type-heading transition-colors duration-150 group-hover:text-accent">
             <Link
               href={`/blogs/${post.slug}`}
               className="after:absolute after:inset-0 focus-visible:outline-none"
             >
               {post.title}
             </Link>
-          </h3>
+          </h2>
           <p className="text-sm leading-6 text-muted line-clamp-3">
             {post.excerpt}
           </p>
