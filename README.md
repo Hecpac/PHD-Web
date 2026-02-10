@@ -1,17 +1,20 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PHD Web
+
+Marketing website built with [Next.js](https://nextjs.org) using the App Router.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
+```
+
+Run the lint check before opening a PR:
+
+```bash
+pnpm lint
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
