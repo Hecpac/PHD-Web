@@ -23,7 +23,7 @@ export function SectionHeading({
         <p className="type-mono-label text-muted">{eyebrow}</p>
       ) : null}
       <Heading className="type-display max-w-4xl">
-        <SwissTextReveal mode="word" as="span">
+        <SwissTextReveal mode="word" as="span" noInitialHide>
           {title}
         </SwissTextReveal>
       </Heading>

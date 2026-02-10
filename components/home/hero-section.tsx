@@ -39,7 +39,7 @@ export function HeroSection() {
             </p>
 
             <h1 className="text-5xl font-bold leading-[0.95] tracking-[-0.04em] text-ink sm:text-6xl lg:text-[5.25rem]">
-              <SwissTextReveal mode="word" stagger={0.1}>
+              <SwissTextReveal mode="word" stagger={0.1} noInitialHide>
                 Architectural custom homes, delivered with builder-grade control.
               </SwissTextReveal>
             </h1>
