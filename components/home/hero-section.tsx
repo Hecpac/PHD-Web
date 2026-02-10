@@ -38,15 +38,16 @@ export function HeroSection() {
             </p>
 
             <h1 className="text-5xl font-bold leading-[0.95] tracking-[-0.04em] text-ink sm:text-6xl lg:text-[5.25rem]">
-              <SwissTextReveal mode="word" stagger={0.1} noInitialHide>
+              <SwissTextReveal mode="word" stagger={0.08} delay={0.05}>
                 Architectural custom homes, delivered with builder-grade control.
               </SwissTextReveal>
             </h1>
 
-            <p className="max-w-2xl text-lg leading-relaxed text-ink/90">
-              We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth.
-              Every phase is tied to clear deliverables and decision gates.
-            </p>
+            <h2 className="max-w-2xl text-lg font-normal leading-relaxed tracking-normal text-ink/90 sm:text-xl">
+              <SwissTextReveal mode="line" delay={0.7}>
+                {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth.\nEvery phase is tied to clear deliverables and decision gates."}
+              </SwissTextReveal>
+            </h2>
 
             <div
               className="flex flex-col gap-4 pt-4 sm:flex-row sm:items-center"

@@ -9,6 +9,8 @@ type SwissTextRevealProps = {
   children: ReactNode;
   /** Reveal mode: line-by-line, word-by-word, or character-by-character */
   mode?: "line" | "word" | "char";
+  /** Base delay before reveal starts (seconds) */
+  delay?: number;
   /** Additional class names */
   className?: string;
   /** HTML tag for the wrapper */
@@ -31,6 +33,7 @@ const springTransition = { type: "spring" as const, stiffness: 70, damping: 18 }
 export function SwissTextReveal({
   children,
   mode = "line",
+  delay = 0,
   className,
   as: Tag = "div",
   stagger = 0.06,
@@ -60,7 +63,7 @@ export function SwissTextReveal({
             aria-hidden="true"
             initial={noInitialHide ? false : { opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : noInitialHide ? undefined : { opacity: 0, y: 16 }}
-            transition={{ ...springTransition, delay: i * stagger }}
+            transition={{ ...springTransition, delay: delay + i * stagger }}
           >
             {char === " " ? "\u00A0" : char}
           </motion.span>
@@ -82,7 +85,7 @@ export function SwissTextReveal({
               aria-hidden="true"
               initial={noInitialHide ? false : { opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : noInitialHide ? undefined : { opacity: 0, y: 16 }}
-              transition={{ ...springTransition, delay: i * stagger }}
+              transition={{ ...springTransition, delay: delay + i * stagger }}
             >
               {word}
             </motion.span>
@@ -105,7 +108,7 @@ export function SwissTextReveal({
             className="block"
             initial={noInitialHide ? false : { opacity: 0, y: "100%" }}
             animate={isInView ? { opacity: 1, y: 0 } : noInitialHide ? undefined : { opacity: 0, y: "100%" }}
-            transition={{ ...springTransition, delay: i * stagger }}
+            transition={{ ...springTransition, delay: delay + i * stagger }}
           >
             {line}
           </motion.span>
