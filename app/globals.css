@@ -55,14 +55,41 @@ body {
   min-height: 100%;
 }
 
+/* Improve text rendering across browsers */
+html {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 1600px) {
+  html {
+    font-size: calc(0.34318555008210183rem + 0.6568144499178982vw);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  html {
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  html {
+    font-size: 0.65rem;
+  }
+}
+
 body {
   background: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.5;
   font-weight: 400;
   letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* Swiss typography: bold headings, tight tracking */
