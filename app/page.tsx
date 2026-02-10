@@ -25,18 +25,20 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
-      <ImageGridStrip projects={projects} />
-      <LedgerSection services={services} />
-      <HowWeWorkSection />
-      <BlueprintSection steps={processSteps} />
-      <FeaturedProjectsSection projects={projects.slice(0, 3)} />
-      <BentoSection />
-      <DfwSection />
-      <TrustSection />
-      <WhyChooseUsSection />
-      <TestimonialsSection reviews={reviews} />
-      <FaqSection faqs={faqs} />
-      <ContactTerminal />
+      <div className="relative z-20 -mt-[14vh] bg-canvas pt-[14vh]">
+        <ImageGridStrip projects={projects} />
+        <LedgerSection services={services} />
+        <HowWeWorkSection />
+        <BlueprintSection steps={processSteps} />
+        <FeaturedProjectsSection projects={projects.slice(0, 3)} />
+        <BentoSection />
+        <DfwSection />
+        <TrustSection />
+        <WhyChooseUsSection />
+        <TestimonialsSection reviews={reviews} />
+        <FaqSection faqs={faqs} />
+        <ContactTerminal />
+      </div>
     </>
   );
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { Container } from "@/components/layout/container";
+import { ParallaxLayer } from "@/components/ui/parallax-layer";
 import { CtaLink } from "@/components/ui/cta-link";
 import { SwissTextReveal } from "@/components/ui/swiss-text-reveal";
 import { getCtaConfig } from "@/lib/config/site";
@@ -12,68 +13,73 @@ export function HeroSection() {
     <section
       id="hero"
       aria-label="Hero — DFW custom home builder"
-      className="relative min-h-[85vh] bg-canvas"
+      className="relative z-0 min-h-[120vh]"
     >
-      {/* Full-width hero image with cinematic treatment */}
-      <div className="absolute inset-0">
-        <Image
-          src="/projects/north-dallas-courtyard-residence/hero.jpg"
-          alt="Front elevation of a modern custom home in Dallas-Fort Worth"
-          fill
-          priority
-          fetchPriority="high"
-          className="object-cover opacity-32"
-          sizes="100vw"
-        />
-      </div>
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/88 to-canvas/65" />
+      <div className="sticky top-0 h-screen overflow-hidden">
+        {/* Full-width hero image with cinematic treatment */}
+        <ParallaxLayer speed={0.22} className="absolute inset-0">
+          <div className="relative h-full w-full">
+            <Image
+              src="/projects/north-dallas-courtyard-residence/hero.jpg"
+              alt="Front elevation of a modern custom home in Dallas-Fort Worth"
+              fill
+              priority
+              fetchPriority="high"
+              className="object-cover opacity-32"
+              sizes="100vw"
+            />
+          </div>
+        </ParallaxLayer>
 
-      {/* Content overlay — flush left, bottom aligned */}
-      <Container swiss className="relative z-10">
-        <div className="flex min-h-[85vh] items-end pb-16">
-          <div className="max-w-3xl space-y-6">
-            <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-              DFW Modern Design-Build
-            </p>
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/88 to-canvas/65" />
 
-            <h1 className="text-5xl font-bold leading-[0.95] tracking-[-0.04em] text-ink sm:text-6xl lg:text-[5.25rem]">
-              <SwissTextReveal mode="word" stagger={0.08} delay={0.05}>
-                Architectural custom homes, delivered with builder-grade control.
-              </SwissTextReveal>
-            </h1>
+        {/* Content overlay — flush left, bottom aligned */}
+        <Container swiss className="relative z-10">
+          <div className="flex h-screen items-end pb-16">
+            <div className="max-w-3xl space-y-6">
+              <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
+                DFW Modern Design-Build
+              </p>
 
-            <h2 className="max-w-2xl text-lg font-normal leading-relaxed tracking-normal text-ink/90 sm:text-xl">
-              <SwissTextReveal mode="line" delay={0.7}>
-                {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth.\nEvery phase is tied to clear deliverables and decision gates."}
-              </SwissTextReveal>
-            </h2>
+              <h1 className="text-5xl font-bold leading-[0.95] tracking-[-0.04em] text-ink sm:text-6xl lg:text-[5.25rem]">
+                <SwissTextReveal mode="word" stagger={0.08} delay={0.05}>
+                  Architectural custom homes, delivered with builder-grade control.
+                </SwissTextReveal>
+              </h1>
 
-            <div
-              className="flex flex-col gap-4 pt-4 sm:flex-row sm:items-center"
-              role="group"
-              aria-label="Call to action"
-            >
-              <CtaLink
-                href={scheduleUrl}
-                target="_blank"
-                rel="noreferrer"
-                eventName="cta_schedule_click"
-                withArrow
+              <h2 className="max-w-2xl text-lg font-normal leading-relaxed tracking-normal text-ink/90 sm:text-xl">
+                <SwissTextReveal mode="line" delay={0.7}>
+                  {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth.\nEvery phase is tied to clear deliverables and decision gates."}
+                </SwissTextReveal>
+              </h2>
+
+              <div
+                className="flex flex-col gap-4 pt-4 sm:flex-row sm:items-center"
+                role="group"
+                aria-label="Call to action"
               >
-                Schedule Consultation
-              </CtaLink>
-              <CtaLink
-                href={phoneHref}
-                eventName="cta_call_click"
-                variant="secondary"
-              >
-                Call {phoneDisplay}
-              </CtaLink>
+                <CtaLink
+                  href={scheduleUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  eventName="cta_schedule_click"
+                  withArrow
+                >
+                  Schedule Consultation
+                </CtaLink>
+                <CtaLink
+                  href={phoneHref}
+                  eventName="cta_call_click"
+                  variant="secondary"
+                >
+                  Call {phoneDisplay}
+                </CtaLink>
+              </div>
             </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </section>
   );
 }
