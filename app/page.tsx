@@ -24,9 +24,10 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroSection />
-      <div className="relative z-20 -mt-[14vh] bg-canvas pt-[14vh]">
+      <HeroSection>
         <ImageGridStrip projects={projects} />
+      </HeroSection>
+      <div className="relative z-20 -mt-[14vh] bg-canvas pt-[14vh]">
         <LedgerSection services={services} />
         <HowWeWorkSection />
         <BlueprintSection steps={processSteps} />
