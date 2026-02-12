@@ -184,6 +184,7 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
                           )
                         }
                         onNavigate={() => setOpen(false)}
+                        panelId={`${item.href}-panel`}
                       />
                     ) : (
                       <Link
@@ -237,6 +238,7 @@ type ServiceAccordionProps = {
   expanded: boolean;
   onToggle: () => void;
   onNavigate: () => void;
+  panelId: string;
 };
 
 function ServiceAccordion({
@@ -244,9 +246,8 @@ function ServiceAccordion({
   expanded,
   onToggle,
   onNavigate,
+  panelId,
 }: ServiceAccordionProps) {
-  const panelId = `mobile-services-panel`;
-
   return (
     <div>
       <div className="flex items-center justify-between">

@@ -88,13 +88,16 @@ function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const totalSteps = steps.length;
+  const safeTotalSteps = Math.max(totalSteps, 1);
 
   useGSAP(() => {
     if (!sectionRef.current || !contentRef.current) return;
 
     const panels = gsap.utils.toArray<HTMLElement>(contentRef.current.children);
     const totalWidth = contentRef.current.scrollWidth - sectionRef.current.offsetWidth;
-    const snapPoints = panels.map((_, i) => i / (panels.length - 1));
+    const stepCount = panels.length;
+    const snapPoints =
+      stepCount > 1 ? panels.map((_, i) => i / (stepCount - 1)) : [0];
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -106,7 +109,8 @@ function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
         snap: { snapTo: snapPoints, duration: 0.3, delay: 0 },
         onUpdate: (self) => {
           const progress = self.progress;
-          const idx = Math.round(progress * (panels.length - 1));
+          const segmentCount = Math.max(stepCount - 1, 1);
+          const idx = Math.round(progress * segmentCount);
           setActiveIndex(idx);
         },
       },
@@ -119,6 +123,7 @@ function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
   }, { scope: sectionRef });
 
   const scrollToSnap = useCallback((idx: number) => {
+    if (safeTotalSteps <= 1) return;
     const clamped = Math.max(0, Math.min(idx, totalSteps - 1));
     const triggers = ScrollTrigger.getAll();
     const pinTrigger = triggers.find(t => t.vars.trigger === sectionRef.current);
@@ -157,7 +162,7 @@ function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
           <button
             type="button"
             onClick={goPrev}
-            disabled={activeIndex === 0}
+            disabled={activeIndex === 0 || safeTotalSteps <= 1}
             aria-label="Previous step"
             className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none"
           >
@@ -181,7 +186,7 @@ function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
           <button
             type="button"
             onClick={goNext}
-            disabled={activeIndex === totalSteps - 1}
+            disabled={activeIndex >= safeTotalSteps - 1}
             aria-label="Next step"
             className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none"
           >

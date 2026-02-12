@@ -19,14 +19,11 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: LightboxPr
   const overlayRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
-  // Sync currentIndex when initialIndex changes while open (React pattern: derive state during render)
-  const [prevOpen, setPrevOpen] = useState(false);
-  if (open && !prevOpen) {
-    setCurrentIndex(initialIndex);
-    setPrevOpen(true);
-  } else if (!open && prevOpen) {
-    setPrevOpen(false);
-  }
+  useEffect(() => {
+    if (open) {
+      setCurrentIndex(initialIndex);
+    }
+  }, [open, initialIndex]);
 
   // Capture previous focus when opening
   useEffect(() => {

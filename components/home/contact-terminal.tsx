@@ -22,6 +22,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
   const [statusMessage, setStatusMessage] = useState<string>("");
   const cityRef = useRef<HTMLSelectElement>(null);
   const { phoneDisplay, phoneHref, scheduleUrl } = getCtaConfig();
+  const contactEndpoint = process.env.NEXT_PUBLIC_CONTACT_WEBHOOK_URL;
 
   const cityHasError = status === "error";
   const inputClass =
@@ -36,12 +37,25 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
     trackEvent("form_start");
   };
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const form = event.currentTarget;
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      setStatus("error");
+      setStatusMessage("Please complete all required fields.");
+      trackEvent("form_error", { field: "required_fields" });
+      return;
+    }
+
     const formData = new FormData(form);
     const city = String(formData.get("city") ?? "").trim();
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const phone = String(formData.get("phone") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
 
     if (!isDfwCity(city)) {
       setStatus("error");
@@ -51,11 +65,48 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
       return;
     }
 
-    setStatus("success");
-    setStatusMessage("Thanks. Your DFW project intake has been captured for a follow-up call.");
-    trackEvent("form_submit", { city });
-    form.reset();
-    setStarted(false);
+    if (!contactEndpoint) {
+      setStatus("success");
+      setStatusMessage(
+        "Thanks. Intake is validated, but no backend is configured yet. Please use Schedule Consultation or Call for follow-up.",
+      );
+      trackEvent("form_submit", { city, name, email, phone, message, status: "not_captured" });
+      form.reset();
+      setStarted(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(contactEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          city,
+          phone,
+          message,
+          source: "dfw_contact_terminal",
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Contact submission failed with status ${response.status}`);
+      }
+
+      setStatus("success");
+      setStatusMessage("Thanks. Your DFW project intake has been captured for a follow-up call.");
+      trackEvent("form_submit", { city, name, email, phone, status: "captured" });
+      form.reset();
+      setStarted(false);
+    } catch {
+      setStatus("error");
+      setStatusMessage(
+        "We couldn’t submit your intake right now. Please use Schedule Consultation or Call to connect.",
+      );
+      trackEvent("form_error", { field: "submission", city });
+    }
   };
 
   return (
