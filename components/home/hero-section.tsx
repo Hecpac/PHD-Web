@@ -43,7 +43,6 @@ export function HeroSection({ children }: HeroSectionProps) {
           start: "top top",
           end: "bottom top",
           scrub: 1.2,
-          markers: true, // ← temporary debug markers
         },
       });
 
