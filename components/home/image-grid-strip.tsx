@@ -3,6 +3,7 @@ import { ParallaxLayer } from "@/components/ui/parallax-layer";
 import type { Project } from "@/lib/types/content";
 
 const sectionVideo = "/render/hectorpachano_split_screen_architectural_visualization_left_h_d6ab600a.mp4";
+const sectionPoster = "/render/hero-between-heroes.svg";
 const sectionParallaxSpeed = 0.32;
 
 type ImageGridStripProps = {
@@ -18,15 +19,16 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
       className="relative overflow-hidden border-y border-line"
     >
       <ParallaxLayer speed={sectionParallaxSpeed} disableBelow={768} className="absolute inset-0">
-        <div className="relative h-[120%] w-full -translate-y-[10%]">
+        <div className="relative h-full w-full">
           <video
             src={sectionVideo}
-            className="h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
+            poster={sectionPoster}
             aria-hidden="true"
           />
         </div>

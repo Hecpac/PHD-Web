@@ -78,13 +78,13 @@ export function HeroSection({ children }: HeroSectionProps) {
         ease: "none",
       }, 0.4);
 
-      // 5. Featured portfolio enters at the end (90% -> 100%)
+      // 5. Featured portfolio enters near the end (85% -> 100%)
       if (galleryRef.current) {
         tl.fromTo(
           galleryRef.current,
-          { y: "100%" },
-          { y: "0%", duration: 0.1, ease: "power2.out" },
-          0.9,
+          { y: "110%" },
+          { y: "0%", duration: 0.15, ease: "power2.out" },
+          0.85,
         );
       }
     },
