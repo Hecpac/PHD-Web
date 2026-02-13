@@ -25,9 +25,8 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroSection>
-        <ImageGridStrip projects={projects} />
-      </HeroSection>
+      <HeroSection />
+      <ImageGridStrip projects={projects} />
       <LedgerSection services={services} />
       <HowWeWorkSection />
       <BlueprintSection steps={processSteps} />
