@@ -9,6 +9,7 @@ import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { SwissTextReveal } from "@/components/ui/swiss-text-reveal";
 import { getCtaConfig } from "@/lib/config/site";
+import { useHeroTypewriter } from "@/hooks/use-hero-typewriter";
 
 type HeroSectionProps = {
   children?: ReactNode;
@@ -24,6 +25,7 @@ export function HeroSection({ children }: HeroSectionProps) {
   const imageRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
+  useHeroTypewriter();
 
   useGSAP(
     () => {
@@ -46,44 +48,43 @@ export function HeroSection({ children }: HeroSectionProps) {
         },
       });
 
-      // 1. Bars grow from 0 → 50vh
+      // 1. Text fade-out phase (0% -> 40%)
       tl.to([topBarRef.current, bottomBarRef.current], {
         height: "50vh",
-        duration: 0.6,
+        duration: 0.4,
         ease: "power2.inOut",
       }, 0);
 
-      // 2. H1 fades out faster + drifts up
+      // 2. H1 fades out faster + drifts up (0% -> 40%)
       tl.to(titleRef.current, {
         opacity: 0,
         y: -40,
-        duration: 0.4,
+        duration: 0.32,
         ease: "power1.in",
       }, 0);
 
-      // 3. Remaining content fades
+      // 3. Remaining content fades (0% -> 40%)
       tl.to(contentRef.current, {
         opacity: 0,
-        duration: 0.55,
-        ease: "none",
-      }, 0.05);
-
-      // 4. Background image parallax
-      tl.to(imageRef.current, {
-        y: "-18%",
-        scale: 1.05,
-        duration: 1,
+        duration: 0.4,
         ease: "none",
       }, 0);
 
-      // 5. Gallery slides up from below the viewport into full view
-      //    Starts at 15% of timeline, ends at 65% → stays visible for remaining 35%
+      // 4. Background image drift phase (40% -> 70%)
+      tl.to(imageRef.current, {
+        y: "-18%",
+        scale: 1.05,
+        duration: 0.3,
+        ease: "none",
+      }, 0.4);
+
+      // 5. Featured portfolio enters at the end (90% -> 100%)
       if (galleryRef.current) {
         tl.fromTo(
           galleryRef.current,
           { y: "100%" },
-          { y: "0%", duration: 0.5, ease: "power2.out" },
-          0.15,
+          { y: "0%", duration: 0.1, ease: "power2.out" },
+          0.9,
         );
       }
     },
@@ -123,6 +124,34 @@ export function HeroSection({ children }: HeroSectionProps) {
 
         {/* ── Gradient overlay ── */}
         <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/88 to-canvas/65" />
+
+        {/* ── Cinematic typewriter reveal (70% -> 90% scroll) ── */}
+        <div className="pointer-events-none absolute inset-0 z-[35] flex items-center justify-center px-4">
+          <div className="space-y-2 text-center md:space-y-4">
+            <h2
+              className="text-[4rem] font-bold leading-none tracking-tight text-white opacity-0 md:text-[8rem] lg:text-[12rem]"
+              data-hero-reveal="line-1"
+              style={{ textShadow: "0 0 40px rgba(255,255,255,0.3)" }}
+            >
+              CRAFTED.
+            </h2>
+
+            <h2
+              className="text-[4rem] font-bold leading-none tracking-tight text-white opacity-0 md:text-[8rem] lg:text-[12rem]"
+              data-hero-reveal="line-2"
+              style={{ textShadow: "0 0 40px rgba(255,255,255,0.3)" }}
+            >
+              NOT BUILT.
+            </h2>
+
+            <p
+              className="mt-8 text-base font-medium tracking-wider text-white/80 opacity-0 md:text-xl"
+              data-hero-reveal="subtitle"
+            >
+              DFW MODERN DESIGN-BUILD
+            </p>
+          </div>
+        </div>
 
         {/* ── Content overlay — flush left, bottom aligned ── */}
         <Container swiss className="relative z-10">
