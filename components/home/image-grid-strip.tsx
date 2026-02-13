@@ -16,10 +16,10 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
   return (
     <section
       aria-label="Section divider visual"
-      className="relative overflow-hidden border-y border-line"
+      className="relative min-h-[48vh] overflow-hidden border-y border-line"
     >
       <ParallaxLayer speed={sectionParallaxSpeed} disableBelow={768} className="absolute inset-0">
-        <div className="relative h-full w-full">
+        <div className="relative h-full min-h-[48vh] w-full">
           <video
             src={sectionVideo}
             className="absolute inset-0 h-full w-full object-cover"
