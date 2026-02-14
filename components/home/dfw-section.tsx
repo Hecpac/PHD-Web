@@ -71,7 +71,7 @@ export function DfwSection() {
           description="We focus exclusively on DFW projects to maintain local permitting fluency, trade relationships, and execution quality."
         />
 
-        <div className="border border-line bg-surface p-6">
+        <div className="rounded-xl border border-line bg-surface p-6">
           <p className="text-sm leading-6 text-muted">
             Current focus includes {featuredCities.join(", ")}, and surrounding DFW neighborhoods.
           </p>

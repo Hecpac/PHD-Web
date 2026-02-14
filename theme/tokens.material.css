@@ -36,9 +36,11 @@
   --font-mono: "Courier New", Courier, ui-monospace, monospace;
 
   /* Radius — Swiss: near-zero geometry */
-  --radius-sm: 2px;
-  --radius-md: 2px;
-  --radius-lg: 2px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
 }
 
 /* Runtime mapping — Light (Warm Cream) */

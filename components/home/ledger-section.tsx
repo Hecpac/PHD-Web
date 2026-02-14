@@ -85,7 +85,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
             return (
               <article
                 key={service.id}
-                className="group min-h-64 border border-line bg-surface p-6"
+                className="group min-h-64 rounded-xl border border-line bg-surface p-6"
               >
                 <button
                   id={buttonId}

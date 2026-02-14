@@ -52,10 +52,10 @@ export function SiteFooter() {
             </p>
 
             <div className="flex flex-wrap gap-2">
-              <span className="inline-flex items-center border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
+              <span className="inline-flex items-center rounded-full border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
                 Now booking 2026 starts
               </span>
-              <span className="inline-flex items-center border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
+              <span className="inline-flex items-center rounded-full border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
                 Dallas-Fort Worth Metroplex
               </span>
             </div>

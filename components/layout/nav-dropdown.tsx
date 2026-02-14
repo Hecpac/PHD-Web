@@ -63,7 +63,7 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute left-0 top-full z-50 mt-2 min-w-64 border border-line bg-surface/90 backdrop-blur-header py-2 shadow-lg"
+            className="absolute left-0 top-full z-50 mt-2 min-w-64 rounded-xl border border-line bg-surface/90 py-2 shadow-lg backdrop-blur-header"
             role="menu"
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}

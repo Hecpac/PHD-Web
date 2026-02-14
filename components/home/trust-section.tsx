@@ -28,7 +28,7 @@ export function TrustSection() {
 
         <div className="grid gap-px border border-line md:grid-cols-3">
           {trustPoints.map((item) => (
-            <article key={item.title} className="border border-line bg-surface p-6">
+            <article key={item.title} className="rounded-xl border border-line bg-surface p-6">
               <h3 className="text-lg font-bold">{item.title}</h3>
               <p className="mt-2 text-sm leading-6 text-muted">{item.description}</p>
             </article>

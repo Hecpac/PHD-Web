@@ -60,7 +60,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
 
   const cityHasError = status === "error";
   const inputClass =
-    "w-full rounded-sm border border-line bg-canvas px-3.5 py-3 text-sm text-ink placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:border-accent";
+    "w-full rounded-lg border border-line bg-canvas px-3.5 py-3 text-sm text-ink placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:border-accent";
 
   const onFormFocus = () => {
     if (started) {
@@ -165,7 +165,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
         ) : null}
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,1.9fr)]">
-          <aside className="border border-line bg-surface p-6 md:p-7">
+          <aside className="rounded-xl border border-line bg-surface p-6 md:p-7">
             <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Intake Workflow</p>
             <h3 className="mt-3 text-2xl font-bold tracking-tight text-ink">Fast, clear, and decision-ready.</h3>
             <p className="mt-3 text-sm leading-6 text-muted">
@@ -178,7 +178,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                 "Receive fit-check and follow-up call.",
                 "Get next-step path with decision gates.",
               ].map((step, index) => (
-                <li key={step} className="flex gap-3 border border-line bg-canvas p-3">
+                <li key={step} className="rounded-lg flex gap-3 border border-line bg-canvas p-3">
                   <span className="font-mono text-xs font-bold text-accent">0{index + 1}</span>
                   <span className="text-sm text-ink">{step}</span>
                 </li>
@@ -186,11 +186,11 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
             </ol>
 
             <div className="mt-5 flex flex-wrap gap-2">
-              <span className="inline-flex items-center gap-1.5 border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
                 <Clock3 className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
                 Typical reply in 1 business day
               </span>
-              <span className="inline-flex items-center gap-1.5 border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
                 <MapPin className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
                 DFW-only intake policy
               </span>
@@ -204,7 +204,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
             </div>
           </aside>
 
-          <div className="border border-line bg-surface p-6 md:p-8">
+          <div className="rounded-xl border border-line bg-surface p-6 md:p-8">
             <div className="mb-5 flex flex-wrap items-center justify-between gap-2 border-b border-line pb-4">
               <p className="text-xs text-muted">
                 <span className="text-accent" aria-hidden="true">*</span> Required fields
@@ -291,7 +291,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                 <div className="flex flex-wrap items-center gap-3">
                   <button
                     type="submit"
-                    className="inline-flex min-h-11 items-center justify-center rounded-sm border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent transition-colors duration-150 hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface focus-visible:ring-accent"
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent transition-colors duration-150 hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface focus-visible:ring-accent"
                   >
                     Submit Brief
                   </button>
@@ -318,7 +318,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
             {status !== "idle" ? (
               <p
                 id={status === "error" ? "city-error" : undefined}
-                className={`mt-5 border p-3 text-sm ${
+                className={`mt-5 rounded-lg border p-3 text-sm ${
                   status === "success"
                     ? "border-accent-soft bg-accent-soft text-accent-soft-ink"
                     : "border-danger bg-danger-soft text-danger-soft-ink"
