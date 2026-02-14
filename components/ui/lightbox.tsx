@@ -32,8 +32,13 @@ function LightboxContent({ images, initialIndex, onClose, shouldReduceMotion }: 
     };
   }, []);
 
-  // Focus trap
+  // Focus trap + auto-focus close button on mount
   useEffect(() => {
+    if (overlayRef.current) {
+      const closeBtn = overlayRef.current.querySelector<HTMLElement>("button");
+      closeBtn?.focus();
+    }
+
     function handleTab(e: KeyboardEvent) {
       if (e.key !== "Tab" || !overlayRef.current) return;
       const focusable = overlayRef.current.querySelectorAll<HTMLElement>(

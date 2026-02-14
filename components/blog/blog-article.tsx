@@ -47,7 +47,7 @@ export function BlogArticle({ post }: BlogArticleProps) {
             </span>
             <span className="text-xs text-muted">{post.readTime}</span>
           </div>
-          <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+          <h1 className="type-display text-balance">
             {post.title}
           </h1>
           <div className="flex items-center gap-3 text-sm text-muted">
@@ -71,7 +71,7 @@ export function BlogArticle({ post }: BlogArticleProps) {
           </div>
         )}
 
-        <div className="space-y-6 text-base leading-7 text-muted">
+        <div className="space-y-6 text-base leading-7 text-ink/90">
           {paragraphs.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}

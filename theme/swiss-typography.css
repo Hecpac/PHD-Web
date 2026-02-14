@@ -103,7 +103,6 @@
   line-height: var(--leading-caption);
   letter-spacing: var(--tracking-caption);
   font-weight: var(--weight-regular);
-  color: var(--color-muted);
 }
 
 .type-mono-label {
@@ -117,21 +116,16 @@
 
 /* ── Responsive Typography ────────────────────────── */
 
-@media (max-width: 639px) {
-  :root {
-    /* Scale down large sizes on mobile */
-    --type-hero:    2.441rem;
-    --type-display: 1.953rem;
-    --type-title:   1.563rem;
-    --type-heading: 1.25rem;
-  }
+:root {
+  /* Fluid typography for large sizes */
+  --type-hero:    clamp(2.441rem, 1.8rem + 2.5vw, 3.052rem);
+  --type-display: clamp(1.953rem, 1.5rem + 1.8vw, 2.441rem);
+  --type-title:   clamp(1.563rem, 1.3rem + 1vw, 1.953rem);
 }
 
-@media (min-width: 640px) and (max-width: 1023px) {
+@media (max-width: 639px) {
   :root {
-    /* Intermediate scale for tablets */
-    --type-hero:    2.75rem;
-    --type-display: 2.2rem;
+    --type-heading: 1.25rem;
   }
 }
 

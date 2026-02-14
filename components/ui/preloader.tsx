@@ -2,7 +2,8 @@
 
 import { useRef, useState } from "react";
 
-import { gsap, useGSAP, CustomEase } from "@/lib/gsap";
+import { gsap, useGSAP } from "@/lib/gsap";
+import { useReducedMotion } from "framer-motion";
 
 type PreloaderProps = {
   onComplete?: () => void;
@@ -14,6 +15,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
   const topRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const [isComplete, setIsComplete] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useGSAP(
     () => {
@@ -21,8 +23,11 @@ export function Preloader({ onComplete }: PreloaderProps) {
         return;
       }
 
-      // Register custom ease curve
-      CustomEase.create("swiss", "M0,0 C0.85,0 0.15,1 1,1");
+      if (reduceMotion) {
+        setIsComplete(true);
+        onComplete?.();
+        return;
+      }
 
       const tl = gsap.timeline({
         onComplete: () => {
@@ -80,7 +85,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
           {
             yPercent: -100,
             duration: 1.2,
-            ease: "swiss",
+            ease: "power2.inOut",
           },
           "-=0.2"
         )
@@ -89,7 +94,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
           {
             yPercent: 100,
             duration: 1.2,
-            ease: "swiss",
+            ease: "power2.inOut",
           },
           "<"
         );

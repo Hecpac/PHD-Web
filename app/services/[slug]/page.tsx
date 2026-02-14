@@ -65,6 +65,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="section-shell" aria-labelledby="service-heading">
         <Container swiss className="space-y-10">
           <SectionHeading
+            as="h1"
             eyebrow={`Services — ${service.icon}`}
             title={service.title}
             description={service.summary}

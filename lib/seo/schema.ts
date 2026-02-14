@@ -215,6 +215,13 @@ export function createBlogPostSchema(post: BlogPost) {
       url: siteUrl,
     },
     datePublished: post.date,
+    dateModified: post.date,
+    ...(post.coverImage && {
+      image: {
+        "@type": "ImageObject",
+        url: `${siteUrl}${post.coverImage.src}`,
+      },
+    }),
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${siteUrl}/blogs/${post.slug}`,

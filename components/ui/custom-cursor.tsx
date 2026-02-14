@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsap";
 
 import { cn } from "@/lib/utils";
 

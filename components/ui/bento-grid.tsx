@@ -47,6 +47,13 @@ const spanClasses: Record<BentoCellSpan, string> = {
   "2x2": "md:col-span-2 md:row-span-2",
 };
 
+const minHeightClasses: Record<BentoCellSpan, string> = {
+  "1x1": "min-h-[clamp(14rem,34vw,19rem)]",
+  "2x1": "min-h-[clamp(15rem,32vw,21rem)]",
+  "1x2": "min-h-[clamp(18rem,46vw,30rem)]",
+  "2x2": "min-h-[clamp(20rem,52vw,34rem)]",
+};
+
 const variantClasses: Record<NonNullable<BentoItem["variant"]>, string> = {
   default: "bg-surface border border-line",
   accent: "bg-accent text-on-accent",
@@ -65,8 +72,8 @@ function BentoCell({ item }: { item: BentoItem }) {
   return (
     <article
       className={cn(
-        "bento-cell flex flex-col justify-end p-6",
-        "min-h-48 md:min-h-56",
+        "bento-cell flex flex-col justify-end p-5 sm:p-6",
+        minHeightClasses[span],
         spanClasses[span],
         variantClasses[variant],
       )}
@@ -141,10 +148,14 @@ export function BentoGrid({ items, className }: BentoGridProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    if (!containerRef.current) return;
+    const cells = gsap.utils.toArray<HTMLElement>(".bento-cell", containerRef.current);
+    if (!cells.length) return;
+
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
-      animateSwissEntrance(".bento-cell", {
+      animateSwissEntrance(cells, {
         y: 60,
         scale: 0.96,
         stagger: { amount: 0.4, from: "random" },
@@ -164,7 +175,7 @@ export function BentoGrid({ items, className }: BentoGridProps) {
 
     // Reduced motion: opacity-only fade, no translate
     mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.from(".bento-cell", {
+      gsap.from(cells, {
         opacity: 0,
         duration: 0.3,
         stagger: 0.05,

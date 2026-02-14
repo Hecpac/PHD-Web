@@ -84,7 +84,7 @@ export function HowWeWorkSection() {
         gsap.to(card, {
           scale: 0.94,
           y: -20,
-          filter: "brightness(0.5)",
+          opacity: 0.4,
           ease: "none",
           scrollTrigger: {
             trigger: cards[i + 1],

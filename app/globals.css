@@ -31,11 +31,9 @@
   --space-16: 128px;
 
   /* Reading width */
-  --reading-width: 72ch;
+  --reading-width: 65ch;
 
-  /* Font stacks (inherited from tokens) */
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  /* Font stacks — defined in tokens.material.css */
 }
 
 @media (max-width: 768px) {
@@ -62,19 +60,13 @@ html {
 
 @media screen and (max-width: 1600px) {
   html {
-    font-size: calc(0.34318555008210183rem + 0.6568144499178982vw);
+    font-size: clamp(0.875rem, 0.34318555008210183rem + 0.6568144499178982vw, 1rem);
   }
 }
 
 @media screen and (max-width: 991px) {
   html {
-    font-size: 0.75rem;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  html {
-    font-size: 0.65rem;
+    font-size: 0.875rem;
   }
 }
 

@@ -40,11 +40,20 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/og-default.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — Custom Homes in Dallas-Fort Worth`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} | Custom Homes in Dallas-Fort Worth`,
     description: siteConfig.description,
+    images: ["/og-default.jpg"],
   },
 };
 

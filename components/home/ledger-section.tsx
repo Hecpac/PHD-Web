@@ -50,13 +50,40 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
 
   useGSAP(() => {
     if (!gridRef.current) return;
-    createStaggerReveal({
+    const staggerReveal = createStaggerReveal({
       trigger: gridRef.current,
       targets: gsap.utils.toArray<HTMLElement>(gridRef.current.querySelectorAll("article")),
       stagger: 0.08,
       y: 40,
       start: "top 80%",
     });
+
+    const mm = gsap.matchMedia();
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const cards = gsap.utils.toArray<HTMLElement>(gridRef.current!.querySelectorAll(".ledger-card"));
+      cards.forEach((card) => {
+        const rows = gsap.utils.toArray<HTMLElement>(card.querySelectorAll("[data-ledger-row]"));
+        if (!rows.length) return;
+
+        gsap.from(rows, {
+          opacity: 0,
+          y: 18,
+          stagger: 0.055,
+          duration: 0.55,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 82%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+    });
+
+    return () => {
+      staggerReveal.revert();
+      mm.revert();
+    };
   }, { scope: gridRef });
 
   return (
@@ -85,17 +112,17 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
             return (
               <article
                 key={service.id}
-                className="group min-h-64 rounded-xl border border-line bg-surface p-6"
+                className="ledger-card group flex min-h-[clamp(18rem,34vw,24rem)] flex-col rounded-xl border border-line bg-surface p-5 sm:p-6"
               >
                 <button
                   id={buttonId}
                   type="button"
-                  className="min-h-[24px] w-full text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  className="w-full text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                   onClick={() => setOpenId((prev) => (prev === service.id ? "" : service.id))}
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-line bg-surface-2 text-muted transition-all duration-300 group-hover:border-accent/45 group-hover:bg-accent/5 group-hover:text-accent">
+                  <div data-ledger-row className="flex h-12 w-12 items-center justify-center rounded-md border border-line bg-surface-2 text-muted transition-all duration-300 group-hover:border-accent/45 group-hover:bg-accent/5 group-hover:text-accent">
                     {Icon ? (
                       <Icon
                         aria-hidden="true"
@@ -106,15 +133,16 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
                       <p className="font-mono text-xs uppercase tracking-[0.05em]">{service.icon}</p>
                     )}
                   </div>
-                  <h3 className="mt-2 text-xl font-bold text-ink">{service.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted">{service.summary}</p>
+                  <h3 data-ledger-row className="mt-3 text-xl font-bold text-ink">{service.title}</h3>
+                  <p data-ledger-row className="mt-2 text-sm leading-6 text-muted">{service.summary}</p>
                 </button>
 
                 <div
                   id={panelId}
                   role="region"
                   aria-labelledby={buttonId}
-                  className="mt-4 min-h-32 border-t border-line pt-4"
+                  data-ledger-row
+                  className="mt-4 min-h-[clamp(6.5rem,15vw,9rem)] border-t border-line pt-4"
                 >
                   {/* Always-visible deliverables (first 2) */}
                   <ul className="space-y-2 text-sm text-ink">

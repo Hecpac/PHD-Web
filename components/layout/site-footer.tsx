@@ -43,7 +43,7 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="space-y-5 lg:col-span-5">
             <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">DFW Only</p>
-            <h2 className="text-2xl font-bold tracking-tight text-ink md:text-3xl">
+            <h2 className="type-title text-ink">
               Architecture-first design-build across Dallas-Fort Worth.
             </h2>
             <p className="max-w-md text-sm leading-6 text-muted">

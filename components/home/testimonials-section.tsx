@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import { motion, useMotionValue, useTransform, useReducedMotion } from "framer-motion";
@@ -40,6 +41,7 @@ function DesktopDragCard({ review, dragX, index, cardWidth }: { review: Review; 
 
   return (
     <motion.div
+      data-drag-card
       style={{ scale, opacity }}
       className="min-w-[33%] flex-shrink-0"
     >
@@ -50,11 +52,26 @@ function DesktopDragCard({ review, dragX, index, cardWidth }: { review: Review; 
 
 function DesktopDragSlider({ reviews }: { reviews: Review[] }) {
   const dragX = useMotionValue(0);
-  const cardWidth = 400;
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [cardWidth, setCardWidth] = React.useState(400);
+
+  React.useEffect(() => {
+    function measure() {
+      if (!containerRef.current) return;
+      const firstCard = containerRef.current.querySelector<HTMLElement>("[data-drag-card]");
+      if (firstCard) {
+        setCardWidth(firstCard.offsetWidth + 24); // card width + gap
+      }
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
 
   return (
     <div className="hidden md:block overflow-hidden">
       <motion.div
+        ref={containerRef}
         drag="x"
         dragConstraints={{ left: -(cardWidth * (reviews.length - 1)), right: 0 }}
         dragElastic={0.1}

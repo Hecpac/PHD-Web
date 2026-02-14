@@ -23,13 +23,13 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
   const bottomBarRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const ctaGroupRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
   useGSAP(
     () => {
-      if (shouldReduceMotion) return;
       if (
         !heroRef.current ||
         !topBarRef.current ||
@@ -38,6 +38,25 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         !titleRef.current ||
         !imageRef.current
       ) return;
+
+      if (ctaGroupRef.current) {
+        if (shouldReduceMotion) {
+          gsap.set(ctaGroupRef.current.children, { autoAlpha: 1, y: 0 });
+        } else {
+          const ctaItems = gsap.utils.toArray<HTMLElement>(ctaGroupRef.current.children);
+          gsap.set(ctaItems, { autoAlpha: 0, y: 16 });
+          gsap.to(ctaItems, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.55,
+            delay: 0.56,
+            stagger: 0.08,
+            ease: "power2.out",
+          });
+        }
+      }
+
+      if (shouldReduceMotion) return;
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -48,9 +67,11 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         },
       });
 
-      // 1. Bars grow from 0 → 50vh
+      // 1. Bars grow from 0 → 50vh using scaleY (compositor-friendly)
+      gsap.set(topBarRef.current, { height: "50vh", scaleY: 0, transformOrigin: "top" });
+      gsap.set(bottomBarRef.current, { height: "50vh", scaleY: 0, transformOrigin: "bottom" });
       tl.to([topBarRef.current, bottomBarRef.current], {
-        height: "50vh",
+        scaleY: 1,
         duration: 0.6,
         ease: "power2.inOut",
       }, 0);
@@ -112,8 +133,8 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         {/* ── Top bar (animated) ── */}
         <div
           ref={topBarRef}
-          className="absolute top-0 left-0 z-30 h-0 w-full bg-black"
-          style={{ transformOrigin: "top" }}
+          className="absolute top-0 left-0 z-30 w-full bg-black"
+          style={{ height: 0, transformOrigin: "top" }}
           aria-hidden="true"
         />
 
@@ -140,25 +161,28 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           <div ref={contentRef} className="flex h-screen items-end pb-16">
             <div className="max-w-3xl space-y-6">
               <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-                DFW Modern Design-Build
+                <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.04}>
+                  DFW Modern Design-Build
+                </SwissTextReveal>
               </p>
 
               <h1
                 ref={titleRef}
-                className="text-5xl font-bold leading-[0.95] tracking-[-0.04em] text-ink sm:text-6xl lg:text-[5.25rem]"
+                className="type-hero text-ink"
               >
-                <SwissTextReveal mode="word" stagger={0.08} delay={0.05}>
-                  Architectural custom homes, delivered with builder-grade control.
+                <SwissTextReveal mode="line" stagger={0.12} delay={0.14}>
+                  {"Architectural custom homes,\ndelivered with builder-grade control."}
                 </SwissTextReveal>
               </h1>
 
               <h2 className="max-w-2xl text-lg font-normal leading-relaxed tracking-normal text-ink/90 sm:text-xl">
-                <SwissTextReveal mode="line" delay={0.7}>
+                <SwissTextReveal mode="line" stagger={0.1} delay={0.34}>
                   {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth.\nEvery phase is tied to clear deliverables and decision gates."}
                 </SwissTextReveal>
               </h2>
 
               <div
+                ref={ctaGroupRef}
                 className="flex flex-col gap-4 pt-4 sm:flex-row sm:items-center"
                 role="group"
                 aria-label="Call to action"
@@ -187,8 +211,8 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         {/* ── Bottom bar (animated) ── */}
         <div
           ref={bottomBarRef}
-          className="absolute bottom-0 left-0 z-30 h-0 w-full bg-black"
-          style={{ transformOrigin: "bottom" }}
+          className="absolute bottom-0 left-0 z-30 w-full bg-black"
+          style={{ height: 0, transformOrigin: "bottom" }}
           aria-hidden="true"
         />
 

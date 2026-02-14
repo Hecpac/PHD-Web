@@ -224,7 +224,7 @@ export function WhyChooseUsSection() {
       if (!gridRef.current) return;
 
       // Stagger reveal for the cards
-      createStaggerReveal({
+      const staggerReveal = createStaggerReveal({
         trigger: gridRef.current,
         targets: gsap.utils.toArray<HTMLElement>(
           gridRef.current.querySelectorAll(".why-card"),
@@ -234,26 +234,53 @@ export function WhyChooseUsSection() {
         start: "top 80%",
       });
 
-      // Heading entrance animation
-      if (headingRef.current) {
-        animateSwissEntrance(headingRef.current, {
-          y: 32,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Heading entrance animation
+        if (headingRef.current) {
+          animateSwissEntrance(headingRef.current, {
+            y: 32,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          });
+        }
+
+        // Card row choreography for icon/title/copy
+        const cardBodies = gsap.utils.toArray<HTMLElement>(
+          gridRef.current!.querySelectorAll(".why-card article"),
+        );
+
+        cardBodies.forEach((card) => {
+          const rows = gsap.utils.toArray<HTMLElement>(card.querySelectorAll("[data-why-row]"));
+          if (!rows.length) return;
+
+          gsap.from(rows, {
+            opacity: 0,
+            y: 20,
+            stagger: 0.06,
+            duration: 0.58,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 82%",
+              toggleActions: "play none none none",
+            },
+          });
         });
-      }
+      });
 
       // Velocity-based skew on marquee
+      let velocityTracker: ScrollTrigger | null = null;
       if (marqueeRef.current) {
         const marqueeEl = marqueeRef.current;
         const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (!prefersReduced) {
           // Create a ScrollTrigger to track scroll velocity
-          const velocityTracker = ScrollTrigger.create({
+          velocityTracker = ScrollTrigger.create({
             trigger: document.body,
             start: "top top",
             end: "bottom bottom",
@@ -268,11 +295,14 @@ export function WhyChooseUsSection() {
               });
             },
           });
-          return () => {
-            velocityTracker.kill();
-          };
         }
       }
+
+      return () => {
+        staggerReveal.revert();
+        mm.revert();
+        velocityTracker?.kill();
+      };
     },
     { scope: gridRef },
   );
@@ -297,9 +327,9 @@ export function WhyChooseUsSection() {
         <div className="overflow-hidden" aria-hidden="true">
           <div
             ref={marqueeRef}
-            className="flex whitespace-nowrap motion-safe:animate-[swiss-marquee_20s_linear_infinite]"
+            className="flex whitespace-nowrap will-change-transform motion-safe:animate-[swiss-marquee_17s_linear_infinite] sm:motion-safe:animate-[swiss-marquee_20s_linear_infinite] lg:motion-safe:animate-[swiss-marquee_24s_linear_infinite] motion-safe:hover:[animation-play-state:paused]"
           >
-            {Array.from({ length: 4 }).map((_, i) => (
+            {Array.from({ length: 5 }).map((_, i) => (
               <span
                 key={i}
                 className="shrink-0 text-[12vw] font-black uppercase tracking-tighter text-ink/[0.04]"
@@ -318,20 +348,21 @@ export function WhyChooseUsSection() {
             <SwissCard key={item.id} spotlight className="why-card">
               <article aria-labelledby={`why-card-title-${item.id}`}>
                 {/* Icon */}
-                <div className="mb-4 flex h-10 w-10 items-center justify-center border border-line bg-canvas">
+                <div data-why-row className="mb-4 flex h-10 w-10 items-center justify-center border border-line bg-canvas">
                   {item.icon}
                 </div>
 
                 {/* Title */}
                 <h3
                   id={`why-card-title-${item.id}`}
+                  data-why-row
                   className="type-heading"
                 >
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="mt-2 text-sm leading-6 text-muted">
+                <p data-why-row className="mt-2 text-sm leading-6 text-muted">
                   {item.description}
                 </p>
               </article>

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import type { NavItem } from "@/lib/config/site";
@@ -40,7 +41,19 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
   const [expandedHref, setExpandedHref] = useState<string | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
   const prefersReduced = useReducedMotion();
+  const isPathActive = useCallback(
+    (target: string) =>
+      pathname === target || (target !== "/" && pathname.startsWith(`${target}/`)),
+    [pathname],
+  );
+  const closeMenu = useCallback((restoreFocus = false) => {
+    setOpen(false);
+    if (restoreFocus) {
+      requestAnimationFrame(() => buttonRef.current?.focus());
+    }
+  }, []);
 
   // Lock body scroll when open
   useEffect(() => {
@@ -59,13 +72,12 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
     if (!open) return;
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
-        setOpen(false);
-        buttonRef.current?.focus();
+        closeMenu(true);
       }
     }
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [open]);
+  }, [closeMenu, open]);
 
   // Focus trap
   const handleFocusTrap = useCallback(
@@ -113,7 +125,7 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
       <button
         ref={buttonRef}
         type="button"
-        className="relative flex h-11 w-11 items-center justify-center md:hidden"
+        className="relative flex h-11 w-11 items-center justify-center rounded-lg border border-line/80 bg-surface/75 text-ink shadow-[0_3px_12px_rgb(0_0_0/0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:hidden"
         aria-expanded={open}
         aria-controls={menuId}
         aria-label={open ? "Close menu" : "Open menu"}
@@ -142,7 +154,7 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
         </span>
       </button>
 
-      {/* Fullscreen overlay */}
+      {/* Mobile sheet overlay */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -151,79 +163,109 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
-            className="fixed inset-0 z-[60] flex flex-col bg-canvas"
+            className="fixed inset-0 z-[60] bg-ink/30 px-3 pb-3 pt-[5.25rem] backdrop-blur-[2px]"
             variants={prefersReduced ? undefined : overlayVariants}
             initial={prefersReduced ? undefined : "hidden"}
             animate={prefersReduced ? undefined : "visible"}
             exit={prefersReduced ? undefined : "exit"}
+            onClick={(event) => {
+              if (event.target === event.currentTarget) {
+                closeMenu(true);
+              }
+            }}
           >
-            {/* Spacer for header height */}
-            <div className="h-[73px] shrink-0" />
-
-            {/* Nav list */}
-            <motion.nav
-              aria-label="Mobile navigation"
-              className="flex-1 overflow-y-auto px-6 py-6"
-              variants={prefersReduced ? undefined : listVariants}
-              initial={prefersReduced ? undefined : "hidden"}
-              animate={prefersReduced ? undefined : "visible"}
-            >
-              <ul className="space-y-1">
-                {navigation.map((item) => (
-                  <motion.li
-                    key={item.href}
-                    variants={prefersReduced ? undefined : itemVariants}
-                  >
-                    {item.children ? (
-                      <ServiceAccordion
-                        item={item}
-                        expanded={expandedHref === item.href}
-                        onToggle={() =>
-                          setExpandedHref((prev) =>
-                            prev === item.href ? null : item.href,
-                          )
-                        }
-                        onNavigate={() => setOpen(false)}
-                        panelId={`${item.href}-panel`}
-                      />
-                    ) : (
-                      <Link
-                        href={item.href}
-                        className="block py-3 text-lg font-semibold text-ink hover:text-accent"
-                        onClick={() => setOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    )}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.nav>
-
-            {/* CTAs at bottom */}
-            <motion.div
-              className="shrink-0 border-t border-line px-6 py-6"
-              variants={prefersReduced ? undefined : itemVariants}
-              initial={prefersReduced ? undefined : "hidden"}
-              animate={prefersReduced ? undefined : "visible"}
-            >
-              <div className="flex flex-col gap-3">
-                <a
-                  href={cta.scheduleUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex min-h-11 items-center justify-center bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent hover:bg-accent-hover active:bg-accent-pressed"
+            <div className="mx-auto flex h-full w-full max-w-md flex-col overflow-hidden rounded-2xl border border-line/80 bg-canvas shadow-[0_28px_55px_rgb(0_0_0/0.24)]">
+              <div className="flex items-center justify-between border-b border-line/80 px-5 py-4">
+                <p className="type-mono-label text-muted">Navigation</p>
+                <button
+                  type="button"
+                  className="flex h-10 w-10 items-center justify-center rounded-md border border-line/80 bg-surface text-ink hover:border-accent/40 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  aria-label="Close menu"
+                  onClick={() => closeMenu(true)}
                 >
-                  Schedule Consultation
-                </a>
-                <a
-                  href={cta.phoneHref}
-                  className="flex min-h-11 items-center justify-center border-2 border-ink bg-transparent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-ink hover:bg-ink hover:text-canvas"
-                >
-                  Call {cta.phoneDisplay}
-                </a>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path
+                      d="M3.5 3.5L12.5 12.5M12.5 3.5L3.5 12.5"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </button>
               </div>
-            </motion.div>
+
+              {/* Nav list */}
+              <motion.nav
+                aria-label="Mobile navigation"
+                className="flex-1 overflow-y-auto px-4 py-4 sm:px-5"
+                variants={prefersReduced ? undefined : listVariants}
+                initial={prefersReduced ? undefined : "hidden"}
+                animate={prefersReduced ? undefined : "visible"}
+              >
+                <ul className="space-y-2">
+                  {navigation.map((item) => (
+                    <motion.li
+                      key={item.href}
+                      variants={prefersReduced ? undefined : itemVariants}
+                    >
+                      {item.children ? (
+                        <ServiceAccordion
+                          item={item}
+                          expanded={expandedHref === item.href}
+                          onToggle={() =>
+                            setExpandedHref((prev) =>
+                              prev === item.href ? null : item.href,
+                            )
+                          }
+                          onNavigate={() => closeMenu()}
+                          panelId={`${item.href}-panel`}
+                          isPathActive={isPathActive}
+                        />
+                      ) : (
+                        <Link
+                          href={item.href}
+                          aria-current={isPathActive(item.href) ? "page" : undefined}
+                          className={cn(
+                            "flex min-h-12 items-center rounded-lg border px-4 py-3 text-base font-semibold tracking-tight transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+                            isPathActive(item.href)
+                              ? "border-accent/35 bg-accent/10 text-ink"
+                              : "border-transparent text-ink hover:border-line hover:bg-surface",
+                          )}
+                          onClick={() => closeMenu()}
+                        >
+                          {item.label}
+                        </Link>
+                      )}
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.nav>
+
+              {/* CTAs at bottom */}
+              <motion.div
+                className="shrink-0 border-t border-line/80 bg-surface/60 px-5 py-5"
+                variants={prefersReduced ? undefined : itemVariants}
+                initial={prefersReduced ? undefined : "hidden"}
+                animate={prefersReduced ? undefined : "visible"}
+              >
+                <div className="flex flex-col gap-3">
+                  <a
+                    href={cta.scheduleUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex min-h-12 items-center justify-center rounded-md border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  >
+                    Schedule Consultation
+                  </a>
+                  <a
+                    href={cta.phoneHref}
+                    className="flex min-h-12 items-center justify-center rounded-md border border-ink bg-transparent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-ink hover:bg-ink hover:text-canvas focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  >
+                    Call {cta.phoneDisplay}
+                  </a>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -239,6 +281,7 @@ type ServiceAccordionProps = {
   onToggle: () => void;
   onNavigate: () => void;
   panelId: string;
+  isPathActive: (href: string) => boolean;
 };
 
 function ServiceAccordion({
@@ -247,20 +290,33 @@ function ServiceAccordion({
   onToggle,
   onNavigate,
   panelId,
+  isPathActive,
 }: ServiceAccordionProps) {
+  const hasActiveChild = item.children?.some((child) => isPathActive(child.href)) ?? false;
+  const isActive = isPathActive(item.href) || hasActiveChild;
+
   return (
-    <div>
+    <div className="rounded-lg border border-transparent px-1 py-1 hover:border-line/80">
       <div className="flex items-center justify-between">
         <Link
           href={item.href}
-          className="py-3 text-lg font-semibold text-ink hover:text-accent"
+          aria-current={isActive ? "page" : undefined}
+          className={cn(
+            "flex min-h-12 flex-1 items-center rounded-lg border px-3 py-3 text-base font-semibold tracking-tight transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+            isActive
+              ? "border-accent/35 bg-accent/10 text-ink"
+              : "border-transparent text-ink hover:border-line hover:bg-surface",
+          )}
           onClick={onNavigate}
         >
           {item.label}
         </Link>
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center text-muted hover:text-ink"
+          className={cn(
+            "ml-1 flex h-11 w-11 items-center justify-center rounded-md border border-transparent text-muted hover:border-line hover:bg-surface hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+            expanded && "border-line bg-surface text-ink",
+          )}
           aria-expanded={expanded}
           aria-controls={panelId}
           aria-label={expanded ? "Collapse services" : "Expand services"}
@@ -289,12 +345,18 @@ function ServiceAccordion({
       </div>
 
       {expanded && item.children && (
-        <ul id={panelId} className="pb-2 pl-4">
+        <ul id={panelId} className="mt-2 space-y-1 border-l border-line pl-3">
           {item.children.map((child) => (
             <li key={child.href}>
               <Link
                 href={child.href}
-                className="block py-2 text-base text-muted hover:text-ink"
+                aria-current={isPathActive(child.href) ? "page" : undefined}
+                className={cn(
+                  "block min-h-11 rounded-md px-3 py-2 text-sm transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+                  isPathActive(child.href)
+                    ? "bg-accent/10 font-semibold text-ink"
+                    : "text-muted hover:bg-surface hover:text-ink",
+                )}
                 onClick={onNavigate}
               >
                 {child.label}
