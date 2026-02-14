@@ -244,3 +244,15 @@ export const blogPostBySlugQuery = groq`
     tags
   }
 `;
+
+export const homeHeroQuery = groq`
+  *[_type == "homeHero"][0] {
+    _id,
+    "heroImage": heroImage {
+      "url": asset->url,
+      alt,
+      "width": asset->metadata.dimensions.width,
+      "height": asset->metadata.dimensions.height
+    }
+  }
+`;

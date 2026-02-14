@@ -9,12 +9,14 @@ import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { SwissTextReveal } from "@/components/ui/swiss-text-reveal";
 import { getCtaConfig } from "@/lib/config/site";
+import type { GalleryImage } from "@/lib/types/content";
 
 type HeroSectionProps = {
+  heroImage?: GalleryImage;
   children?: ReactNode;
 };
 
-export function HeroSection({ children }: HeroSectionProps) {
+export function HeroSection({ heroImage, children }: HeroSectionProps) {
   const { phoneDisplay, phoneHref, scheduleUrl } = getCtaConfig();
   const heroRef = useRef<HTMLElement>(null);
   const topBarRef = useRef<HTMLDivElement>(null);
@@ -110,8 +112,8 @@ export function HeroSection({ children }: HeroSectionProps) {
         <div ref={imageRef} className="absolute inset-0">
           <div className="relative h-full w-full">
             <Image
-              src="/projects/north-dallas-courtyard-residence/hero.jpg"
-              alt="Front elevation of a modern custom home in Dallas-Fort Worth"
+              src={heroImage?.src ?? "/projects/north-dallas-courtyard-residence/hero.jpg"}
+              alt={heroImage?.alt ?? "Front elevation of a modern custom home in Dallas-Fort Worth"}
               fill
               priority
               fetchPriority="high"

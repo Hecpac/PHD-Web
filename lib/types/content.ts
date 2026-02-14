@@ -116,6 +116,11 @@ export type BlogPost = {
   tags?: string[];
 };
 
+export type HomeHero = {
+  id: string;
+  heroImage?: GalleryImage;
+};
+
 export function isDfwCity(city: string): city is DfwCity {
   const cityLower = city.trim().toLowerCase();
   return DFW_CITIES.some((candidate) => candidate.toLowerCase() === cityLower);

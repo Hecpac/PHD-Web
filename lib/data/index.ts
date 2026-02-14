@@ -14,6 +14,7 @@ import {
   blogPostsQuery,
   faqsQuery,
   featuredProjectsWithHeroQuery,
+  homeHeroQuery,
   processStepsQuery,
   projectBySlugQuery,
   projectsQuery,
@@ -22,7 +23,7 @@ import {
   serviceDetailsQuery,
   servicesQuery,
 } from "@/lib/sanity/queries";
-import type { BlogPost, FAQ, ProcessStep, Project, Review, Service, ServiceDetail } from "@/lib/types/content";
+import type { BlogPost, FAQ, HomeHero, ProcessStep, Project, Review, Service, ServiceDetail } from "@/lib/types/content";
 import { isDfwCity } from "@/lib/types/content";
 
 type SanityImage = {
@@ -344,4 +345,37 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   const doc = await fetchFromSanity<BlogPost | null>(blogPostBySlugQuery, null, { slug });
   if (doc) return doc;
   return fallbackBlogPosts.find((post) => post.slug === slug) ?? null;
+}
+
+type SanityHomeHero = {
+  _id?: string;
+  heroImage?: SanityImage;
+};
+
+const fallbackHomeHero: HomeHero = {
+  id: "default-hero",
+  heroImage: {
+    src: "/projects/north-dallas-courtyard-residence/hero.jpg",
+    alt: "Front elevation of a modern custom home in Dallas-Fort Worth",
+    width: 1600,
+    height: 1000,
+  },
+};
+
+export async function getHomeHero(): Promise<HomeHero> {
+  const doc = await fetchFromSanity<SanityHomeHero | null>(homeHeroQuery, null);
+
+  if (!doc || !doc.heroImage?.url) {
+    return fallbackHomeHero;
+  }
+
+  return {
+    id: doc._id || "home-hero",
+    heroImage: {
+      src: doc.heroImage.url,
+      alt: doc.heroImage.alt?.trim() || "Modern custom home in Dallas-Fort Worth",
+      width: doc.heroImage.width ?? 1600,
+      height: doc.heroImage.height ?? 1000,
+    },
+  };
 }

@@ -12,7 +12,7 @@ import { WhyChooseUsSection } from "@/components/home/why-choose-us-section";
 import { ImageGridStrip } from "@/components/home/image-grid-strip";
 import { ContactTerminal } from "@/components/home/contact-terminal";
 import { FaqSection } from "@/components/home/faq-section";
-import { getFeaturedProjects, getFaqs, getProcessSteps, getProjects, getReviews, getServices } from "@/lib/data";
+import { getFeaturedProjects, getFaqs, getHomeHero, getProcessSteps, getProjects, getReviews, getServices } from "@/lib/data";
 import { getSiteUrl } from "@/lib/config/site";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -26,7 +26,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [services, processSteps, projects, featuredProjects, reviews, faqs] = await Promise.all([
+  const [heroData, services, processSteps, projects, featuredProjects, reviews, faqs] = await Promise.all([
+    getHomeHero(),
     getServices(),
     getProcessSteps(),
     getProjects(),
@@ -37,7 +38,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroSection />
+      <HeroSection heroImage={heroData.heroImage} />
       <ImageGridStrip projects={projects} />
       <LedgerSection services={services} />
       <HowWeWorkSection />
