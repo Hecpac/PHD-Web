@@ -4,7 +4,7 @@ import { BackToTop } from "@/components/layout/back-to-top";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
-import { CursorEffect } from "@/components/ui/cursor-effect";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 import { JsonLd } from "@/components/ui/json-ld";
 import { PageTransition } from "@/components/ui/page-transition";
 import { Preloader } from "@/components/ui/preloader";
@@ -74,7 +74,7 @@ export default function RootLayout({
             <BackToTop />
           </div>
         </SmoothScroll>
-        <CursorEffect />
+        <CustomCursor />
       </body>
     </html>
   );

@@ -92,6 +92,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+body.custom-cursor-enabled,
+body.custom-cursor-enabled * {
+  cursor: none !important;
+}
+
+@media (pointer: coarse) {
+  body.custom-cursor-enabled,
+  body.custom-cursor-enabled * {
+    cursor: auto !important;
+  }
+}
+
 /* Swiss typography: bold headings, tight tracking */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
