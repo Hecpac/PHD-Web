@@ -183,7 +183,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
 
               <div
                 ref={ctaGroupRef}
-                className="flex flex-col gap-4 pt-4 sm:flex-row sm:items-center"
+                className="flex flex-col gap-3 pt-4 sm:flex-row sm:items-center"
                 role="group"
                 aria-label="Call to action"
               >
@@ -192,6 +192,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                   target="_blank"
                   rel="noreferrer"
                   eventName="cta_schedule_click"
+                  className="w-full min-h-12 justify-between rounded-md border-accent px-6 shadow-[0_16px_28px_rgb(0_0_0/0.24)] hover:translate-x-0 hover:translate-y-0 hover:shadow-[0_20px_34px_rgb(0_0_0/0.28)] sm:w-auto sm:justify-center"
                   withArrow
                 >
                   Schedule Consultation
@@ -200,6 +201,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                   href={phoneHref}
                   eventName="cta_call_click"
                   variant="secondary"
+                  className="w-full min-h-10 rounded-md border-line/75 bg-surface/70 px-5 text-ink/90 hover:bg-surface/90 sm:w-auto"
                 >
                   Call {phoneDisplay}
                 </CtaLink>

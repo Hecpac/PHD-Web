@@ -221,6 +221,8 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                 <input
                   name="name"
                   autoComplete="name"
+                  inputMode="text"
+                  enterKeyHint="next"
                   required
                   aria-required="true"
                   className={inputClass}
@@ -234,6 +236,10 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   name="email"
                   type="email"
                   autoComplete="email"
+                  inputMode="email"
+                  autoCapitalize="none"
+                  spellCheck={false}
+                  enterKeyHint="next"
                   required
                   aria-required="true"
                   className={inputClass}
@@ -247,6 +253,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   ref={cityRef}
                   name="city"
                   defaultValue=""
+                  autoComplete="address-level2"
                   required
                   aria-required="true"
                   aria-invalid={cityHasError || undefined}
@@ -270,6 +277,8 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   name="phone"
                   type="tel"
                   autoComplete="tel"
+                  inputMode="tel"
+                  enterKeyHint="next"
                   className={inputClass}
                   placeholder="(469) 555-0101"
                 />
@@ -282,32 +291,41 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   required
                   aria-required="true"
                   rows={6}
+                  enterKeyHint="send"
                   className={inputClass}
                   placeholder="Tell us lot status, target timeline, style direction, and budget guardrails."
                 />
               </label>
 
               <div className="md:col-span-2">
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="space-y-3">
                   <button
                     type="submit"
-                    className="inline-flex min-h-11 items-center justify-center rounded-lg border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent transition-colors duration-150 hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface focus-visible:ring-accent"
+                    aria-label="Submit project brief"
+                    className="inline-flex w-full min-h-12 items-center justify-center rounded-lg border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent transition-colors duration-150 hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface focus-visible:ring-accent sm:w-auto"
                   >
                     Submit Brief
                   </button>
-                  <CtaLink
-                    href={scheduleUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    eventName="cta_schedule_click"
-                    variant="secondary"
-                    className="bg-canvas"
-                  >
-                    Schedule Instead
-                  </CtaLink>
-                  <CtaLink href={phoneHref} eventName="cta_call_click" variant="ghost" className="px-0">
-                    Call {phoneDisplay}
-                  </CtaLink>
+                  <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                    <CtaLink
+                      href={scheduleUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      eventName="cta_schedule_click"
+                      variant="secondary"
+                      className="min-h-10 rounded-md border-line/80 bg-canvas px-4 py-2 text-xs sm:text-sm"
+                    >
+                      Schedule Instead
+                    </CtaLink>
+                    <CtaLink
+                      href={phoneHref}
+                      eventName="cta_call_click"
+                      variant="ghost"
+                      className="min-h-10 px-0 text-xs sm:text-sm"
+                    >
+                      Call {phoneDisplay}
+                    </CtaLink>
+                  </div>
                 </div>
                 <p className="mt-3 text-xs text-muted">
                   By submitting, you confirm this project is located in Dallas-Fort Worth.

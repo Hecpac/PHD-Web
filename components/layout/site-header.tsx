@@ -59,6 +59,15 @@ export function SiteHeader() {
               >
                 Schedule Consultation
               </CtaLink>
+              <CtaLink
+                href={ctaConfig.scheduleUrl}
+                target="_blank"
+                rel="noreferrer"
+                eventName="cta_schedule_click"
+                className="min-h-10 rounded-md border-accent bg-accent px-3 py-2 text-xs tracking-[0.06em] text-on-accent shadow-none hover:translate-x-0 hover:translate-y-0 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent focus-visible:ring-2 focus-visible:ring-accent/45 md:hidden"
+              >
+                Schedule
+              </CtaLink>
 
               <div className="rounded-lg border border-line/90 bg-surface/90 p-0.5 shadow-[0_4px_12px_rgb(0_0_0/0.12)] md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none [&>button]:border-line [&>button]:bg-surface [&>button]:text-ink [&>button]:hover:border-accent/50 [&>button]:hover:bg-accent-soft [&>button]:focus-visible:outline-accent">
                 <MobileMenu navigation={siteNavigation} cta={ctaConfig} />
