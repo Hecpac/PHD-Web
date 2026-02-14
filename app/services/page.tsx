@@ -5,22 +5,27 @@ import { Container } from "@/components/layout/container";
 import { LedgerSection } from "@/components/home/ledger-section";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { getSiteUrl } from "@/lib/config/site";
 import { getServiceDetails, getServices } from "@/lib/data";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
 
-export const metadata: Metadata = {
-  title: "Services | Capabilities for DFW Homes",
-  description:
-    "Capabilities and deliverables for architecture-forward custom home projects in Dallas-Fort Worth.",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
     title: "Services | Capabilities for DFW Homes",
     description:
       "Capabilities and deliverables for architecture-forward custom home projects in Dallas-Fort Worth.",
-  },
-  alternates: {
-    canonical: "/services",
-  },
-};
+    openGraph: {
+      title: "Services | Capabilities for DFW Homes",
+      description:
+        "Capabilities and deliverables for architecture-forward custom home projects in Dallas-Fort Worth.",
+    },
+    alternates: {
+      canonical: `${siteUrl}/services`,
+    },
+  };
+}
 
 export default async function ServicesPage() {
   const [services, serviceDetails] = await Promise.all([

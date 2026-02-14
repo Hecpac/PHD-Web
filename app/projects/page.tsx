@@ -5,22 +5,27 @@ import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { getSiteUrl } from "@/lib/config/site";
 import { getProjects } from "@/lib/data";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
 
-export const metadata: Metadata = {
-  title: "Portfolio Projects in Dallas-Fort Worth",
-  description:
-    "Explore custom home projects delivered across the Dallas-Fort Worth Metroplex.",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
     title: "Portfolio Projects in Dallas-Fort Worth",
     description:
       "Explore custom home projects delivered across the Dallas-Fort Worth Metroplex.",
-  },
-  alternates: {
-    canonical: "/projects",
-  },
-};
+    openGraph: {
+      title: "Portfolio Projects in Dallas-Fort Worth",
+      description:
+        "Explore custom home projects delivered across the Dallas-Fort Worth Metroplex.",
+    },
+    alternates: {
+      canonical: `${siteUrl}/projects`,
+    },
+  };
+}
 
 export default async function ProjectsPage() {
   const projects = await getProjects();

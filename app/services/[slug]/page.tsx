@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { getSiteUrl } from "@/lib/config/site";
 import { getServiceDetailBySlug, getServiceDetails } from "@/lib/data";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
 
@@ -20,9 +21,15 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const { slug } = await params;
   const service = await getServiceDetailBySlug(slug);
+  const siteUrl = getSiteUrl();
 
   if (!service) {
-    return { title: "Service Not Found" };
+    return {
+      title: "Service Not Found",
+      alternates: {
+        canonical: `${siteUrl}/services`,
+      },
+    };
   }
 
   return {
@@ -33,7 +40,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
       description: service.summary,
     },
     alternates: {
-      canonical: `/services/${service.slug}`,
+      canonical: `${siteUrl}/services/${service.slug}`,
     },
   };
 }

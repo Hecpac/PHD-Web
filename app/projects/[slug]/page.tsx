@@ -28,17 +28,18 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
 
+  const siteUrl = getSiteUrl();
+
   if (!project) {
     return {
       title: "Project Not Found",
       alternates: {
-        canonical: "/projects",
+        canonical: `${siteUrl}/projects`,
       },
     };
   }
 
   const ogImage = project.heroImage ?? project.gallery[0];
-  const siteUrl = getSiteUrl();
 
   return {
     title: `${project.title} | ${project.location.city}`,
@@ -63,7 +64,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       "geo.placename": `${project.location.city}, TX`,
     },
     alternates: {
-      canonical: `/projects/${project.slug}`,
+      canonical: `${siteUrl}/projects/${project.slug}`,
     },
   };
 }

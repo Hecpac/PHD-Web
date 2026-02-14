@@ -4,23 +4,27 @@ import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { getCtaConfig } from "@/lib/config/site";
+import { getCtaConfig, getSiteUrl } from "@/lib/config/site";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
 import { DFW_CITIES } from "@/lib/types/content";
 
-export const metadata: Metadata = {
-  title: "Dallas-Fort Worth Service Area",
-  description:
-    "Custom home design-build service area covering Dallas, Fort Worth, Plano, Frisco, Southlake, and the entire DFW Metroplex.",
-  openGraph: {
-    title: "Dallas-Fort Worth Service Area | DFW Modern Design-Build",
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
+    title: "Dallas-Fort Worth Service Area",
     description:
       "Custom home design-build service area covering Dallas, Fort Worth, Plano, Frisco, Southlake, and the entire DFW Metroplex.",
-  },
-  alternates: {
-    canonical: "/dallas-fort-worth",
-  },
-};
+    openGraph: {
+      title: "Dallas-Fort Worth Service Area | DFW Modern Design-Build",
+      description:
+        "Custom home design-build service area covering Dallas, Fort Worth, Plano, Frisco, Southlake, and the entire DFW Metroplex.",
+    },
+    alternates: {
+      canonical: `${siteUrl}/dallas-fort-worth`,
+    },
+  };
+}
 
 const whyDfwOnly = [
   {

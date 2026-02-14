@@ -24,17 +24,16 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
+  const siteUrl = getSiteUrl();
 
   if (!post) {
     return {
       title: "Post Not Found",
       alternates: {
-        canonical: "/blogs",
+        canonical: `${siteUrl}/blogs`,
       },
     };
   }
-
-  const siteUrl = getSiteUrl();
 
   return {
     title: `${post.title} | DFW Custom Home Blog`,
@@ -61,7 +60,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       "geo.placename": "Dallas-Fort Worth, TX",
     },
     alternates: {
-      canonical: `/blogs/${post.slug}`,
+      canonical: `${siteUrl}/blogs/${post.slug}`,
     },
   };
 }

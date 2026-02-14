@@ -43,9 +43,6 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} | Custom Homes in Dallas-Fort Worth`,
     description: siteConfig.description,
   },
-  alternates: {
-    canonical: "/",
-  },
 };
 
 export default function RootLayout({

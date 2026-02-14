@@ -3,22 +3,27 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { getSiteUrl } from "@/lib/config/site";
 import { getReviews } from "@/lib/data";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
 
-export const metadata: Metadata = {
-  title: "Reviews | Client Testimonials",
-  description:
-    "Read what homeowners across Dallas-Fort Worth say about our design-build process, quality, and communication.",
-  openGraph: {
-    title: "Reviews | DFW Custom Home Client Testimonials",
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
+    title: "Reviews | Client Testimonials",
     description:
       "Read what homeowners across Dallas-Fort Worth say about our design-build process, quality, and communication.",
-  },
-  alternates: {
-    canonical: "/reviews",
-  },
-};
+    openGraph: {
+      title: "Reviews | DFW Custom Home Client Testimonials",
+      description:
+        "Read what homeowners across Dallas-Fort Worth say about our design-build process, quality, and communication.",
+    },
+    alternates: {
+      canonical: `${siteUrl}/reviews`,
+    },
+  };
+}
 
 function StarRating({ rating }: { rating: number }) {
   return (

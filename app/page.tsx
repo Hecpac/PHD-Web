@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { HeroSection } from "@/components/home/hero-section";
 import { LedgerSection } from "@/components/home/ledger-section";
 import { BlueprintSection } from "@/components/home/blueprint-section";
@@ -12,6 +13,17 @@ import { ImageGridStrip } from "@/components/home/image-grid-strip";
 import { ContactTerminal } from "@/components/home/contact-terminal";
 import { FaqSection } from "@/components/home/faq-section";
 import { getFeaturedProjects, getFaqs, getProcessSteps, getProjects, getReviews, getServices } from "@/lib/data";
+import { getSiteUrl } from "@/lib/config/site";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
+    alternates: {
+      canonical: siteUrl,
+    },
+  };
+}
 
 export default async function HomePage() {
   const [services, processSteps, projects, featuredProjects, reviews, faqs] = await Promise.all([

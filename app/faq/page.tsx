@@ -3,22 +3,27 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { getSiteUrl } from "@/lib/config/site";
 import { getFaqs } from "@/lib/data";
 import { createBreadcrumbSchema, createFaqSchema } from "@/lib/seo/schema";
 
-export const metadata: Metadata = {
-  title: "FAQ | Dallas-Fort Worth Custom Homes",
-  description:
-    "Frequently asked questions about custom home design-build services in Dallas-Fort Worth.",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
     title: "FAQ | Dallas-Fort Worth Custom Homes",
     description:
       "Frequently asked questions about custom home design-build services in Dallas-Fort Worth.",
-  },
-  alternates: {
-    canonical: "/faq",
-  },
-};
+    openGraph: {
+      title: "FAQ | Dallas-Fort Worth Custom Homes",
+      description:
+        "Frequently asked questions about custom home design-build services in Dallas-Fort Worth.",
+    },
+    alternates: {
+      canonical: `${siteUrl}/faq`,
+    },
+  };
+}
 
 export default async function FaqPage() {
   const faqs = await getFaqs();

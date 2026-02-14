@@ -4,20 +4,25 @@ import { Container } from "@/components/layout/container";
 import { ContactTerminal } from "@/components/home/contact-terminal";
 import { JsonLd } from "@/components/ui/json-ld";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
+import { getSiteUrl } from "@/lib/config/site";
 
-export const metadata: Metadata = {
-  title: "Contact | Schedule a DFW Consultation",
-  description:
-    "Start your Dallas-Fort Worth custom home intake and schedule a design-build consultation.",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
     title: "Contact | Schedule a DFW Consultation",
     description:
       "Start your Dallas-Fort Worth custom home intake and schedule a design-build consultation.",
-  },
-  alternates: {
-    canonical: "/contact",
-  },
-};
+    openGraph: {
+      title: "Contact | Schedule a DFW Consultation",
+      description:
+        "Start your Dallas-Fort Worth custom home intake and schedule a design-build consultation.",
+    },
+    alternates: {
+      canonical: `${siteUrl}/contact`,
+    },
+  };
+}
 
 export default function ContactPage() {
   return (

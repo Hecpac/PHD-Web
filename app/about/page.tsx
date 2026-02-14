@@ -4,20 +4,25 @@ import { Container } from "@/components/layout/container";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
+import { getSiteUrl } from "@/lib/config/site";
 
-export const metadata: Metadata = {
-  title: "About | DFW Design-Build Team",
-  description:
-    "Learn how our architecture + builder workflow delivers modern custom homes across the DFW Metroplex.",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
     title: "About | DFW Design-Build Team",
     description:
       "Learn how our architecture + builder workflow delivers modern custom homes across the DFW Metroplex.",
-  },
-  alternates: {
-    canonical: "/about",
-  },
-};
+    openGraph: {
+      title: "About | DFW Design-Build Team",
+      description:
+        "Learn how our architecture + builder workflow delivers modern custom homes across the DFW Metroplex.",
+    },
+    alternates: {
+      canonical: `${siteUrl}/about`,
+    },
+  };
+}
 
 const principles = [
   {
