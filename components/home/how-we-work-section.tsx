@@ -139,7 +139,7 @@ export function HowWeWorkSection() {
               <div
                 key={step.number}
                 data-step-card
-                className="sticky rounded-xl border border-line bg-surface-2 p-6 shadow-lg"
+                className="rounded-xl border border-line bg-surface-2 p-6 shadow-lg lg:sticky"
                 style={{ top: `calc(20vh + ${index * 10}px)` }}
               >
                 <div className="font-mono text-xs font-medium tracking-widest text-muted">

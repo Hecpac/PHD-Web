@@ -5,7 +5,19 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { LottieIcon } from "@/components/ui/lottie-icon";
+import {
+  Box,
+  ClipboardList,
+  Compass,
+  Hammer,
+  MessageCircle,
+  Palette,
+  Ruler,
+  Search,
+  TreePine,
+  type LucideIcon,
+} from "lucide-react";
+
 import { gsap, useGSAP } from "@/lib/gsap";
 import { createStaggerReveal } from "@/lib/gsap/scroll-animations";
 import type { Service } from "@/lib/types/content";
@@ -18,16 +30,16 @@ type LedgerSectionProps = {
 
 const springTransition = { type: "spring" as const, stiffness: 70, damping: 18 };
 
-const iconMap: Record<string, string> = {
-  Compass: "/assets/lottie/compass.lottie",
-  Ruler: "/assets/lottie/ruler.lottie",
-  Hammer: "/assets/lottie/hammer.lottie",
-  Palette: "/assets/lottie/palette.lottie",
-  MessageCircle: "/assets/lottie/message.lottie",
-  ClipboardList: "/assets/lottie/clipboard.lottie",
-  TreePine: "/assets/lottie/tree.lottie",
-  Box: "/assets/lottie/box.lottie",
-  Search: "/assets/lottie/search.lottie",
+const iconMap: Record<string, LucideIcon> = {
+  Compass,
+  Ruler,
+  Hammer,
+  Palette,
+  MessageCircle,
+  ClipboardList,
+  TreePine,
+  Box,
+  Search,
 };
 
 export function LedgerSection({ services, id = "ledger", withHeading = true }: LedgerSectionProps) {
@@ -66,8 +78,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
             const hasMore = service.deliverables.length > previewCount;
             const extraDeliverables = service.deliverables.slice(previewCount);
 
-            // Allow icon to be a mapped Lottie URL or fallback text
-            const lottieSrc = iconMap[service.icon as string];
+            const Icon = iconMap[service.icon as string];
 
             const buttonId = `${uid}-btn-${service.id}`;
 
@@ -84,9 +95,13 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                 >
-                  <div className="flex h-12 w-12 items-center justify-center text-muted">
-                    {lottieSrc ? (
-                      <LottieIcon src={lottieSrc} className="h-10 w-10 text-accent" hover />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-line bg-surface-2 text-muted transition-all duration-300 group-hover:border-accent/45 group-hover:bg-accent/5 group-hover:text-accent">
+                    {Icon ? (
+                      <Icon
+                        aria-hidden="true"
+                        className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3"
+                        strokeWidth={1.75}
+                      />
                     ) : (
                       <p className="font-mono text-xs uppercase tracking-[0.05em]">{service.icon}</p>
                     )}

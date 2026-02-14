@@ -83,8 +83,9 @@ export const FeaturedProjectsGrid = forwardRef<HTMLDivElement, FeaturedProjectsG
                     ? { priority: true, fetchPriority: "high" as const }
                     : {})}
                 />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/55 to-transparent" />
                 {/* Overlay label */}
-                <div className="absolute bottom-4 left-4 rounded-sm bg-canvas/70 px-3 py-1.5 backdrop-blur-sm">
+                <div className="absolute bottom-4 left-4 rounded-sm bg-canvas/75 px-3 py-1.5 backdrop-blur-sm">
                   <p className="font-mono text-xs uppercase tracking-[0.05em] text-ink">
                     {project.location.display}
                   </p>
@@ -92,7 +93,7 @@ export const FeaturedProjectsGrid = forwardRef<HTMLDivElement, FeaturedProjectsG
               </div>
 
               {/* Metadata with hover reveal */}
-              <div className="space-y-4 p-6 md:p-8 translate-y-2.5 opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100">
+              <div className="space-y-4 p-6 md:p-8 opacity-100 md:translate-y-2.5 md:opacity-70 transition-all duration-500 ease-out md:group-hover:translate-y-0 md:group-hover:opacity-100">
                 <div className="space-y-3">
                   <h3 className="text-xl font-bold md:text-2xl">{project.title}</h3>
                   <p className="font-mono text-sm uppercase tracking-[0.05em] text-muted">

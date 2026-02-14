@@ -80,8 +80,8 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
           sizes="100vw"
         />
       </div>
-      <div className="absolute inset-0 bg-black/35" />
-      <div className="relative container-swiss flex min-h-[48vh] items-center py-12 sm:py-16">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/30 to-black/55" />
+      <div className="relative container-swiss flex min-h-[36vh] items-center py-10 sm:min-h-[42vh] sm:py-14">
         <p className="max-w-xl text-sm font-medium uppercase tracking-[0.06em] text-white sm:text-base">
           Featured portfolio from {cityCount} DFW projects.
         </p>
