@@ -348,7 +348,7 @@ export function WhyChooseUsSection() {
             <SwissCard key={item.id} spotlight className="why-card">
               <article aria-labelledby={`why-card-title-${item.id}`}>
                 {/* Icon */}
-                <div data-why-row className="mb-4 flex h-10 w-10 items-center justify-center border border-line bg-canvas">
+                <div data-why-row className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-line/90 bg-surface-2">
                   {item.icon}
                 </div>
 

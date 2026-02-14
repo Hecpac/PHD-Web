@@ -131,7 +131,11 @@ select {
 }
 
 .section-shell {
-  padding-block: clamp(3rem, 8vw, 6rem);
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+
+.section-shell-tight {
+  padding-block: clamp(2rem, 4.5vw, 4rem);
 }
 
 .text-reading {

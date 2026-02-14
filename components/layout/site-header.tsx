@@ -19,7 +19,7 @@ export function SiteHeader() {
       </a>
       <header className="sticky top-0 z-50 pt-3" role="banner">
         <div className="container-swiss">
-          <div className="flex items-center justify-between gap-3 rounded-2xl border border-line/70 bg-canvas/85 px-4 py-3 shadow-[0_10px_28px_rgb(0_0_0/0.08)] backdrop-blur-header md:gap-5 md:px-6">
+          <div className="flex items-center justify-between gap-3 rounded-2xl border border-line/80 bg-canvas/90 px-4 py-3 shadow-[0_10px_28px_rgb(0_0_0/0.08)] backdrop-blur-header md:gap-5 md:px-6">
             <Link
               href="/"
               className="type-mono-label inline-flex items-center rounded-md px-2 py-1.5 font-bold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
@@ -55,12 +55,14 @@ export function SiteHeader() {
                 target="_blank"
                 rel="noreferrer"
                 eventName="cta_schedule_click"
-                className="hidden md:inline-flex md:min-h-10 md:px-5"
+                className="hidden md:inline-flex md:min-h-10 md:border-accent/90 md:px-5 md:shadow-[0_8px_18px_rgb(0_0_0/0.14)] md:hover:border-accent-hover"
               >
                 Schedule Consultation
               </CtaLink>
 
-              <MobileMenu navigation={siteNavigation} cta={ctaConfig} />
+              <div className="rounded-lg border border-line/90 bg-surface/90 p-0.5 shadow-[0_4px_12px_rgb(0_0_0/0.12)] md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none [&>button]:border-line [&>button]:bg-surface [&>button]:text-ink [&>button]:hover:border-accent/50 [&>button]:hover:bg-accent-soft [&>button]:focus-visible:outline-accent">
+                <MobileMenu navigation={siteNavigation} cta={ctaConfig} />
+              </div>
             </div>
           </div>
         </div>

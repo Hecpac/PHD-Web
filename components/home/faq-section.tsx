@@ -17,7 +17,7 @@ export function FaqSection({ faqs, id = "faq" }: FaqSectionProps) {
     }));
 
     return (
-        <section id={id} className="section-shell border-t border-line">
+        <section id={id} className="section-shell section-shell-tight border-t border-line">
             <Container swiss>
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-24">
                     <div className="lg:col-span-5">
