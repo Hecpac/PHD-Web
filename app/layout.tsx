@@ -7,6 +7,7 @@ import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { CursorEffect } from "@/components/ui/cursor-effect";
 import { JsonLd } from "@/components/ui/json-ld";
 import { PageTransition } from "@/components/ui/page-transition";
+import { Preloader } from "@/components/ui/preloader";
 import { getSiteUrl, siteConfig } from "@/lib/config/site";
 import { createLocalBusinessSchema, createWebSiteSchema } from "@/lib/seo/schema";
 
@@ -60,6 +61,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-canvas text-ink antialiased">
+        <Preloader />
         <JsonLd data={createWebSiteSchema()} />
         <JsonLd data={createLocalBusinessSchema()} />
         <SmoothScroll>
