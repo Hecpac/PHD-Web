@@ -19,7 +19,7 @@ export function SiteHeader() {
       </a>
       <header className="sticky top-0 z-50 pt-3" role="banner">
         <div className="container-swiss">
-          <div className="flex items-center justify-between gap-3 rounded-2xl border border-line/80 bg-canvas/90 px-4 py-3 shadow-[0_10px_28px_rgb(0_0_0/0.08)] backdrop-blur-header md:gap-5 md:px-6">
+          <div className="flex items-center justify-between gap-3 rounded-2xl border border-line/85 bg-canvas/95 px-4 py-3 shadow-[0_10px_28px_rgb(0_0_0/0.08)] backdrop-blur-header md:gap-5 md:px-6">
             <Link
               href="/"
               className="type-mono-label inline-flex items-center rounded-md px-2 py-1.5 font-bold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
@@ -48,7 +48,7 @@ export function SiteHeader() {
               )}
             </nav>
 
-            <div className="flex items-center gap-2 md:gap-3">
+            <div className="flex items-center gap-2.5 md:gap-3">
               <div aria-hidden className="hidden h-7 w-px bg-line/80 md:block" />
               <CtaLink
                 href={ctaConfig.scheduleUrl}
@@ -64,7 +64,7 @@ export function SiteHeader() {
                 target="_blank"
                 rel="noreferrer"
                 eventName="cta_schedule_click"
-                className="min-h-10 rounded-md border-accent bg-accent px-3 py-2 text-xs tracking-[0.06em] text-on-accent shadow-none hover:translate-x-0 hover:translate-y-0 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent focus-visible:ring-2 focus-visible:ring-accent/45 md:hidden"
+                className="min-h-11 rounded-md border-accent bg-accent px-4 py-2 text-xs tracking-[0.06em] text-on-accent shadow-none hover:translate-x-0 hover:translate-y-0 hover:shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent focus-visible:ring-2 focus-visible:ring-accent/45 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas md:hidden"
               >
                 Schedule
               </CtaLink>

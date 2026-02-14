@@ -60,7 +60,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
 
   const cityHasError = status === "error";
   const inputClass =
-    "w-full rounded-lg border border-line bg-canvas px-3.5 py-3 text-sm text-ink placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:border-accent";
+    "w-full min-h-11 rounded-lg border border-line bg-canvas px-3.5 py-3 text-sm text-ink placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:border-accent";
 
   const onFormFocus = () => {
     if (started) {
@@ -198,7 +198,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
 
             <div className="mt-6 border-t border-line pt-4">
               <p className="text-xs text-muted">Prefer to talk first?</p>
-              <CtaLink href={phoneHref} eventName="cta_call_click" variant="ghost" className="mt-2 px-0">
+              <CtaLink href={phoneHref} eventName="cta_call_click" variant="ghost" className="mt-2 min-h-11 px-1.5">
                 Call {phoneDisplay} <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
               </CtaLink>
             </div>
@@ -313,7 +313,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                       rel="noreferrer"
                       eventName="cta_schedule_click"
                       variant="secondary"
-                      className="min-h-10 rounded-md border-line/80 bg-canvas px-4 py-2 text-xs sm:text-sm"
+                      className="min-h-11 rounded-md border-line/85 bg-surface px-4 py-2 text-sm"
                     >
                       Schedule Instead
                     </CtaLink>
@@ -321,7 +321,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                       href={phoneHref}
                       eventName="cta_call_click"
                       variant="ghost"
-                      className="min-h-10 px-0 text-xs sm:text-sm"
+                      className="min-h-11 px-1.5 text-sm"
                     >
                       Call {phoneDisplay}
                     </CtaLink>

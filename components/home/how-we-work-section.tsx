@@ -120,8 +120,8 @@ export function HowWeWorkSection() {
 
   return (
     <section id="how-we-work" className="section-shell">
-      <Container swiss className="space-y-16">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
+      <Container swiss className="space-y-12 md:space-y-16">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
           {/* Sticky Header (Left) */}
           <div className="lg:col-span-4 lg:relative">
             <div className="lg:sticky lg:top-32">
@@ -139,7 +139,7 @@ export function HowWeWorkSection() {
               <div
                 key={step.number}
                 data-step-card
-                className="rounded-xl border border-line bg-surface-2 p-6 shadow-lg lg:sticky"
+                className="rounded-xl border border-line/90 bg-surface-2 p-5 shadow-lg sm:p-6 lg:sticky"
                 style={{ top: `calc(20vh + ${index * 10}px)` }}
               >
                 <div className="font-mono text-xs font-medium tracking-widest text-muted">
@@ -163,7 +163,7 @@ export function HowWeWorkSection() {
             href="#contact"
             variant="primary"
             eventName="cta_schedule_click"
-            className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="w-full min-h-11 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:w-auto"
           >
             Schedule a Consultation
           </CtaLink>

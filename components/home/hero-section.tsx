@@ -154,12 +154,12 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         </div>
 
         {/* ── Gradient overlay ── */}
-        <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/88 to-canvas/65" />
+        <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/92 to-canvas/72" />
 
         {/* ── Content overlay — flush left, bottom aligned ── */}
         <Container swiss className="relative z-10">
-          <div ref={contentRef} className="flex h-screen items-end pb-16">
-            <div className="max-w-3xl space-y-6">
+          <div ref={contentRef} className="flex h-screen items-end pb-14 sm:pb-16">
+            <div className="max-w-3xl space-y-5 sm:space-y-6">
               <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
                 <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.04}>
                   DFW Modern Design-Build
@@ -175,7 +175,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                 </SwissTextReveal>
               </h1>
 
-              <h2 className="max-w-2xl text-lg font-normal leading-relaxed tracking-normal text-ink/90 sm:text-xl">
+              <h2 className="max-w-2xl text-base font-normal leading-relaxed tracking-normal text-ink/92 sm:text-xl">
                 <SwissTextReveal mode="line" stagger={0.1} delay={0.34}>
                   {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth.\nEvery phase is tied to clear deliverables and decision gates."}
                 </SwissTextReveal>
@@ -201,7 +201,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                   href={phoneHref}
                   eventName="cta_call_click"
                   variant="secondary"
-                  className="w-full min-h-10 rounded-md border-line/75 bg-surface/70 px-5 text-ink/90 hover:bg-surface/90 sm:w-auto"
+                  className="w-full min-h-11 rounded-md border-line/85 bg-surface/82 px-5 text-ink hover:bg-surface sm:w-auto"
                 >
                   Call {phoneDisplay}
                 </CtaLink>
