@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { DotLottiePlayer, type DotLottieCommonPlayer } from "@dotlottie/react-player";
+import { useState } from "react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import type { DotLottie } from "@lottiefiles/dotlottie-react";
 
 import { cn } from "@/lib/utils";
 
@@ -20,24 +21,8 @@ export function LottieIcon({
     hover = false,
     className,
 }: LottieIconProps) {
-    const lottieRef = useRef<DotLottieCommonPlayer>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [isHovered, setIsHovered] = useState(false);
+    const [dotLottie, setDotLottie] = useState<DotLottie | null>(null);
 
-    useEffect(() => {
-        if (!lottieRef.current) return;
-
-        if (hover) {
-            if (isHovered) {
-                lottieRef.current.play();
-            } else {
-                lottieRef.current.pause();
-                lottieRef.current.seek(0);
-            }
-        }
-    }, [isHovered, hover]);
-
-    // Fallback if no src provided
     if (!src) {
         return (
             <div
@@ -53,16 +38,23 @@ export function LottieIcon({
 
     return (
         <div
-            ref={containerRef}
             className={cn("relative", className)}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseEnter={() => {
+                if (hover && dotLottie) {
+                    dotLottie.play();
+                }
+            }}
+            onMouseLeave={() => {
+                if (hover && dotLottie) {
+                    dotLottie.stop();
+                }
+            }}
         >
-            <DotLottiePlayer
-                ref={lottieRef}
+            <DotLottieReact
                 src={src}
                 loop={loop}
                 autoplay={autoplay && !hover}
+                dotLottieRefCallback={setDotLottie}
             />
         </div>
     );

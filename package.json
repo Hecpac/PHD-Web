@@ -9,8 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@dotlottie/react-player": "^1.6.19",
     "@gsap/react": "^2.1.2",
+    "@lottiefiles/dotlottie-react": "^0.17.15",
     "embla-carousel": "^8.6.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
