@@ -42,6 +42,24 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       // ── Sync Lenis → ScrollTrigger ──
       lenis.on("scroll", ScrollTrigger.update);
 
+      // ── Configure ScrollTrigger to use Lenis's scrollerProxy ──
+      ScrollTrigger.scrollerProxy(document.body, {
+        scrollTop(value) {
+          if (arguments.length) {
+            lenis.scrollTo(value, { immediate: true });
+          }
+          return lenis.animatedScroll;
+        },
+        getBoundingClientRect() {
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+          };
+        },
+      });
+
       // ── Drive Lenis from GSAP ticker (single RAF loop) ──
       const rafCallback = (time: number) => {
         lenis.raf(time * 1000); // GSAP uses seconds, Lenis uses ms
