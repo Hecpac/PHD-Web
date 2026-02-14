@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { JsonLd } from "@/components/ui/json-ld";
-import { PageTransition } from "@/components/ui/page-transition";
+import { TransitionProvider } from "@/components/ui/page-transition";
 import { Preloader } from "@/components/ui/preloader";
 import { getSiteUrl, siteConfig } from "@/lib/config/site";
 import { createLocalBusinessSchema, createWebSiteSchema } from "@/lib/seo/schema";
@@ -68,7 +68,7 @@ export default function RootLayout({
           <div className="flex min-h-screen flex-col bg-canvas text-ink">
             <SiteHeader />
             <main id="main-content">
-              <PageTransition>{children}</PageTransition>
+              <TransitionProvider>{children}</TransitionProvider>
             </main>
             <SiteFooter />
             <BackToTop />
