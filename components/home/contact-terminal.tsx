@@ -8,7 +8,6 @@ import { CtaLink } from "@/components/ui/cta-link";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { trackEvent } from "@/lib/analytics/events";
 import { getCtaConfig } from "@/lib/config/site";
-import { gsap, useGSAP } from "@/lib/gsap";
 import { DFW_CITIES, isDfwCity } from "@/lib/types/content";
 import { cn } from "@/lib/utils";
 
@@ -25,38 +24,6 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
   const cityRef = useRef<HTMLSelectElement>(null);
   const { phoneDisplay, phoneHref, scheduleUrl } = getCtaConfig();
   const contactEndpoint = process.env.NEXT_PUBLIC_CONTACT_WEBHOOK_URL;
-
-  useGSAP(() => {
-    const mm = gsap.matchMedia();
-
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const section = sectionRef.current!;
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top 75%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      tl.to(section, {
-        backgroundColor: "#050505",
-        duration: 0.1,
-        ease: "none",
-      })
-        .to(section.querySelectorAll(".text-ink"), { color: "#f5f5f5", duration: 0.1, ease: "none" }, "<")
-        .to(section.querySelectorAll(".text-muted"), { color: "#a0a0a0", duration: 0.1, ease: "none" }, "<")
-        .to(section.querySelectorAll(".bg-surface"), { backgroundColor: "#111", duration: 0.1, ease: "none" }, "<")
-        .to(section.querySelectorAll(".bg-canvas"), { backgroundColor: "#050505", duration: 0.1, ease: "none" }, "<")
-        .to(section.querySelectorAll(".border-line"), { borderColor: "#333", duration: 0.1, ease: "none" }, "<")
-        .to(
-          section.querySelectorAll("input, select, textarea"),
-          { backgroundColor: "#111", color: "#f5f5f5", borderColor: "#333", duration: 0.1, ease: "none" },
-          "<",
-        );
-    });
-  }, { scope: sectionRef });
 
   const cityHasError = status === "error";
   const inputClass =
@@ -154,7 +121,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
   };
 
   return (
-    <section ref={sectionRef} id={id} className="section-shell border-t border-line">
+    <section ref={sectionRef} id={id} className="section-shell border-t border-[#7a0f18] bg-[#c1121f] text-[#2f2f2f] [&_.text-ink]:text-[#2f2f2f] [&_.text-muted]:text-[#444]">
       <Container swiss className="space-y-7 md:space-y-8">
         {withHeading ? (
           <SectionHeading
