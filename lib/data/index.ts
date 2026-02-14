@@ -90,7 +90,9 @@ async function fetchFromSanity<T>(query: string, fallbackValue: T, params?: Quer
 
   try {
     const safeParams: QueryParams = params ?? {};
-    const result = await sanityClient.fetch<T>(query, safeParams);
+    const result = await sanityClient.fetch<T>(query, safeParams, {
+      next: { tags: ['sanity'] }
+    });
 
     if (result == null) {
       return fallbackValue;
