@@ -71,13 +71,13 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
       </div>
 
       <Container swiss>
-        <div className="pt-7 sm:pt-8">
-          <div className="mx-auto flex max-w-xl justify-center rounded-xl border border-line/85 bg-surface/85 px-4 py-5 sm:w-fit sm:px-6">
+        <div className="pt-6 sm:pt-8">
+          <div className="mx-auto flex max-w-xl justify-center rounded-xl border border-line/90 bg-surface/92 px-4 py-4 sm:w-fit sm:px-6 sm:py-5">
             <CtaLink
               href="/projects"
               variant="secondary"
               eventName="gallery_interaction"
-              className="w-full min-h-11 sm:w-auto"
+              className="w-full min-h-11 rounded-md border-line/80 bg-surface text-ink/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
             >
               View All Projects
             </CtaLink>

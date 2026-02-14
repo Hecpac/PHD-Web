@@ -120,8 +120,8 @@ export function HowWeWorkSection() {
 
   return (
     <section id="how-we-work" className="section-shell">
-      <Container swiss className="space-y-12 md:space-y-16">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
+      <Container swiss className="space-y-10 md:space-y-16">
+        <div className="grid grid-cols-1 gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-8">
           {/* Sticky Header (Left) */}
           <div className="lg:col-span-4 lg:relative">
             <div className="lg:sticky lg:top-32">
@@ -134,12 +134,12 @@ export function HowWeWorkSection() {
           </div>
 
           {/* Steps (Right) — sticky stack */}
-          <div ref={cardsRef} className="flex flex-col gap-6 lg:col-span-8">
+          <div ref={cardsRef} className="flex flex-col gap-5 sm:gap-6 lg:col-span-8">
             {steps.map((step, index) => (
               <div
                 key={step.number}
                 data-step-card
-                className="rounded-xl border border-line/90 bg-surface-2 p-5 shadow-lg sm:p-6 lg:sticky"
+                className="rounded-xl border border-line/85 bg-surface-2/95 p-5 shadow-[0_12px_24px_rgb(0_0_0/0.08)] sm:p-6 lg:sticky"
                 style={{ top: `calc(20vh + ${index * 10}px)` }}
               >
                 <div className="font-mono text-xs font-medium tracking-widest text-muted">
@@ -155,7 +155,7 @@ export function HowWeWorkSection() {
         </div>
 
         {/* CTA */}
-        <div className="flex flex-col items-center gap-4 text-center">
+        <div className="flex flex-col items-center gap-3 text-center sm:gap-4">
           <p className="max-w-xl text-muted">
             Ready to start your custom home project in Dallas–Fort Worth?
           </p>
@@ -163,7 +163,7 @@ export function HowWeWorkSection() {
             href="#contact"
             variant="primary"
             eventName="cta_schedule_click"
-            className="w-full min-h-11 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:w-auto"
+            className="w-full min-h-12 px-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
           >
             Schedule a Consultation
           </CtaLink>

@@ -158,7 +158,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
 
         {/* ── Content overlay — flush left, bottom aligned ── */}
         <Container swiss className="relative z-10">
-          <div ref={contentRef} className="flex h-screen items-end pb-14 sm:pb-16">
+          <div ref={contentRef} className="flex h-screen items-end pb-12 sm:pb-14 md:pb-16">
             <div className="max-w-3xl space-y-5 sm:space-y-6">
               <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
                 <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.04}>
@@ -183,7 +183,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
 
               <div
                 ref={ctaGroupRef}
-                className="flex flex-col gap-3 pt-4 sm:flex-row sm:items-center"
+                className="flex flex-col gap-2.5 rounded-lg border border-line/45 bg-canvas/45 p-2.5 sm:flex-row sm:items-center sm:gap-3 sm:border-0 sm:bg-transparent sm:p-0"
                 role="group"
                 aria-label="Call to action"
               >
@@ -192,7 +192,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                   target="_blank"
                   rel="noreferrer"
                   eventName="cta_schedule_click"
-                  className="w-full min-h-12 justify-between rounded-md border-accent px-6 shadow-[0_16px_28px_rgb(0_0_0/0.24)] hover:translate-x-0 hover:translate-y-0 hover:shadow-[0_20px_34px_rgb(0_0_0/0.28)] sm:w-auto sm:justify-center"
+                  className="w-full min-h-12 justify-between rounded-md border-accent px-6 shadow-[0_16px_28px_rgb(0_0_0/0.24)] hover:translate-x-0 hover:translate-y-0 hover:shadow-[0_20px_34px_rgb(0_0_0/0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto sm:justify-center"
                   withArrow
                 >
                   Schedule Consultation
@@ -201,7 +201,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                   href={phoneHref}
                   eventName="cta_call_click"
                   variant="secondary"
-                  className="w-full min-h-11 rounded-md border-line/85 bg-surface/82 px-5 text-ink hover:bg-surface sm:w-auto"
+                  className="w-full min-h-11 rounded-md border-line/80 bg-surface/75 px-5 text-ink/92 hover:bg-surface/88 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
                 >
                   Call {phoneDisplay}
                 </CtaLink>
