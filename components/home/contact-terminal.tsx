@@ -121,7 +121,11 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
   };
 
   return (
-    <section ref={sectionRef} id={id} className="section-shell border-t border-[#7a0f18] bg-[#c1121f] text-[#2f2f2f] [&_.text-ink]:text-[#2f2f2f] [&_.text-muted]:text-[#444]">
+    <section
+      ref={sectionRef}
+      id={id}
+      className="section-shell border-t border-[#4b2434] bg-[linear-gradient(140deg,#2a101c_0%,#3a1e33_52%,#1d1c25_100%)] text-[#f3e8e3] [--color-canvas:rgb(50_36_48)] [--color-ink:rgb(245_234_227)] [--color-surface:rgb(38_29_40)] [--color-surface-2:rgb(47_36_49)] [--color-muted:rgb(202_180_188)] [--color-line:rgb(236_206_203/0.22)] [--color-accent:rgb(230_174_117)] [--color-accent-hover:rgb(214_157_102)] [--color-accent-pressed:rgb(196_141_89)] [--color-on-accent:rgb(43_29_25)] [--color-accent-soft:rgb(92_62_73)] [--color-accent-soft-ink:rgb(248_234_220)]"
+    >
       <Container swiss className="space-y-7 md:space-y-8">
         {withHeading ? (
           <SectionHeading
