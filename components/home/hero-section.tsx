@@ -63,17 +63,18 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         ease: "power1.in",
       }, 0);
 
-      // 3. Remaining content fades
+      // 3. Remaining content fades + subtle foreground drift
       tl.to(contentRef.current, {
         opacity: 0,
+        y: "-8%",
         duration: 0.55,
         ease: "none",
       }, 0.05);
 
-      // 4. Background image parallax
+      // 4. Background image parallax (deeper depth feel)
       tl.to(imageRef.current, {
-        y: "-18%",
-        scale: 1.05,
+        y: "-15%",
+        scale: 1.08,
         duration: 1,
         ease: "none",
       }, 0);
@@ -99,6 +100,14 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
       aria-label="Hero — DFW custom home builder"
       className="relative z-0 min-h-[200vh]"
     >
+      {/* Overscroll easter egg — visible on rubber-band pull-down */}
+      <div
+        className="absolute top-[-100vh] left-0 right-0 z-[-10] flex h-[100vh] items-center justify-center text-[10vw] font-black uppercase tracking-tighter text-ink/10"
+        aria-hidden="true"
+      >
+        BUILT ON SOLID GROUND
+      </div>
+
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* ── Top bar (animated) ── */}
         <div

@@ -1,7 +1,13 @@
+"use client";
+
+import { useRef } from "react";
+
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CtaLink } from "@/components/ui/cta-link";
 import { FeaturedProjectsGrid } from "@/components/home/featured-projects-grid";
+import { gsap, useGSAP } from "@/lib/gsap";
+import { createPinScrub } from "@/lib/gsap/scroll-animations";
 import type { Project } from "@/lib/types/content";
 
 type FeaturedProjectsSectionProps = {
@@ -9,6 +15,43 @@ type FeaturedProjectsSectionProps = {
 };
 
 export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionProps) {
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!triggerRef.current || !contentRef.current) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      createPinScrub({
+        trigger: triggerRef.current!,
+        content: contentRef.current!,
+        totalPanels: projects.length,
+        scrubSmoothing: 0.5,
+      });
+
+      // Contra-parallax on card images
+      const images = contentRef.current!.querySelectorAll<HTMLElement>("[data-parallax-image]");
+      images.forEach((img) => {
+        gsap.fromTo(
+          img,
+          { xPercent: -10 },
+          {
+            xPercent: 10,
+            ease: "none",
+            scrollTrigger: {
+              trigger: triggerRef.current!,
+              scrub: true,
+              start: "top top",
+              end: () => `+=${contentRef.current!.scrollWidth - triggerRef.current!.offsetWidth}`,
+            },
+          }
+        );
+      });
+    });
+  }, { scope: triggerRef, dependencies: [projects.length] });
+
   return (
     <section id="featured-projects" className="section-shell">
       <Container swiss className="space-y-10">
@@ -17,10 +60,18 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
           title="Built work across the DFW Metroplex"
           description="Portfolio evidence comes first. Each project reflects design intent, execution discipline, and documented handoff quality."
         />
+      </Container>
 
-        <FeaturedProjectsGrid projects={projects} prioritizeFirst />
+      <div ref={triggerRef} className="overflow-hidden">
+        <FeaturedProjectsGrid
+          ref={contentRef}
+          projects={projects}
+          prioritizeFirst
+        />
+      </div>
 
-        <div className="flex justify-center pt-4">
+      <Container swiss>
+        <div className="flex justify-center pt-10">
           <CtaLink
             href="/projects"
             variant="secondary"

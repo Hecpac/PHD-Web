@@ -4,6 +4,8 @@ import { BackToTop } from "@/components/layout/back-to-top";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
+import { CadMode } from "@/components/ui/cad-mode";
+import { ConsoleBrand } from "@/components/ui/console-brand";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { JsonLd } from "@/components/ui/json-ld";
 import { TransitionProvider } from "@/components/ui/page-transition";
@@ -65,16 +67,23 @@ export default function RootLayout({
         <JsonLd data={createWebSiteSchema()} />
         <JsonLd data={createLocalBusinessSchema()} />
         <SmoothScroll>
-          <div className="flex min-h-screen flex-col bg-canvas text-ink">
-            <SiteHeader />
-            <main id="main-content">
-              <TransitionProvider>{children}</TransitionProvider>
-            </main>
-            <SiteFooter />
-            <BackToTop />
+          <div
+            className="relative z-[1] bg-canvas"
+            style={{ marginBottom: "var(--footer-height, 0px)" }}
+          >
+            <div className="flex min-h-screen flex-col bg-canvas text-ink">
+              <SiteHeader />
+              <main id="main-content">
+                <TransitionProvider>{children}</TransitionProvider>
+              </main>
+              <BackToTop />
+            </div>
           </div>
+          <SiteFooter />
         </SmoothScroll>
         <CustomCursor />
+        <CadMode />
+        <ConsoleBrand />
       </body>
     </html>
   );

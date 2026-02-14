@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
-import { useReducedMotion } from "framer-motion";
+import { motion, useMotionValue, useTransform, useReducedMotion } from "framer-motion";
 
 import { Container } from "@/components/layout/container";
 import { CarouselDots, CarouselPrevButton, CarouselNextButton, useCarouselButtons } from "@/components/ui/carousel-controls";
@@ -30,6 +30,48 @@ function ReviewCard({ review }: { review: Review }) {
         </p>
       </footer>
     </article>
+  );
+}
+
+function DesktopDragCard({ review, dragX, index, cardWidth }: { review: Review; dragX: ReturnType<typeof useMotionValue<number>>; index: number; cardWidth: number }) {
+  const cardX = useTransform(dragX, (v) => v + index * cardWidth);
+  const scale = useTransform(cardX, [-cardWidth, 0, cardWidth], [0.9, 1, 0.9]);
+  const opacity = useTransform(cardX, [-cardWidth, 0, cardWidth], [0.3, 1, 0.3]);
+
+  return (
+    <motion.div
+      style={{ scale, opacity }}
+      className="min-w-[33%] flex-shrink-0"
+    >
+      <ReviewCard review={review} />
+    </motion.div>
+  );
+}
+
+function DesktopDragSlider({ reviews }: { reviews: Review[] }) {
+  const dragX = useMotionValue(0);
+  const cardWidth = 400;
+
+  return (
+    <div className="hidden md:block overflow-hidden">
+      <motion.div
+        drag="x"
+        dragConstraints={{ left: -(cardWidth * (reviews.length - 1)), right: 0 }}
+        dragElastic={0.1}
+        style={{ x: dragX }}
+        className="flex cursor-grab gap-6 active:cursor-grabbing"
+      >
+        {reviews.map((review, i) => (
+          <DesktopDragCard
+            key={review.id}
+            review={review}
+            dragX={dragX}
+            index={i}
+            cardWidth={cardWidth}
+          />
+        ))}
+      </motion.div>
+    </div>
   );
 }
 
@@ -63,12 +105,16 @@ export function TestimonialsSection({ reviews }: TestimonialsSectionProps) {
           </Link>
         </div>
 
-        {/* Desktop: 3-column grid */}
-        <div className="hidden gap-6 md:grid md:grid-cols-3">
-          {displayReviews.map((review) => (
-            <ReviewCard key={review.id} review={review} />
-          ))}
-        </div>
+        {/* Desktop: Drag slider or static grid (reduced motion) */}
+        {shouldReduceMotion ? (
+          <div className="hidden gap-6 md:grid md:grid-cols-3">
+            {displayReviews.map((review) => (
+              <ReviewCard key={review.id} review={review} />
+            ))}
+          </div>
+        ) : (
+          <DesktopDragSlider reviews={displayReviews} />
+        )}
 
         {/* Mobile: Embla carousel */}
         <div className="md:hidden">

@@ -32,7 +32,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     const ctx = gsap.context(() => {
       // ── Initialize Lenis ──
       const lenis = new Lenis({
-        lerp: 0.1,
+        lerp: 0.08,
         smoothWheel: true,
         // Native touch scroll on mobile — no JS interpolation
       });
@@ -45,7 +45,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       // ── Configure ScrollTrigger to use Lenis's scrollerProxy ──
       ScrollTrigger.scrollerProxy(document.body, {
         scrollTop(value) {
-          if (arguments.length) {
+          if (arguments.length && value !== undefined) {
             lenis.scrollTo(value, { immediate: true });
           }
           return lenis.animatedScroll;

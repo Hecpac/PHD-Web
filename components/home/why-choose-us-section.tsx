@@ -6,7 +6,7 @@ import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SwissCard } from "@/components/ui/swiss-card";
 import { SwissBeam } from "@/components/ui/swiss-beam";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
 import { createStaggerReveal } from "@/lib/gsap/scroll-animations";
 import { animateSwissEntrance } from "@/lib/gsap/animations";
 
@@ -217,6 +217,7 @@ const HEADING_ID = "why-choose-us-heading";
 export function WhyChooseUsSection() {
   const gridRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -245,6 +246,33 @@ export function WhyChooseUsSection() {
           },
         });
       }
+
+      // Velocity-based skew on marquee
+      if (marqueeRef.current) {
+        const marqueeEl = marqueeRef.current;
+        const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!prefersReduced) {
+          // Create a ScrollTrigger to track scroll velocity
+          const velocityTracker = ScrollTrigger.create({
+            trigger: document.body,
+            start: "top top",
+            end: "bottom bottom",
+            onUpdate: (self) => {
+              const velocity = self.getVelocity();
+              const clampedSkew = gsap.utils.clamp(-15, 15, velocity * -0.015);
+              gsap.to(marqueeEl, {
+                skewX: clampedSkew,
+                ease: "power3.out",
+                duration: 0.3,
+                overwrite: true,
+              });
+            },
+          });
+          return () => {
+            velocityTracker.kill();
+          };
+        }
+      }
     },
     { scope: gridRef },
   );
@@ -263,6 +291,23 @@ export function WhyChooseUsSection() {
             description="Design and construction under one roof, backed by deep local knowledge. Here\u2019s what sets our Dallas\u2013Fort Worth custom home process apart."
             className="[&_h2]:scroll-mt-24"
           />
+        </div>
+
+        {/* "BUILT TO OUTLAST" marquee */}
+        <div className="overflow-hidden" aria-hidden="true">
+          <div
+            ref={marqueeRef}
+            className="flex whitespace-nowrap motion-safe:animate-[swiss-marquee_20s_linear_infinite]"
+          >
+            {Array.from({ length: 4 }).map((_, i) => (
+              <span
+                key={i}
+                className="shrink-0 text-[12vw] font-black uppercase tracking-tighter text-ink/[0.04]"
+              >
+                BUILT TO OUTLAST&ensp;
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Decorative beam above the grid */}

@@ -57,8 +57,8 @@ export interface SwissEntranceOptions {
   scale?: number;
   /** Duration in seconds (default: 0.9) */
   duration?: number;
-  /** Stagger between elements in seconds */
-  stagger?: number;
+  /** Stagger between elements (number or GSAP stagger config) */
+  stagger?: number | gsap.StaggerVars;
   /** Delay before start in seconds */
   delay?: number;
   /** Override ease (default: swiss mechanical) */

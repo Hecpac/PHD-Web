@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Plus } from "lucide-react";
 
+import { Magnetic } from "@/components/ui/magnetic";
 import { cn } from "@/lib/utils";
 
 type AccordionItemProps = {
@@ -32,13 +33,15 @@ export function AccordionItem({
                 aria-expanded={isOpen}
             >
                 <span className="text-lg font-bold leading-tight text-ink md:text-xl">{title}</span>
-                <motion.span
-                    animate={{ rotate: isOpen ? 45 : 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="ml-4 flex h-6 w-6 shrink-0 items-center justify-center text-accent"
-                >
-                    <Plus className="h-5 w-5" />
-                </motion.span>
+                <Magnetic strength={0.3}>
+                    <motion.span
+                        animate={{ rotate: isOpen ? 45 : 0 }}
+                        transition={{ duration: 0.5, ease: [0.87, 0, 0.13, 1] }}
+                        className="ml-4 flex h-6 w-6 shrink-0 items-center justify-center text-accent"
+                    >
+                        <Plus className="h-5 w-5" />
+                    </motion.span>
+                </Magnetic>
             </button>
             <AnimatePresence initial={false}>
                 {isOpen && (

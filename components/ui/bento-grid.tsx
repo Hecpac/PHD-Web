@@ -145,9 +145,11 @@ export function BentoGrid({ items, className }: BentoGridProps) {
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       animateSwissEntrance(".bento-cell", {
-        y: 40,
-        stagger: 0.1,
+        y: 60,
+        scale: 0.96,
+        stagger: { amount: 0.4, from: "random" },
         duration: 0.9,
+        ease: "back.out(1.2)",
         scrollTrigger: {
           trigger: containerRef.current!,
           start: "top 80%",

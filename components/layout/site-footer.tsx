@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 
 import { CtaLink } from "@/components/ui/cta-link";
@@ -8,9 +11,34 @@ export function SiteFooter() {
   const serviceNav = siteNavigation.find((item) => item.href === "/services");
   const serviceChildren = serviceNav?.children ?? [];
   const copyrightYear = "2026";
+  const footerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!footerRef.current) return;
+
+    const el = footerRef.current;
+    const update = () => {
+      document.documentElement.style.setProperty(
+        "--footer-height",
+        el.offsetHeight + "px",
+      );
+    };
+
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    update();
+
+    return () => ro.disconnect();
+  }, []);
 
   return (
-    <footer className="border-t border-line bg-surface/65" role="contentinfo" aria-label="Site footer">
+    <footer
+      ref={footerRef}
+      className="fixed bottom-0 left-0 right-0 border-t border-line bg-surface/65"
+      style={{ zIndex: -1 }}
+      role="contentinfo"
+      aria-label="Site footer"
+    >
       <div className="container-swiss py-12 md:py-14">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="space-y-5 lg:col-span-5">

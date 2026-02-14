@@ -26,15 +26,16 @@
   bottom: -2px;
   left: 0;
   width: 100%;
-  height: 1px;
+  height: 3px;
   background: var(--color-accent);
   transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 200ms ease;
+  transform-origin: right;
+  transition: transform 350ms ease;
 }
 .mi-underline-reveal:hover::after,
 .mi-underline-reveal:focus-visible::after {
   transform: scaleX(1);
+  transform-origin: left;
 }
 
 /* Dropdown enter animation */

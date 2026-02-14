@@ -195,3 +195,50 @@ button {
     transform: translateX(-50%);
   }
 }
+
+/* ── CTA Primary Fill Effect ─────────────── */
+
+.cta-primary-fill {
+  position: relative;
+  overflow: hidden;
+}
+.cta-primary-fill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.35s cubic-bezier(0.87, 0, 0.13, 1);
+  z-index: 0;
+}
+.cta-primary-fill:hover::before {
+  transform: scaleY(1);
+}
+
+/* ── C.A.D. Mode (D-F-W Easter Egg) ─────── */
+
+.cad-mode {
+  --color-canvas: #0A192F;
+  --color-ink: #e6f1ff;
+  --color-surface: #112240;
+  --color-surface-2: #1a3358;
+  --color-muted: #8892b0;
+  --color-line: #233554;
+  --color-accent: #64ffda;
+  --color-accent-hover: #4ad8b7;
+  --color-accent-pressed: #38c9a8;
+  --color-on-accent: #0A192F;
+}
+
+.cad-mode img {
+  filter: invert(1) contrast(200%) grayscale(100%);
+}
+
+.cad-mode [class*="border"] {
+  border-color: #233554;
+}
+
+.cad-mode * {
+  outline-color: #233554;
+}
