@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Revalidate all Sanity-tagged content
-    revalidateTag("sanity");
+    revalidateTag("sanity", "max");
 
     return NextResponse.json(
       {

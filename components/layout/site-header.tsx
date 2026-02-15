@@ -19,7 +19,8 @@ export function SiteHeader() {
       </a>
       <header className="sticky top-0 z-50 pt-3" role="banner">
         <div className="container-swiss">
-          <div className="flex items-center justify-between gap-3 rounded-2xl border border-line/90 bg-canvas/96 px-4 py-3 shadow-[0_10px_24px_rgb(0_0_0/0.1)] backdrop-blur-header md:gap-5 md:px-6">
+          <div className="relative flex items-center justify-between gap-3 rounded-md border border-line/90 bg-canvas/96 px-4 py-3 shadow-[0_10px_24px_rgb(0_0_0/0.1)] backdrop-blur-header md:gap-5 md:px-6">
+            <div aria-hidden className="pointer-events-none absolute inset-x-3 top-0 h-px bg-accent/65" />
             <Link
               href="/"
               className="type-mono-label inline-flex items-center rounded-md px-2 py-1.5 font-bold text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
@@ -55,7 +56,7 @@ export function SiteHeader() {
                 target="_blank"
                 rel="noreferrer"
                 eventName="cta_schedule_click"
-                className="hidden md:inline-flex md:min-h-10 md:border-accent/90 md:px-5 md:shadow-[0_8px_18px_rgb(0_0_0/0.14)] md:hover:border-accent-hover md:focus-visible:outline-none md:focus-visible:ring-2 md:focus-visible:ring-accent/55 md:focus-visible:ring-offset-2 md:focus-visible:ring-offset-canvas"
+                className="!hidden md:!inline-flex md:min-h-10 md:border-accent/90 md:px-5 md:shadow-[0_8px_18px_rgb(0_0_0/0.14)] md:hover:border-accent-hover md:focus-visible:outline-none md:focus-visible:ring-2 md:focus-visible:ring-accent/55 md:focus-visible:ring-offset-2 md:focus-visible:ring-offset-canvas"
               >
                 Schedule Consultation
               </CtaLink>
@@ -66,7 +67,7 @@ export function SiteHeader() {
                 eventName="cta_schedule_click"
                 className="min-h-12 rounded-md border-accent bg-accent px-4 py-2.5 text-sm tracking-[0.05em] text-on-accent shadow-[0_10px_20px_rgb(0_0_0/0.18)] hover:translate-x-0 hover:translate-y-0 hover:shadow-[0_10px_20px_rgb(0_0_0/0.18)] active:bg-accent-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas md:hidden"
               >
-                Schedule
+                Schedule Call
               </CtaLink>
 
               <div className="rounded-lg border border-line/90 bg-surface/90 p-0.5 shadow-[0_4px_12px_rgb(0_0_0/0.12)] md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none [&>button]:min-h-11 [&>button]:min-w-11 [&>button]:border-line [&>button]:bg-surface [&>button]:text-ink [&>button]:hover:border-accent/50 [&>button]:hover:bg-accent-soft [&>button]:focus-visible:outline-none [&>button]:focus-visible:ring-2 [&>button]:focus-visible:ring-accent/50 [&>button]:focus-visible:ring-offset-2 [&>button]:focus-visible:ring-offset-canvas">

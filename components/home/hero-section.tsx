@@ -18,6 +18,7 @@ type HeroSectionProps = {
 
 export function HeroSection({ heroImage, children }: HeroSectionProps) {
   const { phoneDisplay, phoneHref, scheduleUrl } = getCtaConfig();
+  const hasGallery = Boolean(children);
   const heroRef = useRef<HTMLElement>(null);
   const topBarRef = useRef<HTMLDivElement>(null);
   const bottomBarRef = useRef<HTMLDivElement>(null);
@@ -32,12 +33,14 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
     () => {
       if (
         !heroRef.current ||
-        !topBarRef.current ||
-        !bottomBarRef.current ||
         !contentRef.current ||
         !titleRef.current ||
         !imageRef.current
       ) return;
+
+      if (hasGallery && (!topBarRef.current || !bottomBarRef.current)) {
+        return;
+      }
 
       if (ctaGroupRef.current) {
         if (shouldReduceMotion) {
@@ -56,62 +59,72 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         }
       }
 
-      if (shouldReduceMotion) return;
+      if (shouldReduceMotion || !hasGallery) {
+        return;
+      }
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1.2,
-        },
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.2,
+          },
+        });
+
+        // 1. Bars grow from 0 → 50vh using scaleY (compositor-friendly)
+        gsap.set(topBarRef.current, { height: "50vh", scaleY: 0, transformOrigin: "top" });
+        gsap.set(bottomBarRef.current, { height: "50vh", scaleY: 0, transformOrigin: "bottom" });
+        tl.to([topBarRef.current, bottomBarRef.current], {
+          scaleY: 1,
+          duration: 0.6,
+          ease: "power2.inOut",
+        }, 0);
+
+        // 2. H1 fades out faster + drifts up
+        tl.to(titleRef.current, {
+          opacity: 0,
+          y: -40,
+          duration: 0.4,
+          ease: "power1.in",
+        }, 0);
+
+        // 3. Remaining content fades + subtle foreground drift
+        tl.to(contentRef.current, {
+          opacity: 0,
+          y: "-8%",
+          duration: 0.55,
+          ease: "none",
+        }, 0.05);
+
+        // 4. Background image parallax (deeper depth feel)
+        tl.to(imageRef.current, {
+          y: "-15%",
+          scale: 1.08,
+          duration: 1,
+          ease: "none",
+        }, 0);
+
+        // 5. Gallery slides up from below the viewport into full view
+        //    Starts at 15% of timeline, ends at 65% → stays visible for remaining 35%
+        if (galleryRef.current) {
+          tl.fromTo(
+            galleryRef.current,
+            { y: "100%" },
+            { y: "0%", duration: 0.5, ease: "power2.out" },
+            0.15,
+          );
+        }
       });
 
-      // 1. Bars grow from 0 → 50vh using scaleY (compositor-friendly)
-      gsap.set(topBarRef.current, { height: "50vh", scaleY: 0, transformOrigin: "top" });
-      gsap.set(bottomBarRef.current, { height: "50vh", scaleY: 0, transformOrigin: "bottom" });
-      tl.to([topBarRef.current, bottomBarRef.current], {
-        scaleY: 1,
-        duration: 0.6,
-        ease: "power2.inOut",
-      }, 0);
-
-      // 2. H1 fades out faster + drifts up
-      tl.to(titleRef.current, {
-        opacity: 0,
-        y: -40,
-        duration: 0.4,
-        ease: "power1.in",
-      }, 0);
-
-      // 3. Remaining content fades + subtle foreground drift
-      tl.to(contentRef.current, {
-        opacity: 0,
-        y: "-8%",
-        duration: 0.55,
-        ease: "none",
-      }, 0.05);
-
-      // 4. Background image parallax (deeper depth feel)
-      tl.to(imageRef.current, {
-        y: "-15%",
-        scale: 1.08,
-        duration: 1,
-        ease: "none",
-      }, 0);
-
-      // 5. Gallery slides up from below the viewport into full view
-      //    Starts at 15% of timeline, ends at 65% → stays visible for remaining 35%
-      if (galleryRef.current) {
-        tl.fromTo(
-          galleryRef.current,
-          { y: "100%" },
-          { y: "0%", duration: 0.5, ease: "power2.out" },
-          0.15,
-        );
-      }
+      return () => {
+        mm.revert();
+      };
     },
-    { scope: heroRef, dependencies: [shouldReduceMotion] },
+    { scope: heroRef, dependencies: [shouldReduceMotion, hasGallery] },
   );
 
   return (
@@ -119,7 +132,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
       ref={heroRef}
       id="hero"
       aria-label="Hero — DFW custom home builder"
-      className="relative z-0 min-h-[200vh]"
+      className={`relative z-0 ${hasGallery ? "min-h-[120vh] lg:min-h-[150vh]" : "min-h-screen"}`}
     >
       {/* Overscroll easter egg — visible on rubber-band pull-down */}
       <div
@@ -131,12 +144,14 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
 
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* ── Top bar (animated) ── */}
-        <div
-          ref={topBarRef}
-          className="absolute top-0 left-0 z-30 w-full bg-black"
-          style={{ height: 0, transformOrigin: "top" }}
-          aria-hidden="true"
-        />
+        {hasGallery ? (
+          <div
+            ref={topBarRef}
+            className="absolute top-0 left-0 z-30 w-full bg-black"
+            style={{ height: 0, transformOrigin: "top" }}
+            aria-hidden="true"
+          />
+        ) : null}
 
         {/* ── Full-width hero image with GSAP parallax ── */}
         <div ref={imageRef} className="absolute inset-0">
@@ -175,11 +190,26 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                 </SwissTextReveal>
               </h1>
 
-              <h2 className="max-w-2xl text-base font-normal leading-relaxed tracking-normal text-ink/92 sm:text-xl">
+              <p className="max-w-2xl text-base leading-relaxed tracking-normal text-ink/92 sm:text-lg">
                 <SwissTextReveal mode="line" stagger={0.1} delay={0.34}>
                   {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth.\nEvery phase is tied to clear deliverables and decision gates."}
                 </SwissTextReveal>
-              </h2>
+              </p>
+
+              <ul className="flex flex-wrap gap-2" aria-label="Key proof points">
+                {[
+                  "DFW-only operating model",
+                  "40+ custom homes delivered",
+                  "Decision-gated planning",
+                ].map((proof) => (
+                  <li
+                    key={proof}
+                    className="rounded-sm border border-line/80 bg-canvas/70 px-2.5 py-1 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-ink/88"
+                  >
+                    {proof}
+                  </li>
+                ))}
+              </ul>
 
               <div
                 ref={ctaGroupRef}
@@ -211,12 +241,14 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         </Container>
 
         {/* ── Bottom bar (animated) ── */}
-        <div
-          ref={bottomBarRef}
-          className="absolute bottom-0 left-0 z-30 w-full bg-black"
-          style={{ height: 0, transformOrigin: "bottom" }}
-          aria-hidden="true"
-        />
+        {hasGallery ? (
+          <div
+            ref={bottomBarRef}
+            className="absolute bottom-0 left-0 z-30 w-full bg-black"
+            style={{ height: 0, transformOrigin: "bottom" }}
+            aria-hidden="true"
+          />
+        ) : null}
 
         {/* ── Gallery overlay — slides up from below to cover the hero ── */}
         {children && (

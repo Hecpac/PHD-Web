@@ -25,8 +25,10 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const isSmallViewport = window.matchMedia("(max-width: 1023px)").matches;
 
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || isCoarsePointer || isSmallViewport) return;
 
     // ── Create GSAP context for scoped cleanup ──
     const ctx = gsap.context(() => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, useInView } from "framer-motion";
 
 import { Container } from "@/components/layout/container";
@@ -48,7 +48,7 @@ function StepCard({
       </div>
 
       <div className="mt-6 flex flex-1 flex-col space-y-4">
-        <h2 className="text-3xl font-bold text-ink">{step.title}</h2>
+        <h3 className="text-3xl font-bold text-ink">{step.title}</h3>
         <p className="text-lg leading-relaxed text-muted">{step.description}</p>
 
         {/* Deliverables */}
@@ -276,7 +276,7 @@ function VerticalBlueprint({ steps }: { steps: ProcessStep[] }) {
 
           {/* Content */}
           <div className="space-y-4">
-            <h2 className="text-3xl font-bold text-ink">{step.title}</h2>
+            <h3 className="text-3xl font-bold text-ink">{step.title}</h3>
             <p className="text-lg leading-relaxed text-muted">
               {step.description}
             </p>
@@ -320,6 +320,15 @@ export function BlueprintSection({
   headingAs,
 }: BlueprintSectionProps) {
   const shouldReduceMotion = useReducedMotion();
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setIsDesktop(mediaQuery.matches);
+    sync();
+    mediaQuery.addEventListener("change", sync);
+    return () => mediaQuery.removeEventListener("change", sync);
+  }, []);
 
   return (
     <section id={id} className="section-shell section-brand-wash-bold overflow-x-clip border-t border-line section-brand-divider">
@@ -333,7 +342,7 @@ export function BlueprintSection({
           />
         ) : null}
 
-        {shouldReduceMotion ? (
+        {shouldReduceMotion || !isDesktop ? (
           <VerticalBlueprint steps={steps} />
         ) : (
           <HorizontalBlueprint steps={steps} />

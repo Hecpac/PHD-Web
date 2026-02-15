@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Archivo, IBM_Plex_Mono } from "next/font/google";
 
 import { BackToTop } from "@/components/layout/back-to-top";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -9,11 +10,23 @@ import { ConsoleBrand } from "@/components/ui/console-brand";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { JsonLd } from "@/components/ui/json-ld";
 import { TransitionProvider } from "@/components/ui/page-transition";
-import { Preloader } from "@/components/ui/preloader";
 import { getSiteUrl, siteConfig } from "@/lib/config/site";
 import { createLocalBusinessSchema, createWebSiteSchema } from "@/lib/seo/schema";
 
 import "./globals.css";
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-archivo",
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
@@ -71,8 +84,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-canvas text-ink antialiased">
-        <Preloader />
+      <body className={`${archivo.variable} ${plexMono.variable} bg-canvas text-ink antialiased`}>
         <JsonLd data={createWebSiteSchema()} />
         <JsonLd data={createLocalBusinessSchema()} />
         <SmoothScroll>

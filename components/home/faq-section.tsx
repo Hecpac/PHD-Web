@@ -24,7 +24,7 @@ export function FaqSection({ faqs, id = "faq" }: FaqSectionProps) {
                         <SectionHeading
                             eyebrow="Common Questions"
                             title="Clarity before commitment"
-                            description="We believe in answering the hard questions upfront. Here is what most expecting owners ask us about building in DFW."
+                            description="We believe in answering hard questions upfront. Here is what most prospective owners ask us about building in DFW."
                         />
                     </div>
                     <div className="lg:col-span-7">

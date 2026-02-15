@@ -58,24 +58,27 @@ html {
   font-size: 1rem;
 }
 
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1200px) {
   html {
-    font-size: clamp(0.875rem, 0.34318555008210183rem + 0.6568144499178982vw, 1rem);
+    font-size: 0.96875rem;
   }
 }
 
 @media screen and (max-width: 991px) {
   html {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
   }
 }
 
 body {
-  background: var(--color-canvas);
+  background:
+    radial-gradient(140% 120% at 2% -12%, color-mix(in oklab, var(--color-accent), transparent 97%) 0%, transparent 55%),
+    radial-gradient(120% 100% at 98% 112%, color-mix(in oklab, var(--color-accent), transparent 98%) 0%, transparent 62%),
+    var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.55;
   font-weight: 400;
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
@@ -101,6 +104,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
+  text-wrap: balance;
 }
 
 ::selection {
@@ -108,12 +112,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Accessibility: touch targets */
-a,
 button,
 input,
 textarea,
 select {
-  min-height: 24px;
+  min-height: 44px;
 }
 
 :focus-visible {
@@ -131,11 +134,11 @@ select {
 }
 
 .section-shell {
-  padding-block: clamp(2.5rem, 6vw, 5rem);
+  padding-block: clamp(2.25rem, 5vw, 4.5rem);
 }
 
 .section-shell-tight {
-  padding-block: clamp(2rem, 4.5vw, 4rem);
+  padding-block: clamp(1.75rem, 3.8vw, 3.5rem);
 }
 
 .text-reading {
@@ -287,7 +290,11 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: #000;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--color-accent), white 8%) 0%,
+    color-mix(in oklab, var(--color-accent), black 26%) 100%
+  );
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 0.35s cubic-bezier(0.87, 0, 0.13, 1);
@@ -295,6 +302,17 @@ button {
 }
 .cta-primary-fill:hover::before {
   transform: scaleY(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ── C.A.D. Mode (D-F-W Easter Egg) ─────── */
