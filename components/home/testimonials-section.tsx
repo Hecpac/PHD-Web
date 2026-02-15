@@ -17,7 +17,7 @@ type TestimonialsSectionProps = {
 
 function ReviewCard({ review }: { review: Review }) {
   return (
-    <article className="flex h-full flex-col justify-between rounded-lg border border-line bg-surface p-6">
+    <article className="brand-red-outline brand-red-surface flex h-full flex-col justify-between rounded-lg border border-line bg-surface p-6">
       <div className="space-y-4">
         <StarRating rating={review.rating} />
         <blockquote className="text-sm leading-relaxed text-ink/90">
@@ -106,7 +106,7 @@ export function TestimonialsSection({ reviews }: TestimonialsSectionProps) {
   if (displayReviews.length === 0) return null;
 
   return (
-    <section id="testimonials" className="section-shell section-shell-tight" aria-label="Client testimonials">
+    <section id="testimonials" className="section-shell section-shell-tight section-brand-wash" aria-label="Client testimonials">
       <Container swiss className="space-y-10">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading

@@ -119,7 +119,7 @@ export function HowWeWorkSection() {
   }, { scope: cardsRef });
 
   return (
-    <section id="how-we-work" className="section-shell">
+    <section id="how-we-work" className="section-shell section-brand-wash-soft">
       <Container swiss className="space-y-10 md:space-y-16">
         <div className="grid grid-cols-1 gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-8">
           {/* Sticky Header (Left) */}
@@ -139,7 +139,7 @@ export function HowWeWorkSection() {
               <div
                 key={step.number}
                 data-step-card
-                className="rounded-xl border border-line/85 bg-surface-2/95 p-5 shadow-[0_12px_24px_rgb(0_0_0/0.08)] sm:p-6 lg:sticky"
+                className="brand-red-outline brand-red-surface-2 rounded-xl border border-line/85 bg-surface-2/95 p-5 shadow-[0_12px_24px_rgb(0_0_0/0.08)] sm:p-6 lg:sticky"
                 style={{ top: `calc(20vh + ${index * 10}px)` }}
               >
                 <div className="font-mono text-xs font-medium tracking-widest text-muted">
