@@ -57,20 +57,20 @@
   --token-subtle: rgb(120 116 109);
   --token-line: var(--md-sys-color-outline-variant);
 
-  --token-accent: var(--md-sys-color-primary);
-  --token-accent-hover: rgb(240 120 51);
-  --token-accent-pressed: rgb(224 104 37);
-  --token-accent-ink: var(--md-sys-color-on-primary);
-  --token-accent-soft: var(--md-sys-color-primary-container);
-  --token-accent-soft-ink: var(--md-sys-color-on-primary-container);
-  --token-on-accent: rgb(33 31 26);
+  --token-accent: rgb(203 33 49);
+  --token-accent-hover: rgb(181 27 43);
+  --token-accent-pressed: rgb(155 22 36);
+  --token-accent-ink: rgb(255 244 245);
+  --token-accent-soft: rgb(251 229 232);
+  --token-accent-soft-ink: rgb(111 21 32);
+  --token-on-accent: rgb(255 244 245);
 
   --token-danger: var(--md-sys-color-error);
   --token-danger-ink: var(--md-sys-color-on-error);
   --token-danger-soft: var(--md-sys-color-error-container);
   --token-danger-soft-ink: var(--md-sys-color-on-error-container);
 
-  --token-blueprint: rgb(255 131 59 / 0.12);
+  --token-blueprint: rgb(203 33 49 / 0.12);
 }
 
 /* Runtime mapping — Dark */
@@ -117,13 +117,13 @@
   --token-subtle: rgb(96 93 87);
   --token-line: var(--md-sys-color-outline-variant);
 
-  --token-accent: var(--md-sys-color-primary);
-  --token-accent-hover: rgb(116 32 29);
-  --token-accent-pressed: rgb(96 26 24);
-  --token-accent-ink: var(--md-sys-color-on-primary);
-  --token-accent-soft: var(--md-sys-color-primary-container);
-  --token-accent-soft-ink: var(--md-sys-color-on-primary-container);
-  --token-on-accent: rgb(255 255 255);
+  --token-accent: rgb(172 23 37);
+  --token-accent-hover: rgb(148 19 32);
+  --token-accent-pressed: rgb(126 16 27);
+  --token-accent-ink: rgb(255 247 247);
+  --token-accent-soft: rgb(248 219 224);
+  --token-accent-soft-ink: rgb(96 14 23);
+  --token-on-accent: rgb(255 247 247);
 
   --token-danger: var(--md-sys-color-error);
   --token-danger-ink: var(--md-sys-color-on-error);
@@ -147,13 +147,13 @@
   --token-subtle: rgb(120 120 118);
   --token-line: var(--md-sys-color-outline-variant);
 
-  --token-accent: var(--md-sys-color-primary);
-  --token-accent-hover: rgb(146 40 37);
-  --token-accent-pressed: rgb(126 34 31);
-  --token-accent-ink: var(--md-sys-color-on-primary);
-  --token-accent-soft: var(--md-sys-color-primary-container);
-  --token-accent-soft-ink: var(--md-sys-color-on-primary-container);
-  --token-on-accent: rgb(255 255 255);
+  --token-accent: rgb(188 29 44);
+  --token-accent-hover: rgb(165 24 38);
+  --token-accent-pressed: rgb(141 20 32);
+  --token-accent-ink: rgb(255 246 246);
+  --token-accent-soft: rgb(249 224 228);
+  --token-accent-soft-ink: rgb(103 17 28);
+  --token-on-accent: rgb(255 246 246);
 
   --token-danger: var(--md-sys-color-error);
   --token-danger-ink: var(--md-sys-color-on-error);
