@@ -40,7 +40,7 @@ function StepCard({
       initial={reduceMotion ? false : { opacity: 0, y: 24 }}
       animate={isInView && !reduceMotion ? { opacity: 1, y: 0 } : undefined}
       transition={{ ...springTransition, delay: index * 0.08 }}
-      className="flex h-full min-w-0 flex-col"
+      className="brand-red-outline brand-red-surface flex h-full min-w-0 flex-col rounded-xl border border-line p-5 sm:p-6"
     >
       {/* Large Swiss number */}
       <div className="text-7xl font-bold tabular-nums text-accent lg:text-8xl">
@@ -132,7 +132,7 @@ function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
       const scrollPos = pinTrigger.start + progress * (pinTrigger.end - pinTrigger.start);
       window.scrollTo({ top: scrollPos, behavior: "smooth" });
     }
-  }, [totalSteps]);
+  }, [safeTotalSteps, totalSteps]);
 
   const goPrev = useCallback(() => scrollToSnap(activeIndex - 1), [activeIndex, scrollToSnap]);
   const goNext = useCallback(() => scrollToSnap(activeIndex + 1), [activeIndex, scrollToSnap]);
@@ -164,7 +164,7 @@ function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
             onClick={goPrev}
             disabled={activeIndex === 0 || safeTotalSteps <= 1}
             aria-label="Previous step"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none"
+            className="brand-red-outline inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-accent/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none"
           >
             <svg
               width="20"
@@ -188,7 +188,7 @@ function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
             onClick={goNext}
             disabled={activeIndex >= safeTotalSteps - 1}
             aria-label="Next step"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none"
+            className="brand-red-outline inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-accent/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none"
           >
             <svg
               width="20"
@@ -247,7 +247,7 @@ function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
               className={`block h-2 w-2 rounded-full transition-[transform,opacity] duration-200 ${
                 idx === activeIndex
                   ? "scale-x-[3] bg-accent"
-                  : "scale-x-100 bg-line"
+                  : "scale-x-100 bg-accent/25"
               }`}
             />
           </button>
@@ -267,7 +267,7 @@ function VerticalBlueprint({ steps }: { steps: ProcessStep[] }) {
       {steps.map((step, idx) => (
         <article
           key={step.id}
-          className="grid grid-cols-[auto_1fr] gap-8 lg:gap-16"
+          className="brand-red-outline brand-red-surface grid grid-cols-[auto_1fr] gap-8 rounded-xl border border-line p-5 sm:p-6 lg:gap-16"
         >
           {/* Large Swiss number */}
           <div className="text-7xl font-bold tabular-nums text-accent lg:text-8xl">
@@ -322,7 +322,7 @@ export function BlueprintSection({
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id={id} className="section-shell overflow-x-clip border-t border-line">
+    <section id={id} className="section-shell section-brand-band overflow-x-clip border-t border-line section-brand-divider">
       <Container swiss>
         {withHeading ? (
           <SectionHeading

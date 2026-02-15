@@ -310,7 +310,7 @@ export function WhyChooseUsSection() {
   return (
     <section
       id="why-choose-us"
-      className="section-shell border-t border-line"
+      className="section-shell section-brand-wash-bold border-t border-line section-brand-divider"
       aria-labelledby={HEADING_ID}
     >
       <Container swiss className="space-y-10">
@@ -345,10 +345,10 @@ export function WhyChooseUsSection() {
 
         <div ref={gridRef} className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {differentiators.map((item) => (
-            <SwissCard key={item.id} spotlight className="why-card">
+            <SwissCard key={item.id} spotlight className="why-card brand-red-outline brand-red-surface">
               <article aria-labelledby={`why-card-title-${item.id}`}>
                 {/* Icon */}
-                <div data-why-row className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-line/90 bg-surface-2">
+                <div data-why-row className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-line/85 bg-accent/8">
                   {item.icon}
                 </div>
 

@@ -55,10 +55,10 @@ const minHeightClasses: Record<BentoCellSpan, string> = {
 };
 
 const variantClasses: Record<NonNullable<BentoItem["variant"]>, string> = {
-  default: "bg-surface border border-line",
+  default: "brand-red-outline brand-red-surface bg-surface border border-line",
   accent: "bg-accent text-on-accent",
-  surface: "bg-surface border border-line",
-  image: "relative overflow-hidden border border-line",
+  surface: "brand-red-outline brand-red-surface-2 bg-surface-2 border border-line",
+  image: "brand-red-outline relative overflow-hidden border border-line",
 };
 
 /* ──────────────────────────────────────────────

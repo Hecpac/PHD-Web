@@ -18,7 +18,7 @@ const trustPoints = [
 
 export function TrustSection() {
   return (
-    <section id="trust" className="section-shell section-shell-tight section-brand-wash-soft border-t border-line section-brand-divider">
+    <section id="trust" className="section-shell section-shell-tight section-brand-band border-t border-line section-brand-divider">
       <Container swiss className="space-y-8">
         <SectionHeading
           eyebrow="Trust"

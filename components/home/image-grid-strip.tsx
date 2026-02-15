@@ -10,12 +10,15 @@ type ImageGridStripProps = {
   projects: Project[];
 };
 
-const sectionImage = "/render/hero-between-heroes.svg";
+const FALLBACK_SECTION_IMAGE = "/projects/north-dallas-courtyard-residence/hero.jpg";
 
 export function ImageGridStrip({ projects }: ImageGridStripProps) {
   const cityCount = projects.length;
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const showcaseProject = projects.find((project) => project.heroImage) ?? projects[0];
+  const sectionImage = showcaseProject?.heroImage?.src ?? FALLBACK_SECTION_IMAGE;
+  const sectionAlt = showcaseProject?.heroImage?.alt ?? "Dallas-Fort Worth custom homes visual";
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
@@ -68,21 +71,28 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
     <section
       ref={sectionRef}
       aria-label="Section divider visual"
-      className="relative border-y border-line"
+      className="section-brand-wash relative border-y border-line section-brand-divider"
     >
       <div ref={imageRef} className="absolute inset-0">
         <Image
           src={sectionImage}
-          alt="Dallas-Fort Worth custom homes visual"
+          alt={sectionAlt}
           fill
           priority
           className="object-cover"
           sizes="100vw"
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/30 to-black/55" />
-      <div className="relative container-swiss flex min-h-[36vh] items-center py-10 sm:min-h-[42vh] sm:py-14">
-        <p className="max-w-xl text-sm font-medium uppercase tracking-[0.06em] text-white sm:text-base">
+      <div className="absolute inset-0 bg-gradient-to-t from-canvas/68 via-canvas/36 to-canvas/52" />
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(120% 90% at 10% 8%, color-mix(in oklab, var(--color-accent), transparent 87%) 0%, transparent 62%)",
+        }}
+      />
+      <div className="relative container-swiss flex min-h-[30vh] items-center py-9 sm:min-h-[36vh] sm:py-12">
+        <p className="max-w-xl rounded-md border border-line/70 bg-canvas/78 px-4 py-2 text-sm font-medium uppercase tracking-[0.06em] text-ink sm:text-base">
           Featured portfolio from {cityCount} DFW projects.
         </p>
       </div>

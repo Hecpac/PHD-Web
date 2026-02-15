@@ -87,7 +87,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
   }, { scope: gridRef });
 
   return (
-    <section id={id} className="section-shell border-t border-line">
+    <section id={id} className="section-shell section-brand-wash-bold border-t border-line section-brand-divider">
       <Container swiss className="space-y-8">
         {withHeading ? (
           <SectionHeading
@@ -97,7 +97,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
           />
         ) : null}
 
-        <div ref={gridRef} className="grid gap-px border border-line md:grid-cols-2 xl:grid-cols-3">
+        <div ref={gridRef} className="brand-red-outline grid gap-px border border-line md:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => {
             const isOpen = openId === service.id;
             const panelId = `${uid}-panel-${service.id}`;
@@ -112,7 +112,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
             return (
               <article
                 key={service.id}
-                className="ledger-card group flex min-h-[clamp(18rem,34vw,24rem)] flex-col rounded-xl border border-line bg-surface p-5 sm:p-6"
+                className="ledger-card brand-red-outline brand-red-surface group flex min-h-[clamp(18rem,34vw,24rem)] flex-col rounded-xl border border-line bg-surface p-5 sm:p-6"
               >
                 <button
                   id={buttonId}
@@ -122,7 +122,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                 >
-                  <div data-ledger-row className="flex h-12 w-12 items-center justify-center rounded-md border border-line bg-surface-2 text-muted transition-all duration-300 group-hover:border-accent/45 group-hover:bg-accent/5 group-hover:text-accent">
+                  <div data-ledger-row className="flex h-12 w-12 items-center justify-center rounded-md border border-line bg-accent/8 text-muted transition-all duration-300 group-hover:border-accent/55 group-hover:bg-accent/14 group-hover:text-accent">
                     {Icon ? (
                       <Icon
                         aria-hidden="true"
@@ -142,7 +142,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
                   role="region"
                   aria-labelledby={buttonId}
                   data-ledger-row
-                  className="mt-4 min-h-[clamp(6.5rem,15vw,9rem)] border-t border-line pt-4"
+                  className="mt-4 min-h-[clamp(6.5rem,15vw,9rem)] border-t border-line/85 pt-4"
                 >
                   {/* Always-visible deliverables (first 2) */}
                   <ul className="space-y-2 text-sm text-ink">

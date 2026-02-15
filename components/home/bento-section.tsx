@@ -66,14 +66,14 @@ const bentoItems: BentoItem[] = [
 
 export function BentoSection() {
   return (
-    <section id="bento" className="section-shell border-t border-line">
+    <section id="bento" className="section-shell section-brand-wash-soft border-t border-line section-brand-divider">
       <Container swiss className="space-y-10">
         <SectionHeading
           eyebrow="Why Us"
           title="Engineered for precision, built for DFW"
           description="A design-build practice structured around transparency, schedule control, and documented quality at every milestone."
         />
-        <BentoGrid items={bentoItems} />
+        <BentoGrid items={bentoItems} className="brand-red-outline border border-line" />
       </Container>
     </section>
   );

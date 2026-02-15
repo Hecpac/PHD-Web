@@ -119,7 +119,7 @@ export function HowWeWorkSection() {
   }, { scope: cardsRef });
 
   return (
-    <section id="how-we-work" className="section-shell section-brand-wash-soft">
+    <section id="how-we-work" className="section-shell section-brand-wash-bold">
       <Container swiss className="space-y-10 md:space-y-16">
         <div className="grid grid-cols-1 gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-8">
           {/* Sticky Header (Left) */}

@@ -11,7 +11,7 @@ import { DFW_CITIES } from "@/lib/types/content";
 const featuredCities = DFW_CITIES.slice(0, 8);
 
 /** Inline SVG pattern: topographic contour circles */
-const TOPO_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='10' fill='none' stroke='%23ffffff08' stroke-width='.5'/%3E%3Ccircle cx='30' cy='30' r='20' fill='none' stroke='%23ffffff06' stroke-width='.5'/%3E%3Ccircle cx='30' cy='30' r='28' fill='none' stroke='%23ffffff04' stroke-width='.5'/%3E%3C/svg%3E")`;
+const TOPO_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='10' fill='none' stroke='%23cb213118' stroke-width='.5'/%3E%3Ccircle cx='30' cy='30' r='20' fill='none' stroke='%23cb213112' stroke-width='.5'/%3E%3Ccircle cx='30' cy='30' r='28' fill='none' stroke='%23cb21310d' stroke-width='.5'/%3E%3C/svg%3E")`;
 
 export function DfwSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -49,16 +49,16 @@ export function DfwSection() {
     <section
       ref={sectionRef}
       id="dfw"
-      className="section-shell relative border-t border-line"
+      className="section-shell section-brand-band relative border-t border-line section-brand-divider"
     >
       {/* Expanding circle background */}
       <div
         ref={bgRef}
         className="absolute inset-0"
         style={{
-          backgroundColor: "#111",
-          backgroundImage: TOPO_PATTERN,
-          backgroundSize: "60px 60px",
+          backgroundColor: "#151515",
+          backgroundImage: `radial-gradient(120% 100% at 10% 10%, color-mix(in oklab, var(--color-accent), transparent 84%) 0%, transparent 62%), ${TOPO_PATTERN}`,
+          backgroundSize: "cover, 60px 60px",
           clipPath: "circle(10% at 50% 50%)",
         }}
         aria-hidden="true"
@@ -71,7 +71,7 @@ export function DfwSection() {
           description="We focus exclusively on DFW projects to maintain local permitting fluency, trade relationships, and execution quality."
         />
 
-        <div className="rounded-xl border border-line bg-surface p-6">
+        <div className="brand-red-outline brand-red-surface-bold rounded-xl border border-line bg-surface p-6">
           <p className="text-sm leading-6 text-muted">
             Current focus includes {featuredCities.join(", ")}, and surrounding DFW neighborhoods.
           </p>

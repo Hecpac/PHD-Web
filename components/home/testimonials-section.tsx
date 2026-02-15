@@ -106,7 +106,7 @@ export function TestimonialsSection({ reviews }: TestimonialsSectionProps) {
   if (displayReviews.length === 0) return null;
 
   return (
-    <section id="testimonials" className="section-shell section-shell-tight section-brand-wash" aria-label="Client testimonials">
+    <section id="testimonials" className="section-shell section-shell-tight section-brand-wash-bold" aria-label="Client testimonials">
       <Container swiss className="space-y-10">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
