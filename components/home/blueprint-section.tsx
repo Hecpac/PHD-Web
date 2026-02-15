@@ -322,7 +322,7 @@ export function BlueprintSection({
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id={id} className="section-shell section-brand-band overflow-x-clip border-t border-line section-brand-divider">
+    <section id={id} className="section-shell section-brand-wash-bold overflow-x-clip border-t border-line section-brand-divider">
       <Container swiss>
         {withHeading ? (
           <SectionHeading
