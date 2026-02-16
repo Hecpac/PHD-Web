@@ -71,10 +71,7 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(140% 120% at 2% -12%, color-mix(in oklab, var(--color-accent), transparent 97%) 0%, transparent 55%),
-    radial-gradient(120% 100% at 98% 112%, color-mix(in oklab, var(--color-accent), transparent 98%) 0%, transparent 62%),
-    var(--color-canvas);
+  background: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -178,88 +175,48 @@ button {
 }
 
 /* ── Brand Red Section Utilities ─────────── */
+/* Hector request: keep sections clean/white. */
 
-.section-brand-wash {
-  background-image:
-    radial-gradient(
-      130% 100% at 8% 0%,
-      color-mix(in oklab, var(--color-accent), transparent 95%) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      120% 90% at 92% 100%,
-      color-mix(in oklab, var(--color-accent), transparent 96%) 0%,
-      transparent 62%
-    );
-}
-
-.section-brand-wash-soft {
-  background-image: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--color-accent), transparent 97%) 0%,
-    transparent 24%,
-    transparent 76%,
-    color-mix(in oklab, var(--color-accent), transparent 97%) 100%
-  );
-}
-
-.section-brand-wash-bold {
-  background-image:
-    radial-gradient(
-      135% 105% at 8% 0%,
-      color-mix(in oklab, var(--color-accent), transparent 90%) 0%,
-      transparent 58%
-    ),
-    radial-gradient(
-      120% 90% at 92% 100%,
-      color-mix(in oklab, var(--color-accent), transparent 91%) 0%,
-      transparent 60%
-    );
-}
-
+.section-brand-wash,
+.section-brand-wash-soft,
+.section-brand-wash-bold,
 .section-brand-band {
-  background-image: linear-gradient(
-    90deg,
-    color-mix(in oklab, var(--color-accent), transparent 92%) 0%,
-    transparent 22%,
-    transparent 78%,
-    color-mix(in oklab, var(--color-accent), transparent 92%) 100%
-  );
+  background-image: none;
 }
 
 .section-brand-divider {
-  border-top-color: color-mix(in oklab, var(--color-line), var(--color-accent) 24%);
+  border-top-color: var(--color-line);
 }
 
 .brand-red-outline {
-  border-color: color-mix(in oklab, var(--color-line), var(--color-accent) 20%);
+  border-color: var(--color-line);
 }
 
-.brand-red-surface {
-  background: linear-gradient(
-    155deg,
-    color-mix(in oklab, var(--color-accent), var(--color-surface) 94%) 0%,
-    var(--color-surface) 44%,
-    var(--color-surface) 100%
-  );
-}
-
-.brand-red-surface-2 {
-  background: linear-gradient(
-    155deg,
-    color-mix(in oklab, var(--color-accent), var(--color-surface-2) 93%) 0%,
-    var(--color-surface-2) 42%,
-    var(--color-surface-2) 100%
-  );
-}
-
+.brand-red-surface,
+.brand-red-surface-2,
 .brand-red-surface-bold {
-  background: linear-gradient(
-    145deg,
-    color-mix(in oklab, var(--color-accent), var(--color-surface) 86%) 0%,
-    color-mix(in oklab, var(--color-accent), var(--color-surface) 93%) 38%,
-    var(--color-surface) 100%
-  );
+  background: var(--color-surface);
+}
+
+/* ── Intake Gradient (reuse) ─────────────── */
+
+.section-intake-gradient {
+  /* Same palette overrides as ContactTerminal */
+  --color-canvas: rgb(47 34 39);
+  --color-ink: rgb(244 238 238);
+  --color-surface: rgb(36 29 33);
+  --color-surface-2: rgb(46 37 43);
+  --color-muted: rgb(197 182 186);
+  --color-line: rgb(232 205 208 / 0.24);
+  --color-accent: rgb(212 45 62);
+  --color-accent-hover: rgb(190 34 50);
+  --color-accent-pressed: rgb(164 28 42);
+  --color-on-accent: rgb(255 244 245);
+  --color-accent-soft: rgb(91 48 58);
+  --color-accent-soft-ink: rgb(248 230 233);
+
+  background: linear-gradient(145deg, #2a0d13 0%, #7c1628 48%, #1e2024 100%);
+  color: rgb(244 238 238);
 }
 
 /* ── Backdrop Blur Header ────────────────── */

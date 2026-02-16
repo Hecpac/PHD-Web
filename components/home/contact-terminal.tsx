@@ -73,7 +73,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
     <section
       ref={sectionRef}
       id={id}
-      className="section-shell border-t border-[#4f1d26] bg-[linear-gradient(145deg,#2a0d13_0%,#7c1628_48%,#1e2024_100%)] text-[#f4eeee] [--color-canvas:rgb(47_34_39)] [--color-ink:rgb(244_238_238)] [--color-surface:rgb(36_29_33)] [--color-surface-2:rgb(46_37_43)] [--color-muted:rgb(197_182_186)] [--color-line:rgb(232_205_208/0.24)] [--color-accent:rgb(212_45_62)] [--color-accent-hover:rgb(190_34_50)] [--color-accent-pressed:rgb(164_28_42)] [--color-on-accent:rgb(255_244_245)] [--color-accent-soft:rgb(91_48_58)] [--color-accent-soft-ink:rgb(248_230_233)]"
+      className="section-shell section-intake-gradient border-t border-line"
     >
       <Container swiss className="space-y-7 md:space-y-8">
         {withHeading ? (
