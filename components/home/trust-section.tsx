@@ -20,7 +20,7 @@ export function TrustSection() {
   return (
     <section
       id="trust"
-      className="section-shell border-t border-line"
+      className="section-shell section-intake-gradient border-t border-line"
       aria-label="Trust points"
     >
       <Container swiss className="space-y-8">
