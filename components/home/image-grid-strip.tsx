@@ -11,6 +11,7 @@ type ImageGridStripProps = {
 };
 
 const FALLBACK_SECTION_IMAGE = "/projects/north-dallas-courtyard-residence/hero.jpg";
+const REVEAL_FALLBACK_BG = "linear-gradient(145deg, #2a0d13 0%, #7c1628 48%, #1e2024 100%)";
 
 export function ImageGridStrip({ projects }: ImageGridStripProps) {
   const cityCount = projects.length;
@@ -75,7 +76,8 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
     <section
       ref={sectionRef}
       aria-label="Section divider visual"
-      className="relative border-y border-line bg-canvas"
+      className="relative border-y border-line"
+      style={{ background: REVEAL_FALLBACK_BG }}
     >
       <div ref={revealRef} className="relative">
         <div ref={imageRef} className="absolute inset-0">
