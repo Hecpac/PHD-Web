@@ -50,13 +50,13 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center gap-2.5 md:gap-3">
-              <div aria-hidden className="hidden h-7 w-px bg-line/80 md:block" />
+              <div aria-hidden className="hidden h-7 w-px bg-line/80 lg:block" />
               <CtaLink
                 href={ctaConfig.scheduleUrl}
                 target="_blank"
                 rel="noreferrer"
                 eventName="cta_schedule_click"
-                className="!hidden md:!inline-flex md:min-h-10 md:border-accent/90 md:px-5 md:shadow-[0_8px_18px_rgb(0_0_0/0.14)] md:hover:border-accent-hover md:focus-visible:outline-none md:focus-visible:ring-2 md:focus-visible:ring-accent/55 md:focus-visible:ring-offset-2 md:focus-visible:ring-offset-canvas"
+                className="!hidden lg:!inline-flex lg:min-h-10 lg:border-accent/90 lg:px-5 lg:shadow-[0_8px_18px_rgb(0_0_0/0.14)] lg:hover:border-accent-hover lg:focus-visible:outline-none lg:focus-visible:ring-2 lg:focus-visible:ring-accent/55 lg:focus-visible:ring-offset-2 lg:focus-visible:ring-offset-canvas"
               >
                 Schedule Consultation
               </CtaLink>
@@ -70,7 +70,7 @@ export function SiteHeader() {
                 Schedule Call
               </CtaLink>
 
-              <div className="rounded-lg border border-line/90 bg-surface/90 p-0.5 shadow-[0_4px_12px_rgb(0_0_0/0.12)] md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none [&>button]:min-h-[44px] [&>button]:min-w-[44px] [&>button]:border-line [&>button]:bg-surface [&>button]:text-ink [&>button]:hover:border-accent/50 [&>button]:hover:bg-accent-soft [&>button]:focus-visible:outline-none [&>button]:focus-visible:ring-2 [&>button]:focus-visible:ring-accent/50 [&>button]:focus-visible:ring-offset-2 [&>button]:focus-visible:ring-offset-canvas">
+              <div className="rounded-lg border border-line/90 bg-surface/90 p-0.5 shadow-[0_4px_12px_rgb(0_0_0/0.12)] md:hidden [&>button]:min-h-[44px] [&>button]:min-w-[44px] [&>button]:border-line [&>button]:bg-surface [&>button]:text-ink [&>button]:hover:border-accent/50 [&>button]:hover:bg-accent-soft [&>button]:focus-visible:outline-none [&>button]:focus-visible:ring-2 [&>button]:focus-visible:ring-accent/50 [&>button]:focus-visible:ring-offset-2 [&>button]:focus-visible:ring-offset-canvas">
                 <MobileMenu navigation={siteNavigation} cta={ctaConfig} />
               </div>
             </div>

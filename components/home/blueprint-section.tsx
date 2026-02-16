@@ -54,9 +54,9 @@ function StepCard({
         {/* Deliverables */}
         {step.deliverables.length > 0 && (
           <div className="pt-4">
-            <h3 className="mb-3 font-mono text-xs uppercase tracking-[0.05em] text-muted">
+            <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.05em] text-muted">
               Deliverables
-            </h3>
+            </h4>
             <ul className="space-y-2">
               {step.deliverables.map((item) => (
                 <li key={item} className="flex gap-3">
@@ -283,9 +283,9 @@ function VerticalBlueprint({ steps }: { steps: ProcessStep[] }) {
 
             {step.deliverables.length > 0 && (
               <div className="pt-4">
-                <h3 className="mb-3 font-mono text-xs uppercase tracking-[0.05em] text-muted">
+                <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.05em] text-muted">
                   Deliverables
-                </h3>
+                </h4>
                 <ul className="space-y-2">
                   {step.deliverables.map((item) => (
                     <li key={item} className="flex gap-3">
@@ -344,6 +344,8 @@ export function BlueprintSection({
             description="Each phase has clear inputs, outputs, and approval thresholds. Nothing moves forward without alignment."
           />
         ) : null}
+
+        <h2 className="sr-only">Process steps</h2>
 
         {shouldReduceMotion || !isDesktop ? (
           <VerticalBlueprint steps={steps} />
