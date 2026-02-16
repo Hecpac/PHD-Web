@@ -122,7 +122,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                 >
-                  <div data-ledger-row className="flex h-12 w-12 items-center justify-center rounded-md border border-line bg-accent/8 text-muted transition-all duration-300 group-hover:border-accent/55 group-hover:bg-accent/14 group-hover:text-accent">
+                  <div data-ledger-row className="flex h-12 w-12 items-center justify-center rounded-md border border-line bg-accent/8 text-muted transition-[border-color,background-color,color] duration-300 group-hover:border-accent/55 group-hover:bg-accent/14 group-hover:text-accent">
                     {Icon ? (
                       <Icon
                         aria-hidden="true"

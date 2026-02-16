@@ -60,7 +60,7 @@ export function CardContainer({
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           className={cn(
-            "relative flex items-center justify-center transition-all duration-200 ease-linear",
+            "relative flex items-center justify-center transition-transform duration-200 ease-linear",
             className,
           )}
           style={{ transformStyle: "preserve-3d" }}

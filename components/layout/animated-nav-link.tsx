@@ -19,7 +19,7 @@ export function AnimatedNavLink({ href, children, className }: AnimatedNavLinkPr
       href={href}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "inline-flex min-h-10 items-center rounded-lg border border-transparent px-3 py-2 text-[0.78rem] font-semibold uppercase tracking-[0.07em] text-muted transition-all hover:border-line hover:bg-surface hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+        "inline-flex min-h-10 items-center rounded-lg border border-transparent px-3 py-2 text-[0.78rem] font-semibold uppercase tracking-[0.07em] text-muted transition-colors hover:border-line hover:bg-surface hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
         isActive && "border-accent/35 bg-accent/10 text-ink",
         className,
       )}

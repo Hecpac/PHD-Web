@@ -94,7 +94,7 @@ export function SwissCard({
 
       {/* Top accent line */}
       <div
-        className="pointer-events-none absolute left-0 top-0 h-px w-0 bg-accent transition-all duration-300 ease-out group-hover:w-full"
+        className="pointer-events-none absolute left-0 top-0 h-px w-0 bg-accent transition-[width] duration-300 ease-out group-hover:w-full"
         aria-hidden="true"
       />
 

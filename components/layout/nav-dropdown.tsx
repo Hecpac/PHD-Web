@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
+
 type NavDropdownProps = {
   label: string;
   href: string;
@@ -15,6 +17,7 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const shouldReduceMotion = useReducedMotion();
   const isPathActive = (target: string) =>
     pathname === target || (target !== "/" && pathname.startsWith(`${target}/`));
   const isActive = isPathActive(href) || items.some((item) => isPathActive(item.href));
@@ -37,7 +40,7 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
       <Link
         href={href}
         aria-current={isActive ? "page" : undefined}
-        className={`inline-flex min-h-10 items-center gap-1.5 rounded-lg border px-3 py-2 text-[0.78rem] font-semibold uppercase tracking-[0.07em] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+        className={`inline-flex min-h-10 items-center gap-1.5 rounded-lg border px-3 py-2 text-[0.78rem] font-semibold uppercase tracking-[0.07em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
           isActive
             ? "border-accent/35 bg-accent/10 text-ink"
             : "border-transparent text-muted hover:border-line hover:bg-surface hover:text-ink"
@@ -71,10 +74,10 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
       <AnimatePresence>
         {open ? (
           <motion.div
-            initial={{ opacity: 0, y: -4 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
+            transition={shouldReduceMotion ? { duration: 0.01 } : { duration: 0.15, ease: "easeOut" }}
             className="absolute left-0 top-full z-50 mt-2 min-w-64 rounded-xl border border-line/80 bg-canvas/95 p-1.5 shadow-[0_18px_34px_rgb(0_0_0/0.14)] backdrop-blur-header"
             role="menu"
             onMouseEnter={handleEnter}

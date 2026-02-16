@@ -226,7 +226,7 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
                           href={item.href}
                           aria-current={isPathActive(item.href) ? "page" : undefined}
                           className={cn(
-                            "flex min-h-12 items-center rounded-lg border px-4 py-3 text-base font-semibold tracking-tight transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+                            "flex min-h-12 items-center rounded-lg border px-4 py-3 text-base font-semibold tracking-tight transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
                             isPathActive(item.href)
                               ? "border-accent/35 bg-accent/10 text-ink"
                               : "border-transparent text-ink hover:border-line hover:bg-surface",
@@ -302,7 +302,7 @@ function ServiceAccordion({
           href={item.href}
           aria-current={isActive ? "page" : undefined}
           className={cn(
-            "flex min-h-12 flex-1 items-center rounded-lg border px-3 py-3 text-base font-semibold tracking-tight transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+            "flex min-h-12 flex-1 items-center rounded-lg border px-3 py-3 text-base font-semibold tracking-tight transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
             isActive
               ? "border-accent/35 bg-accent/10 text-ink"
               : "border-transparent text-ink hover:border-line hover:bg-surface",
@@ -352,7 +352,7 @@ function ServiceAccordion({
                 href={child.href}
                 aria-current={isPathActive(child.href) ? "page" : undefined}
                 className={cn(
-                  "block min-h-[44px] rounded-md px-3 py-2 text-sm transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+                  "block min-h-[44px] rounded-md px-3 py-2 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
                   isPathActive(child.href)
                     ? "bg-accent/10 font-semibold text-ink"
                     : "text-muted hover:bg-surface hover:text-ink",
