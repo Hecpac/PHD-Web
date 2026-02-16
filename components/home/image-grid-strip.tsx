@@ -11,7 +11,7 @@ type ImageGridStripProps = {
 };
 
 const FALLBACK_SECTION_IMAGE = "/projects/north-dallas-courtyard-residence/hero.jpg";
-const REVEAL_FALLBACK_BG = "linear-gradient(145deg, #2a0d13 0%, #7c1628 48%, #1e2024 100%)";
+const REVEAL_FALLBACK_BG = "linear-gradient(145deg, #5b0f1d 0%, #b71f3f 52%, #7d1630 100%)";
 
 export function ImageGridStrip({ projects }: ImageGridStripProps) {
   const cityCount = projects.length;
@@ -32,7 +32,7 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
 
       // Avoid “black window” showing the sticky hero behind:
       // keep section background visible; only clip the inner reveal wrapper.
-      gsap.set(reveal, { clipPath: "inset(100% 0 0 0)" });
+      gsap.set(reveal, { clipPath: "inset(100% 0 0 0)", yPercent: 8, autoAlpha: 0.82 });
       gsap.set(image, { scale: 1.15 });
 
       const tl = gsap.timeline({
@@ -42,7 +42,7 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
           toggleActions: "play none none none",
         },
         onStart() {
-          reveal.style.willChange = "clip-path";
+          reveal.style.willChange = "clip-path, transform, opacity";
           image.style.willChange = "transform";
         },
         onComplete() {
@@ -53,6 +53,8 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
 
       tl.to(reveal, {
         clipPath: "inset(0%)",
+        yPercent: 0,
+        autoAlpha: 1,
         duration: 1.4,
         ease: "power4.out",
       }).to(
@@ -67,7 +69,7 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
     });
 
     mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.set(revealRef.current!, { clipPath: "inset(0%)" });
+      gsap.set(revealRef.current!, { clipPath: "inset(0%)", yPercent: 0, autoAlpha: 1 });
       gsap.set(imageRef.current!, { scale: 1 });
     });
   }, { scope: sectionRef });

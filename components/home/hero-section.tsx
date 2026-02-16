@@ -59,7 +59,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         }
       }
 
-      if (shouldReduceMotion || !hasGallery) {
+      if (shouldReduceMotion) {
         return;
       }
 
@@ -75,16 +75,35 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           },
         });
 
-        // 1. Bars grow from 0 → 50vh using scaleY (compositor-friendly)
+        // Base depth parallax (always on desktop): image and foreground move at different speeds.
+        tl.to(imageRef.current, {
+          y: "-12%",
+          scale: 1.06,
+          duration: 1,
+          ease: "none",
+        }, 0);
+
+        tl.to(contentRef.current, {
+          y: "-5%",
+          opacity: 0.88,
+          duration: 1,
+          ease: "none",
+        }, 0);
+
+        if (!hasGallery) {
+          return;
+        }
+
+        // Gallery mode: keep the stronger editorial transition.
         gsap.set(topBarRef.current, { height: "50vh", scaleY: 0, transformOrigin: "top" });
         gsap.set(bottomBarRef.current, { height: "50vh", scaleY: 0, transformOrigin: "bottom" });
+
         tl.to([topBarRef.current, bottomBarRef.current], {
           scaleY: 1,
           duration: 0.6,
           ease: "power2.inOut",
         }, 0);
 
-        // 2. H1 fades out faster + drifts up
         tl.to(titleRef.current, {
           opacity: 0,
           y: -40,
@@ -92,7 +111,6 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           ease: "power1.in",
         }, 0);
 
-        // 3. Remaining content fades + subtle foreground drift
         tl.to(contentRef.current, {
           opacity: 0,
           y: "-8%",
@@ -100,7 +118,6 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           ease: "none",
         }, 0.05);
 
-        // 4. Background image parallax (deeper depth feel)
         tl.to(imageRef.current, {
           y: "-15%",
           scale: 1.08,
@@ -108,8 +125,6 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           ease: "none",
         }, 0);
 
-        // 5. Gallery slides up from below the viewport into full view
-        //    Starts at 15% of timeline, ends at 65% → stays visible for remaining 35%
         if (galleryRef.current) {
           tl.fromTo(
             galleryRef.current,

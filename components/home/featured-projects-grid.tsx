@@ -103,6 +103,41 @@ export function FeaturedProjectsGrid({ projects, prioritizeFirst = false, onApiC
     };
   }, [shouldReduceMotion]);
 
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track || shouldReduceMotion) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      const cards = Array.from(track.querySelectorAll<HTMLElement>("[data-project-card]"));
+
+      cards.forEach((card) => {
+        const parallaxLayer = card.querySelector<HTMLElement>("[data-parallax-image]");
+        if (!parallaxLayer) return;
+
+        gsap.fromTo(
+          parallaxLayer,
+          { yPercent: 7 },
+          {
+            yPercent: -7,
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.8,
+            },
+          },
+        );
+      });
+    });
+
+    return () => {
+      mm.revert();
+    };
+  }, [projects.length, shouldReduceMotion]);
+
   return (
     <div aria-roledescription="carousel" aria-label="Featured projects carousel" className="relative">
       <div
