@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useId, useRef } from "react";
 import { ArrowUpRight, BadgeCheck, Clock3, MapPin } from "lucide-react";
 
 import { submitContactForm, type ContactFormState } from "@/actions/contact";
@@ -26,12 +26,20 @@ const initialState: ContactFormState = {
 export function ContactTerminal({ id = "contact", withHeading = true }: ContactTerminalProps) {
   const startedRef = useRef(false);
   const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
-  
+
   const formRef = useRef<HTMLFormElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const cityRef = useRef<HTMLSelectElement>(null);
-  
+
   const { phoneDisplay, phoneHref, scheduleUrl } = getCtaConfig();
+
+  const reactId = useId();
+  const idPrefix = `${id}-${reactId}`;
+  const nameErrorId = `${idPrefix}-name-error`;
+  const emailErrorId = `${idPrefix}-email-error`;
+  const cityErrorId = `${idPrefix}-city-error`;
+  const messageErrorId = `${idPrefix}-message-error`;
+  const formStatusId = `${idPrefix}-status`;
 
   const cityHasError = Boolean(state.errors?.city);
   const inputClass =
@@ -150,10 +158,16 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   enterKeyHint="next"
                   required
                   aria-required="true"
+                  aria-invalid={Boolean(state.errors?.name) || undefined}
+                  aria-describedby={state.errors?.name ? nameErrorId : undefined}
                   className={cn(inputClass, state.errors?.name && "border-danger")}
                   placeholder="Jane Smith"
                 />
-                {state.errors?.name && <p className="text-xs text-danger">{state.errors.name}</p>}
+                {state.errors?.name ? (
+                  <p id={nameErrorId} className="text-xs text-danger">
+                    {state.errors.name}
+                  </p>
+                ) : null}
               </label>
 
               <label className="space-y-1.5 text-sm">
@@ -168,10 +182,16 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   enterKeyHint="next"
                   required
                   aria-required="true"
+                  aria-invalid={Boolean(state.errors?.email) || undefined}
+                  aria-describedby={state.errors?.email ? emailErrorId : undefined}
                   className={cn(inputClass, state.errors?.email && "border-danger")}
                   placeholder="jane@domain.com"
                 />
-                {state.errors?.email && <p className="text-xs text-danger">{state.errors.email}</p>}
+                {state.errors?.email ? (
+                  <p id={emailErrorId} className="text-xs text-danger">
+                    {state.errors.email}
+                  </p>
+                ) : null}
               </label>
 
               <label className="space-y-1.5 text-sm">
@@ -184,7 +204,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   required
                   aria-required="true"
                   aria-invalid={cityHasError || undefined}
-                  aria-describedby={cityHasError ? "city-error" : undefined}
+                  aria-describedby={cityHasError ? cityErrorId : undefined}
                   className={cn(inputClass, cityHasError && "border-danger")}
                 >
                   <option value="" disabled>
@@ -217,12 +237,18 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   name="message"
                   required
                   aria-required="true"
+                  aria-invalid={Boolean(state.errors?.message) || undefined}
+                  aria-describedby={state.errors?.message ? messageErrorId : undefined}
                   rows={6}
                   enterKeyHint="send"
                   className={cn(inputClass, state.errors?.message && "border-danger")}
                   placeholder="Tell us lot status, target timeline, style direction, and budget guardrails."
                 />
-                {state.errors?.message && <p className="text-xs text-danger">{state.errors.message}</p>}
+                {state.errors?.message ? (
+                  <p id={messageErrorId} className="text-xs text-danger">
+                    {state.errors.message}
+                  </p>
+                ) : null}
               </label>
 
               <div className="md:col-span-2">
@@ -265,20 +291,22 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               </div>
             </form>
 
-            {state.message && (
-              <p
-                id={!state.success ? "city-error" : undefined}
-                className={`mt-5 rounded-lg border p-3 text-sm ${
-                  state.success
-                    ? "border-accent-soft bg-accent-soft text-accent-soft-ink"
-                    : "border-danger bg-danger-soft text-danger-soft-ink"
-                }`}
-                role={!state.success ? "alert" : "status"}
-                aria-live={!state.success ? "assertive" : "polite"}
-              >
-                {state.message}
-              </p>
-            )}
+            <div className="mt-5 min-h-[52px]">
+              {state.message ? (
+                <p
+                  id={formStatusId}
+                  className={`rounded-lg border p-3 text-sm ${
+                    state.success
+                      ? "border-accent-soft bg-accent-soft text-accent-soft-ink"
+                      : "border-danger bg-danger-soft text-danger-soft-ink"
+                  }`}
+                  role={!state.success ? "alert" : "status"}
+                  aria-live={!state.success ? "assertive" : "polite"}
+                >
+                  {state.message}
+                </p>
+              ) : null}
+            </div>
           </div>
         </div>
       </Container>

@@ -18,7 +18,11 @@ const trustPoints = [
 
 export function TrustSection() {
   return (
-    <section id="trust" className="section-shell section-shell-tight section-intake-gradient border-t border-line">
+    <section
+      id="trust"
+      className="section-shell border-t border-line"
+      aria-label="Trust points"
+    >
       <Container swiss className="space-y-8">
         <SectionHeading
           eyebrow="Trust"
@@ -26,14 +30,16 @@ export function TrustSection() {
           description="Our process is designed to reduce surprises and keep design quality intact during execution."
         />
 
-        <div className="brand-red-outline grid gap-px border border-line md:grid-cols-3">
+        <ul className="grid gap-6 md:grid-cols-3" aria-label="Trust points">
           {trustPoints.map((item) => (
-            <article key={item.title} className="brand-red-outline brand-red-surface rounded-xl border border-line bg-surface p-6">
-              <h3 className="text-lg font-bold">{item.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted">{item.description}</p>
-            </article>
+            <li key={item.title}>
+              <article className="rounded-xl border border-line bg-surface p-6 shadow-[var(--shadow-card)]">
+                <h3 className="text-lg font-bold">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted">{item.description}</p>
+              </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </Container>
     </section>
   );

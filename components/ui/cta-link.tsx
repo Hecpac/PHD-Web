@@ -58,7 +58,7 @@ export function CtaLink({
     <span className="relative z-10 inline-flex items-center">
       {children}
       {withArrow && (
-        <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
+        <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1" />
       )}
     </span>
   );

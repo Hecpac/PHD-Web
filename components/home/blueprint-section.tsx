@@ -331,7 +331,10 @@ export function BlueprintSection({
   }, []);
 
   return (
-    <section id={id} className="section-shell section-brand-wash-bold overflow-x-clip border-t border-line section-brand-divider">
+    <section
+      id={id}
+      className="section-shell section-intake-gradient overflow-x-clip border-t border-line"
+    >
       <Container swiss>
         {withHeading ? (
           <SectionHeading
