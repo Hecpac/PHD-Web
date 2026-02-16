@@ -53,7 +53,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
           <h2 className="type-heading transition-colors duration-150 group-hover:text-accent">
             <Link
               href={`/blogs/${post.slug}`}
-              className="after:absolute after:inset-0 focus-visible:outline-none"
+              className="after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
             >
               {post.title}
             </Link>

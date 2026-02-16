@@ -1,14 +1,15 @@
 "use client";
 
-import { FormEvent, useRef, useState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { ArrowUpRight, BadgeCheck, Clock3, MapPin } from "lucide-react";
 
+import { submitContactForm } from "@/actions/contact";
 import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { trackEvent } from "@/lib/analytics/events";
 import { getCtaConfig } from "@/lib/config/site";
-import { DFW_CITIES, isDfwCity } from "@/lib/types/content";
+import { DFW_CITIES } from "@/lib/types/content";
 import { cn } from "@/lib/utils";
 
 type ContactTerminalProps = {
@@ -16,109 +17,57 @@ type ContactTerminalProps = {
   withHeading?: boolean;
 };
 
+const initialState = {
+  success: false,
+  message: "",
+  errors: {},
+};
+
 export function ContactTerminal({ id = "contact", withHeading = true }: ContactTerminalProps) {
-  const [started, setStarted] = useState(false);
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-  const [statusMessage, setStatusMessage] = useState<string>("");
+  const startedRef = useRef(false);
+  const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
+  
+  const formRef = useRef<HTMLFormElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const cityRef = useRef<HTMLSelectElement>(null);
+  
   const { phoneDisplay, phoneHref, scheduleUrl } = getCtaConfig();
-  const contactEndpoint = process.env.NEXT_PUBLIC_CONTACT_WEBHOOK_URL;
 
-  const cityHasError = status === "error";
+  const cityHasError = state.errors?.city;
   const inputClass =
     "w-full min-h-11 rounded-lg border border-line bg-canvas px-3.5 py-3 text-sm text-ink placeholder:text-muted focus-visible:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface";
 
   const onFormFocus = () => {
-    if (started) {
+    if (startedRef.current) {
       return;
     }
-
-    setStarted(true);
+    startedRef.current = true;
     trackEvent("form_start");
   };
 
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      setStatus("error");
-      setStatusMessage("Please complete all required fields.");
-      trackEvent("form_error", { field: "required_fields" });
-      return;
-    }
-
-    const formData = new FormData(form);
-    const city = String(formData.get("city") ?? "").trim();
-    const name = String(formData.get("name") ?? "").trim();
-    const email = String(formData.get("email") ?? "").trim();
-    const phone = String(formData.get("phone") ?? "").trim();
-    const message = String(formData.get("message") ?? "").trim();
-
-    if (!isDfwCity(city)) {
-      setStatus("error");
-      setStatusMessage("Please select a city within Dallas-Fort Worth.");
-      trackEvent("form_error", { field: "city", city });
-      cityRef.current?.focus();
-      return;
-    }
-
-    if (!contactEndpoint) {
-      setStatus("success");
-      setStatusMessage(
-        "Thanks. Intake is validated, but no backend is configured yet. Please use Schedule Consultation or Call for follow-up.",
-      );
-      trackEvent("form_submit", {
-        city,
-        status: "not_captured",
-        hasPhone: Boolean(phone),
-        messageLength: message.length,
-      });
-      form.reset();
-      setStarted(false);
-      return;
-    }
-
-    try {
-      const response = await fetch(contactEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          city,
-          phone,
-          message,
-          source: "dfw_contact_terminal",
-          submittedAt: new Date().toISOString(),
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Contact submission failed with status ${response.status}`);
+  // Analytics side-effects based on server action result
+  useEffect(() => {
+    if (state.message) {
+      if (state.success) {
+        trackEvent("form_submit", {
+          status: "captured",
+          message: state.message,
+        });
+        // Reset form on success
+        formRef.current?.reset();
+        startedRef.current = false;
+      } else {
+        trackEvent("form_error", {
+          message: state.message,
+          errors: state.errors,
+        });
+        // If city error, focus city input
+        if (state.errors?.city) {
+          cityRef.current?.focus();
+        }
       }
-
-      setStatus("success");
-      setStatusMessage("Thanks. Your DFW project intake has been captured for a follow-up call.");
-      trackEvent("form_submit", {
-        city,
-        status: "captured",
-        hasPhone: Boolean(phone),
-        messageLength: message.length,
-      });
-      form.reset();
-      setStarted(false);
-    } catch {
-      setStatus("error");
-      setStatusMessage(
-        "We couldn’t submit your intake right now. Please use Schedule Consultation or Call to connect.",
-      );
-      trackEvent("form_error", { field: "submission", city });
     }
-  };
+  }, [state]);
 
   return (
     <section
@@ -191,7 +140,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               </p>
             </div>
 
-            <form className="grid gap-4 sm:gap-5 md:grid-cols-2" onFocus={onFormFocus} onSubmit={onSubmit} noValidate>
+            <form ref={formRef} action={formAction} className="grid gap-4 sm:gap-5 md:grid-cols-2" onFocus={onFormFocus} noValidate>
               <label className="space-y-1.5 text-sm">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Full name <span className="text-accent" aria-hidden="true">*</span></span>
                 <input
@@ -201,9 +150,10 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   enterKeyHint="next"
                   required
                   aria-required="true"
-                  className={inputClass}
+                  className={cn(inputClass, state.errors?.name && "border-danger")}
                   placeholder="Jane Smith"
                 />
+                {state.errors?.name && <p className="text-xs text-danger">{state.errors.name}</p>}
               </label>
 
               <label className="space-y-1.5 text-sm">
@@ -218,9 +168,10 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   enterKeyHint="next"
                   required
                   aria-required="true"
-                  className={inputClass}
+                  className={cn(inputClass, state.errors?.email && "border-danger")}
                   placeholder="jane@domain.com"
                 />
+                {state.errors?.email && <p className="text-xs text-danger">{state.errors.email}</p>}
               </label>
 
               <label className="space-y-1.5 text-sm">
@@ -268,20 +219,25 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   aria-required="true"
                   rows={6}
                   enterKeyHint="send"
-                  className={inputClass}
+                  className={cn(inputClass, state.errors?.message && "border-danger")}
                   placeholder="Tell us lot status, target timeline, style direction, and budget guardrails."
                 />
+                {state.errors?.message && <p className="text-xs text-danger">{state.errors.message}</p>}
               </label>
 
               <div className="md:col-span-2">
                 <div className="space-y-3">
                   <button
                     type="submit"
+                    disabled={isPending}
                     aria-label="Submit project brief"
-                    className="inline-flex w-full min-h-12 items-center justify-center rounded-lg border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent shadow-[0_10px_20px_rgb(0_0_0/0.18)] transition-colors duration-150 hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:w-auto"
+                    className="inline-flex w-full min-h-12 items-center justify-center rounded-lg border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent shadow-[0_10px_20px_rgb(0_0_0/0.18)] transition-colors duration-150 hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Submit Brief
+                    {isPending ? "Submitting..." : "Submit Brief"}
                   </button>
+                  <p className="text-xs text-muted">
+                    No spam. No off-market outreach. DFW project inquiries only.
+                  </p>
                   <div className="flex flex-wrap items-center gap-2.5 rounded-lg border border-line/70 bg-canvas/45 p-2 sm:gap-3">
                     <CtaLink
                       href={scheduleUrl}
@@ -309,20 +265,20 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               </div>
             </form>
 
-            {status !== "idle" ? (
+            {state.message && (
               <p
-                id={status === "error" ? "city-error" : undefined}
+                id={!state.success ? "city-error" : undefined}
                 className={`mt-5 rounded-lg border p-3 text-sm ${
-                  status === "success"
+                  state.success
                     ? "border-accent-soft bg-accent-soft text-accent-soft-ink"
                     : "border-danger bg-danger-soft text-danger-soft-ink"
                 }`}
-                role={status === "error" ? "alert" : "status"}
-                aria-live={status === "error" ? "assertive" : "polite"}
+                role={!state.success ? "alert" : "status"}
+                aria-live={!state.success ? "assertive" : "polite"}
               >
-                {statusMessage}
+                {state.message}
               </p>
-            ) : null}
+            )}
           </div>
         </div>
       </Container>

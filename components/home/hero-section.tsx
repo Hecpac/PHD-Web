@@ -185,13 +185,13 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                 ref={titleRef}
                 className="type-hero text-ink"
               >
-                <SwissTextReveal mode="line" stagger={0.12} delay={0.14}>
+                <SwissTextReveal as="span" mode="line" stagger={0.12} delay={0.14}>
                   {"Architectural custom homes,\ndelivered with builder-grade control."}
                 </SwissTextReveal>
               </h1>
 
               <p className="max-w-2xl text-base leading-relaxed tracking-normal text-ink/92 sm:text-lg">
-                <SwissTextReveal mode="line" stagger={0.1} delay={0.34}>
+                <SwissTextReveal as="span" mode="line" stagger={0.1} delay={0.34}>
                   {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth.\nEvery phase is tied to clear deliverables and decision gates."}
                 </SwissTextReveal>
               </p>
