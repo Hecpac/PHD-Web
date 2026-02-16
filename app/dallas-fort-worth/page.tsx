@@ -65,7 +65,7 @@ export default function DallasFortWorthPage() {
 
       {/* Hero */}
       <section className="section-shell" aria-labelledby="dfw-heading">
-        <Container className="space-y-8">
+        <Container swiss className="space-y-8">
           <SectionHeading
             as="h1"
             eyebrow="Service Area"
@@ -88,7 +88,7 @@ export default function DallasFortWorthPage() {
 
       {/* Cities grid */}
       <section className="section-shell border-t border-line section-bone">
-        <Container className="space-y-8">
+        <Container swiss className="space-y-8">
           <SectionHeading
             eyebrow="Cities We Serve"
             title="16 communities across the Metroplex"
@@ -111,7 +111,7 @@ export default function DallasFortWorthPage() {
 
       {/* Why DFW only */}
       <section className="section-shell border-t border-line">
-        <Container className="space-y-8">
+        <Container swiss className="space-y-8">
           <SectionHeading
             eyebrow="Why DFW Only"
             title="Focus produces better outcomes"
@@ -130,7 +130,7 @@ export default function DallasFortWorthPage() {
 
       {/* Policy + CTA */}
       <section className="section-shell border-t border-line section-bone">
-        <Container className="space-y-6">
+        <Container swiss className="space-y-6">
           <SectionHeading
             eyebrow="Policy"
             title="DFW-only project intake"

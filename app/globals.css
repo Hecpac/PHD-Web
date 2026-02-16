@@ -15,10 +15,10 @@
   /* Baseline grid: 8px base unit */
   --baseline: 8px;
 
-  /* Swiss Grid System */
-  --grid-columns: 16;
+  /* Swiss Grid System (PHD baseline) */
+  --grid-columns: 12;
   --grid-gutter: 24px;
-  --grid-margin: 48px;
+  --grid-margin: 48px; /* Canon-inspired margin tuned for current rhythm */
 
   /* Spacing scale (multiples of 8) */
   --space-1: 8px;
@@ -36,9 +36,15 @@
   /* Font stacks — defined in tokens.material.css */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   :root {
     --grid-margin: 24px;
+  }
+}
+
+@media (max-width: 639px) {
+  :root {
+    --grid-margin: 16px;
   }
 }
 

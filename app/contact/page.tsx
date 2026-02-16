@@ -33,7 +33,7 @@ export default function ContactPage() {
           { name: "Contact", href: "/contact" },
         ])}
       />
-      <Container className="pt-6">
+      <Container swiss className="pt-6">
         <h1 className="sr-only">Contact for Dallas-Fort Worth consultation</h1>
       </Container>
       <ContactTerminal />

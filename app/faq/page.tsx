@@ -37,7 +37,7 @@ export default async function FaqPage() {
           { name: "FAQ", href: "/faq" },
         ])}
       />
-      <Container className="space-y-8">
+      <Container swiss className="space-y-8">
         <SectionHeading
           as="h1"
           eyebrow="FAQ"

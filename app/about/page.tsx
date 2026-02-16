@@ -95,7 +95,7 @@ export default function AboutPage() {
 
       {/* Hero section */}
       <section className="section-shell" aria-labelledby="about-heading">
-        <Container className="space-y-8">
+        <Container swiss className="space-y-8">
           <SectionHeading
             as="h1"
             eyebrow="About"
@@ -116,7 +116,7 @@ export default function AboutPage() {
 
       {/* Numbers section */}
       <section className="section-shell border-t border-line section-bone">
-        <Container className="space-y-8">
+        <Container swiss className="space-y-8">
           <SectionHeading
             eyebrow="Track Record"
             title="Numbers from the field"
@@ -135,7 +135,7 @@ export default function AboutPage() {
 
       {/* Values section */}
       <section className="section-shell border-t border-line">
-        <Container className="space-y-8">
+        <Container swiss className="space-y-8">
           <SectionHeading
             eyebrow="How We Think"
             title="What sets us apart in DFW"
@@ -153,7 +153,7 @@ export default function AboutPage() {
 
       {/* Credentials section */}
       <section className="section-shell border-t border-line section-bone">
-        <Container className="space-y-6">
+        <Container swiss className="space-y-6">
           <SectionHeading
             eyebrow="Credentials"
             title="Licensed, insured, and locally established"

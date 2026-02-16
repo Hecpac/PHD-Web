@@ -84,7 +84,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <JsonLd data={createProjectPageBreadcrumbSchema(project)} />
       <JsonLd data={createProjectSchema(project)} />
       <ProjectViewTracker slug={project.slug} />
-      <Container className="space-y-8">
+      <Container swiss className="space-y-8">
         <header className="space-y-4">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{project.location.display}</p>
           <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">{project.title}</h1>

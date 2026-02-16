@@ -19,7 +19,7 @@ export function BlogArticle({ post }: BlogArticleProps) {
 
   return (
     <article className="section-shell">
-      <Container className="max-w-3xl space-y-8">
+      <Container swiss className="max-w-3xl space-y-8">
         <nav aria-label="Breadcrumb">
           <ol className="flex items-center gap-2 text-xs text-muted">
             <li>
