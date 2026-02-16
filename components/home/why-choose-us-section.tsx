@@ -323,19 +323,17 @@ export function WhyChooseUsSection() {
           />
         </div>
 
-        {/* "BUILT TO OUTLAST" marquee */}
+        {/* Marquee rails (decorative, non-text to avoid contrast noise) */}
         <div className="overflow-hidden" aria-hidden="true">
           <div
             ref={marqueeRef}
             className="flex whitespace-nowrap will-change-transform motion-safe:animate-[swiss-marquee_17s_linear_infinite] sm:motion-safe:animate-[swiss-marquee_20s_linear_infinite] lg:motion-safe:animate-[swiss-marquee_24s_linear_infinite] motion-safe:hover:[animation-play-state:paused]"
           >
-            {Array.from({ length: 5 }).map((_, i) => (
+            {Array.from({ length: 14 }).map((_, i) => (
               <span
                 key={i}
-                className="shrink-0 text-[12vw] font-black uppercase tracking-tighter text-ink/[0.04]"
-              >
-                BUILT TO OUTLAST&ensp;
-              </span>
+                className="mr-4 shrink-0 h-[8vw] w-[17vw] min-h-12 min-w-28 max-h-24 max-w-64 border-y border-ink/10 bg-gradient-to-r from-ink/[0.01] via-ink/[0.05] to-ink/[0.01]"
+              />
             ))}
           </div>
         </div>

@@ -151,10 +151,14 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
     >
       {/* Overscroll easter egg — visible on rubber-band pull-down */}
       <div
-        className="absolute top-[-100vh] left-0 right-0 z-[-10] flex h-[100vh] items-center justify-center text-[10vw] font-black uppercase tracking-tighter text-ink/10"
+        className="absolute top-[-100vh] left-0 right-0 z-[-10] flex h-[100vh] items-center justify-center"
         aria-hidden="true"
       >
-        BUILT ON SOLID GROUND
+        <div className="w-full max-w-[72vw] space-y-6 opacity-45">
+          <div className="h-px bg-ink/16" />
+          <div className="h-px w-[82%] bg-ink/12" />
+          <div className="h-px w-[64%] bg-ink/10" />
+        </div>
       </div>
 
       <div className="sticky top-0 h-screen overflow-hidden">
