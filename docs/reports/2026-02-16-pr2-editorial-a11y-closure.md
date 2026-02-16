@@ -119,9 +119,52 @@ pnpm -C /Users/hector/Projects/PHD dlx lighthouse http://localhost:3000/services
 
 ---
 
-## 9) Próximo paso recomendado (fuera de alcance de cierre)
+## 9) Performance pass adicional (continuación)
 
-- Levantar performance de Home (sin tocar objetivos de a11y ya cumplidos), enfocando:
-  - media loading y prioridades LCP,
-  - costo de animación above-the-fold,
-  - presupuesto de JS por sección.
+### Cambios aplicados
+
+1. **Code-splitting en Home para secciones no críticas del primer viewport** (`app/page.tsx`)
+   - `next/dynamic` para:
+     - `FeaturedProjectsSection`
+     - `DfwSection`
+     - `WhyChooseUsSection`
+     - `TestimonialsSection`
+     - `ContactTerminal`
+
+2. **Optimización de carga de fuentes no críticas** (`app/layout.tsx`)
+   - `preload: false` en:
+     - `IBM_Plex_Mono`
+     - `Manrope`
+     - `Plus_Jakarta_Sans`
+   - Se mantiene `Archivo` como fuente principal preloaded.
+
+### Resultado medido (Home, Lighthouse performance en build de producción)
+
+- **Antes:** 85
+  - FCP: 0.9s
+  - LCP: 4.4s
+  - TBT: 60ms
+  - SI: 1.8s
+  - CLS: 0
+
+- **Después:** **93**
+  - FCP: 0.9s
+  - LCP: 3.2s
+  - TBT: 50ms
+  - SI: 1.5s
+  - CLS: 0
+
+- A11y Home post-pass: **100** (sin regresión).
+
+### Nota técnica
+
+- Lighthouse en `next dev` sobreestima/contamina resultados por chunks de desarrollo; la comparación de performance se hizo sobre `next build` + `next start`.
+
+---
+
+## 10) Próximo paso recomendado (opcional)
+
+- Si se busca 95+ estable en Home:
+  - auditar peso/ejecución de librerías de transición global en primer render,
+  - evaluar diferir inicialización de `Lenis` y utilidades visuales no críticas tras interacción,
+  - mantener guardas de `prefers-reduced-motion` en nuevas secciones.

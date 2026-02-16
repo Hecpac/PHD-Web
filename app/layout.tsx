@@ -26,18 +26,21 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
   variable: "--font-plex-mono",
   display: "swap",
+  preload: false,
 });
 
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
   display: "swap",
+  preload: false,
 });
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-jakarta",
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
