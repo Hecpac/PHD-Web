@@ -116,7 +116,7 @@ export function TestimonialsSection({ reviews }: TestimonialsSectionProps) {
           />
           <Link
             href="/reviews"
-            className="text-sm font-medium text-accent underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="inline-flex min-h-11 items-center text-sm font-medium text-accent underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             View all reviews
           </Link>

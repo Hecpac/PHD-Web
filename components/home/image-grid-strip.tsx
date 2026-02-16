@@ -78,7 +78,7 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
     <section
       ref={sectionRef}
       aria-label="Section divider visual"
-      className="relative border-y border-line"
+      className="relative overflow-hidden border-y border-line"
       style={{ background: REVEAL_FALLBACK_BG }}
     >
       <div ref={revealRef} className="relative">
