@@ -70,7 +70,7 @@ export function SiteHeader() {
                 Schedule Call
               </CtaLink>
 
-              <div className="rounded-lg border border-line/90 bg-surface/90 p-0.5 shadow-[0_4px_12px_rgb(0_0_0/0.12)] md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none [&>button]:min-h-11 [&>button]:min-w-11 [&>button]:border-line [&>button]:bg-surface [&>button]:text-ink [&>button]:hover:border-accent/50 [&>button]:hover:bg-accent-soft [&>button]:focus-visible:outline-none [&>button]:focus-visible:ring-2 [&>button]:focus-visible:ring-accent/50 [&>button]:focus-visible:ring-offset-2 [&>button]:focus-visible:ring-offset-canvas">
+              <div className="rounded-lg border border-line/90 bg-surface/90 p-0.5 shadow-[0_4px_12px_rgb(0_0_0/0.12)] md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none [&>button]:min-h-[44px] [&>button]:min-w-[44px] [&>button]:border-line [&>button]:bg-surface [&>button]:text-ink [&>button]:hover:border-accent/50 [&>button]:hover:bg-accent-soft [&>button]:focus-visible:outline-none [&>button]:focus-visible:ring-2 [&>button]:focus-visible:ring-accent/50 [&>button]:focus-visible:ring-offset-2 [&>button]:focus-visible:ring-offset-canvas">
                 <MobileMenu navigation={siteNavigation} cta={ctaConfig} />
               </div>
             </div>

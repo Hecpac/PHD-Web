@@ -125,7 +125,7 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
       <button
         ref={buttonRef}
         type="button"
-        className="relative flex h-11 w-11 items-center justify-center rounded-lg border border-line/80 bg-surface/75 text-ink shadow-[0_3px_12px_rgb(0_0_0/0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:hidden"
+        className="relative flex h-[44px] w-[44px] items-center justify-center rounded-lg border border-line/80 bg-surface/75 text-ink shadow-[0_3px_12px_rgb(0_0_0/0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:hidden"
         aria-expanded={open}
         aria-controls={menuId}
         aria-label={open ? "Close menu" : "Open menu"}
@@ -179,7 +179,7 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
                 <p className="type-mono-label text-muted">Navigation</p>
                 <button
                   type="button"
-                  className="flex h-10 w-10 items-center justify-center rounded-md border border-line/80 bg-surface text-ink hover:border-accent/40 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  className="flex h-[44px] w-[44px] items-center justify-center rounded-md border border-line/80 bg-surface text-ink hover:border-accent/40 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                   aria-label="Close menu"
                   onClick={() => closeMenu(true)}
                 >
@@ -314,7 +314,7 @@ function ServiceAccordion({
         <button
           type="button"
           className={cn(
-            "ml-1 flex h-11 w-11 items-center justify-center rounded-md border border-transparent text-muted hover:border-line hover:bg-surface hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+            "ml-1 flex h-[44px] w-[44px] items-center justify-center rounded-md border border-transparent text-muted hover:border-line hover:bg-surface hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
             expanded && "border-line bg-surface text-ink",
           )}
           aria-expanded={expanded}
@@ -352,7 +352,7 @@ function ServiceAccordion({
                 href={child.href}
                 aria-current={isPathActive(child.href) ? "page" : undefined}
                 className={cn(
-                  "block min-h-11 rounded-md px-3 py-2 text-sm transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+                  "block min-h-[44px] rounded-md px-3 py-2 text-sm transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
                   isPathActive(child.href)
                     ? "bg-accent/10 font-semibold text-ink"
                     : "text-muted hover:bg-surface hover:text-ink",

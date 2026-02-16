@@ -164,7 +164,7 @@ function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
             onClick={goPrev}
             disabled={activeIndex === 0 || safeTotalSteps <= 1}
             aria-label="Previous step"
-            className="brand-red-outline inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-accent/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none"
+            className="brand-red-outline inline-flex h-[44px] w-[44px] items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-accent/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none"
           >
             <svg
               width="20"
@@ -188,7 +188,7 @@ function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
             onClick={goNext}
             disabled={activeIndex >= safeTotalSteps - 1}
             aria-label="Next step"
-            className="brand-red-outline inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-accent/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none"
+            className="brand-red-outline inline-flex h-[44px] w-[44px] items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-accent/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none"
           >
             <svg
               width="20"
@@ -241,7 +241,7 @@ function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
             aria-label={`Go to step ${idx + 1}: ${step.title}`}
             aria-current={idx === activeIndex ? "step" : undefined}
             onClick={() => scrollToSnap(idx)}
-            className="flex min-h-[24px] min-w-[24px] items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             <span
               className={`block h-2 w-2 rounded-full transition-[transform,opacity] duration-200 ${

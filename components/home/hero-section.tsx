@@ -246,7 +246,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                   href={phoneHref}
                   eventName="cta_call_click"
                   variant="secondary"
-                  className="w-full min-h-11 rounded-md border-line/80 bg-surface/75 px-5 text-ink/92 hover:bg-surface/88 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
+                  className="w-full min-h-[44px] rounded-md border-line/80 bg-surface/75 px-5 text-ink/92 hover:bg-surface/88 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
                 >
                   Call {phoneDisplay}
                 </CtaLink>

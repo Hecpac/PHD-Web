@@ -44,14 +44,14 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                 onClick={scrollPrev}
                 disabled={!canPrev}
                 aria-label="Previous featured project"
-                className="h-10 w-10"
+                className="h-[44px] w-[44px]"
               />
               <CarouselDots emblaApi={emblaApi} className="gap-1.5" />
               <CarouselNextButton
                 onClick={scrollNext}
                 disabled={!canNext}
                 aria-label="Next featured project"
-                className="h-10 w-10"
+                className="h-[44px] w-[44px]"
               />
             </div>
           </div>
@@ -65,7 +65,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
               href="/projects"
               variant="secondary"
               eventName="gallery_interaction"
-              className="w-full min-h-11 rounded-md border-line/80 bg-surface text-ink/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
+              className="w-full min-h-[44px] rounded-md border-line/80 bg-surface text-ink/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
             >
               View All Projects
             </CtaLink>

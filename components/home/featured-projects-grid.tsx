@@ -224,7 +224,7 @@ export function FeaturedProjectsGrid({ projects, prioritizeFirst = false, onApiC
                     href={`/projects/${project.slug}`}
                     variant="ghost"
                     eventName="gallery_interaction"
-                    className="min-h-7 min-w-7 w-fit px-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    className="min-h-[44px] min-w-[44px] w-fit px-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                   >
                     Explore Project
                   </CtaLink>

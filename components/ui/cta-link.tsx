@@ -18,7 +18,7 @@ type CtaLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
 };
 
 const baseClassName =
-  "inline-flex min-h-11 min-w-11 items-center justify-center rounded-sm border px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-standard)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+  "inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-sm border px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-standard)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 const variantClassNames: Record<CtaVariant, string> = {
   primary:

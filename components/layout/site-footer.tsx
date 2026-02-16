@@ -83,7 +83,7 @@ export function SiteFooter() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="inline-flex min-h-7 items-center text-sm text-ink hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                      className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-ink hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
                     >
                       {item.label}
                     </Link>
@@ -99,7 +99,7 @@ export function SiteFooter() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="inline-flex min-h-7 items-center text-sm text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                      className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
                     >
                       {item.label}
                     </Link>
@@ -108,7 +108,7 @@ export function SiteFooter() {
               </ul>
               <Link
                 href="/services"
-                className="inline-flex min-h-7 items-center pt-1 text-sm font-medium text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center pt-1 text-sm font-medium text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
               >
                 View full services
               </Link>
@@ -119,7 +119,7 @@ export function SiteFooter() {
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-5">
           <Link
             href="/dallas-fort-worth"
-            className="inline-flex min-h-7 items-center text-sm text-muted underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-muted underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
           >
             Service Area: Dallas&ndash;Fort Worth
           </Link>

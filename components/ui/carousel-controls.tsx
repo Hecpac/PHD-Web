@@ -19,7 +19,7 @@ export function CarouselPrevButton({ onClick, disabled, className, "aria-label":
       disabled={disabled}
       aria-label={ariaLabel}
       className={cn(
-        "inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none",
+        "inline-flex h-[44px] w-[44px] items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none",
         className,
       )}
     >
@@ -38,7 +38,7 @@ export function CarouselNextButton({ onClick, disabled, className, "aria-label":
       disabled={disabled}
       aria-label={ariaLabel}
       className={cn(
-        "inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none",
+        "inline-flex h-[44px] w-[44px] items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none",
         className,
       )}
     >
@@ -80,7 +80,7 @@ export function CarouselDots({ emblaApi, className }: DotsProps) {
           aria-label={`Go to slide ${idx + 1}`}
           aria-current={idx === selectedIndex ? "true" : undefined}
           onClick={() => emblaApi?.scrollTo(idx)}
-          className="flex min-h-[24px] min-w-[24px] items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="flex min-h-[44px] min-w-[44px] items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
           <span
             className={cn(

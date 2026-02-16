@@ -75,7 +75,7 @@ export function DfwSection() {
           <p className="text-sm leading-6 text-muted">
             Current focus includes {featuredCities.join(", ")}, and surrounding DFW neighborhoods.
           </p>
-          <Link href="/dallas-fort-worth" className="mt-4 inline-flex text-sm font-bold uppercase tracking-[0.05em] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+          <Link href="/dallas-fort-worth" className="mt-4 inline-flex min-h-[44px] min-w-[44px] items-center text-sm font-bold uppercase tracking-[0.05em] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
             View full Dallas-Fort Worth service area
           </Link>
         </div>
