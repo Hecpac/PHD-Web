@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 
 import { gsap, useGSAP } from "@/lib/gsap";
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
 type PreloaderProps = {
   onComplete?: () => void;

@@ -138,6 +138,13 @@ select {
   padding-block: clamp(1.75rem, 3.8vw, 3.5rem);
 }
 
+@supports (content-visibility: auto) {
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 900px;
+  }
+}
+
 .text-reading {
   max-width: var(--reading-width);
 }

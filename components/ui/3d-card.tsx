@@ -10,7 +10,7 @@ import {
   type MouseEvent,
   type ReactNode,
 } from "react";
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
 type MouseEnterContextValue = [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 const MouseEnterContext = createContext<MouseEnterContextValue | undefined>(undefined);

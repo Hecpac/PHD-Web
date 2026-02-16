@@ -2,7 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import Image from "next/image";
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Container } from "@/components/layout/container";
@@ -178,7 +178,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
               priority
               fetchPriority="high"
               className="object-cover opacity-32"
-              sizes="100vw"
+              sizes="(max-width: 1536px) 100vw, 1536px"
             />
           </div>
         </div>

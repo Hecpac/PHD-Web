@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
 import { CarouselDots, CarouselPrevButton, CarouselNextButton, useCarouselButtons } from "@/components/ui/carousel-controls";
 import type { GalleryImage } from "@/lib/types/content";

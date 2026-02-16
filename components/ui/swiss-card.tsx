@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, type ReactNode, type MouseEvent, CSSProperties } from "react";
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
 import { cn } from "@/lib/utils";
 

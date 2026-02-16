@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
 import type { EmblaCarouselType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
 import { CtaLink } from "@/components/ui/cta-link";
 import { gsap } from "@/lib/gsap";
