@@ -15,6 +15,7 @@ const FALLBACK_SECTION_IMAGE = "/projects/north-dallas-courtyard-residence/hero.
 export function ImageGridStrip({ projects }: ImageGridStripProps) {
   const cityCount = projects.length;
   const sectionRef = useRef<HTMLElement>(null);
+  const revealRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const showcaseProject = projects.find((project) => project.heroImage) ?? projects[0];
   const sectionImage = showcaseProject?.heroImage?.src ?? FALLBACK_SECTION_IMAGE;
@@ -25,9 +26,12 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const section = sectionRef.current!;
+      const reveal = revealRef.current!;
       const image = imageRef.current!;
 
-      gsap.set(section, { clipPath: "inset(100% 0 0 0)" });
+      // Avoid “black window” showing the sticky hero behind:
+      // keep section background visible; only clip the inner reveal wrapper.
+      gsap.set(reveal, { clipPath: "inset(100% 0 0 0)" });
       gsap.set(image, { scale: 1.15 });
 
       const tl = gsap.timeline({
@@ -37,16 +41,16 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
           toggleActions: "play none none none",
         },
         onStart() {
-          section.style.willChange = "clip-path";
+          reveal.style.willChange = "clip-path";
           image.style.willChange = "transform";
         },
         onComplete() {
-          section.style.willChange = "auto";
+          reveal.style.willChange = "auto";
           image.style.willChange = "auto";
         },
       });
 
-      tl.to(section, {
+      tl.to(reveal, {
         clipPath: "inset(0%)",
         duration: 1.4,
         ease: "power4.out",
@@ -62,7 +66,7 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
     });
 
     mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.set(sectionRef.current!, { clipPath: "inset(0%)" });
+      gsap.set(revealRef.current!, { clipPath: "inset(0%)" });
       gsap.set(imageRef.current!, { scale: 1 });
     });
   }, { scope: sectionRef });
@@ -71,30 +75,32 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
     <section
       ref={sectionRef}
       aria-label="Section divider visual"
-      className="section-brand-wash relative border-y border-line section-brand-divider"
+      className="relative border-y border-line bg-canvas"
     >
-      <div ref={imageRef} className="absolute inset-0">
-        <Image
-          src={sectionImage}
-          alt={sectionAlt}
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
+      <div ref={revealRef} className="relative">
+        <div ref={imageRef} className="absolute inset-0">
+          <Image
+            src={sectionImage}
+            alt={sectionAlt}
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-canvas/68 via-canvas/36 to-canvas/52" />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(120% 90% at 10% 8%, color-mix(in oklab, var(--color-accent), transparent 87%) 0%, transparent 62%)",
+          }}
         />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-canvas/68 via-canvas/36 to-canvas/52" />
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(120% 90% at 10% 8%, color-mix(in oklab, var(--color-accent), transparent 87%) 0%, transparent 62%)",
-        }}
-      />
-      <div className="relative container-swiss flex min-h-[30vh] items-center py-9 sm:min-h-[36vh] sm:py-12">
-        <p className="max-w-xl rounded-md border border-line/70 bg-canvas/78 px-4 py-2 text-sm font-medium uppercase tracking-[0.06em] text-ink sm:text-base">
-          Featured portfolio from {cityCount} DFW projects.
-        </p>
+        <div className="relative container-swiss flex min-h-[30vh] items-center py-9 sm:min-h-[36vh] sm:py-12">
+          <p className="max-w-xl rounded-md border border-line/70 bg-canvas/78 px-4 py-2 text-sm font-medium uppercase tracking-[0.06em] text-ink sm:text-base">
+            Featured portfolio from {cityCount} DFW projects.
+          </p>
+        </div>
       </div>
     </section>
   );
