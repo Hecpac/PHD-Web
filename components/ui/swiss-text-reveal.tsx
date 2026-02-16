@@ -106,22 +106,23 @@ export function SwissTextReveal({
       <Tag
         ref={setContainerRef}
         className={cn("inline-block leading-tight", className)}
-        aria-label={text}
       >
-        {chars.map((char, i) => (
-          <span
-            key={`${i}-${char}`}
-            className="inline-block overflow-hidden align-top"
-            aria-hidden="true"
-          >
+        <span className="sr-only">{text}</span>
+        <span aria-hidden="true">
+          {chars.map((char, i) => (
             <span
-              data-swiss-reveal
-              className="inline-block origin-bottom will-change-transform"
+              key={`${i}-${char}`}
+              className="inline-block overflow-hidden align-top"
             >
-              {char === " " ? "\u00A0" : char}
+              <span
+                data-swiss-reveal
+                className="inline-block origin-bottom will-change-transform"
+              >
+                {char === " " ? "\u00A0" : char}
+              </span>
             </span>
-          </span>
-        ))}
+          ))}
+        </span>
       </Tag>
     );
   }
@@ -133,19 +134,20 @@ export function SwissTextReveal({
       <Tag
         ref={setContainerRef}
         className={cn("inline-block leading-tight", className)}
-        aria-label={text}
       >
-        {words.map((word, i) => (
-          <span
-            key={`${i}-${word}`}
-            className="inline-block overflow-hidden align-top whitespace-nowrap mr-[0.25em]"
-            aria-hidden="true"
-          >
-            <span data-swiss-reveal className="inline-block will-change-transform">
-              {word}
+        <span className="sr-only">{text}</span>
+        <span aria-hidden="true">
+          {words.map((word, i) => (
+            <span
+              key={`${i}-${word}`}
+              className="inline-block overflow-hidden align-top whitespace-nowrap mr-[0.25em]"
+            >
+              <span data-swiss-reveal className="inline-block will-change-transform">
+                {word}
+              </span>
             </span>
-          </span>
-        ))}
+          ))}
+        </span>
       </Tag>
     );
   }
@@ -154,7 +156,7 @@ export function SwissTextReveal({
   const lines = text ? text.split("\n") : [children];
 
   return (
-    <Tag ref={setContainerRef} className={className} aria-label={text || undefined}>
+    <Tag ref={setContainerRef} className={className}>
       {lines.map((line, i) => (
         <span key={i} className="block overflow-hidden align-top">
           <span data-swiss-reveal className="block will-change-transform">
