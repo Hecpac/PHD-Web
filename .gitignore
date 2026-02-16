@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# local agent/LLM tooling
+/.claude/skills/dist/
+
 # production
 /build
 
