@@ -297,7 +297,7 @@ button {
   );
   transform: scaleY(0);
   transform-origin: bottom;
-  transition: transform 0.35s cubic-bezier(0.87, 0, 0.13, 1);
+  transition: transform var(--dur-slow) var(--ease-lux);
   z-index: 0;
 }
 .cta-primary-fill:hover::before {

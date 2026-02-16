@@ -4,6 +4,7 @@
 
 /* Card lift on hover: subtle translateY + shadow (tokenized) */
 .mi-card-lift {
+  box-shadow: var(--shadow-card);
   transition:
     transform var(--dur-med) var(--ease-standard),
     box-shadow var(--dur-med) var(--ease-standard);
