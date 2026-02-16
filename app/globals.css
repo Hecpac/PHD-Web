@@ -148,9 +148,9 @@ select {
 /* Minimal transitions — Swiss-lite */
 a,
 button {
-  transition-property: opacity, color, background-color, border-color;
-  transition-duration: 150ms;
-  transition-timing-function: ease;
+  transition-property: opacity, color, background-color, border-color, transform, box-shadow;
+  transition-duration: var(--dur-med);
+  transition-timing-function: var(--ease-standard);
 }
 
 /* ── Alternating Section: Bone White ────── */

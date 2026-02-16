@@ -31,9 +31,21 @@
 
   --color-blueprint: var(--token-blueprint);
 
-  /* Typography — Swiss: Helvetica Neue stack */
-  --font-sans: "Helvetica Neue", Helvetica, Arial, -apple-system, system-ui, sans-serif;
-  --font-mono: "Courier New", Courier, ui-monospace, monospace;
+  /* Typography — editorial grotesk pairing (matches next/font variables in app/layout.tsx) */
+  --font-sans: var(--font-archivo), "Neue Haas Grotesk Text Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", "SFMono-Regular", ui-monospace, Menlo, monospace;
+
+  /* Motion — quiet luxury */
+  --ease-lux: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 140ms;
+  --dur-med: 220ms;
+  --dur-slow: 420ms;
+
+  /* Shadows — warm, soft, compositional (ink-tinted) */
+  --shadow-card: 0 12px 30px color-mix(in oklab, var(--color-ink), transparent 90%);
+  --shadow-card-hover: 0 18px 46px color-mix(in oklab, var(--color-ink), transparent 88%);
+  --shadow-pop: 0 10px 24px color-mix(in oklab, var(--color-ink), transparent 86%);
 
   /* Radius — Swiss: near-zero geometry */
   --radius-sm: 6px;

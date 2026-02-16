@@ -18,11 +18,11 @@ type CtaLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
 };
 
 const baseClassName =
-  "inline-flex min-h-11 min-w-11 items-center justify-center rounded-sm border px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+  "inline-flex min-h-11 min-w-11 items-center justify-center rounded-sm border px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-standard)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 const variantClassNames: Record<CtaVariant, string> = {
   primary:
-    "cta-primary-fill border-accent bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-pressed shadow-[6px_6px_0_#000] hover:translate-x-[6px] hover:translate-y-[6px] hover:shadow-none hover:text-white transition-all duration-300 ease-[cubic-bezier(0.87,0,0.13,1)]",
+    "cta-primary-fill border-accent bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-pressed shadow-[var(--shadow-pop)] hover:-translate-y-[1px] hover:shadow-[var(--shadow-card)] active:translate-y-[1px] transition-[transform,box-shadow,background-color,color,border-color] duration-[var(--dur-med)] ease-[var(--ease-lux)]",
   secondary: "border-line bg-surface text-ink hover:bg-surface-2",
   ghost: "mi-underline-reveal border-transparent bg-transparent text-ink px-0",
 };
