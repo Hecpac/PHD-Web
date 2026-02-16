@@ -3,7 +3,7 @@
 import { useActionState, useEffect, useRef } from "react";
 import { ArrowUpRight, BadgeCheck, Clock3, MapPin } from "lucide-react";
 
-import { submitContactForm } from "@/actions/contact";
+import { submitContactForm, type ContactFormState } from "@/actions/contact";
 import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -17,7 +17,7 @@ type ContactTerminalProps = {
   withHeading?: boolean;
 };
 
-const initialState = {
+const initialState: ContactFormState = {
   success: false,
   message: "",
   errors: {},
@@ -33,7 +33,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
   
   const { phoneDisplay, phoneHref, scheduleUrl } = getCtaConfig();
 
-  const cityHasError = state.errors?.city;
+  const cityHasError = Boolean(state.errors?.city);
   const inputClass =
     "w-full min-h-11 rounded-lg border border-line bg-canvas px-3.5 py-3 text-sm text-ink placeholder:text-muted focus-visible:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface";
 
