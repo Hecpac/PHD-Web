@@ -3,11 +3,17 @@
 import { useGSAP } from '@gsap/react';
 import { type RefObject } from 'react';
 import type { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { revealHeadline, revealBody, scrambleReveal, type TextRevealOptions } from './text-reveals';
+import {
+  revealHeadline,
+  revealBody,
+  scrambleReveal,
+  type TextRevealOptions,
+} from './text-reveals';
 
 export type TextRevealType = 'headline' | 'body' | 'scramble';
 
-export interface UseTextRevealOptions extends Omit<TextRevealOptions, 'scrollTrigger'> {
+export interface UseTextRevealOptions
+  extends Omit<TextRevealOptions, 'scrollTrigger'> {
   scrollTrigger?: boolean | ScrollTrigger.Vars;
 }
 
@@ -31,54 +37,58 @@ export interface UseTextRevealOptions extends Omit<TextRevealOptions, 'scrollTri
 export function useTextReveal(
   ref: RefObject<HTMLElement>,
   type: TextRevealType,
-  options?: UseTextRevealOptions
+  options?: UseTextRevealOptions,
 ) {
-  const { contextSafe } = useGSAP({ scope: ref });
+  const timeline = useGSAP(
+    () => {
+      if (!ref.current) return;
 
-  const timeline = useGSAP(() => {
-    if (!ref.current) return;
-
-    // Default ScrollTrigger configuration
-    const defaultScrollTrigger: ScrollTrigger.Vars = {
-      trigger: ref.current,
-      start: 'top 85%',
-      toggleActions: 'play none none none',
-    };
-
-    // Merge ScrollTrigger options
-    let scrollTriggerConfig: ScrollTrigger.Vars | undefined;
-
-    if (options?.scrollTrigger === false) {
-      // Explicitly disabled
-      scrollTriggerConfig = undefined;
-    } else if (options?.scrollTrigger === true || options?.scrollTrigger === undefined) {
-      // Use default
-      scrollTriggerConfig = defaultScrollTrigger;
-    } else {
-      // Merge with provided config
-      scrollTriggerConfig = {
-        ...defaultScrollTrigger,
-        ...options.scrollTrigger,
+      // Default ScrollTrigger configuration
+      const defaultScrollTrigger: ScrollTrigger.Vars = {
+        trigger: ref.current,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
       };
-    }
 
-    const revealOptions: TextRevealOptions = {
-      ...options,
-      scrollTrigger: scrollTriggerConfig,
-    };
+      // Merge ScrollTrigger options
+      let scrollTriggerConfig: ScrollTrigger.Vars | undefined;
 
-    // Select and execute appropriate reveal function
-    switch (type) {
-      case 'headline':
-        return revealHeadline(ref.current, revealOptions);
-      case 'body':
-        return revealBody(ref.current, revealOptions);
-      case 'scramble':
-        return scrambleReveal(ref.current, revealOptions);
-      default:
-        throw new Error(`Unknown text reveal type: ${type}`);
-    }
-  }, { scope: ref, dependencies: [type, options] });
+      if (options?.scrollTrigger === false) {
+        // Explicitly disabled
+        scrollTriggerConfig = undefined;
+      } else if (
+        options?.scrollTrigger === true ||
+        options?.scrollTrigger === undefined
+      ) {
+        // Use default
+        scrollTriggerConfig = defaultScrollTrigger;
+      } else {
+        // Merge with provided config
+        scrollTriggerConfig = {
+          ...defaultScrollTrigger,
+          ...options.scrollTrigger,
+        };
+      }
+
+      const revealOptions: TextRevealOptions = {
+        ...options,
+        scrollTrigger: scrollTriggerConfig,
+      };
+
+      // Select and execute appropriate reveal function
+      switch (type) {
+        case 'headline':
+          return revealHeadline(ref.current, revealOptions);
+        case 'body':
+          return revealBody(ref.current, revealOptions);
+        case 'scramble':
+          return scrambleReveal(ref.current, revealOptions);
+        default:
+          throw new Error(`Unknown text reveal type: ${type}`);
+      }
+    },
+    { scope: ref, dependencies: [type, options] },
+  );
 
   return timeline;
 }
