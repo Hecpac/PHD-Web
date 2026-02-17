@@ -4,7 +4,7 @@ import { useRef, type ReactNode } from "react";
 import Image from "next/image";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { SwissTextReveal } from "@/components/ui/swiss-text-reveal";
@@ -27,12 +27,14 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
   const ctaGroupRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
   useGSAP(
     () => {
       if (
         !heroRef.current ||
+        !innerRef.current ||
         !contentRef.current ||
         !titleRef.current ||
         !imageRef.current
@@ -66,38 +68,55 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 768px)", () => {
+        // Pin the hero viewport while the render section (S2) rises from below and
+        // covers it. pinSpacing:false keeps the DOM untouched so S2 stays at its
+        // natural flow position and uses scroll space to drive its rise.
+        //
+        // Non-gallery: hero is min-h-screen (100 vh), so pin runs just 20 vh past
+        // that to let the render section fully settle before releasing.
+        ScrollTrigger.create({
+          trigger: heroRef.current,
+          pin: innerRef.current,
+          start: "top top",
+          end: hasGallery ? "+=165vh" : "+=100vh",
+          pinSpacing: false,
+        });
+
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: heroRef.current,
             start: "top top",
             end: "bottom top",
-            scrub: 1.2,
+            scrub: 1,
           },
         });
 
-        // Base depth parallax (always on desktop): image and foreground move at different speeds.
+        // Background image drifts up at ~22 % of scroll speed — slower than the
+        // render panel that rises at 100 % — producing the same depth-recession
+        // feel as a CSS perspective/translateZ parallax, but compatible with Lenis.
         tl.to(imageRef.current, {
-          y: "-12%",
-          scale: 1.06,
-          duration: 1,
-          ease: "none",
-        }, 0);
-
-        tl.to(contentRef.current, {
-          y: "-5%",
-          opacity: 0.88,
-          duration: 1,
-          ease: "none",
-        }, 0);
-
-        // H1 moves faster than the rest of hero content for deeper parallax.
-        tl.to(titleRef.current, {
-          y: -80,
+          y: hasGallery ? "-15%" : "-30%",
+          scale: hasGallery ? 1.08 : 1.12,
           duration: 1,
           ease: "none",
         }, 0);
 
         if (!hasGallery) {
+          // Foreground copy moves a bit faster than the image so the hero gains
+          // a true two-layer parallax feel (background vs content plane).
+          tl.to(contentRef.current, {
+            y: "-10%",
+            autoAlpha: 0.88,
+            duration: 1,
+            ease: "none",
+          }, 0);
+
+          tl.to(titleRef.current, {
+            y: -52,
+            duration: 1,
+            ease: "none",
+          }, 0);
+
           return;
         }
 
@@ -125,13 +144,6 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           ease: "none",
         }, 0.05);
 
-        tl.to(imageRef.current, {
-          y: "-15%",
-          scale: 1.08,
-          duration: 1,
-          ease: "none",
-        }, 0);
-
         if (galleryRef.current) {
           tl.fromTo(
             galleryRef.current,
@@ -154,7 +166,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
       ref={heroRef}
       id="hero"
       aria-label="Hero — DFW custom home builder"
-      className={`relative z-0 ${hasGallery ? "min-h-[120vh] lg:min-h-[150vh]" : "min-h-[140vh] lg:min-h-[155vh]"}`}
+      className={`relative z-0 ${hasGallery ? "min-h-[120vh] lg:min-h-[150vh]" : "h-[85vh]"}`}
     >
       {/* Overscroll easter egg — visible on rubber-band pull-down */}
       <div
@@ -168,7 +180,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         </div>
       </div>
 
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div ref={innerRef} className="h-screen overflow-hidden">
         {/* ── Top bar (animated) ── */}
         {hasGallery ? (
           <div
@@ -198,8 +210,8 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/92 to-canvas/72" />
 
         {/* ── Content overlay — flush left, bottom aligned ── */}
-        <Container swiss className="relative z-10">
-          <div ref={contentRef} className="flex h-screen items-end pb-12 sm:pb-14 md:pb-16">
+        <Container swiss className="relative z-10 ![padding-inline-start:20px] sm:![padding-inline-start:28px] lg:![padding-inline-start:36px]">
+          <div ref={contentRef} className="flex h-screen items-start pt-[22vh]">
             <div className="max-w-3xl space-y-5 sm:space-y-6">
               <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
                 <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.04}>
