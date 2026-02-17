@@ -18,7 +18,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { createStaggerReveal } from "@/lib/gsap/scroll-animations";
 import type { Service } from "@/lib/types/content";
 
@@ -47,54 +47,86 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
   const shouldReduceMotion = useReducedMotion();
   const uid = useId();
   const gridRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLElement>(null);
 
-  useGSAP(() => {
-    if (!gridRef.current) return;
-    const staggerReveal = createStaggerReveal({
-      trigger: gridRef.current,
-      targets: gsap.utils.toArray<HTMLElement>(gridRef.current.querySelectorAll("article")),
-      stagger: 0.08,
-      y: 40,
-      start: "top 80%",
-    });
-
-    const mm = gsap.matchMedia();
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const cards = gsap.utils.toArray<HTMLElement>(gridRef.current!.querySelectorAll(".ledger-card"));
-      cards.forEach((card) => {
-        const rows = gsap.utils.toArray<HTMLElement>(card.querySelectorAll("[data-ledger-row]"));
-        if (!rows.length) return;
-
-        gsap.from(rows, {
-          opacity: 0,
-          y: 18,
-          stagger: 0.055,
-          duration: 0.55,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 82%",
-            toggleActions: "play none none none",
-          },
-        });
+  useGSAP(
+    () => {
+      if (!gridRef.current) return;
+      const staggerReveal = createStaggerReveal({
+        trigger: gridRef.current,
+        targets: gsap.utils.toArray<HTMLElement>(gridRef.current.querySelectorAll("article")),
+        stagger: 0.08,
+        y: 40,
+        start: "top 80%",
       });
-    });
 
-    return () => {
-      staggerReveal.revert();
-      mm.revert();
-    };
-  }, { scope: gridRef });
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const cards = gsap.utils.toArray<HTMLElement>(gridRef.current!.querySelectorAll(".ledger-card"));
+        cards.forEach((card) => {
+          const rows = gsap.utils.toArray<HTMLElement>(card.querySelectorAll("[data-ledger-row]"));
+          if (!rows.length) return;
+
+          gsap.from(rows, {
+            opacity: 0,
+            y: 18,
+            stagger: 0.055,
+            duration: 0.55,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 82%",
+              toggleActions: "play none none none",
+            },
+          });
+        });
+
+        if (!headingRef.current) return;
+
+        gsap.fromTo(
+          headingRef.current,
+          { y: 60, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top 85%",
+              end: "top 30%",
+              scrub: 0.8,
+            },
+          },
+        );
+
+        ScrollTrigger.refresh();
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        if (headingRef.current) {
+          gsap.set(headingRef.current, { y: 0, autoAlpha: 1 });
+        }
+      });
+
+      return () => {
+        staggerReveal.revert();
+        mm.revert();
+      };
+    },
+    { scope: gridRef, dependencies: [shouldReduceMotion] },
+  );
 
   return (
     <section id={id} className="section-shell section-brand-wash-bold border-t border-line section-brand-divider">
       <Container swiss className="space-y-8">
         {withHeading ? (
-          <SectionHeading
-            eyebrow="The Ledger"
-            title="Capabilities defined by concrete deliverables"
-            description="Each capability maps to outputs, owners, and checkpoints. The goal is predictable execution, not abstract promises."
-          />
+          <header ref={headingRef}>
+            <SectionHeading
+              eyebrow="The Ledger"
+              title="Capabilities defined by concrete deliverables"
+              description="Each capability maps to outputs, owners, and checkpoints. The goal is predictable execution, not abstract promises."
+            />
+          </header>
         ) : null}
 
         <div ref={gridRef} className="brand-red-outline grid gap-px border border-line md:grid-cols-2 xl:grid-cols-3">
