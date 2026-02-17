@@ -8,9 +8,8 @@ import { BlueprintSection } from "@/components/home/blueprint-section";
 import { BentoSection } from "@/components/home/bento-section";
 import { HowWeWorkSection } from "@/components/home/how-we-work-section";
 import { TrustSection } from "@/components/home/trust-section";
-import { ImageGridStrip } from "@/components/home/image-grid-strip";
 import { FaqSection } from "@/components/home/faq-section";
-import { getFeaturedProjects, getFaqs, getHomeHero, getProcessSteps, getProjects, getReviews, getServices } from "@/lib/data";
+import { getFeaturedProjects, getFaqs, getHomeHero, getProcessSteps, getReviews, getServices } from "@/lib/data";
 import { getSiteUrl } from "@/lib/config/site";
 
 const FeaturedProjectsSection = dynamic(() =>
@@ -44,11 +43,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [heroData, services, processSteps, projects, featuredProjects, reviews, faqs] = await Promise.all([
+  const [heroData, services, processSteps, featuredProjects, reviews, faqs] = await Promise.all([
     getHomeHero(),
     getServices(),
     getProcessSteps(),
-    getProjects(),
     getFeaturedProjects(),
     getReviews(),
     getFaqs(),
@@ -58,7 +56,6 @@ export default async function HomePage() {
     <>
       <HeroSection heroImage={heroData.heroImage} />
       <HeroRenderSection />
-      <ImageGridStrip projects={projects} />
       <LedgerSection services={services} />
       <HowWeWorkSection />
       <BlueprintSection steps={processSteps} />
