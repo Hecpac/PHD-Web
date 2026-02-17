@@ -8,7 +8,6 @@ export function HeroRenderSection() {
         muted
         loop
         playsInline
-        controls
         preload="metadata"
       >
         Tu navegador no soporta video HTML5.
