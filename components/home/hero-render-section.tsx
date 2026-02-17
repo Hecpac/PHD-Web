@@ -23,10 +23,10 @@ export function HeroRenderSection() {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
-        gsap.set(sectionRef.current, { yPercent: 10, willChange: "transform" });
-        gsap.set(frameRef.current, { yPercent: 14, willChange: "transform" });
+        gsap.set(sectionRef.current, { yPercent: 16, willChange: "transform" });
+        gsap.set(frameRef.current, { yPercent: 10, willChange: "transform" });
         gsap.set(videoRef.current, {
-          yPercent: 18,
+          yPercent: 14,
           scale: 1.14,
           transformOrigin: "center center",
           willChange: "transform",
@@ -35,16 +35,16 @@ export function HeroRenderSection() {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 95%",
+            start: "top bottom",
             end: "bottom top",
             scrub: 1,
             invalidateOnRefresh: true,
           },
         });
 
-        tl.to(sectionRef.current, { yPercent: -8, ease: "none", duration: 1 }, 0)
-          .to(frameRef.current, { yPercent: -16, ease: "none", duration: 1 }, 0)
-          .to(videoRef.current, { yPercent: -24, scale: 1.02, ease: "none", duration: 1 }, 0);
+        tl.to(sectionRef.current, { yPercent: -10, ease: "none", duration: 1 }, 0)
+          .to(frameRef.current, { yPercent: -14, ease: "none", duration: 1 }, 0)
+          .to(videoRef.current, { yPercent: -20, scale: 1.02, ease: "none", duration: 1 }, 0);
       });
 
       mm.add("(max-width: 1023px), (prefers-reduced-motion: reduce)", () => {
@@ -62,7 +62,7 @@ export function HeroRenderSection() {
     <section
       ref={sectionRef}
       aria-label="Render 3D"
-      className="relative z-40 -mt-[14vh] w-full overflow-hidden border-y border-line bg-black md:-mt-[18vh] lg:-mt-[24vh]"
+      className="relative z-40 -mt-[14vh] w-full overflow-hidden border-y border-line bg-black md:-mt-[24vh] lg:-mt-[48vh]"
     >
       <div ref={frameRef} className="relative h-[58vh] min-h-[340px] w-full sm:h-[62vh] md:h-[66vh] lg:h-[72vh]">
         <video

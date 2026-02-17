@@ -83,18 +83,18 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           ease: "none",
         }, 0);
 
+        if (!hasGallery) {
+          // Keep headline anchored when hero stands alone.
+          return;
+        }
+
+        // Gallery mode: keep the stronger editorial transition.
         tl.to(contentRef.current, {
           y: "-5%",
           opacity: 0.88,
           duration: 1,
           ease: "none",
         }, 0);
-
-        if (!hasGallery) {
-          return;
-        }
-
-        // Gallery mode: keep the stronger editorial transition.
         gsap.set(topBarRef.current, { height: "50vh", scaleY: 0, transformOrigin: "top" });
         gsap.set(bottomBarRef.current, { height: "50vh", scaleY: 0, transformOrigin: "bottom" });
 
@@ -147,7 +147,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
       ref={heroRef}
       id="hero"
       aria-label="Hero — DFW custom home builder"
-      className={`relative z-0 ${hasGallery ? "min-h-[120vh] lg:min-h-[150vh]" : "min-h-screen"}`}
+      className={`relative z-0 ${hasGallery ? "min-h-[120vh] lg:min-h-[150vh]" : "min-h-[140vh] lg:min-h-[155vh]"}`}
     >
       {/* Overscroll easter egg — visible on rubber-band pull-down */}
       <div
