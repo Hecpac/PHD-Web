@@ -62,7 +62,7 @@ export function HeroRenderSection() {
     <section
       ref={sectionRef}
       aria-label="Render 3D"
-      className="relative z-20 mt-0 w-full overflow-hidden border-y border-line bg-black lg:-mt-[4vh]"
+      className="relative z-40 -mt-[14vh] w-full overflow-hidden border-y border-line bg-black md:-mt-[18vh] lg:-mt-[24vh]"
     >
       <div ref={frameRef} className="relative h-[58vh] min-h-[340px] w-full sm:h-[62vh] md:h-[66vh] lg:h-[72vh]">
         <video
