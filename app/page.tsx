@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 import { HeroSection } from "@/components/home/hero-section";
+import { HeroRenderSection } from "@/components/home/hero-render-section";
 import { LedgerSection } from "@/components/home/ledger-section";
 import { BlueprintSection } from "@/components/home/blueprint-section";
 import { BentoSection } from "@/components/home/bento-section";
@@ -56,6 +57,7 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection heroImage={heroData.heroImage} />
+      <HeroRenderSection />
       <ImageGridStrip projects={projects} />
       <LedgerSection services={services} />
       <HowWeWorkSection />
