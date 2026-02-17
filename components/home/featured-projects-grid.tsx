@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import Image from "next/image";
 import type { EmblaCarouselType } from "embla-carousel";
+import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
@@ -31,12 +32,30 @@ export function FeaturedProjectsGrid({ projects, prioritizeFirst = false, onApiC
   const shouldReduceMotion = useReducedMotion();
   const trackRef = useRef<HTMLDivElement>(null);
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
-    containScroll: "trimSnaps",
-    dragFree: false,
-    duration: shouldReduceMotion ? 0 : 26,
-  });
+  const autoplayPlugin = useMemo(() => {
+    if (shouldReduceMotion || projects.length <= 1) {
+      return null;
+    }
+
+    return Autoplay({
+      delay: 2000,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+      stopOnFocusIn: true,
+      playOnInit: true,
+    });
+  }, [projects.length, shouldReduceMotion]);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      align: "start",
+      containScroll: "trimSnaps",
+      dragFree: false,
+      duration: shouldReduceMotion ? 0 : 26,
+      loop: projects.length > 1,
+    },
+    autoplayPlugin ? [autoplayPlugin] : [],
+  );
 
   useEffect(() => {
     onApiChange?.(emblaApi);
