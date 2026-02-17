@@ -1,72 +1,11 @@
-"use client";
-
-import { useRef } from "react";
-
-import { gsap, useGSAP } from "@/lib/gsap";
-import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
-
 export function HeroRenderSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const frameRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const shouldReduceMotion = useReducedMotion();
-
-  useGSAP(
-    () => {
-      if (!sectionRef.current || !frameRef.current || !videoRef.current) return;
-
-      if (shouldReduceMotion) {
-        gsap.set([sectionRef.current, frameRef.current, videoRef.current], { clearProps: "transform,willChange" });
-        return;
-      }
-
-      const mm = gsap.matchMedia();
-
-      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
-        gsap.set(sectionRef.current, { yPercent: 16, willChange: "transform" });
-        gsap.set(frameRef.current, { yPercent: 10, willChange: "transform" });
-        gsap.set(videoRef.current, {
-          yPercent: 14,
-          scale: 1.14,
-          transformOrigin: "center center",
-          willChange: "transform",
-        });
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-
-        tl.to(sectionRef.current, { yPercent: -10, ease: "none", duration: 1 }, 0)
-          .to(frameRef.current, { yPercent: -14, ease: "none", duration: 1 }, 0)
-          .to(videoRef.current, { yPercent: -20, scale: 1.02, ease: "none", duration: 1 }, 0);
-      });
-
-      mm.add("(max-width: 1023px), (prefers-reduced-motion: reduce)", () => {
-        gsap.set([sectionRef.current, frameRef.current, videoRef.current], { clearProps: "transform,willChange" });
-      });
-
-      return () => {
-        mm.revert();
-      };
-    },
-    { scope: sectionRef, dependencies: [shouldReduceMotion] },
-  );
-
   return (
     <section
-      ref={sectionRef}
       aria-label="Render 3D"
       className="relative z-40 -mt-[14vh] w-full overflow-hidden border-y border-line bg-black md:-mt-[24vh] lg:-mt-[48vh]"
     >
-      <div ref={frameRef} className="relative h-[58vh] min-h-[340px] w-full sm:h-[62vh] md:h-[66vh] lg:h-[72vh]">
+      <div className="relative h-[58vh] min-h-[340px] w-full sm:h-[62vh] md:h-[66vh] lg:h-[72vh]">
         <video
-          ref={videoRef}
           className="absolute inset-0 block h-full w-full bg-black object-cover"
           src="/media/render-3d.mp4"
           poster="/media/render-3d-poster.jpg"

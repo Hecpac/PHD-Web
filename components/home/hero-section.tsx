@@ -71,14 +71,14 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
             trigger: heroRef.current,
             start: "top top",
             end: "bottom top",
-            scrub: 1.2,
+            scrub: 1,
           },
         });
 
         // Base depth parallax (always on desktop): image and foreground move at different speeds.
         tl.to(imageRef.current, {
-          y: "-12%",
-          scale: 1.06,
+          y: "-30%",
+          scale: 1.12,
           duration: 1,
           ease: "none",
         }, 0);
@@ -154,7 +154,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
       ref={heroRef}
       id="hero"
       aria-label="Hero — DFW custom home builder"
-      className={`relative z-0 ${hasGallery ? "min-h-[120vh] lg:min-h-[150vh]" : "min-h-[140vh] lg:min-h-[155vh]"}`}
+      className={`relative z-0 ${hasGallery ? "min-h-[120vh] lg:min-h-[150vh]" : "min-h-[115vh]"}`}
     >
       {/* Overscroll easter egg — visible on rubber-band pull-down */}
       <div
@@ -199,7 +199,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
 
         {/* ── Content overlay — flush left, bottom aligned ── */}
         <Container swiss className="relative z-10">
-          <div ref={contentRef} className="flex h-screen items-end pb-12 sm:pb-14 md:pb-16">
+          <div ref={contentRef} className="flex h-screen items-start pt-[18vh]">
             <div className="max-w-3xl space-y-5 sm:space-y-6">
               <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
                 <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.04}>

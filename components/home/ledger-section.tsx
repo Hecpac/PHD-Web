@@ -48,6 +48,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
   const uid = useId();
   const gridRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
@@ -117,7 +118,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
   );
 
   return (
-    <section id={id} className="section-shell section-brand-wash-bold border-t border-line section-brand-divider">
+    <section ref={sectionRef} id={id} className="section-shell section-brand-wash-bold border-t border-line section-brand-divider relative z-50">
       <Container swiss className="space-y-8">
         {withHeading ? (
           <header ref={headingRef}>
