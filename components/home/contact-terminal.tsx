@@ -29,7 +29,10 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
 
   const formRef = useRef<HTMLFormElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
   const cityRef = useRef<HTMLSelectElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
 
   const { phoneDisplay, phoneHref, scheduleUrl } = getCtaConfig();
 
@@ -69,10 +72,15 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
           message: state.message,
           errors: state.errors,
         });
-        // If city error, focus city input
-        if (state.errors?.city) {
-          cityRef.current?.focus();
-        }
+
+        const firstInvalidField =
+          (state.errors?.name && nameRef.current) ||
+          (state.errors?.email && emailRef.current) ||
+          (state.errors?.city && cityRef.current) ||
+          (state.errors?.message && messageRef.current) ||
+          null;
+
+        firstInvalidField?.focus();
       }
     }
   }, [state]);
@@ -152,6 +160,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               <label className="space-y-1.5 text-sm">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Full name <span className="text-accent" aria-hidden="true">*</span></span>
                 <input
+                  ref={nameRef}
                   name="name"
                   autoComplete="name"
                   inputMode="text"
@@ -161,7 +170,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   aria-invalid={Boolean(state.errors?.name) || undefined}
                   aria-describedby={state.errors?.name ? nameErrorId : undefined}
                   className={cn(inputClass, state.errors?.name && "border-danger")}
-                  placeholder="Jane Smith"
+                  placeholder="Jane Smith…"
                 />
                 {state.errors?.name ? (
                   <p id={nameErrorId} className="text-xs text-danger">
@@ -173,6 +182,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               <label className="space-y-1.5 text-sm">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Email <span className="text-accent" aria-hidden="true">*</span></span>
                 <input
+                  ref={emailRef}
                   name="email"
                   type="email"
                   autoComplete="email"
@@ -185,7 +195,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   aria-invalid={Boolean(state.errors?.email) || undefined}
                   aria-describedby={state.errors?.email ? emailErrorId : undefined}
                   className={cn(inputClass, state.errors?.email && "border-danger")}
-                  placeholder="jane@domain.com"
+                  placeholder="jane@example.com…"
                 />
                 {state.errors?.email ? (
                   <p id={emailErrorId} className="text-xs text-danger">
@@ -234,6 +244,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               <label className="space-y-1.5 text-sm md:col-span-2">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Project goals <span className="text-accent" aria-hidden="true">*</span></span>
                 <textarea
+                  ref={messageRef}
                   name="message"
                   required
                   aria-required="true"
@@ -242,7 +253,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   rows={6}
                   enterKeyHint="send"
                   className={cn(inputClass, state.errors?.message && "border-danger")}
-                  placeholder="Tell us lot status, target timeline, style direction, and budget guardrails."
+                  placeholder="Tell us lot status, target timeline, style direction, and budget guardrails…"
                 />
                 {state.errors?.message ? (
                   <p id={messageErrorId} className="text-xs text-danger">

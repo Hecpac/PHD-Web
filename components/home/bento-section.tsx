@@ -19,7 +19,7 @@ const bentoItems: BentoItem[] = [
     id: "bento-projects",
     eyebrow: "Track Record",
     // Integrated Counter component
-    stat: <Counter value={40} suffix="+" />,
+    stat: <Counter value={60} suffix="+" />,
     statLabel: "Custom homes delivered in DFW",
     title: "Built Portfolio",
     span: "1x1",

@@ -15,6 +15,16 @@ export type ContactFormState = {
   errors: ContactFormErrors;
 };
 
+type ContactLead = {
+  name: string;
+  email: string;
+  city: string;
+  phone: string;
+  message: string;
+  submittedAt: string;
+  source: "website-contact-form";
+};
+
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function getString(formData: FormData, field: string): string {
@@ -57,6 +67,46 @@ function validateForm(fields: {
   return errors;
 }
 
+async function postToWebhook(payload: ContactLead): Promise<void> {
+  const webhookUrl = process.env.CONTACT_WEBHOOK_URL?.trim();
+  if (!webhookUrl) {
+    throw new Error("CONTACT_WEBHOOK_URL is not configured");
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+
+  try {
+    const res = await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(process.env.CONTACT_WEBHOOK_BEARER_TOKEN
+          ? { Authorization: `Bearer ${process.env.CONTACT_WEBHOOK_BEARER_TOKEN}` }
+          : {}),
+      },
+      body: JSON.stringify(payload),
+      cache: "no-store",
+      signal: controller.signal,
+    });
+
+    if (!res.ok) {
+      throw new Error(`Webhook responded with ${res.status}`);
+    }
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+async function persistLeadLocally(payload: ContactLead): Promise<void> {
+  const { appendFile, mkdir } = await import("node:fs/promises");
+  const { dirname } = await import("node:path");
+
+  const path = process.env.CONTACT_LEADS_FILE?.trim() || "/tmp/phd-contact-leads.ndjson";
+  await mkdir(dirname(path), { recursive: true });
+  await appendFile(path, `${JSON.stringify(payload)}\n`, "utf8");
+}
+
 export async function submitContactForm(
   _prevState: ContactFormState,
   formData: FormData
@@ -65,6 +115,7 @@ export async function submitContactForm(
     name: getString(formData, "name"),
     email: getString(formData, "email"),
     city: getString(formData, "city"),
+    phone: getString(formData, "phone"),
     message: getString(formData, "message"),
   };
 
@@ -75,6 +126,27 @@ export async function submitContactForm(
       success: false,
       message: "Please review the highlighted fields and try again.",
       errors,
+    };
+  }
+
+  const payload: ContactLead = {
+    ...fields,
+    submittedAt: new Date().toISOString(),
+    source: "website-contact-form",
+  };
+
+  try {
+    if (process.env.CONTACT_WEBHOOK_URL?.trim()) {
+      await postToWebhook(payload);
+    } else {
+      await persistLeadLocally(payload);
+    }
+  } catch (error) {
+    console.error("contact_form_delivery_failed", error);
+    return {
+      success: false,
+      message: "We couldn't submit your brief right now. Please try again or call us directly.",
+      errors: {},
     };
   }
 

@@ -62,7 +62,7 @@ export const siteNavigation: readonly NavItem[] = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
-const DEFAULT_SITE_URL = "http://localhost:3000";
+const DEFAULT_SITE_URL = "https://www.premiumhome.design";
 const DEFAULT_SCHEDULE_URL = "https://www.premiumhome.design/contact";
 const DEFAULT_PHONE_E164 = "+19726036794";
 

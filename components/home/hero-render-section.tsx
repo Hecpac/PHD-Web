@@ -14,8 +14,9 @@ export function HeroRenderSection() {
           loop
           playsInline
           preload="metadata"
+          aria-label="3D architectural render showcase"
         >
-          Tu navegador no soporta video HTML5.
+          Your browser does not support HTML5 video.
         </video>
 
         <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-canvas/80 via-canvas/30 to-transparent" />

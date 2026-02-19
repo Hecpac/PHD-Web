@@ -225,7 +225,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
               <ul className="flex flex-wrap gap-2" aria-label="Key proof points">
                 {[
                   "DFW-only operating model",
-                  "40+ custom homes delivered",
+                  "60+ custom homes delivered",
                   "Decision-gated planning",
                 ].map((proof) => (
                   <li

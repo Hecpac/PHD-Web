@@ -212,7 +212,7 @@ const differentiators = [
 
 /* ── Component ───────────────────────────────────────── */
 
-const HEADING_ID = "why-choose-us-heading";
+const HEADING_ID = "why-choose-us-title";
 
 export function WhyChooseUsSection() {
   const gridRef = useRef<HTMLDivElement>(null);
@@ -316,6 +316,7 @@ export function WhyChooseUsSection() {
       <Container swiss className="space-y-10">
         <div ref={headingRef}>
           <SectionHeading
+            titleId={HEADING_ID}
             eyebrow="Why Choose Us"
             title="Dallas\u2013Fort Worth\u2019s architecture-first builder"
             description="Design and construction under one roof, backed by deep local knowledge. Here\u2019s what sets our Dallas\u2013Fort Worth custom home process apart."
@@ -372,10 +373,6 @@ export function WhyChooseUsSection() {
         <SwissBeam direction="horizontal" length="100%" thickness={1} delay={0.3} />
       </Container>
 
-      {/* Hidden label for aria-labelledby (visual heading is inside SectionHeading) */}
-      <span id={HEADING_ID} className="sr-only">
-        Why Choose Us
-      </span>
     </section>
   );
 }

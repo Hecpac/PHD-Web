@@ -33,7 +33,7 @@ export function SocialLinks({ iconOnly = false, className, linkClassName }: Soci
                 "justify-center border border-line/80 bg-surface/70 p-2 hover:border-accent/40 hover:bg-accent-soft",
               linkClassName,
             )}
-            aria-label={social.label}
+            aria-label={`${social.label} (opens in a new tab)`}
           >
             <Icon className="h-4 w-4" aria-hidden="true" />
             {iconOnly ? <span className="sr-only">{social.label}</span> : <span>{social.label}</span>}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, IBM_Plex_Mono } from "next/font/google";
 
 import { BackToTop } from "@/components/layout/back-to-top";
+import { FooterHeightObserver } from "@/components/layout/footer-height-observer";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
@@ -83,6 +84,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#ffffff" />
+        <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} Blog`} href="/blogs/feed.xml" />
         <script
           dangerouslySetInnerHTML={{
             __html: `(() => {
@@ -116,6 +118,7 @@ export default function RootLayout({
             </div>
           </div>
           <SiteFooter />
+          <FooterHeightObserver />
         </SmoothScroll>
         <CustomCursor />
         <CadMode />

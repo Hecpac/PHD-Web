@@ -1,6 +1,3 @@
-"use client";
-
-import { useRef, useEffect } from "react";
 import Link from "next/link";
 
 import { CtaLink } from "@/components/ui/cta-link";
@@ -10,30 +7,11 @@ export function SiteFooter() {
   const { phoneDisplay, phoneHref, scheduleUrl } = getCtaConfig();
   const serviceNav = siteNavigation.find((item) => item.href === "/services");
   const serviceChildren = serviceNav?.children ?? [];
-  const copyrightYear = "2026";
-  const footerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (!footerRef.current) return;
-
-    const el = footerRef.current;
-    const update = () => {
-      document.documentElement.style.setProperty(
-        "--footer-height",
-        el.offsetHeight + "px",
-      );
-    };
-
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    update();
-
-    return () => ro.disconnect();
-  }, []);
+  const copyrightYear = new Date().getFullYear().toString();
 
   return (
     <footer
-      ref={footerRef}
+      id="site-footer"
       className="fixed bottom-0 left-0 right-0 border-t border-line bg-surface/65"
       style={{ zIndex: -1 }}
       role="contentinfo"
@@ -77,6 +55,7 @@ export function SiteFooter() {
             <div className="space-y-2 pt-1">
               <a
                 href={`mailto:${siteConfig.contactEmail}`}
+                aria-label={`Email ${siteConfig.contactEmail}`}
                 className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
               >
                 {siteConfig.contactEmail}
@@ -88,6 +67,7 @@ export function SiteFooter() {
                     href={social.href}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label={`${social.label} (opens in a new tab)`}
                     className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
                   >
                     {social.label}
