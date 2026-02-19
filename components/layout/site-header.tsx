@@ -4,6 +4,7 @@ import { AnimatedNavLink } from "@/components/layout/animated-nav-link";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 import { NavDropdown } from "@/components/layout/nav-dropdown";
 import { CtaLink } from "@/components/ui/cta-link";
+import { SocialLinks } from "@/components/ui/social-links";
 import { getCtaConfig, siteConfig, siteNavigation } from "@/lib/config/site";
 
 export function SiteHeader() {
@@ -50,6 +51,11 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center gap-2.5 md:gap-3">
+              <SocialLinks
+                iconOnly
+                className="hidden lg:flex"
+                linkClassName="!min-h-10 !min-w-10"
+              />
               <div aria-hidden className="hidden h-7 w-px bg-line/80 lg:block" />
               <CtaLink
                 href={ctaConfig.scheduleUrl}
