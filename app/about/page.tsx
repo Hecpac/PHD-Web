@@ -118,6 +118,7 @@ export default function AboutPage() {
       <section className="section-shell border-t border-line section-bone">
         <Container swiss className="space-y-8">
           <SectionHeading
+            as="h2"
             eyebrow="Track Record"
             title="Numbers from the field"
           />
@@ -125,7 +126,7 @@ export default function AboutPage() {
             {differentiators.map((item) => (
               <div key={item.label} className="space-y-2">
                 <p className="text-5xl font-bold tabular-nums text-accent">{item.stat}</p>
-                <p className="text-base font-bold text-ink">{item.label}</p>
+                <h3 className="text-base font-bold text-ink">{item.label}</h3>
                 <p className="text-sm leading-6 text-muted">{item.detail}</p>
               </div>
             ))}
@@ -137,6 +138,7 @@ export default function AboutPage() {
       <section className="section-shell border-t border-line">
         <Container swiss className="space-y-8">
           <SectionHeading
+            as="h2"
             eyebrow="How We Think"
             title="What sets us apart in DFW"
           />
@@ -155,6 +157,7 @@ export default function AboutPage() {
       <section className="section-shell border-t border-line section-bone">
         <Container swiss className="space-y-6">
           <SectionHeading
+            as="h2"
             eyebrow="Credentials"
             title="Licensed, insured, and locally established"
           />

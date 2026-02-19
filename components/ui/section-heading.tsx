@@ -20,7 +20,7 @@ export function SectionHeading({
   return (
     <header className={cn("space-y-4", className)}>
       {eyebrow ? (
-        <p className="type-mono-label text-muted">{eyebrow}</p>
+        <span className="block type-mono-label text-muted">{eyebrow}</span>
       ) : null}
       <Heading className="type-display max-w-4xl">
         <SwissTextReveal mode="word" as="span" noInitialHide>
