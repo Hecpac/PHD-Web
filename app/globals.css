@@ -49,16 +49,6 @@
   }
 }
 
-/* ── Font A/B testing (persisted in localStorage) ─────────────────────────── */
-
-html[data-font-variant="manrope"] body {
-  --font-archivo: var(--font-manrope);
-}
-
-html[data-font-variant="jakarta"] body {
-  --font-archivo: var(--font-jakarta);
-}
-
 /* ── Global resets ─────────────────────────── */
 
 * {

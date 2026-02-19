@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Mono, Manrope, Plus_Jakarta_Sans } from "next/font/google";
+import { Archivo, IBM_Plex_Mono } from "next/font/google";
 
 import { BackToTop } from "@/components/layout/back-to-top";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -26,20 +26,6 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-plex-mono",
-  display: "swap",
-  preload: false,
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-  display: "swap",
-  preload: false,
-});
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
   display: "swap",
   preload: false,
 });
@@ -102,33 +88,18 @@ export default function RootLayout({
             __html: `(() => {
   const root = document.documentElement;
   root.classList.add('light');
-
-  const valid = new Set(['archivo', 'manrope', 'jakarta']);
-  const params = new URLSearchParams(window.location.search);
-  const query = params.get('font');
-
-  let selected = 'archivo';
+  root.dataset.fontVariant = 'archivo';
 
   try {
-    if (query && valid.has(query)) {
-      selected = query;
-      localStorage.setItem('phd_font_variant', selected);
-    } else {
-      const stored = localStorage.getItem('phd_font_variant');
-      if (stored && valid.has(stored)) {
-        selected = stored;
-      }
-    }
+    localStorage.removeItem('phd_font_variant');
   } catch {
     // no-op
   }
-
-  root.dataset.fontVariant = selected;
 })();`,
           }}
         />
       </head>
-      <body className={`${archivo.variable} ${plexMono.variable} ${manrope.variable} ${plusJakarta.variable} bg-canvas text-ink antialiased`}>
+      <body className={`${archivo.variable} ${plexMono.variable} bg-canvas text-ink antialiased`}>
         <JsonLd data={createWebSiteSchema()} />
         <JsonLd data={createLocalBusinessSchema()} />
         <SmoothScroll>
