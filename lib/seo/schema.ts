@@ -1,8 +1,9 @@
-import { getSiteUrl, siteConfig } from "@/lib/config/site";
+import { getCtaConfig, getSiteUrl, siteConfig } from "@/lib/config/site";
 import type { BlogPost, FAQ, Project } from "@/lib/types/content";
 
 export function createLocalBusinessSchema() {
   const siteUrl = getSiteUrl();
+  const { phoneE164 } = getCtaConfig();
 
   return {
     "@context": "https://schema.org",
@@ -10,7 +11,8 @@ export function createLocalBusinessSchema() {
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteUrl,
-    telephone: process.env.NEXT_PUBLIC_PHONE_E164 || "+14695550101",
+    telephone: phoneE164,
+    email: siteConfig.contactEmail,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Dallas",
@@ -36,7 +38,7 @@ export function createLocalBusinessSchema() {
       name: "Dallas-Fort Worth Metroplex",
     },
     priceRange: "$$$",
-    sameAs: [],
+    sameAs: siteConfig.socialLinks.map((social) => social.href),
   };
 }
 

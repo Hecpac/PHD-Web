@@ -1,9 +1,38 @@
-export const siteConfig = {
-  name: "DFW Modern Design-Build",
-  shortName: "DFW Design-Build",
+export type SocialLink = {
+  label: string;
+  href: string;
+};
+
+type SiteConfig = {
+  name: string;
+  shortName: string;
+  description: string;
+  serviceArea: string;
+  contactEmail: string;
+  socialLinks: readonly SocialLink[];
+};
+
+export const siteConfig: SiteConfig = {
+  name: "Premium Home Design",
+  shortName: "PHD",
   description:
-    "Custom modern homes in Dallas-Fort Worth with an architecture-first, design-build process.",
+    "Build your dream custom home in DFW with our design-build approach. Architecture + construction under one roof. Licensed since 2016.",
   serviceArea: "Dallas-Fort Worth Metroplex",
+  contactEmail: "Info@phomedesign.us",
+  socialLinks: [
+    {
+      label: "TikTok",
+      href: "https://www.tiktok.com/@premiumhomedesign",
+    },
+    {
+      label: "Facebook",
+      href: "https://www.facebook.com/homedesign.premium/",
+    },
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/premium.homedesign",
+    },
+  ] as const,
 };
 
 export type NavItem = {
@@ -34,9 +63,8 @@ export const siteNavigation: readonly NavItem[] = [
 ] as const;
 
 const DEFAULT_SITE_URL = "http://localhost:3000";
-const DEFAULT_SCHEDULE_URL =
-  "https://cal.com/dfw-modern-design-build/consultation";
-const DEFAULT_PHONE_E164 = "+14695550101";
+const DEFAULT_SCHEDULE_URL = "https://www.premiumhome.design/contact";
+const DEFAULT_PHONE_E164 = "+19726036794";
 
 export function getSiteUrl(): string {
   const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();

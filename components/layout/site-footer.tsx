@@ -73,6 +73,28 @@ export function SiteFooter() {
                 Schedule Consultation
               </CtaLink>
             </div>
+
+            <div className="space-y-2 pt-1">
+              <a
+                href={`mailto:${siteConfig.contactEmail}`}
+                className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
+              >
+                {siteConfig.contactEmail}
+              </a>
+              <div className="flex flex-wrap gap-x-4 gap-y-2">
+                {siteConfig.socialLinks.map((social) => (
+                  <a
+                    key={social.href}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
+                  >
+                    {social.label}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:col-span-7">
