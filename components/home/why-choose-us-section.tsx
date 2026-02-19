@@ -66,7 +66,7 @@ const differentiators = [
     ),
     title: "DFW Market Fluency",
     description:
-      "We know Dallas\u2013Fort Worth down to the soil reports. Expansive clay conditions, municipality-specific permitting timelines, HOA design review boards\u2014our local expertise keeps your project moving without avoidable delays.",
+      "We know Dallas–Fort Worth down to the soil reports. Expansive clay conditions, municipality-specific permitting timelines, HOA design review boards—our local expertise keeps your project moving without avoidable delays.",
   },
   {
     id: "transparent-process",
@@ -108,7 +108,7 @@ const differentiators = [
     ),
     title: "Open-Book Transparency",
     description:
-      "Every line item, allowance, and change order is visible to you in real time. Our open-book budgeting and documented decision gates mean you approve costs before they're committed\u2014never after.",
+      "Every line item, allowance, and change order is visible to you in real time. Our open-book budgeting and documented decision gates mean you approve costs before they're committed—never after.",
   },
   {
     id: "quality-craftsmanship",
@@ -156,7 +156,7 @@ const differentiators = [
     ),
     title: "Client-Driven Scope",
     description:
-      "Your priorities\u2014not ours\u2014define the project. We listen before we draw, confirm before we build, and adapt when your needs evolve. Every decision is yours to make with clear data behind it.",
+      "Your priorities—not ours—define the project. We listen before we draw, confirm before we build, and adapt when your needs evolve. Every decision is yours to make with clear data behind it.",
   },
   {
     id: "documented-decisions",
@@ -208,6 +208,17 @@ const differentiators = [
     description:
       "Every approval, specification, and change order is recorded and accessible. A complete paper trail protects your investment and ensures nothing agreed upon gets lost between design and construction.",
   },
+];
+
+const marqueeHighlights = [
+  "Architect-Led Planning",
+  "Open-Book Budgeting",
+  "Decision Gates",
+  "DFW Permit Fluency",
+  "Milestone QA",
+  "Trade Partner Network",
+  "Client-Driven Scope",
+  "Schedule Discipline",
 ];
 
 /* ── Component ───────────────────────────────────────── */
@@ -318,23 +329,25 @@ export function WhyChooseUsSection() {
           <SectionHeading
             titleId={HEADING_ID}
             eyebrow="Why Choose Us"
-            title="Dallas\u2013Fort Worth\u2019s architecture-first builder"
-            description="Design and construction under one roof, backed by deep local knowledge. Here\u2019s what sets our Dallas\u2013Fort Worth custom home process apart."
+            title="Dallas–Fort Worth’s architecture-first builder"
+            description="Design and construction under one roof, backed by deep local knowledge. Here’s what sets our Dallas–Fort Worth custom home process apart."
             className="[&_h2]:scroll-mt-24"
           />
         </div>
 
-        {/* Marquee rails (decorative, non-text to avoid contrast noise) */}
+        {/* Marquee highlights */}
         <div className="overflow-hidden" aria-hidden="true">
           <div
             ref={marqueeRef}
             className="flex whitespace-nowrap will-change-transform motion-safe:animate-[swiss-marquee_17s_linear_infinite] sm:motion-safe:animate-[swiss-marquee_20s_linear_infinite] lg:motion-safe:animate-[swiss-marquee_24s_linear_infinite] motion-safe:hover:[animation-play-state:paused]"
           >
-            {Array.from({ length: 14 }).map((_, i) => (
+            {marqueeHighlights.map((item) => (
               <span
-                key={i}
-                className="mr-4 shrink-0 h-[8vw] w-[17vw] min-h-12 min-w-28 max-h-24 max-w-64 border-y border-ink/10 bg-gradient-to-r from-ink/[0.01] via-ink/[0.05] to-ink/[0.01]"
-              />
+                key={item}
+                className="mr-4 inline-flex min-h-10 shrink-0 items-center rounded-full border border-line/80 bg-canvas/80 px-4 text-[0.68rem] font-mono uppercase tracking-[0.08em] text-ink/80"
+              >
+                {item}
+              </span>
             ))}
           </div>
         </div>
