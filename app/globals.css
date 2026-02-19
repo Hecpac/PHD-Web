@@ -63,6 +63,7 @@ body {
 /* Improve text rendering across browsers */
 html {
   font-size: 1rem;
+  touch-action: manipulation;
 }
 
 @media screen and (max-width: 1200px) {
@@ -82,7 +83,7 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: 1rem;
-  line-height: 1.55;
+  line-height: 1.5;
   font-weight: 400;
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
@@ -96,12 +97,19 @@ body.custom-cursor-enabled * {
   cursor: none !important;
 }
 
-@media (pointer: coarse) {
-
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
   body.custom-cursor-enabled,
   body.custom-cursor-enabled * {
     cursor: auto !important;
   }
+}
+
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+[id] {
+  scroll-margin-top: 6rem;
 }
 
 /* Swiss typography: bold headings, tight tracking */

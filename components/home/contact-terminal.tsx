@@ -237,7 +237,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   inputMode="tel"
                   enterKeyHint="next"
                   className={inputClass}
-                  placeholder="(469) 555-0101"
+                  placeholder="(469) 555-0101…"
                 />
               </label>
 

@@ -163,7 +163,7 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
-            className="fixed inset-0 z-[60] bg-ink/30 px-3 pb-3 pt-[5.25rem] backdrop-blur-[2px]"
+            className="fixed inset-0 z-[60] overscroll-contain bg-ink/30 px-3 pb-3 pt-[5.25rem] backdrop-blur-[2px]"
             variants={prefersReduced ? undefined : overlayVariants}
             initial={prefersReduced ? undefined : "hidden"}
             animate={prefersReduced ? undefined : "visible"}

@@ -56,6 +56,8 @@ function DesktopDragSlider({ reviews }: { reviews: Review[] }) {
   const [cardWidth, setCardWidth] = React.useState(400);
 
   React.useEffect(() => {
+    let rafId: number | null = null;
+
     function measure() {
       if (!containerRef.current) return;
       const firstCard = containerRef.current.querySelector<HTMLElement>("[data-drag-card]");
@@ -63,9 +65,23 @@ function DesktopDragSlider({ reviews }: { reviews: Review[] }) {
         setCardWidth(firstCard.offsetWidth + 24); // card width + gap
       }
     }
+
+    function handleResize() {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+      rafId = requestAnimationFrame(measure);
+    }
+
     measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+    };
   }, []);
 
   return (
