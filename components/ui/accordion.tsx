@@ -8,6 +8,7 @@ import { Magnetic } from "@/components/ui/magnetic";
 import { cn } from "@/lib/utils";
 
 type AccordionItemProps = {
+    id: string;
     title: string;
     children: ReactNode;
     isOpen: boolean;
@@ -16,6 +17,7 @@ type AccordionItemProps = {
 };
 
 export function AccordionItem({
+    id,
     title,
     children,
     isOpen,
@@ -23,6 +25,7 @@ export function AccordionItem({
     className,
 }: AccordionItemProps) {
     const shouldReduceMotion = useReducedMotion();
+    const panelId = `panel-${id}`;
 
     return (
         <div className={cn("border-b border-line last:border-0", className)}>
@@ -31,6 +34,7 @@ export function AccordionItem({
                 onClick={onToggle}
                 className="flex w-full items-center justify-between py-6 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 aria-expanded={isOpen}
+                aria-controls={panelId}
             >
                 <span className="text-lg font-bold leading-tight text-ink md:text-xl">{title}</span>
                 <Magnetic strength={0.3}>
@@ -39,13 +43,14 @@ export function AccordionItem({
                         transition={{ duration: 0.5, ease: [0.87, 0, 0.13, 1] }}
                         className="ml-4 flex h-6 w-6 shrink-0 items-center justify-center text-accent"
                     >
-                        <Plus className="h-5 w-5" />
+                        <Plus className="h-5 w-5" aria-hidden="true" />
                     </motion.span>
                 </Magnetic>
             </button>
             <AnimatePresence initial={false}>
                 {isOpen && (
                     <motion.div
+                        id={panelId}
                         initial={shouldReduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
                         animate={
                             shouldReduceMotion
@@ -82,6 +87,7 @@ export function Accordion({ items, className }: AccordionProps) {
             {items.map((item) => (
                 <AccordionItem
                     key={item.id}
+                    id={item.id}
                     title={item.title}
                     isOpen={openId === item.id}
                     onToggle={() => setOpenId(openId === item.id ? null : item.id)}

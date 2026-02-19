@@ -1,0 +1,17 @@
+{
+  "root": "/Users/hector/Projects/PHD/Wix (1)",
+  "generated_at": "2026-02-16T21:12:34",
+  "projects": 29,
+  "total_files": 1658,
+  "total_media_files": 1655,
+  "total_image_files": 1521,
+  "total_video_files": 134,
+  "total_size_gb": 18.14,
+  "duplicate_groups": 58,
+  "duplicate_files_extra": 59,
+  "duplicate_files_moved": 59,
+  "shortlist_entries": 219,
+  "shortlist_csv": "/Users/hector/Projects/PHD/reports/wix_audit/shortlist.csv",
+  "project_summary_csv": "/Users/hector/Projects/PHD/reports/wix_audit/project_summary.csv",
+  "duplicates_manifest_csv": "/Users/hector/Projects/PHD/reports/wix_audit/duplicates_manifest.csv"
+}

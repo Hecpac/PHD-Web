@@ -5,6 +5,7 @@ import { BackToTop } from "@/components/layout/back-to-top";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
+
 import { CadMode } from "@/components/ui/cad-mode";
 import { ConsoleBrand } from "@/components/ui/console-brand";
 import { CustomCursor } from "@/components/ui/custom-cursor";
@@ -79,6 +80,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@PHDhomes",
+    creator: "@PHDhomes",
     title: `${siteConfig.name} | Custom Homes in Dallas-Fort Worth`,
     description: siteConfig.description,
     images: ["/og-default.jpg"],
@@ -93,6 +96,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="theme-color" content="#ffffff" />
         <script
           dangerouslySetInnerHTML={{
             __html: `(() => {

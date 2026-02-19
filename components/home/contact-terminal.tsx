@@ -259,7 +259,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                     aria-label="Submit project brief"
                     className="inline-flex w-full min-h-12 items-center justify-center rounded-lg border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent shadow-[0_10px_20px_rgb(0_0_0/0.18)] transition-colors duration-150 hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isPending ? "Submitting..." : "Submit Brief"}
+                    {isPending ? "Submitting…" : "Send Project Brief"}
                   </button>
                   <p className="text-xs text-muted">
                     No spam. No off-market outreach. DFW project inquiries only.

@@ -18,7 +18,8 @@
   /* Swiss Grid System (PHD baseline) */
   --grid-columns: 12;
   --grid-gutter: 24px;
-  --grid-margin: 48px; /* Canon-inspired margin tuned for current rhythm */
+  --grid-margin: 48px;
+  /* Canon-inspired margin tuned for current rhythm */
 
   /* Spacing scale (multiples of 8) */
   --space-1: 8px;
@@ -106,6 +107,7 @@ body.custom-cursor-enabled * {
 }
 
 @media (pointer: coarse) {
+
   body.custom-cursor-enabled,
   body.custom-cursor-enabled * {
     cursor: auto !important;
@@ -113,7 +115,12 @@ body.custom-cursor-enabled * {
 }
 
 /* Swiss typography: bold headings, tight tracking */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
@@ -138,6 +145,15 @@ select {
 }
 
 /* ── Swiss Grid & Layout ───────────────────── */
+
+/* Ensure header stays on top if we move it out */
+.fixed-header-shell {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
 
 .container-swiss {
   width: 100%;
@@ -255,6 +271,7 @@ button {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -266,25 +283,26 @@ button {
   position: relative;
   overflow: hidden;
 }
+
 .cta-primary-fill::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--color-accent), white 8%) 0%,
-    color-mix(in oklab, var(--color-accent), black 26%) 100%
-  );
+  background: linear-gradient(180deg,
+      color-mix(in oklab, var(--color-accent), white 8%) 0%,
+      color-mix(in oklab, var(--color-accent), black 26%) 100%);
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform var(--dur-slow) var(--ease-lux);
   z-index: 0;
 }
+
 .cta-primary-fill:hover::before {
   transform: scaleY(1);
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

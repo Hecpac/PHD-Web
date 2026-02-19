@@ -38,12 +38,6 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: `${post.title} | DFW Custom Home Blog`,
     description: post.excerpt,
-    keywords: [
-      post.category.toLowerCase(),
-      "custom home Dallas-Fort Worth",
-      "DFW design-build",
-      ...(post.tags ?? []),
-    ],
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -52,7 +46,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       publishedTime: post.date,
       authors: [post.author],
       ...(post.coverImage?.src && {
-        images: [{ url: post.coverImage.src, alt: post.coverImage.alt }],
+        images: [{ url: post.coverImage.src, alt: post.coverImage.alt, width: 1200, height: 630 }],
       }),
     },
     other: {

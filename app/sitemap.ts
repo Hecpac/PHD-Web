@@ -24,7 +24,8 @@ const staticRoutes: StaticRoute[] = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = getSiteUrl();
-  const lastModified = new Date().toISOString();
+  // Fixed lastModified for static pages to avoid unnecessary crawl churn
+  const lastModified = "2026-02-18";
   const [projects, blogPosts] = await Promise.all([
     getProjects(),
     getBlogPosts(),
