@@ -1,5 +1,8 @@
 "use server";
 
+import { headers } from "next/headers";
+
+import { checkRateLimit } from "@/lib/rate-limit";
 import { isDfwCity } from "@/lib/types/content";
 
 type ContactFormErrors = Partial<{
@@ -111,6 +114,26 @@ export async function submitContactForm(
   _prevState: ContactFormState,
   formData: FormData
 ): Promise<ContactFormState> {
+  // Rate limit: 5 submissions per 10 minutes per IP (per warm instance).
+  // Fails open if headers() is unavailable.
+  try {
+    const headersList = await headers();
+    const ip =
+      headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+      headersList.get("x-real-ip") ??
+      "anonymous";
+    const rl = checkRateLimit(`contact:${ip}`);
+    if (!rl.allowed) {
+      return {
+        success: false,
+        message: "Too many submissions. Please wait a few minutes and try again.",
+        errors: {},
+      };
+    }
+  } catch {
+    // Fail open — don't block legitimate users due to a headers() error
+  }
+
   const fields = {
     name: getString(formData, "name"),
     email: getString(formData, "email"),

@@ -11,6 +11,13 @@ vi.mock("node:path", () => ({
   dirname: (p: string) => p.replace(/\/[^/]+$/, "") || "/",
 }));
 
+// next/headers is unavailable outside the Next.js runtime; mock it for tests.
+vi.mock("next/headers", () => ({
+  headers: vi.fn().mockResolvedValue({
+    get: vi.fn().mockReturnValue("127.0.0.1"),
+  }),
+}));
+
 // Import after mocks are registered
 import { submitContactForm, type ContactFormState } from "./contact";
 import * as fsPromises from "node:fs/promises";
