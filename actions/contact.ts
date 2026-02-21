@@ -135,14 +135,42 @@ export async function submitContactForm(
     source: "website-contact-form",
   };
 
+  const webhookUrl = process.env.CONTACT_WEBHOOK_URL?.trim();
+
+  // Guard: in production, a missing webhook is a misconfiguration — fail explicitly.
+  // Persisting to /tmp is ephemeral on serverless and must never run in production.
+  if (process.env.NODE_ENV === "production" && !webhookUrl) {
+    console.error(
+      JSON.stringify({
+        level: "error",
+        event: "contact_delivery_misconfigured",
+        message: "CONTACT_WEBHOOK_URL is not set in the production environment",
+        timestamp: new Date().toISOString(),
+      })
+    );
+    return {
+      success: false,
+      message: "We couldn't submit your brief right now. Please try again or call us directly.",
+      errors: {},
+    };
+  }
+
   try {
-    if (process.env.CONTACT_WEBHOOK_URL?.trim()) {
+    if (webhookUrl) {
       await postToWebhook(payload);
     } else {
+      // dev / test only — /tmp is ephemeral and unsuitable for production
       await persistLeadLocally(payload);
     }
   } catch (error) {
-    console.error("contact_form_delivery_failed", error);
+    console.error(
+      JSON.stringify({
+        level: "error",
+        event: "contact_delivery_failed",
+        error: error instanceof Error ? error.message : String(error),
+        timestamp: new Date().toISOString(),
+      })
+    );
     return {
       success: false,
       message: "We couldn't submit your brief right now. Please try again or call us directly.",
