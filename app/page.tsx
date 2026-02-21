@@ -56,33 +56,36 @@ export default async function HomePage() {
     <>
       <HeroSection heroImage={heroData.heroImage} />
       <HeroRenderSection />
-      <LedgerSection services={services} />
-      <HowWeWorkSection />
-      <BlueprintSection steps={processSteps} />
+      
+      <div className="relative z-50 bg-canvas">
+        <LedgerSection services={services} />
+        <HowWeWorkSection />
+        <BlueprintSection steps={processSteps} />
 
-      <div className="content-auto">
-        <FeaturedProjectsSection projects={featuredProjects} />
-      </div>
-      <div className="content-auto">
-        <BentoSection />
-      </div>
-      <div className="content-auto">
-        <DfwSection />
-      </div>
-      <div className="content-auto">
-        <TrustSection />
-      </div>
-      <div className="content-auto">
-        <WhyChooseUsSection />
-      </div>
-      <div className="content-auto">
-        <TestimonialsSection reviews={reviews} />
-      </div>
-      <div className="content-auto">
-        <FaqSection faqs={faqs} />
-      </div>
-      <div className="content-auto">
-        <ContactTerminal />
+        <div className="content-auto">
+          <FeaturedProjectsSection projects={featuredProjects} />
+        </div>
+        <div className="content-auto">
+          <BentoSection />
+        </div>
+        <div className="content-auto">
+          <DfwSection />
+        </div>
+        <div className="content-auto">
+          <TrustSection />
+        </div>
+        <div className="content-auto">
+          <WhyChooseUsSection />
+        </div>
+        <div className="content-auto">
+          <TestimonialsSection reviews={reviews} />
+        </div>
+        <div className="content-auto">
+          <FaqSection faqs={faqs} />
+        </div>
+        <div className="content-auto">
+          <ContactTerminal />
+        </div>
       </div>
     </>
   );

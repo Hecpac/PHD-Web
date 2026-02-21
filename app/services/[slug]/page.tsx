@@ -79,7 +79,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <div className="grid gap-8 md:grid-cols-2">
             {/* Deliverables */}
             <div className="border border-line bg-surface p-6">
-              <h3 className="type-heading mb-4">Deliverables</h3>
+              <h3 className="type-h3-standard mb-4">Deliverables</h3>
               <ul className="space-y-3">
                 {service.deliverables.map((item) => (
                   <li key={item} className="flex gap-3 text-sm leading-6 text-muted">
@@ -95,7 +95,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
             {/* Benefits */}
             <div className="border border-line bg-surface p-6">
-              <h3 className="type-heading mb-4">Why It Matters</h3>
+              <h3 className="type-h3-standard mb-4">Why It Matters</h3>
               <ul className="space-y-3">
                 {service.benefits.map((item) => (
                   <li key={item} className="flex gap-3 text-sm leading-6 text-muted">

@@ -85,11 +85,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <JsonLd data={createProjectSchema(project)} />
       <ProjectViewTracker slug={project.slug} />
       <Container swiss className="space-y-8">
-        <header className="space-y-4">
+        <hgroup className="space-y-4">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{project.location.display}</p>
           <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">{project.title}</h1>
           <p className="text-reading text-base leading-7 text-muted">{project.summary}</p>
-        </header>
+        </hgroup>
 
         <div className="grid gap-5 lg:grid-cols-12">
           <div className="lg:col-span-8">

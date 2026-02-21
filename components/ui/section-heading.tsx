@@ -21,18 +21,26 @@ export function SectionHeading({
   as: Heading = "h2",
 }: SectionHeadingProps) {
   return (
-    <header className={cn("space-y-4", className)}>
+    <hgroup className={cn("flex flex-col", className)}>
       {eyebrow ? (
-        <span className="block type-mono-label text-muted">{eyebrow}</span>
+        <span className="mb-4 block type-mono-label text-muted md:mb-5">
+          {eyebrow}
+        </span>
       ) : null}
-      <Heading id={titleId} className="type-display max-w-4xl">
+      <Heading
+        id={titleId}
+        className={cn(
+          "type-display max-w-4xl",
+          description ? "mb-5 md:mb-8" : ""
+        )}
+      >
         <SwissTextReveal mode="word" as="span" noInitialHide>
           {title}
         </SwissTextReveal>
       </Heading>
       {description ? (
-        <p className="type-subhead max-w-3xl text-muted">{description}</p>
+        <p className="type-subhead max-w-prose text-muted">{description}</p>
       ) : null}
-    </header>
+    </hgroup>
   );
 }

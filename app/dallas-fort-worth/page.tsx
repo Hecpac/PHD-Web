@@ -120,7 +120,7 @@ export default function DallasFortWorthPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {whyDfwOnly.map((item) => (
               <article key={item.title} className="border border-line bg-surface p-6">
-                <h3 className="text-base font-bold text-ink">{item.title}</h3>
+                <h3 className="type-h3-compact text-ink">{item.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted">{item.description}</p>
               </article>
             ))}

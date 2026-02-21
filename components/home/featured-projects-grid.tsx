@@ -168,7 +168,7 @@ export function FeaturedProjectsGrid({ projects, prioritizeFirst = false, onApiC
       >
         <div
           ref={trackRef}
-          className="ml-[4vw] flex touch-pan-y gap-6 pr-[4vw] sm:ml-[6vw] sm:gap-7 sm:pr-[6vw] md:ml-[8vw] md:gap-8 md:pr-[8vw] lg:ml-[10vw] lg:pr-[10vw]"
+          className="ml-[4vw] flex touch-pan-y gap-6 pr-[4vw] sm:ml-[6vw] sm:gap-8 sm:pr-[6vw] md:ml-[8vw] md:gap-8 md:pr-[8vw] lg:ml-[10vw] lg:pr-[10vw]"
           aria-live="polite"
         >
           {projects.map((project, index) => {
@@ -181,21 +181,22 @@ export function FeaturedProjectsGrid({ projects, prioritizeFirst = false, onApiC
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`Slide ${index + 1} of ${projects.length}: ${project.title}`}
-                className="group min-w-0 flex-[0_0_92vw] overflow-hidden rounded-lg border border-line bg-surface sm:flex-[0_0_88vw] md:flex-[0_0_84vw] lg:flex-[0_0_74vw] xl:flex-[0_0_68vw] 2xl:flex-[0_0_65vw] motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[0_22px_40px_-32px_rgba(15,15,15,0.85)]"
+                className="group min-w-0 flex-[0_0_90vw] overflow-hidden rounded-xl border border-line bg-surface sm:flex-[0_0_75vw] md:flex-[0_0_60vw] lg:flex-[0_0_45vw] xl:flex-[0_0_40vw] motion-safe:transition-all motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[0_22px_40px_-32px_rgba(15,15,15,0.85)]"
               >
-                {/* Image with overlay label + grayscale effect */}
-                <div className="relative aspect-[5/4] overflow-hidden grayscale transition-[filter] duration-[900ms] ease-out group-hover:grayscale-0 sm:aspect-[16/11] md:aspect-[16/10]">
+                {/* Image with overlay label */}
+                <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/11] md:aspect-[16/10]">
+                  <div className="absolute inset-0 bg-ink/5 transition-colors duration-500 group-hover:bg-transparent z-10 pointer-events-none" />
                   <div
                     data-parallax-image
-                    className="absolute inset-0 will-change-transform motion-safe:transition-transform motion-safe:duration-[1200ms] motion-safe:ease-out motion-safe:group-hover:translate-x-1"
+                    className="absolute inset-0 will-change-transform motion-safe:transition-transform motion-safe:duration-[1200ms] motion-safe:ease-out"
                   >
                     <div data-hover-image className="relative h-full w-full will-change-transform">
-                      <div className="relative h-full w-full motion-safe:transition-transform motion-safe:duration-[900ms] motion-safe:ease-out motion-safe:group-hover:scale-[1.025]">
+                      <div className="relative h-full w-full motion-safe:transition-transform motion-safe:duration-[900ms] motion-safe:ease-out motion-safe:group-hover:scale-[1.05]">
                         <Image
                           src={cardImage?.src ?? "/projects/north-dallas-courtyard-residence/hero.jpg"}
                           alt={cardImage?.alt ?? `${project.title} in ${project.location.city}`}
                           fill
-                          sizes="(min-width: 1536px) 65vw, (min-width: 1280px) 68vw, (min-width: 1024px) 74vw, (min-width: 768px) 84vw, (min-width: 640px) 88vw, 92vw"
+                          sizes="(min-width: 1280px) 40vw, (min-width: 1024px) 45vw, (min-width: 768px) 60vw, (min-width: 640px) 75vw, 90vw"
                           className="object-cover"
                           placeholder="blur"
                           blurDataURL={BLUR_PLACEHOLDER}
@@ -218,7 +219,7 @@ export function FeaturedProjectsGrid({ projects, prioritizeFirst = false, onApiC
                 {/* Metadata with hover reveal */}
                 <div className="space-y-4 p-5 opacity-100 transition-[opacity,transform] duration-500 ease-out sm:p-6 md:p-7 md:motion-safe:translate-y-2 md:motion-safe:opacity-70 md:motion-safe:group-hover:translate-y-0 md:motion-safe:group-hover:opacity-100">
                   <div className="space-y-3">
-                    <h3 className="text-xl font-bold md:text-2xl">{project.title}</h3>
+                    <h3 className="type-h3-standard">{project.title}</h3>
                     <p className="font-mono text-sm uppercase tracking-[0.05em] text-muted">
                       {project.style} · {project.year}
                       {project.specs?.sqft ? ` · ${formatSqft(project.specs.sqft)}` : ""}

@@ -100,7 +100,7 @@ export function ImageGridStrip({ projects }: ImageGridStripProps) {
               "radial-gradient(120% 90% at 10% 8%, color-mix(in oklab, var(--color-accent), transparent 87%) 0%, transparent 62%)",
           }}
         />
-        <div className="relative container-swiss flex min-h-[30vh] items-center py-9 sm:min-h-[36vh] sm:py-12">
+        <div className="relative container-swiss flex min-h-[30vh] items-center py-8 sm:min-h-[36vh] sm:py-12">
           <p className="max-w-xl rounded-md border border-line/70 bg-canvas/78 px-4 py-2 text-sm font-medium uppercase tracking-[0.06em] text-ink sm:text-base">
             Featured portfolio from {cityCount} DFW projects.
           </p>

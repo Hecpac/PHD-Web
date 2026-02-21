@@ -136,16 +136,16 @@ export function SwissTextReveal({
         className={cn("inline-block leading-tight", className)}
       >
         <span className="sr-only">{text}</span>
-        <span aria-hidden="true">
+        <span aria-hidden="true" className="animated-heading">
           {words.map((word, i) => (
-            <span
-              key={`${i}-${word}`}
-              className="inline-block overflow-hidden align-top whitespace-nowrap mr-[0.25em]"
-            >
-              <span data-swiss-reveal className="inline-block will-change-transform">
-                {word}
+            <React.Fragment key={`${i}-${word}`}>
+              <span className="inline-block overflow-hidden align-top whitespace-nowrap">
+                <span data-swiss-reveal className="inline-block will-change-transform">
+                  {word}
+                </span>
               </span>
-            </span>
+              {i < words.length - 1 && " "}
+            </React.Fragment>
           ))}
         </span>
       </Tag>

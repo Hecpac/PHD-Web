@@ -39,6 +39,11 @@ export function createLocalBusinessSchema() {
     },
     priceRange: "$$$",
     sameAs: siteConfig.socialLinks.map((social) => social.href),
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: "6",
+    },
   };
 }
 

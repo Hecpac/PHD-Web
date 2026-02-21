@@ -40,7 +40,7 @@ export function BlogArticle({ post }: BlogArticleProps) {
           </ol>
         </nav>
 
-        <header className="space-y-4">
+        <hgroup className="space-y-4">
           <div className="flex flex-wrap items-center gap-3">
             <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
               {post.category}
@@ -55,7 +55,7 @@ export function BlogArticle({ post }: BlogArticleProps) {
             <span aria-hidden>&middot;</span>
             <time dateTime={post.date}>{formattedDate}</time>
           </div>
-        </header>
+        </hgroup>
 
         {post.coverImage && (
           <div className="overflow-hidden rounded-lg">

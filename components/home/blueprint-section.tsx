@@ -1,11 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useReducedMotion, useInView } from "framer-motion";
 
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import type { ProcessStep } from "@/lib/types/content";
 
 type BlueprintSectionProps = {
@@ -17,10 +17,6 @@ type BlueprintSectionProps = {
 };
 
 const springTransition = { type: "spring" as const, stiffness: 70, damping: 18 };
-
-/* ------------------------------------------------------------------ */
-/*  Step Card (shared between horizontal and vertical layouts)        */
-/* ------------------------------------------------------------------ */
 
 function StepCard({
   step,
@@ -40,278 +36,57 @@ function StepCard({
       initial={reduceMotion ? false : { opacity: 0, y: 24 }}
       animate={isInView && !reduceMotion ? { opacity: 1, y: 0 } : undefined}
       transition={{ ...springTransition, delay: index * 0.08 }}
-      className="brand-red-outline brand-red-surface flex h-full min-w-0 flex-col rounded-xl border border-line p-5 sm:p-6"
+      className="h-full min-w-0"
     >
-      {/* Large Swiss number */}
-      <div className="text-7xl font-bold tabular-nums text-accent lg:text-8xl">
-        {String(index + 1).padStart(2, "0")}
-      </div>
-
-      <div className="mt-6 flex flex-1 flex-col space-y-4">
-        <h3 className="text-3xl font-bold text-ink">{step.title}</h3>
-        <p className="text-lg leading-relaxed text-muted">{step.description}</p>
-
-        {/* Deliverables */}
-        {step.deliverables.length > 0 && (
-          <div className="pt-4">
-            <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.05em] text-muted">
-              Deliverables
-            </h4>
-            <ul className="space-y-2">
-              {step.deliverables.map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span className="mt-2 h-1 w-1 shrink-0 bg-accent" aria-hidden="true" />
-                  <span className="leading-relaxed text-ink">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* Decision gate */}
-        {step.decisionGate ? (
-          <p className="mt-auto border-t border-line pt-4 text-sm text-ink">
-            <span className="font-bold">Decision Gate:</span> {step.decisionGate}
-          </p>
-        ) : null}
-      </div>
-    </motion.article>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Horizontal scroll layout (desktop, motion enabled)                */
-/* ------------------------------------------------------------------ */
-
-function HorizontalBlueprint({ steps }: { steps: ProcessStep[] }) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const totalSteps = steps.length;
-  const safeTotalSteps = Math.max(totalSteps, 1);
-
-  useGSAP(() => {
-    if (!sectionRef.current || !contentRef.current) return;
-
-    const panels = gsap.utils.toArray<HTMLElement>(contentRef.current.children);
-    const totalWidth = contentRef.current.scrollWidth - sectionRef.current.offsetWidth;
-    const stepCount = panels.length;
-    const snapPoints =
-      stepCount > 1 ? panels.map((_, i) => i / (stepCount - 1)) : [0];
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        pin: true,
-        scrub: 0.5,
-        end: () => `+=${totalWidth}`,
-        invalidateOnRefresh: true,
-        snap: { snapTo: snapPoints, duration: 0.3, delay: 0 },
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const segmentCount = Math.max(stepCount - 1, 1);
-          const idx = Math.round(progress * segmentCount);
-          setActiveIndex(idx);
-        },
-      },
-    });
-
-    tl.to(contentRef.current, {
-      x: -totalWidth,
-      ease: "none",
-    });
-  }, { scope: sectionRef });
-
-  const scrollToSnap = useCallback((idx: number) => {
-    if (safeTotalSteps <= 1) return;
-    const clamped = Math.max(0, Math.min(idx, totalSteps - 1));
-    const triggers = ScrollTrigger.getAll();
-    const pinTrigger = triggers.find(t => t.vars.trigger === sectionRef.current);
-    if (pinTrigger) {
-      const progress = clamped / (totalSteps - 1);
-      const scrollPos = pinTrigger.start + progress * (pinTrigger.end - pinTrigger.start);
-      window.scrollTo({ top: scrollPos, behavior: "smooth" });
-    }
-  }, [safeTotalSteps, totalSteps]);
-
-  const goPrev = useCallback(() => scrollToSnap(activeIndex - 1), [activeIndex, scrollToSnap]);
-  const goNext = useCallback(() => scrollToSnap(activeIndex + 1), [activeIndex, scrollToSnap]);
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (e.key === "ArrowRight") {
-        e.preventDefault();
-        goNext();
-      } else if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        goPrev();
-      }
-    },
-    [goNext, goPrev],
-  );
-
-  return (
-    <div ref={sectionRef} className="mt-16">
-      {/* Navigation controls */}
-      <div className="mb-6 flex items-center justify-between">
-        <p className="font-mono text-sm text-muted" aria-live="polite" aria-atomic="true">
-          Step {activeIndex + 1} of {totalSteps}
-        </p>
-
-        <div className="flex gap-3" role="group" aria-label="Blueprint navigation">
-          <button
-            type="button"
-            onClick={goPrev}
-            disabled={activeIndex === 0 || safeTotalSteps <= 1}
-            aria-label="Previous step"
-            className="brand-red-outline inline-flex h-[44px] w-[44px] items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-accent/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              aria-hidden="true"
-              className="text-ink"
-            >
-              <path
-                d="M12.5 15L7.5 10L12.5 5"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          <button
-            type="button"
-            onClick={goNext}
-            disabled={activeIndex >= safeTotalSteps - 1}
-            aria-label="Next step"
-            className="brand-red-outline inline-flex h-[44px] w-[44px] items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-accent/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              aria-hidden="true"
-              className="text-ink"
-            >
-              <path
-                d="M7.5 5L12.5 10L7.5 15"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {/* Horizontal content strip (GSAP pin+scrub handles scrolling) */}
-      <div
-        ref={contentRef}
-        role="region"
-        aria-label="Process steps"
-        tabIndex={0}
-        onKeyDown={handleKeyDown}
-        className="flex gap-8 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-      >
-        {steps.map((step, idx) => (
-          <div
-            key={step.id}
-            className="w-[min(85vw,380px)] flex-shrink-0 md:w-[min(60vw,420px)] lg:w-[min(40vw,440px)]"
-            role="group"
-            aria-roledescription="step"
-            aria-label={`Step ${idx + 1}: ${step.title}`}
-          >
-            <StepCard step={step} index={idx} reduceMotion={false} />
-          </div>
-        ))}
-      </div>
-
-      {/* Dot indicators */}
-      <div className="mt-4 flex justify-center gap-1" role="group" aria-label="Process step indicators">
-        {steps.map((step, idx) => (
-          <button
-            key={step.id}
-            type="button"
-            aria-label={`Go to step ${idx + 1}: ${step.title}`}
-            aria-current={idx === activeIndex ? "step" : undefined}
-            onClick={() => scrollToSnap(idx)}
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
-            <span
-              className={`block h-2 w-2 rounded-full transition-[transform,opacity] duration-200 ${
-                idx === activeIndex
-                  ? "scale-x-[3] bg-accent"
-                  : "scale-x-100 bg-accent/25"
-              }`}
-            />
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Vertical fallback (reduced motion / original layout)              */
-/* ------------------------------------------------------------------ */
-
-function VerticalBlueprint({ steps }: { steps: ProcessStep[] }) {
-  return (
-    <div className="mt-16 space-y-24">
-      {steps.map((step, idx) => (
-        <article
-          key={step.id}
-          className="brand-red-outline brand-red-surface grid grid-cols-[auto_1fr] gap-8 rounded-xl border border-line p-5 sm:p-6 lg:gap-16"
-        >
+      <CardContainer containerClassName="h-full" className="w-full h-full">
+        <CardBody className="brand-red-outline brand-red-surface flex h-full w-full flex-col rounded-xl border border-line bg-surface p-6 sm:p-8 shadow-sm hover:shadow-2xl hover:shadow-accent/[0.1] transition-[border-color,box-shadow,transform] duration-300">
           {/* Large Swiss number */}
-          <div className="text-7xl font-bold tabular-nums text-accent lg:text-8xl">
-            {String(idx + 1).padStart(2, "0")}
-          </div>
+          <CardItem translateZ="50" className="w-fit">
+            <div className="text-7xl font-bold tabular-nums text-accent lg:text-8xl drop-shadow-sm">
+              {String(index + 1).padStart(2, "0")}
+            </div>
+          </CardItem>
 
-          {/* Content */}
-          <div className="space-y-4">
-            <h3 className="text-3xl font-bold text-ink">{step.title}</h3>
-            <p className="text-lg leading-relaxed text-muted">
-              {step.description}
-            </p>
+          <div className="mt-8 flex flex-1 flex-col space-y-4">
+            <CardItem translateZ="30">
+              <h3 className="type-h3-display text-ink">{step.title}</h3>
+            </CardItem>
+            
+            <CardItem translateZ="20">
+              <p className="text-base leading-relaxed text-muted sm:text-lg">{step.description}</p>
+            </CardItem>
 
+            {/* Deliverables */}
             {step.deliverables.length > 0 && (
-              <div className="pt-4">
-                <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.05em] text-muted">
+              <CardItem translateZ="25" className="pt-6">
+                <div className="mb-4 font-mono text-[14px] font-semibold uppercase tracking-[0.05em] text-ink">
                   Deliverables
-                </h4>
-                <ul className="space-y-2">
+                </div>
+                <ul className="space-y-3">
                   {step.deliverables.map((item) => (
                     <li key={item} className="flex gap-3">
-                      <span className="mt-2 h-1 w-1 shrink-0 bg-accent" aria-hidden="true" />
-                      <span className="leading-relaxed text-ink">{item}</span>
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
+                      <span className="text-base leading-relaxed text-ink">{item}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </CardItem>
             )}
 
+            {/* Decision gate */}
             {step.decisionGate ? (
-              <p className="border-t border-line pt-4 text-sm text-ink">
-                <span className="font-bold">Decision Gate:</span> {step.decisionGate}
-              </p>
+              <CardItem translateZ="40" className="mt-auto border-t border-line/80 pt-6 text-sm text-ink w-full">
+                <p>
+                  <span className="font-bold text-accent">Decision Gate:</span> {step.decisionGate}
+                </p>
+              </CardItem>
             ) : null}
           </div>
-        </article>
-      ))}
-    </div>
+        </CardBody>
+      </CardContainer>
+    </motion.article>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Main exported component                                           */
-/* ------------------------------------------------------------------ */
 
 export function BlueprintSection({
   steps,
@@ -320,15 +95,6 @@ export function BlueprintSection({
   headingAs,
 }: BlueprintSectionProps) {
   const shouldReduceMotion = useReducedMotion();
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 1024px)");
-    const sync = () => setIsDesktop(mediaQuery.matches);
-    sync();
-    mediaQuery.addEventListener("change", sync);
-    return () => mediaQuery.removeEventListener("change", sync);
-  }, []);
 
   return (
     <section
@@ -347,11 +113,11 @@ export function BlueprintSection({
 
         <h2 className="sr-only">Process steps</h2>
 
-        {shouldReduceMotion || !isDesktop ? (
-          <VerticalBlueprint steps={steps} />
-        ) : (
-          <HorizontalBlueprint steps={steps} />
-        )}
+        <div className="mt-12 grid gap-6 sm:mt-16 sm:gap-8 md:grid-cols-2 xl:grid-cols-4">
+          {steps.map((step, idx) => (
+            <StepCard key={step.id} step={step} index={idx} reduceMotion={!!shouldReduceMotion} />
+          ))}
+        </div>
       </Container>
     </section>
   );

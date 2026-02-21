@@ -2,7 +2,7 @@ export function HeroRenderSection() {
   return (
     <section
       aria-label="Render 3D"
-      className="relative z-40 -mt-[14vh] w-full overflow-hidden border-y border-line bg-black md:-mt-[24vh] lg:-mt-[48vh]"
+      className="relative z-40 w-full overflow-hidden border-y border-line bg-black"
     >
       <div className="relative h-[58vh] min-h-[340px] w-full sm:h-[62vh] md:h-[66vh] lg:h-[72vh]">
         <video
@@ -19,7 +19,7 @@ export function HeroRenderSection() {
           Your browser does not support HTML5 video.
         </video>
 
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-canvas/80 via-canvas/30 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-canvas via-canvas/40 to-transparent" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/28 via-transparent to-black/10" />
       </div>
     </section>

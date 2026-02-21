@@ -75,26 +75,20 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           },
         });
 
-        // Base depth parallax (always on desktop): image and foreground move at different speeds.
+        // Base depth parallax: image fades and scales, content stays pinned while video slides over
         tl.to(imageRef.current, {
-          y: "-30%",
-          scale: 1.12,
+          scale: 1.05,
+          opacity: 0,
           duration: 1,
           ease: "none",
+          force3D: true,
         }, 0);
 
         tl.to(contentRef.current, {
-          y: "-5%",
-          opacity: 0.88,
+          opacity: 0.1, // Fade content slowly so it doesn't distract
           duration: 1,
-          ease: "none",
-        }, 0);
-
-        // H1 moves faster than the rest of hero content for deeper parallax.
-        tl.to(titleRef.current, {
-          y: -80,
-          duration: 1,
-          ease: "none",
+          ease: "power2.inOut",
+          force3D: true,
         }, 0);
 
         if (!hasGallery) {
@@ -109,27 +103,31 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           scaleY: 1,
           duration: 0.6,
           ease: "power2.inOut",
+          force3D: true,
         }, 0);
 
         tl.to(titleRef.current, {
           opacity: 0,
-          y: -40,
+          y: -120,
           duration: 0.4,
           ease: "power1.in",
+          force3D: true,
         }, 0);
 
         tl.to(contentRef.current, {
           opacity: 0,
-          y: "-8%",
+          yPercent: -8,
           duration: 0.55,
           ease: "none",
+          force3D: true,
         }, 0.05);
 
         tl.to(imageRef.current, {
-          y: "-15%",
+          yPercent: -15,
           scale: 1.08,
           duration: 1,
           ease: "none",
+          force3D: true,
         }, 0);
 
         if (galleryRef.current) {
@@ -154,7 +152,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
       ref={heroRef}
       id="hero"
       aria-label="Hero — DFW custom home builder"
-      className={`relative z-0 ${hasGallery ? "min-h-[120vh] lg:min-h-[150vh]" : "min-h-[115vh]"}`}
+      className="sticky top-0 z-0 h-screen w-full overflow-hidden"
     >
       {/* Overscroll easter egg — visible on rubber-band pull-down */}
       <div
@@ -168,7 +166,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         </div>
       </div>
 
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="relative h-full w-full">
         {/* ── Top bar (animated) ── */}
         {hasGallery ? (
           <div
@@ -180,7 +178,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         ) : null}
 
         {/* ── Full-width hero image with GSAP parallax ── */}
-        <div ref={imageRef} className="absolute inset-0">
+        <div ref={imageRef} className="absolute inset-0 will-change-transform">
           <div className="relative h-full w-full">
             <Image
               src={heroImage?.src ?? "/projects/north-dallas-courtyard-residence/hero.jpg"}
@@ -199,9 +197,9 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
 
         {/* ── Content overlay — flush left, bottom aligned ── */}
         <Container swiss className="relative z-10">
-          <div ref={contentRef} className="flex h-screen items-start pt-[18vh]">
-            <div className="max-w-3xl space-y-5 sm:space-y-6">
-              <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
+          <div ref={contentRef} className="flex h-screen items-start pt-[12vh] md:pt-[14vh] pb-12 will-change-transform">
+            <div className="max-w-4xl flex flex-col">
+              <p className="mb-6 block font-mono text-xs uppercase tracking-[0.1em] text-muted md:mb-8">
                 <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.04}>
                   DFW Modern Design-Build
                 </SwissTextReveal>
@@ -209,20 +207,20 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
 
               <h1
                 ref={titleRef}
-                className="type-hero text-ink"
+                className="mb-8 type-hero text-ink tracking-tighter max-w-[18ch] sm:max-w-none md:mb-10 will-change-transform"
               >
                 <SwissTextReveal as="span" mode="line" stagger={0.12} delay={0.14}>
                   {"Architectural custom homes,\ndelivered with builder-grade control."}
                 </SwissTextReveal>
               </h1>
 
-              <p className="max-w-2xl text-base leading-relaxed tracking-normal text-ink/92 sm:text-lg">
+              <p className="mb-10 max-w-prose text-base leading-[1.4] tracking-normal text-ink/92 sm:text-lg md:mb-12">
                 <SwissTextReveal as="span" mode="line" stagger={0.1} delay={0.34}>
                   {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth.\nEvery phase is tied to clear deliverables and decision gates."}
                 </SwissTextReveal>
               </p>
 
-              <ul className="flex flex-wrap gap-2" aria-label="Key proof points">
+              <ul className="mb-12 flex flex-wrap gap-3" aria-label="Key proof points">
                 {[
                   "DFW-only operating model",
                   "60+ custom homes delivered",
@@ -230,7 +228,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                 ].map((proof) => (
                   <li
                     key={proof}
-                    className="rounded-sm border border-line/80 bg-canvas/70 px-2.5 py-1 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-ink/88"
+                    className="rounded-sm border border-line/80 bg-canvas/70 px-3 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-ink/88 md:px-4 md:py-2 md:text-xs"
                   >
                     {proof}
                   </li>
@@ -239,7 +237,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
 
               <div
                 ref={ctaGroupRef}
-                className="flex flex-col gap-2.5 rounded-lg border border-line/45 bg-canvas/45 p-2.5 sm:flex-row sm:items-center sm:gap-3 sm:border-0 sm:bg-transparent sm:p-0"
+                className="flex flex-col gap-3 rounded-xl border border-line/45 bg-canvas/45 p-3 sm:flex-row sm:items-center sm:gap-4 sm:border-0 sm:bg-transparent sm:p-0"
                 role="group"
                 aria-label="Call to action"
               >

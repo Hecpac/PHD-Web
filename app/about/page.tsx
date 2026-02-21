@@ -126,7 +126,7 @@ export default function AboutPage() {
             {differentiators.map((item) => (
               <div key={item.label} className="space-y-2">
                 <p className="text-5xl font-bold tabular-nums text-accent">{item.stat}</p>
-                <h3 className="text-base font-bold text-ink">{item.label}</h3>
+                <h3 className="type-h3-compact text-ink">{item.label}</h3>
                 <p className="text-sm leading-6 text-muted">{item.detail}</p>
               </div>
             ))}
@@ -145,7 +145,7 @@ export default function AboutPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {values.map((value) => (
               <article key={value.title} className="border border-line bg-surface p-6">
-                <h3 className="text-base font-bold text-ink">{value.title}</h3>
+                <h3 className="type-h3-compact text-ink">{value.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted">{value.description}</p>
               </article>
             ))}

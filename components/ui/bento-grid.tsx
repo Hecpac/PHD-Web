@@ -72,7 +72,7 @@ function BentoCell({ item }: { item: BentoItem }) {
   return (
     <article
       className={cn(
-        "bento-cell flex flex-col justify-end p-5 sm:p-6",
+        "bento-cell flex flex-col justify-end p-6 sm:p-8 md:p-10",
         minHeightClasses[span],
         spanClasses[span],
         variantClasses[variant],
@@ -123,7 +123,7 @@ function BentoCell({ item }: { item: BentoItem }) {
           </div>
         ) : null}
 
-        <h3 className="type-heading">{item.title}</h3>
+        <h3 className="type-h3-standard">{item.title}</h3>
 
         {item.description ? (
           <p

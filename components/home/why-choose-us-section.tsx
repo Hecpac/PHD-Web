@@ -4,7 +4,6 @@ import { useRef } from "react";
 
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { SwissCard } from "@/components/ui/swiss-card";
 import { SwissBeam } from "@/components/ui/swiss-beam";
 import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
 import { createStaggerReveal } from "@/lib/gsap/scroll-animations";
@@ -22,7 +21,7 @@ const differentiators = [
         viewBox="0 0 28 28"
         fill="none"
         aria-hidden="true"
-        className="text-accent"
+        className="text-accent transition-[transform,color] duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:text-white"
       >
         <path
           d="M4 24L14 4l10 20H4z"
@@ -53,7 +52,7 @@ const differentiators = [
         viewBox="0 0 28 28"
         fill="none"
         aria-hidden="true"
-        className="text-accent"
+        className="text-accent transition-[transform,color] duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:text-white"
       >
         <circle cx="14" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" />
         <path
@@ -77,7 +76,7 @@ const differentiators = [
         viewBox="0 0 28 28"
         fill="none"
         aria-hidden="true"
-        className="text-accent"
+        className="text-accent transition-[transform,color] duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:text-white"
       >
         <rect
           x="4"
@@ -119,7 +118,7 @@ const differentiators = [
         viewBox="0 0 28 28"
         fill="none"
         aria-hidden="true"
-        className="text-accent"
+        className="text-accent transition-[transform,color] duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:text-white"
       >
         <path
           d="M6 22l4-8 4 4 4-10 4 14"
@@ -143,7 +142,7 @@ const differentiators = [
         viewBox="0 0 28 28"
         fill="none"
         aria-hidden="true"
-        className="text-accent"
+        className="text-accent transition-[transform,color] duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:text-white"
       >
         <circle cx="14" cy="10" r="5" stroke="currentColor" strokeWidth="1.5" />
         <path
@@ -167,7 +166,7 @@ const differentiators = [
         viewBox="0 0 28 28"
         fill="none"
         aria-hidden="true"
-        className="text-accent"
+        className="text-accent transition-[transform,color] duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:text-white"
       >
         <rect
           x="6"
@@ -344,7 +343,7 @@ export function WhyChooseUsSection() {
             {marqueeHighlights.map((item) => (
               <span
                 key={item}
-                className="mr-4 inline-flex min-h-10 shrink-0 items-center rounded-full border border-line/80 bg-canvas/80 px-4 text-[0.68rem] font-mono uppercase tracking-[0.08em] text-ink/80"
+                className="mr-4 inline-flex min-h-10 shrink-0 items-center rounded-full bg-canvas/80 px-4 text-[0.68rem] font-mono uppercase tracking-[0.08em] text-ink/80 pointer-events-none select-none"
               >
                 {item}
               </span>
@@ -357,10 +356,18 @@ export function WhyChooseUsSection() {
 
         <div ref={gridRef} className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {differentiators.map((item) => (
-            <SwissCard key={item.id} spotlight className="why-card brand-red-outline brand-red-surface">
-              <article aria-labelledby={`why-card-title-${item.id}`}>
+            <article
+              key={item.id}
+              aria-labelledby={`why-card-title-${item.id}`}
+              className="why-card relative overflow-hidden group flex min-h-[clamp(18rem,34vw,24rem)] flex-col rounded-xl border border-line bg-surface p-6 sm:p-8 md:p-10 transition-[border-color,box-shadow,transform] duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(203,33,49,0.3)] hover:border-accent"
+            >
+              {/* Luxurious animated red background */}
+              <div className="absolute inset-0 bg-accent opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 pointer-events-none z-0" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_60%)] opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 pointer-events-none z-0" />
+
+              <div className="relative z-10 flex flex-col h-full">
                 {/* Icon */}
-                <div data-why-row className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-line/85 bg-accent/8">
+                <div data-why-row className="mb-6 flex h-14 w-14 items-center justify-center rounded-md border border-line bg-accent/8 transition-colors duration-500 group-hover:border-white/30 group-hover:bg-white/10">
                   {item.icon}
                 </div>
 
@@ -368,17 +375,17 @@ export function WhyChooseUsSection() {
                 <h3
                   id={`why-card-title-${item.id}`}
                   data-why-row
-                  className="type-heading"
+                  className="mb-3 type-h3-standard text-ink transition-colors duration-500 group-hover:text-white"
                 >
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p data-why-row className="mt-2 text-sm leading-6 text-muted">
+                <p data-why-row className="text-base leading-relaxed text-muted transition-colors duration-500 group-hover:text-white/80">
                   {item.description}
                 </p>
-              </article>
-            </SwissCard>
+              </div>
+            </article>
           ))}
         </div>
 

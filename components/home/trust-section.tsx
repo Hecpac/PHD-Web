@@ -34,7 +34,7 @@ export function TrustSection() {
           {trustPoints.map((item) => (
             <li key={item.title}>
               <article className="rounded-xl border border-line bg-surface p-6 shadow-[var(--shadow-card)]">
-                <h3 className="text-lg font-bold">{item.title}</h3>
+                <h3 className="type-h3-compact">{item.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-muted">{item.description}</p>
               </article>
             </li>

@@ -36,10 +36,10 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
         />
       </div>
 
-      {projects.length > 1 && (
-        <Container swiss>
-          <div className="pt-5 sm:pt-6">
-            <div className="brand-red-outline brand-red-surface mx-auto flex w-fit items-center gap-3 rounded-full border border-line/90 bg-surface/92 px-3 py-2 shadow-[0_10px_25px_-20px_rgba(15,15,15,0.75)]">
+      <Container swiss>
+        <div className="pt-8 sm:pt-10 flex flex-col items-center justify-center gap-6 sm:flex-row">
+          {projects.length > 1 && (
+            <div className="brand-red-outline brand-red-surface flex w-fit items-center gap-3 rounded-full border border-line/90 bg-surface/92 px-3 py-2 shadow-[0_10px_25px_-20px_rgba(15,15,15,0.75)]">
               <CarouselPrevButton
                 onClick={scrollPrev}
                 disabled={!canPrev}
@@ -54,13 +54,9 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                 className="h-[44px] w-[44px]"
               />
             </div>
-          </div>
-        </Container>
-      )}
+          )}
 
-      <Container swiss>
-        <div className="pt-6 sm:pt-8">
-          <div className="brand-red-outline brand-red-surface mx-auto flex max-w-xl justify-center rounded-xl border border-line/90 bg-surface/92 px-4 py-4 sm:w-fit sm:px-6 sm:py-5">
+          <div className="brand-red-outline brand-red-surface flex w-full max-w-xl justify-center rounded-xl border border-line/90 bg-surface/92 px-4 py-4 sm:w-fit sm:px-6 sm:py-6">
             <CtaLink
               href="/projects"
               variant="secondary"

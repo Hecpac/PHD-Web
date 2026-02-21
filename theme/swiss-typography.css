@@ -32,29 +32,51 @@
   /* Each snapped to nearest multiple of 8px / 0.5rem */
   --leading-caption: 1.5;       /* 12.8 * 1.5 = 19.2 -> ~16px (2 baseline units) */
   --leading-body:    1.5;       /* 16 * 1.5 = 24px (3 baseline units) */
-  --leading-subhead: 1.6;      /* 20 * 1.6 = 32px (4 baseline units) */
+  --leading-subhead: 1.4;      /* Adjusted for text of 2 short lines */
   --leading-heading: 1.28;     /* 25 * 1.28 = 32px (4 baseline units) */
   --leading-title:   1.23;     /* 31.25 * 1.23 ≈ 38.4 -> ~40px (5 baseline units) */
   --leading-display: 1.15;     /* 39.06 * 1.15 ≈ 44.9 -> ~48px (6 baseline units) */
-  --leading-hero:    1.05;     /* 48.83 * 1.05 ≈ 51.3 -> ~48px (6 baseline units) */
+  --leading-hero:    1.1;      /* Adjusted for better readability in 2-line hero headers */
 
   /* ── Tracking (Swiss: tighter at larger sizes) ─── */
   --tracking-caption: 0.02em;
   --tracking-body:    0em;
   --tracking-subhead: -0.01em;
-  --tracking-heading: -0.015em;
-  --tracking-title:   -0.02em;
-  --tracking-display: -0.025em;
-  --tracking-hero:    -0.03em;
+  --tracking-heading: -0.02em;
+  --tracking-title:   -0.025em;
+  --tracking-display: -0.035em;
+  --tracking-hero:    -0.045em;
 
   /* ── Font Weights ──────────────────────────────── */
   --weight-regular: 400;
   --weight-medium:  500;
+  --weight-semibold: 600;
   --weight-bold:    700;
   --weight-black:   900;
 }
 
 /* ── Type Classes ─────────────────────────────────── */
+
+.type-h3-display {
+  font-size: 28px;
+  line-height: 1.25;
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-title);
+}
+
+.type-h3-standard {
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-heading);
+}
+
+.type-h3-compact {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-subhead);
+}
 
 .type-hero {
   font-size: var(--type-hero);
@@ -109,8 +131,8 @@
   font-family: var(--font-mono);
   font-size: var(--type-caption);
   line-height: var(--leading-caption);
-  letter-spacing: 0.05em;
-  font-weight: var(--weight-regular);
+  letter-spacing: 0.1em;
+  font-weight: var(--weight-medium);
   text-transform: uppercase;
 }
 
@@ -118,7 +140,7 @@
 
 :root {
   /* Fluid typography for large sizes */
-  --type-hero:    clamp(2.441rem, 1.8rem + 2.5vw, 3.052rem);
+  --type-hero:    clamp(2.8rem, 2rem + 3vw, 3.75rem);
   --type-display: clamp(1.953rem, 1.5rem + 1.8vw, 2.441rem);
   --type-title:   clamp(1.563rem, 1.3rem + 1vw, 1.953rem);
 }

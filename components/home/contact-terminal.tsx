@@ -91,7 +91,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
       id={id}
       className="section-shell section-intake-gradient border-t border-line"
     >
-      <Container swiss className="space-y-7 md:space-y-8">
+      <Container swiss className="space-y-8 md:space-y-12">
         {withHeading ? (
           <SectionHeading
             eyebrow="Project Intake"
@@ -100,15 +100,15 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
           />
         ) : null}
 
-        <div className="grid gap-5 md:gap-6 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,1.9fr)]">
+        <div className="grid gap-6 md:gap-8 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,1.9fr)]">
           <aside className="rounded-xl border border-line/95 bg-surface/94 p-5 sm:p-6 md:p-7">
             <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Intake Workflow</p>
-            <h3 className="mt-3 text-2xl font-bold tracking-tight text-ink">Fast, clear, and decision-ready.</h3>
+            <h3 className="mt-3 type-h3-standard tracking-tight text-ink">Fast, clear, and decision-ready.</h3>
             <p className="mt-3 text-sm leading-6 text-muted">
               We review your brief against scope, site constraints, and budget signals before the first call.
             </p>
 
-            <ol className="mt-5 space-y-2.5 sm:mt-6 sm:space-y-3">
+            <ol className="mt-6 space-y-3 sm:mt-6 sm:space-y-4">
               {[
                 "Submit project brief and city.",
                 "Receive fit-check and follow-up call.",
@@ -121,7 +121,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               ))}
             </ol>
 
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-6 flex flex-wrap gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
                 <Clock3 className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
                 Typical reply in 1 business day
@@ -146,7 +146,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
           </aside>
 
           <div className="rounded-xl border border-line/95 bg-surface/96 p-5 sm:p-6 md:p-8">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-line pb-3 sm:mb-5 sm:pb-4">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-line pb-3 sm:mb-6 sm:pb-4">
               <p className="text-xs text-muted">
                 <span className="text-accent" aria-hidden="true">*</span> Required fields
               </p>
@@ -156,7 +156,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               </p>
             </div>
 
-            <form ref={formRef} action={formAction} className="grid gap-4 sm:gap-5 md:grid-cols-2" onFocus={onFormFocus} noValidate>
+            <form ref={formRef} action={formAction} className="grid gap-4 sm:gap-6 md:grid-cols-2" onFocus={onFormFocus} noValidate>
               <label className="space-y-1.5 text-sm">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Full name <span className="text-accent" aria-hidden="true">*</span></span>
                 <input
@@ -302,7 +302,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               </div>
             </form>
 
-            <div className="mt-5 min-h-[52px]">
+            <div className="mt-6 min-h-[52px]">
               {state.message ? (
                 <p
                   id={formStatusId}

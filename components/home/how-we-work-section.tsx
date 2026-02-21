@@ -134,19 +134,19 @@ export function HowWeWorkSection() {
           </div>
 
           {/* Steps (Right) — sticky stack */}
-          <div ref={cardsRef} className="flex flex-col gap-5 sm:gap-6 lg:col-span-8">
+          <div ref={cardsRef} className="flex flex-col gap-6 sm:gap-8 lg:col-span-8">
             {steps.map((step, index) => (
               <div
                 key={step.number}
                 data-step-card
-                className="brand-red-outline brand-red-surface-2 rounded-xl border border-line/85 bg-surface-2/95 p-5 shadow-[0_12px_24px_rgb(0_0_0/0.08)] sm:p-6 lg:sticky"
-                style={{ top: `calc(20vh + ${index * 10}px)` }}
+                className="brand-red-outline brand-red-surface-2 rounded-xl border border-line/85 bg-surface-2 p-5 shadow-[0_12px_24px_rgb(0_0_0/0.08)] sm:p-6 lg:sticky"
+                style={{ top: `calc(20vh + ${index * 12}px)`, zIndex: index + 1 }}
               >
                 <div className="font-mono text-xs font-medium tracking-widest text-muted">
                   STEP {step.number}
                 </div>
                 <div className="mt-4 text-ink/80">{step.icon}</div>
-                <h3 className="mt-5 text-xl font-bold text-ink">{step.title}</h3>
+                <h3 className="mt-6 type-h3-standard text-ink">{step.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{step.description}</p>
                 <div className="mt-6 h-0.5 w-10 rounded-full bg-accent" />
               </div>

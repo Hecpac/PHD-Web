@@ -50,7 +50,7 @@ const bentoItems: BentoItem[] = [
     title: "Milestone QA Inspections",
     description:
       "Third-party and internal quality checkpoints at foundation, framing, rough-in, and final walkthrough.",
-    span: "1x2",
+    span: "1x1",
     variant: "surface",
   },
   {

@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 
 import { BackToTop } from "@/components/layout/back-to-top";
 import { FooterHeightObserver } from "@/components/layout/footer-height-observer";
@@ -20,9 +20,9 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 import "./globals.css";
 
-const archivo = Archivo({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-archivo",
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -34,16 +34,25 @@ const plexMono = IBM_Plex_Mono({
   preload: false,
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
+  alternates: {
+    canonical: "/",
+  },
   title: {
-    default: `${siteConfig.name} | Custom Homes in Dallas-Fort Worth`,
+    default: "Premium Home Design | Custom Home Builder in Dallas-Fort Worth",
     template: `%s | ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: "Architecture-first custom home builder serving Dallas-Fort Worth. Design-build delivery with decision-gated planning, open-book budgeting, and 60+ homes delivered.",
   robots: {
     index: true,
     follow: true,
+    "max-image-preview": "large",
     googleBot: {
       index: true,
       follow: true,
@@ -53,8 +62,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: `${siteConfig.name} | Custom Homes in Dallas-Fort Worth`,
-    description: siteConfig.description,
+    title: "Premium Home Design | Custom Homes in Dallas-Fort Worth",
+    description: "Architecture-first design-build. 60+ homes delivered across DFW with decision-gated planning.",
     url: getSiteUrl(),
     siteName: siteConfig.name,
     type: "website",
@@ -72,8 +81,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@PHDhomes",
     creator: "@PHDhomes",
-    title: `${siteConfig.name} | Custom Homes in Dallas-Fort Worth`,
-    description: siteConfig.description,
+    title: "Premium Home Design | Custom Homes in Dallas-Fort Worth",
+    description: "Architecture-first design-build. 60+ homes delivered across DFW with decision-gated planning.",
     images: ["/og-default.jpg"],
   },
 };
@@ -104,7 +113,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${archivo.variable} ${plexMono.variable} bg-canvas text-ink antialiased`}>
+      <body className={`${jakarta.variable} ${plexMono.variable} bg-canvas text-ink antialiased`}>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-on-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
