@@ -12,8 +12,11 @@ import { ConsoleBrand } from "@/components/ui/console-brand";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { JsonLd } from "@/components/ui/json-ld";
 import { TransitionProvider } from "@/components/ui/page-transition";
+import { GoogleTagManager } from "@/components/analytics/gtm";
 import { getSiteUrl, siteConfig } from "@/lib/config/site";
 import { createLocalBusinessSchema, createWebSiteSchema } from "@/lib/seo/schema";
+
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 import "./globals.css";
 
@@ -102,6 +105,17 @@ export default function RootLayout({
         />
       </head>
       <body className={`${archivo.variable} ${plexMono.variable} bg-canvas text-ink antialiased`}>
+        {GTM_ID ? (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+        ) : null}
+        {GTM_ID ? <GoogleTagManager id={GTM_ID} /> : null}
         <JsonLd data={createWebSiteSchema()} />
         <JsonLd data={createLocalBusinessSchema()} />
         <SmoothScroll>
