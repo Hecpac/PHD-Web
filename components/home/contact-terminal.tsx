@@ -312,7 +312,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                       : "border-danger bg-danger-soft text-danger-soft-ink"
                   }`}
                   role={!state.success ? "alert" : "status"}
-                  aria-live={!state.success ? "assertive" : "polite"}
+                  aria-live="polite"
                 >
                   {state.message}
                 </p>

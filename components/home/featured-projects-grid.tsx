@@ -181,7 +181,7 @@ export function FeaturedProjectsGrid({ projects, prioritizeFirst = false, onApiC
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`Slide ${index + 1} of ${projects.length}: ${project.title}`}
-                className="group min-w-0 flex-[0_0_90vw] overflow-hidden rounded-xl border border-line bg-surface sm:flex-[0_0_75vw] md:flex-[0_0_60vw] lg:flex-[0_0_45vw] xl:flex-[0_0_40vw] motion-safe:transition-all motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[0_22px_40px_-32px_rgba(15,15,15,0.85)]"
+                className="group min-w-0 flex-[0_0_90vw] overflow-hidden rounded-xl border border-line bg-surface sm:flex-[0_0_75vw] md:flex-[0_0_60vw] lg:flex-[0_0_45vw] xl:flex-[0_0_40vw] motion-safe:transition-[transform,box-shadow,border-color] motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[0_22px_40px_-32px_rgba(15,15,15,0.85)]"
               >
                 {/* Image with overlay label */}
                 <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/11] md:aspect-[16/10]">
