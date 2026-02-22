@@ -195,71 +195,101 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
         {/* ── Gradient overlay ── */}
         <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/92 to-canvas/72" />
 
-        {/* ── Content overlay — flush left, bottom aligned ── */}
-        <Container swiss className="relative z-10">
-          <div ref={contentRef} className="flex h-screen items-start pt-[12vh] md:pt-[14vh] pb-12 will-change-transform">
-            <div className="max-w-4xl flex flex-col">
-              <p className="mb-6 block font-mono text-xs uppercase tracking-[0.1em] text-muted md:mb-8">
+        {/* ── Content overlay ── */}
+        <Container swiss className="relative z-10 h-full flex flex-col justify-between pt-[14vh] md:pt-[16vh] pb-8 md:pb-12">
+          {/* TOP AREA - 12 Column Grid */}
+          <div ref={contentRef} className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 w-full will-change-transform">
+            
+            {/* Col 1-4: Eyebrow */}
+            <div className="md:col-span-4 lg:col-span-3">
+              <p className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
                 <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.04}>
                   DFW Modern Design-Build
                 </SwissTextReveal>
               </p>
+            </div>
 
-              <h1
-                ref={titleRef}
-                className="mb-8 type-hero text-ink tracking-tighter max-w-[18ch] sm:max-w-none md:mb-10 will-change-transform"
-              >
-                <SwissTextReveal as="span" mode="line" stagger={0.12} delay={0.14}>
-                  {"Architectural custom homes,\ndelivered with builder-grade control."}
+            {/* Col 5-8: The Blueprint (List) */}
+            <div className="md:col-span-4 lg:col-span-3 lg:col-start-6">
+              <h2 className="font-mono text-xs uppercase tracking-[0.1em] text-muted mb-4">
+                <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.1}>
+                  The Blueprint
                 </SwissTextReveal>
-              </h1>
-
-              <p className="mb-10 max-w-prose text-base leading-[1.4] tracking-normal text-ink/92 sm:text-lg md:mb-12">
-                <SwissTextReveal as="span" mode="line" stagger={0.1} delay={0.34}>
-                  {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth.\nEvery phase is tied to clear deliverables and decision gates."}
-                </SwissTextReveal>
-              </p>
-
-              <ul className="mb-12 flex flex-wrap gap-3" aria-label="Key proof points">
-                {[
-                  "DFW-only operating model",
-                  "60+ custom homes delivered",
-                  "Decision-gated planning",
-                ].map((proof) => (
-                  <li
-                    key={proof}
-                    className="rounded-sm border border-line/80 bg-canvas/70 px-3 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-ink/88 md:px-4 md:py-2 md:text-xs"
-                  >
-                    {proof}
-                  </li>
-                ))}
+              </h2>
+              <ul className="space-y-3 text-xs sm:text-sm text-ink/90 border-t border-line/40 pt-4" aria-label="Key proof points">
+                <li className="flex justify-between">
+                  <span className="text-muted">Model</span> 
+                  <span className="text-right">DFW-Only Operation</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted">Experience</span> 
+                  <span className="text-right">60+ Homes Delivered</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="text-muted">Process</span> 
+                  <span className="text-right">Decision-Gated Planning</span>
+                </li>
               </ul>
+            </div>
 
+            {/* Col 9-12: About & CTA */}
+            <div className="md:col-span-4 lg:col-span-3 lg:col-start-10 flex flex-col justify-between">
+              <div>
+                <h2 className="font-mono text-xs uppercase tracking-[0.1em] text-muted mb-4">
+                  <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.15}>
+                    About Us
+                  </SwissTextReveal>
+                </h2>
+                <div className="border-t border-line/40 pt-4">
+                  <p className="text-sm leading-relaxed text-ink/90">
+                    <SwissTextReveal as="span" mode="line" stagger={0.1} delay={0.2}>
+                      {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth. Every phase is tied to clear deliverables and decision gates."}
+                    </SwissTextReveal>
+                  </p>
+                </div>
+              </div>
+              
               <div
                 ref={ctaGroupRef}
-                className="flex flex-col gap-3 rounded-xl border border-line/45 bg-canvas/45 p-3 sm:flex-row sm:items-center sm:gap-4 sm:border-0 sm:bg-transparent sm:p-0"
-                role="group"
-                aria-label="Call to action"
+                className="mt-8 flex flex-col gap-3"
               >
                 <CtaLink
                   href={scheduleUrl}
                   target="_blank"
                   rel="noreferrer"
                   eventName="cta_schedule_click"
-                  className="w-full min-h-12 justify-between rounded-md border-accent px-6 shadow-[0_16px_28px_rgb(0_0_0/0.24)] hover:translate-x-0 hover:translate-y-0 hover:shadow-[0_20px_34px_rgb(0_0_0/0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto sm:justify-center"
-                  withArrow
+                  variant="ghost"
+                  className="w-fit text-xs md:text-sm px-0 border-b border-transparent hover:border-accent pb-0.5 text-ink hover:text-accent focus-visible:outline-none rounded-none"
                 >
-                  Schedule Consultation
+                  [ SCHEDULE CONSULTATION ]
                 </CtaLink>
                 <CtaLink
                   href={phoneHref}
                   eventName="cta_call_click"
-                  variant="secondary"
-                  className="w-full min-h-[44px] rounded-md border-line/80 bg-surface/75 px-5 text-ink/92 hover:bg-surface/88 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
+                  variant="ghost"
+                  className="w-fit text-xs md:text-sm px-0 border-b border-transparent hover:border-accent pb-0.5 text-ink hover:text-accent focus-visible:outline-none rounded-none"
                 >
-                  Call {phoneDisplay}
+                  [ CALL {phoneDisplay} ]
                 </CtaLink>
               </div>
+            </div>
+          </div>
+
+          {/* BOTTOM AREA - Giant Typography */}
+          <div className="w-full mt-auto">
+            <h1
+              ref={titleRef}
+              className="text-[12vw] sm:text-[10vw] leading-[0.85] tracking-tighter font-bold text-ink uppercase opacity-90 will-change-transform pb-4 sm:pb-0"
+              style={{ wordSpacing: "-0.1em" }}
+            >
+              <SwissTextReveal as="span" mode="line" stagger={0.12} delay={0.14}>
+                {"ARCHITECTURAL\n(CUSTOM) HOMES"}
+              </SwissTextReveal>
+            </h1>
+            <div className="flex flex-wrap justify-between items-center mt-6 md:mt-8 font-mono text-[10px] sm:text-xs text-muted uppercase tracking-widest border-t border-line/40 pt-4">
+              <span>Dallas-Fort Worth</span>
+              <span className="hidden sm:inline">Builder-Grade Control</span>
+              <span>Est. 2026</span>
             </div>
           </div>
         </Container>
