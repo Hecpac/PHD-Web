@@ -626,6 +626,66 @@ export const fallbackBlogPosts: BlogPost[] = [
     content:
       "Building a luxury custom home in established DFW municipalities involves much more than simply securing a city building permit. Upscale neighborhoods and independent towns—most notably Highland Park, University Park, and certain communities in Southlake—enforce rigorous zoning ordinances and require approval from strict Architectural Review Committees (ARCs).\n\n**The Highland Park Standard**\nIn the Town of Highland Park, Chapter 14 of the Zoning Ordinance heavily dictates building height, bulk, lot coverage, and Floor-Area-Ratio (FAR). But beyond basic zoning, your design must pass an architectural review. Committees often regulate aesthetic compatibility with the neighborhood. For instance, flat or low-slope roofs may be explicitly prohibited in favor of specific pitches. Exterior materials are highly scrutinized; many enclaves mandate a high percentage of natural stone or brick, and front-facing garages are almost universally banned.\n\n**Southlake and Frisco HOAs**\nIn Southlake and Frisco, high-end subdivisions often layer their own HOA design guidelines on top of city codes. These can dictate everything from the preservation of existing mature trees to the exact color palettes permitted on exterior trim.\n\nNavigating these boards requires experience and diplomacy. A design-build approach is particularly advantageous here. We involve our architectural team and project managers early to analyze the specific ARC guidelines of your lot before conceptual design begins. We prepare detailed submission packages, including 3D renderings and material boards, to anticipate the committee's concerns and secure approval faster, keeping your project on schedule.",
     tags: ["HOA", "Zoning", "Highland Park", "Regulations"],
+  },
+  {
+    id: "blog-4",
+    title: "2026 Interior Architecture Trends for DFW Custom Homes",
+    slug: "2026-interior-architecture-trends-dfw",
+    excerpt:
+      "A shift towards warm, earthy palettes, authentic natural materials, and integrated wellness features defines the upcoming design cycle for luxury homes in Dallas-Fort Worth.",
+    category: "Design",
+    author: "DFW Design-Build Team",
+    date: "2025-10-12",
+    readTime: "8 min read",
+    coverImage: {
+      src: "/projects/southlake-estate-retreat/open-living.jpg",
+      alt: "Warm modern interior living space",
+      width: 2000,
+      height: 1334,
+    },
+    content:
+      "As we approach 2026, the interior architecture of custom homes in Dallas-Fort Worth is undergoing a notable shift. We are moving away from the stark, sterile minimalism and all-gray palettes that dominated previous years, leaning heavily into spaces that feel warm, authentic, and deeply lived-in. Homeowners in communities like Southlake, Westlake, and Preston Hollow are requesting environments that serve as personal sanctuaries rather than just showpieces.\n\n**Warmth, Earthy Palettes, and Meaningful Maximalism**\nThe new baseline for luxury interiors involves warm neutral tones—creams, taupes, clays, and rich terracottas. We are frequently implementing 'color drenching', a technique where a single rich hue, such as deep olive or tobacco brown, is applied across walls, trim, and ceilings to create an immersive, cocoon-like atmosphere. Alongside this color shift, a trend towards 'meaningful maximalism' is emerging, where clients are choosing to curate personal, intentional collections of art and artifacts that add character without feeling cluttered.\n\n**Authentic Materials and Wellness Integration**\nMateriality is paramount. We are specifying extensive natural wood, particularly rift-sawn white oak and walnut, paired with heavily veined natural stones like quartzite and travertine. Walls are receiving tactile treatments like limewash or plaster, adding subtle depth. \n\nBeyond aesthetics, wellness-centered design has become a non-negotiable for high-end builds. Our recent floor plans integrate dedicated recovery spaces featuring infrared saunas and cold plunges, advanced whole-home air filtration systems, and biophilic elements such as indoor courtyards and expansive glass walls that seamlessly connect the interior with the Texas landscape. The resulting homes are not just visually stunning; they actively contribute to the well-being of their inhabitants.",
+    tags: ["Design Trends", "Interior Architecture", "Wellness", "2026"],
+  },
+  {
+    id: "blog-5",
+    title: "Designing Luxury Outdoor Living for the North Texas Climate",
+    slug: "luxury-outdoor-living-north-texas-climate",
+    excerpt:
+      "How to engineer custom pools, outdoor kitchens, and climate-controlled patios that extend the entertaining season despite DFW's extreme weather.",
+    category: "Architecture",
+    author: "DFW Design-Build Team",
+    date: "2025-11-04",
+    readTime: "7 min read",
+    coverImage: {
+      src: "/projects/southlake-estate-retreat/hero.jpg",
+      alt: "Luxury outdoor pool and patio at twilight",
+      width: 2000,
+      height: 1126,
+    },
+    content:
+      "In the Dallas-Fort Worth Metroplex, a luxury custom home is incomplete without a highly engineered outdoor living space. However, designing these spaces requires a deep understanding of our demanding climate—which ranges from triple-digit summer heat to sudden winter freezes. The current standard for outdoor entertaining areas focuses on seamless indoor-outdoor flow, advanced climate control, and resort-style amenities.\n\n**Seamless Flow and Resort Pools**\nThe boundaries between indoor and outdoor living are virtually disappearing. We frequently install expansive, multi-panel sliding or folding glass wall systems that open the main living area directly onto a covered lanai. The focal point of these spaces is often a sleek, modern pool featuring infinity edges, large Baja shelves (tanning ledges), and integrated, flush-level spas. To elevate the experience, we are integrating automated LED lighting and fire-on-water bowls that create dramatic nighttime ambiance.\n\n**Climate Adaptation and Gourmet Kitchens**\nTo make these spaces usable for more than just a few months a year, aggressive climate control is required. Motorized louvered pergolas equipped with automated rain and wind sensors allow homeowners to adjust shade and weather protection on demand. We incorporate high-velocity misting systems and flush-mounted radiant heaters directly into the architectural structure.\n\nFurthermore, the outdoor kitchen has evolved far beyond a built-in grill. Today's luxury outdoor culinary centers include pizza ovens, specialized beverage stations, under-counter refrigeration, and durable, weather-resistant cabinetry, ensuring that hosting a large gathering outdoors is as effortless as doing so in the main kitchen.",
+    tags: ["Outdoor Living", "Pool Design", "Climate Adaptation", "DFW"],
+  },
+  {
+    id: "blog-6",
+    title: "Heat-Tolerant Landscaping for Dallas-Fort Worth Estates",
+    slug: "heat-tolerant-landscaping-dfw-estates",
+    excerpt:
+      "Strategic plant selection, efficient irrigation, and intelligent hardscaping to create lush, sustainable landscapes that thrive in the Texas heat.",
+    category: "Landscape",
+    author: "DFW Design-Build Team",
+    date: "2025-11-20",
+    readTime: "6 min read",
+    coverImage: {
+      src: "/projects/prosper-linear-pavilion/hero.jpg",
+      alt: "Modern home exterior with native Texas landscaping",
+      width: 2000,
+      height: 1126,
+    },
+    content:
+      "A beautifully designed custom home can be entirely undermined by a failing landscape. In North Texas, the combination of intense summer heat, prolonged dry spells, and heavy, expansive clay soils presents a unique challenge. Successful estate landscaping in DFW relies on a balance of native plant selection, smart water management, and strategic hardscaping—achieving a lush aesthetic without fighting the local environment.\n\n**Native Plant Palettes and Hydrozoning**\nThe foundation of a heat-tolerant landscape is selecting native and deeply adapted species that naturally thrive in USDA Zone 8a. We anchor designs with resilient shade trees like Texas Red Oak and Cedar Elm. For structural shrubs and groundcover, we utilize Texas Sage (Cenizo), Dwarf Yaupon Holly, Autumn Sage (Salvia greggii), and ornamental grasses like Gulf Muhly. \n\nCrucially, we employ 'hydrozoning'—grouping plants with similar water requirements together. This allows for highly targeted, efficient drip irrigation zones, ensuring that water-intensive ornamentals receive what they need without overwatering drought-tolerant native sections.\n\n**Smart Hardscaping and Soil Management**\nHardscaping plays a vital role in reducing the overall water footprint and mitigating the 'heat island' effect. We incorporate permeable materials like decomposed granite pathways and spaced flagstone patios, which allow rainwater to percolate back into the soil rather than running off into storm drains. \n\nFinally, managing the volatile Blackland Prairie clay soil is essential. We heavily amend planting beds with organic matter to improve drainage and apply thick layers of hardwood or cedar mulch. This simple step drastically reduces soil temperature, limits evaporation, and protects root systems during the brutal August heat, ensuring the estate's grounds remain vibrant year-round.",
+    tags: ["Landscape", "Heat-Tolerant", "Native Plants", "Texas"],
   }
 ];
 
