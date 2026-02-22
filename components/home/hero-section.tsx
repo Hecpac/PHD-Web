@@ -186,55 +186,55 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
               fill
               priority
               fetchPriority="high"
-              className="object-cover opacity-[0.22] saturate-50 contrast-125 mix-blend-multiply"
+              className="object-cover opacity-30 saturate-0 contrast-[1.2] brightness-50"
               sizes="(max-width: 1536px) 100vw, 1536px"
             />
           </div>
         </div>
 
-        {/* ── Gradient overlay ── */}
-        <div className="absolute inset-0 bg-gradient-to-b from-canvas via-canvas/90 to-canvas/80" />
+        {/* ── Dark overlay ── */}
+        <div className="absolute inset-0 bg-black/60" />
 
         {/* ── Content overlay ── */}
         <Container swiss className="relative z-10 h-full flex flex-col justify-between pt-[14vh] md:pt-[18vh] pb-8 md:pb-12">
           
           {/* TOP AREA - 12 Column Grid */}
-          <div ref={contentRef} className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-12 w-full will-change-transform text-ink/90">
+          <div ref={contentRef} className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-12 w-full will-change-transform text-white/90">
             
             {/* Col 1-4: Brand Name + Line */}
             <div className="md:col-span-4 lg:col-span-4 flex flex-col gap-6">
               <div className="flex items-center gap-4">
-                <span className="font-mono text-xs uppercase tracking-[0.15em] font-medium">
+                <span className="font-mono text-xs uppercase tracking-[0.15em] font-medium text-white/90">
                   <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.04}>
                     Premium Home Design
                   </SwissTextReveal>
                 </span>
-                <div className="h-[1px] w-12 bg-ink/30" />
+                <div className="h-[1px] w-12 bg-white/30" />
               </div>
             </div>
 
             {/* Col 5-8: The Blueprint (List) */}
             <div className="md:col-span-4 lg:col-span-3 lg:col-start-6">
-              <h2 className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-ink/60">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-white/60">
                 <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.1}>
                   THE BLUEPRINT
                 </SwissTextReveal>
               </h2>
-              <ul className="space-y-4 text-xs tracking-wide" aria-label="Key proof points">
+              <ul className="space-y-4 text-xs tracking-wide text-white/90" aria-label="Key proof points">
                 <li className="flex justify-between items-baseline">
-                  <span className="text-ink/60 mr-4">Model</span> 
+                  <span className="text-white/60 mr-4">Model</span> 
                   <span className="text-right">DFW-Only Operation</span>
                 </li>
                 <li className="flex justify-between items-baseline">
-                  <span className="text-ink/60 mr-4">Experience</span> 
+                  <span className="text-white/60 mr-4">Experience</span> 
                   <span className="text-right">60+ Homes Delivered</span>
                 </li>
                 <li className="flex justify-between items-baseline">
-                  <span className="text-ink/60 mr-4">Process</span> 
+                  <span className="text-white/60 mr-4">Process</span> 
                   <span className="text-right">Decision-Gated Planning</span>
                 </li>
                 <li className="flex justify-between items-baseline">
-                  <span className="text-ink/60 mr-4">Architecture</span> 
+                  <span className="text-white/60 mr-4">Architecture</span> 
                   <span className="text-right">Modern & Transitional</span>
                 </li>
               </ul>
@@ -243,12 +243,12 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
             {/* Col 9-12: About & CTA */}
             <div className="md:col-span-4 lg:col-span-3 lg:col-start-10 flex flex-col justify-between h-full">
               <div>
-                <h2 className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-ink/60">
+                <h2 className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-white/60">
                   <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.15}>
                     ABOUT US
                   </SwissTextReveal>
                 </h2>
-                <div className="text-xs leading-[1.8] text-ink/80 tracking-wide pr-4">
+                <div className="text-xs leading-[1.8] text-white/80 tracking-wide pr-4">
                   <p>
                     <SwissTextReveal as="span" mode="line" stagger={0.1} delay={0.2}>
                       {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth. Every phase is tied to clear deliverables and decision gates to ensure builder-grade control over the final architecture."}
@@ -264,7 +264,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                   rel="noreferrer"
                   eventName="cta_schedule_click"
                   variant="ghost"
-                  className="w-fit text-[11px] uppercase tracking-[0.15em] font-mono px-0 border-b-0 text-ink/80 hover:text-ink focus-visible:outline-none rounded-none"
+                  className="w-fit text-[11px] uppercase tracking-[0.15em] font-mono px-0 border-b-0 text-white/80 hover:text-white focus-visible:outline-none rounded-none"
                 >
                   ( SCHEDULE CONSULTATION )
                 </CtaLink>
@@ -276,7 +276,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           <div className="w-full mt-auto mb-2">
             <h1
               ref={titleRef}
-              className="text-[11vw] sm:text-[10vw] lg:text-[8.5vw] xl:text-[8vw] leading-[0.85] tracking-tighter font-normal text-ink uppercase opacity-90 will-change-transform pb-2 md:pb-4"
+              className="text-[11vw] sm:text-[10vw] lg:text-[8.5vw] xl:text-[8vw] leading-[0.85] tracking-tighter font-normal text-white uppercase opacity-90 will-change-transform pb-2 md:pb-4"
               style={{ wordSpacing: "-0.02em" }}
             >
               <SwissTextReveal as="span" mode="line" stagger={0.12} delay={0.14}>
@@ -284,7 +284,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
               </SwissTextReveal>
             </h1>
             
-            <div className="flex flex-wrap justify-between items-center mt-4 sm:mt-6 font-mono text-[9px] sm:text-[10px] text-ink/60 uppercase tracking-[0.15em] border-t border-line/30 pt-4">
+            <div className="flex flex-wrap justify-between items-center mt-4 sm:mt-6 font-mono text-[9px] sm:text-[10px] text-white/60 uppercase tracking-[0.15em] border-t border-white/30 pt-4">
               <span>Dallas-Fort Worth</span>
               <span className="hidden sm:inline">Delivering since 2018</span>
               <span>Copyright © 2026</span>
