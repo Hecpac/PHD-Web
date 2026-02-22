@@ -10,7 +10,7 @@ type ImageGridStripProps = {
   projects: Project[];
 };
 
-const FALLBACK_SECTION_IMAGE = "/projects/north-dallas-courtyard-residence/hero.jpg";
+const FALLBACK_SECTION_IMAGE = "/hero-background.jpg";
 const REVEAL_FALLBACK_BG = "linear-gradient(145deg, #5b0f1d 0%, #b71f3f 52%, #7d1630 100%)";
 
 export function ImageGridStrip({ projects }: ImageGridStripProps) {

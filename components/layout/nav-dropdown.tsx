@@ -40,10 +40,10 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
       <Link
         href={href}
         aria-current={isActive ? "page" : undefined}
-        className={`inline-flex min-h-10 items-center gap-1.5 px-1 py-2 font-mono text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+        className={`inline-flex min-h-10 items-center gap-1.5 px-1 py-2 font-mono text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 ${
           isActive
-            ? "text-ink"
-            : "text-ink/60 hover:text-ink"
+            ? "text-white"
+            : "text-white/60 hover:text-white"
         }`}
         aria-expanded={open}
         aria-haspopup="true"
@@ -58,7 +58,7 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
           fill="none"
           aria-hidden="true"
           className={`transition-transform duration-150 ${open ? "rotate-180" : ""} ${
-            isActive ? "text-ink" : "text-ink/60"
+            isActive ? "text-white" : "text-white/60"
           }`}
         >
           <path

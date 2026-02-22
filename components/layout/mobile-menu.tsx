@@ -125,7 +125,7 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
       <button
         ref={buttonRef}
         type="button"
-        className="relative flex h-[44px] w-[44px] items-center justify-center rounded-lg border border-line/80 bg-surface/75 text-ink shadow-[0_3px_12px_rgb(0_0_0/0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:hidden"
+        className="relative flex h-[44px] w-[44px] items-center justify-center rounded-lg border border-white/30 bg-transparent text-white shadow-[0_3px_12px_rgb(0_0_0/0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 md:hidden"
         aria-expanded={open}
         aria-controls={menuId}
         aria-label={open ? "Close menu" : "Open menu"}
@@ -135,19 +135,19 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
         <span className="flex h-5 w-6 flex-col justify-between" aria-hidden="true">
           <span
             className={cn(
-              "block h-0.5 w-full bg-ink transition-transform duration-200",
+              "block h-0.5 w-full bg-white transition-transform duration-200",
               open && "translate-y-[9px] rotate-45",
             )}
           />
           <span
             className={cn(
-              "block h-0.5 w-full bg-ink transition-opacity duration-200",
+              "block h-0.5 w-full bg-white transition-opacity duration-200",
               open && "opacity-0",
             )}
           />
           <span
             className={cn(
-              "block h-0.5 w-full bg-ink transition-transform duration-200",
+              "block h-0.5 w-full bg-white transition-transform duration-200",
               open && "-translate-y-[9px] -rotate-45",
             )}
           />

@@ -179,21 +179,21 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
 
         {/* ── Full-width hero image with GSAP parallax ── */}
         <div ref={imageRef} className="absolute inset-0 will-change-transform">
-          <div className="relative h-full w-full">
+          <div className="relative h-full w-full bg-black">
             <Image
-              src={heroImage?.src ?? "/projects/north-dallas-courtyard-residence/hero.jpg"}
+              src={heroImage?.src ?? "/hero-background.jpg"}
               alt={heroImage?.alt ?? "Front elevation of a modern custom home in Dallas-Fort Worth"}
               fill
               priority
               fetchPriority="high"
-              className="object-cover opacity-30 saturate-0 contrast-[1.2] brightness-50"
+              className="object-cover opacity-60 contrast-[1.1] brightness-[0.6]"
               sizes="(max-width: 1536px) 100vw, 1536px"
             />
           </div>
         </div>
 
         {/* ── Dark overlay ── */}
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/80 mix-blend-multiply" />
 
         {/* ── Content overlay ── */}
         <Container swiss className="relative z-10 h-full flex flex-col justify-between pt-[14vh] md:pt-[18vh] pb-8 md:pb-12">
@@ -276,17 +276,20 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           <div className="w-full mt-auto mb-2">
             <h1
               ref={titleRef}
-              className="text-[11vw] sm:text-[10vw] lg:text-[8.5vw] xl:text-[8vw] leading-[0.85] tracking-tighter font-normal text-white uppercase opacity-90 will-change-transform pb-2 md:pb-4"
+              className="text-[7vw] sm:text-[6vw] lg:text-[5vw] xl:text-[4.5vw] leading-[0.85] tracking-tighter font-normal uppercase opacity-90 will-change-transform pb-2 md:pb-4 flex items-baseline gap-x-[1.5vw] whitespace-nowrap"
               style={{ wordSpacing: "-0.02em" }}
             >
-              <SwissTextReveal as="span" mode="line" stagger={0.12} delay={0.14}>
-                {"ARCHITECTURAL\n(CUSTOM) HOMES"}
+              <SwissTextReveal as="span" mode="word" stagger={0.12} delay={0.14} className="text-white">
+                ARCHITECTURAL
+              </SwissTextReveal>
+              <SwissTextReveal as="span" mode="word" stagger={0.12} delay={0.20} className="text-red-500">
+                (CUSTOM) HOMES
               </SwissTextReveal>
             </h1>
             
-            <div className="flex flex-wrap justify-between items-center mt-4 sm:mt-6 font-mono text-[9px] sm:text-[10px] text-white/60 uppercase tracking-[0.15em] border-t border-white/30 pt-4">
+            <div className="flex flex-wrap justify-between items-center mt-4 sm:mt-6 font-mono text-[9px] sm:text-[10px] text-white uppercase tracking-[0.15em] border-t border-white/30 pt-4">
               <span>Dallas-Fort Worth</span>
-              <span className="hidden sm:inline">Delivering since 2018</span>
+              <span className="hidden sm:inline text-red-500">Delivering 2016</span>
               <span>Copyright © 2026</span>
             </div>
           </div>
