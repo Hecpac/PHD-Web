@@ -276,7 +276,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           <div className="w-full mt-auto mb-2">
             <h1
               ref={titleRef}
-              className="text-[14vw] sm:text-[13vw] leading-[0.8] tracking-tighter font-normal text-ink uppercase opacity-90 will-change-transform pb-2 md:pb-4"
+              className="text-[11vw] sm:text-[10vw] lg:text-[8.5vw] xl:text-[8vw] leading-[0.85] tracking-tighter font-normal text-ink uppercase opacity-90 will-change-transform pb-2 md:pb-4"
               style={{ wordSpacing: "-0.02em" }}
             >
               <SwissTextReveal as="span" mode="line" stagger={0.12} delay={0.14}>
