@@ -18,13 +18,12 @@ export function SiteHeader() {
       >
         Skip to main content
       </a>
-      <header className="sticky top-0 z-50 pt-3" role="banner">
+      <header className="sticky top-0 z-50 w-full border-b border-line/40 bg-canvas/90 backdrop-blur-md" role="banner">
         <div className="container-swiss">
-          <div className="relative flex items-center justify-between gap-3 rounded-md border border-line/90 bg-canvas/96 px-4 py-3 shadow-[0_10px_24px_rgb(0_0_0/0.1)] backdrop-blur-header md:gap-5 md:px-6">
-            <div aria-hidden className="pointer-events-none absolute inset-x-3 top-0 h-px bg-accent/65" />
+          <div className="flex items-center justify-between py-3 md:py-4">
             <Link
               href="/"
-              className="type-mono-label inline-flex items-center rounded-md px-2 py-1.5 font-bold text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+              className="font-mono text-xs uppercase tracking-[0.15em] font-medium text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
               aria-label={`${siteConfig.shortName} — Home`}
             >
               {siteConfig.shortName}
@@ -32,7 +31,7 @@ export function SiteHeader() {
 
             <nav
               aria-label="Primary navigation"
-              className="hidden items-center gap-1 rounded-xl border border-line/70 bg-surface/75 p-1 backdrop-blur-header md:flex"
+              className="hidden items-center gap-4 md:flex lg:gap-8"
             >
               {siteNavigation.map((item) =>
                 item.children ? (
@@ -50,33 +49,25 @@ export function SiteHeader() {
               )}
             </nav>
 
-            <div className="flex items-center gap-2.5 md:gap-3">
+            <div className="flex items-center gap-3">
               <SocialLinks
                 iconOnly
                 className="hidden lg:flex"
-                linkClassName="!min-h-10 !min-w-10"
+                linkClassName="!min-h-10 !min-w-10 text-ink/60 hover:text-ink transition-colors border-0 shadow-none bg-transparent"
               />
-              <div aria-hidden className="hidden h-7 w-px bg-line/80 lg:block" />
+              <div aria-hidden className="hidden h-3 w-px bg-line/60 lg:block mx-1" />
               <CtaLink
                 href={ctaConfig.scheduleUrl}
                 target="_blank"
                 rel="noreferrer"
                 eventName="cta_schedule_click"
-                className="!hidden lg:!inline-flex lg:min-h-10 lg:border-accent/90 lg:px-5 lg:shadow-[0_8px_18px_rgb(0_0_0/0.14)] lg:hover:border-accent-hover lg:focus-visible:outline-none lg:focus-visible:ring-2 lg:focus-visible:ring-accent/55 lg:focus-visible:ring-offset-2 lg:focus-visible:ring-offset-canvas"
+                variant="ghost"
+                className="hidden md:inline-flex text-[10px] sm:text-[11px] uppercase tracking-[0.15em] font-mono px-0 border-b-0 text-ink/80 hover:text-ink focus-visible:outline-none rounded-none"
               >
-                Schedule Consultation
-              </CtaLink>
-              <CtaLink
-                href={ctaConfig.scheduleUrl}
-                target="_blank"
-                rel="noreferrer"
-                eventName="cta_schedule_click"
-                className="min-h-12 rounded-md border-accent bg-accent px-4 py-2.5 text-sm tracking-[0.05em] text-on-accent shadow-[0_10px_20px_rgb(0_0_0/0.18)] hover:translate-x-0 hover:translate-y-0 hover:shadow-[0_10px_20px_rgb(0_0_0/0.18)] active:bg-accent-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas md:hidden"
-              >
-                Schedule Call
+                ( SCHEDULE )
               </CtaLink>
 
-              <div className="rounded-lg border border-line/90 bg-surface/90 p-0.5 shadow-[0_4px_12px_rgb(0_0_0/0.12)] md:hidden [&>button]:min-h-[44px] [&>button]:min-w-[44px] [&>button]:border-line [&>button]:bg-surface [&>button]:text-ink [&>button]:hover:border-accent/50 [&>button]:hover:bg-accent-soft [&>button]:focus-visible:outline-none [&>button]:focus-visible:ring-2 [&>button]:focus-visible:ring-accent/50 [&>button]:focus-visible:ring-offset-2 [&>button]:focus-visible:ring-offset-canvas">
+              <div className="md:hidden">
                 <MobileMenu navigation={siteNavigation} cta={ctaConfig} />
               </div>
             </div>

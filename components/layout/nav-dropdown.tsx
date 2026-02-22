@@ -40,10 +40,10 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
       <Link
         href={href}
         aria-current={isActive ? "page" : undefined}
-        className={`inline-flex min-h-10 items-center gap-1.5 rounded-lg border px-3 py-2 text-[0.78rem] font-semibold uppercase tracking-[0.07em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+        className={`inline-flex min-h-10 items-center gap-1.5 px-1 py-2 font-mono text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
           isActive
-            ? "border-accent/35 bg-accent/10 text-ink"
-            : "border-transparent text-muted hover:border-line hover:bg-surface hover:text-ink"
+            ? "text-ink"
+            : "text-ink/60 hover:text-ink"
         }`}
         aria-expanded={open}
         aria-haspopup="true"
@@ -58,7 +58,7 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
           fill="none"
           aria-hidden="true"
           className={`transition-transform duration-150 ${open ? "rotate-180" : ""} ${
-            isActive ? "text-ink" : "text-muted"
+            isActive ? "text-ink" : "text-ink/60"
           }`}
         >
           <path
@@ -91,10 +91,10 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
                   href={item.href}
                   role="menuitem"
                   aria-current={itemIsActive ? "page" : undefined}
-                  className={`block rounded-lg px-3 py-2.5 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent ${
+                  className={`block rounded-lg px-3 py-2.5 text-[11px] font-mono uppercase tracking-[0.15em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent ${
                     itemIsActive
-                      ? "bg-accent/12 font-semibold text-ink"
-                      : "text-ink hover:bg-surface focus-visible:bg-surface"
+                      ? "bg-surface text-ink"
+                      : "text-ink/70 hover:bg-surface hover:text-ink focus-visible:bg-surface"
                   }`}
                   onClick={() => setOpen(false)}
                   onFocus={handleEnter}
