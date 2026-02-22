@@ -569,88 +569,64 @@ export const fallbackReviews: Review[] = [
 export const fallbackBlogPosts: BlogPost[] = [
   {
     id: "blog-1",
-    title: "Design-Build vs. Traditional: Which Delivery Method Fits Your DFW Custom Home?",
-    slug: "design-build-vs-traditional-dfw",
+    title: "The True Cost of Building a Custom Home in Dallas-Fort Worth (2025-2026)",
+    slug: "true-cost-building-custom-home-dfw-2025",
     excerpt:
-      "Comparing the two most common project delivery methods for custom homes in Dallas-Fort Worth, with cost, timeline, and accountability analysis.",
-    category: "Process",
+      "A realistic breakdown of custom home construction costs per square foot in DFW, from entry-level builds to high-end luxury estates.",
+    category: "Budget",
     author: "DFW Design-Build Team",
-    date: "2025-09-10",
+    date: "2025-08-20",
     readTime: "6 min read",
+    coverImage: {
+      src: "/projects/north-dallas-courtyard-residence/hero.jpg",
+      alt: "Modern custom home in Preston Hollow",
+      width: 2000,
+      height: 1334,
+    },
     content:
-      "When planning a custom home in the Dallas-Fort Worth Metroplex, one of the first decisions you will face is choosing a project delivery method. The two most common approaches are design-build and the traditional design-bid-build model. Understanding how each works — and where each tends to fail — is essential for protecting your budget and timeline.\n\nIn a traditional delivery, you hire an architect to complete drawings, then solicit bids from multiple builders. This creates a competitive pricing environment, but it also introduces a structural gap: the architect and builder operate under separate contracts with separate incentives. In DFW's fast-moving market, where material costs and trade availability shift quickly, this gap frequently leads to redesigns, budget overruns, and adversarial relationships between the design and construction teams.\n\nThe design-build model consolidates architecture and construction under one contract and one team. At our firm, this means the builder is involved from the first concept sketch — validating costs, identifying constructability issues, and aligning the design with real DFW trade pricing before drawings are finalized. The result is a more predictable process with fewer change orders, faster permitting, and a single point of accountability from concept through move-in. For homeowners in communities like Preston Hollow, Southlake, and Frisco, where HOA requirements add another layer of coordination, this integrated approach consistently delivers better outcomes.",
-    tags: ["Design-Build", "Process", "DFW"],
+      "One of the first questions any prospective homeowner asks is: *'What does it cost per square foot to build a custom home in Dallas-Fort Worth?'* The answer depends heavily on the level of customization, materials, and the specific municipality.\n\nHeading into 2025 and 2026, the DFW construction market continues to reflect the premium nature of true custom building. According to recent market data, **entry-level custom homes**—which typically feature efficient layouts and standard finishes—start between **$180 and $250 per square foot**. Moving up to **mid-range custom homes** with semi-custom layouts, upgraded finishes like quartz countertops, and hardwood floors, expect to invest between **$250 and $350 per square foot**.\n\nFor **high-end and luxury custom homes**—the category where we focus—prices generally range from **$350 to $600+ per square foot**. These homes involve architect-driven designs, complex structural engineering, premium mechanical systems, and highly bespoke interior finishes.\n\nIt is crucial to understand that these figures represent the *vertical construction cost* (materials, labor, and builder fees). They **do not include the cost of land**, which in premium neighborhoods like Preston Hollow or Southlake can easily exceed $1M to $3M alone. Other exclusions typically include site preparation, utility extensions, extensive landscaping, and swimming pools. When you enter our Discovery & Feasibility phase, we provide a holistic budget band that accounts for the hard costs of the home, the land, and the site-specific soft costs so there are no surprises.",
+    tags: ["Budget", "Cost Per Sqft", "DFW", "2026"],
   },
   {
     id: "blog-2",
-    title: "Understanding DFW Lot Feasibility: What to Evaluate Before You Buy",
-    slug: "dfw-lot-feasibility-guide",
+    title: "Building on Expansive Clay Soils in North Texas: Foundation Solutions",
+    slug: "building-expansive-clay-soils-north-texas",
     excerpt:
-      "A guide to evaluating zoning, soil conditions, floodplain status, and utility access for custom home lots across the Dallas-Fort Worth Metroplex.",
-    category: "Feasibility",
+      "Understanding the Blackland Prairie soil of DFW and why engineered post-tension slabs or pier and beam foundations are critical for longevity.",
+    category: "Engineering",
     author: "DFW Design-Build Team",
-    date: "2025-08-22",
-    readTime: "8 min read",
+    date: "2025-09-05",
+    readTime: "7 min read",
+    coverImage: {
+      src: "/projects/fort-worth-bluff-house/hero.jpg",
+      alt: "Fort Worth Bluff House on a sloped lot",
+      width: 2000,
+      height: 2666,
+    },
     content:
-      "Buying a lot for a custom home in Dallas-Fort Worth is not the same as buying a finished house. A beautiful piece of land in Prosper or Flower Mound can hide costly surprises — expansive clay soils, floodplain encroachment, inadequate utility access, or zoning restrictions that limit your build program. A thorough feasibility evaluation before you close on the lot is the single most effective way to protect your investment.\n\nStart with zoning and setback analysis. Every DFW municipality has different requirements, and some communities like Highland Park and Southlake layer additional architectural review standards on top of city code. Confirm that the lot size, setbacks, and height restrictions actually support the square footage and massing you have in mind. Next, evaluate soil conditions. North Texas is known for its expansive clay soils, which can cause significant foundation movement if not properly engineered. A geotechnical report will tell you what foundation system the site requires and what that adds to your budget.\n\nFinally, assess utility and infrastructure access. Not every lot in the DFW Metroplex has city water, sewer, and gas at the property line. Rural parcels in McKinney or Prosper may require well and septic systems, and utility extension costs can add tens of thousands to a project. We conduct these evaluations during our Discovery phase so that clients have a complete picture of what a lot will actually cost to build on — not just the purchase price, but the true cost of making it construction-ready.",
-    tags: ["Feasibility", "Lot Evaluation", "DFW"],
+      "The Dallas-Fort Worth area sits atop the Blackland Prairie, characterized by highly expansive clay soil. This soil undergoes a continuous 'shrink-swell cycle'—it expands significantly when wet and shrinks dramatically during our scorching, dry summers. This constant movement puts immense stress on building foundations and is the leading cause of structural failure in North Texas.\n\nTo successfully build a custom home that will last generations in DFW, the foundation must be specifically engineered for these conditions. There are two primary solutions we deploy:\n\n**1. Post-Tension Slab Foundations**\nUnlike traditional concrete slabs that can crack under pressure, post-tension slabs are designed to 'float' on the moving soil. Before the concrete is poured, high-strength steel cables (tendons) are laid in a grid. Once the concrete cures, these cables are pulled tight (tensioned). This puts the entire slab under compression, vastly increasing its strength and resistance to the tensile forces caused by shifting clay.\n\n**2. Pier and Beam Foundations**\nA pier and beam foundation elevates the home above the volatile surface soil, creating a crawl space. Concrete or steel piers are driven deep into the ground until they reach stable soil or bedrock, bypassing the active clay layer entirely. While often more expensive upfront than a slab, pier and beam foundations provide superior long-term stability and offer the added benefit of easy access to under-floor plumbing and electrical systems.\n\nBefore we ever pour a foundation, a geotechnical engineer performs a soil test on your specific lot to determine the exact plasticity index of the clay. This data dictates the structural engineering of the foundation, ensuring your home is built on a solid, scientifically validated base.",
+    tags: ["Engineering", "Foundations", "Soils", "DFW"],
   },
   {
     id: "blog-3",
-    title: "How Decision Gates Prevent Budget Overruns in Custom Home Projects",
-    slug: "decision-gates-budget-control",
+    title: "Navigating Architectural Review Boards: Highland Park & Beyond",
+    slug: "navigating-architectural-review-boards-highland-park",
     excerpt:
-      "Our phased approval process ensures every scope, material, and cost decision is documented and owner-approved before advancing to the next milestone.",
-    category: "Budget",
-    author: "DFW Design-Build Team",
-    date: "2025-07-15",
-    readTime: "5 min read",
-    content:
-      "Budget overruns are the most common complaint among custom home owners in Dallas-Fort Worth — and in most cases, the root cause is not material costs or labor rates. It is the absence of a structured decision-making process. When scope decisions are made verbally, when allowances are vaguely defined, and when changes are approved without written cost impact analysis, the budget drifts. Our decision gate methodology is designed to prevent exactly this.\n\nAt each phase transition — from Discovery to Concept, Concept to Documentation, Documentation to Construction — the project pauses for a formal owner review. We present the complete scope, updated budget, and schedule impact. The owner approves or requests changes before the project advances. No verbal agreements, no ambiguity. Every change order during construction follows the same discipline: written scope, cost impact, schedule impact, and owner signature before any work proceeds.\n\nThis approach works because it respects a fundamental truth about custom home building in DFW: the decisions that drive cost happen early. By the time framing starts, roughly 80% of the budget is already committed through design decisions, material selections, and trade contracts. Our gate process forces these decisions to be made deliberately, with full cost visibility, at the point where they can still be adjusted without waste. Clients in Preston Hollow, Southlake, and Frisco have consistently told us that this transparency is what distinguishes their experience from previous builds.",
-    tags: ["Budget", "Decision Gates", "Process"],
-  },
-  {
-    id: "blog-4",
-    title: "Modern Architecture in Dallas-Fort Worth: Trends Shaping Custom Homes in 2025",
-    slug: "modern-architecture-dfw-2025-trends",
-    excerpt:
-      "From courtyard-centered plans to integrated indoor-outdoor living, the architectural trends defining DFW's custom home landscape this year.",
-    category: "Design",
-    author: "DFW Design-Build Team",
-    date: "2025-06-01",
-    readTime: "7 min read",
-    content:
-      "The architectural landscape for custom homes in Dallas-Fort Worth continues to evolve, driven by climate realities, lifestyle shifts, and advances in construction technology. In 2025, several trends are defining the projects we design and build across the Metroplex, from Preston Hollow to Southlake to Prosper.\n\nCourtyard-centered plans have become one of the most requested layouts. In a climate where summer temperatures routinely exceed 100 degrees, a central courtyard creates a protected outdoor zone with controlled shade, cross-ventilation, and privacy. These plans work particularly well on DFW's typical rectangular lots, where side setbacks limit window placement on exterior walls. By turning the home inward around a courtyard, every major room gains natural light and an outdoor connection without sacrificing privacy.\n\nIntegrated indoor-outdoor living remains a defining feature of DFW custom homes, but the approach has matured. Clients are moving beyond the standard covered patio toward fully engineered outdoor rooms with climate control — retractable screens, misting systems, radiant heating, and outdoor kitchens with the same appliance and finish standards as the interior. Steel-and-glass wall systems that open entire living areas to the outdoors are now structurally and thermally practical, thanks to improvements in thermal break technology. These systems require careful coordination between the architect, structural engineer, and builder from the earliest design phase — exactly the kind of integration that the design-build model facilitates.",
-    tags: ["Architecture", "Design Trends", "DFW", "2025"],
-  },
-  {
-    id: "blog-5",
-    title: "Navigating HOA and Building Codes in North Texas Municipalities",
-    slug: "hoa-building-codes-north-texas",
-    excerpt:
-      "A builder's perspective on working within the regulatory frameworks of Highland Park, Southlake, Frisco, Prosper, and other DFW communities.",
+      "A guide to the strict zoning and HOA architectural guidelines in premium DFW municipalities like Highland Park and Southlake.",
     category: "Regulations",
     author: "DFW Design-Build Team",
-    date: "2025-04-18",
+    date: "2025-09-18",
     readTime: "6 min read",
+    coverImage: {
+      src: "/projects/highland-park-tudor-revival/hero.jpg",
+      alt: "Highland Park Tudor Revival",
+      width: 2000,
+      height: 1334,
+    },
     content:
-      "Building a custom home in Dallas-Fort Worth means navigating a patchwork of municipal codes, HOA architectural standards, and review board processes that vary significantly from one community to the next. What is approved without question in Frisco may require months of review in Highland Park. Understanding these differences before you start design is essential for protecting your timeline and avoiding costly redesigns.\n\nHighland Park and University Park have some of the most rigorous architectural review processes in North Texas. Submissions are evaluated not just for code compliance but for aesthetic compatibility with the neighborhood character. Material choices, roof pitches, facade proportions, and even landscape plans are subject to board approval. Southlake's development standards similarly include detailed architectural guidelines that govern everything from masonry percentages to garage door visibility. In Prosper, rapid growth has led to evolving zoning requirements as the city works to maintain development quality while accommodating new construction.\n\nOur approach to regulatory navigation begins during the Discovery phase. We identify every applicable code, HOA covenant, and review board requirement before design work starts. This upfront investment in regulatory research prevents the most expensive kind of delay: a design that has to be reworked after it has already been engineered and priced. For communities with formal review boards, we prepare submission packages that anticipate common objections and include the documentation reviewers need to approve the project efficiently. Across DFW, the builders who deliver on time are the ones who treat permitting and HOA coordination as a design input — not an afterthought.",
-    tags: ["HOA", "Building Codes", "Regulations", "DFW"],
-  },
-  {
-    id: "blog-6",
-    title: "Landscape Design for the DFW Climate: Heat-Tolerant Strategies That Last",
-    slug: "landscape-design-dfw-climate",
-    excerpt:
-      "Selecting plant species, irrigation systems, and hardscape materials engineered for North Texas clay soils, heat, and storm patterns.",
-    category: "Landscape",
-    author: "DFW Design-Build Team",
-    date: "2025-03-05",
-    readTime: "5 min read",
-    content:
-      "Landscape design in the Dallas-Fort Worth Metroplex operates under constraints that most national design publications ignore. Summer temperatures regularly exceed 100 degrees Fahrenheit. Clay soils expand and contract dramatically with moisture changes. Intense storm events can dump several inches of rain in hours, followed by weeks of drought. A landscape that does not account for these realities will fail within a few seasons — regardless of how much was spent on it.\n\nPlant selection is the foundation. We specify species proven to thrive in USDA Zone 8a conditions with North Texas clay soils: native and adapted varieties like Texas sage, Lindheimer muhly, cedar elm, and desert willow. These species require less irrigation once established, tolerate heat stress, and maintain visual quality through DFW's extreme summers. For clients in Southlake, Prosper, and Flower Mound, where larger lots allow for more extensive planting, we design in hydrozones — grouping plants by water need so the irrigation system can deliver precisely what each zone requires without waste.\n\nDrainage engineering is equally critical. DFW's clay soils drain poorly, and the flat topography of many North Texas lots means water has to be actively managed. We design grading, French drains, and surface drainage systems as part of the landscape plan, coordinating with the home's foundation engineering to ensure water is directed away from structures. Hardscape materials are selected for thermal performance — lighter-colored pavers and natural stone that do not become dangerously hot underfoot in summer. Every material and system choice is evaluated for long-term performance in the DFW climate, not just how it looks on installation day.",
-    tags: ["Landscape", "Climate", "DFW", "Hardscape"],
-  },
+      "Building a luxury custom home in established DFW municipalities involves much more than simply securing a city building permit. Upscale neighborhoods and independent towns—most notably Highland Park, University Park, and certain communities in Southlake—enforce rigorous zoning ordinances and require approval from strict Architectural Review Committees (ARCs).\n\n**The Highland Park Standard**\nIn the Town of Highland Park, Chapter 14 of the Zoning Ordinance heavily dictates building height, bulk, lot coverage, and Floor-Area-Ratio (FAR). But beyond basic zoning, your design must pass an architectural review. Committees often regulate aesthetic compatibility with the neighborhood. For instance, flat or low-slope roofs may be explicitly prohibited in favor of specific pitches. Exterior materials are highly scrutinized; many enclaves mandate a high percentage of natural stone or brick, and front-facing garages are almost universally banned.\n\n**Southlake and Frisco HOAs**\nIn Southlake and Frisco, high-end subdivisions often layer their own HOA design guidelines on top of city codes. These can dictate everything from the preservation of existing mature trees to the exact color palettes permitted on exterior trim.\n\nNavigating these boards requires experience and diplomacy. A design-build approach is particularly advantageous here. We involve our architectural team and project managers early to analyze the specific ARC guidelines of your lot before conceptual design begins. We prepare detailed submission packages, including 3D renderings and material boards, to anticipate the committee's concerns and secure approval faster, keeping your project on schedule.",
+    tags: ["HOA", "Zoning", "Highland Park", "Regulations"],
+  }
 ];
 
 export const fallbackFaqs: FAQ[] = [
