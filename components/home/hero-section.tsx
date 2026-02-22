@@ -17,7 +17,7 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ heroImage, children }: HeroSectionProps) {
-  const { phoneDisplay, phoneHref, scheduleUrl } = getCtaConfig();
+  const { scheduleUrl } = getCtaConfig();
   const hasGallery = Boolean(children);
   const heroRef = useRef<HTMLElement>(null);
   const topBarRef = useRef<HTMLDivElement>(null);
@@ -186,110 +186,108 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
               fill
               priority
               fetchPriority="high"
-              className="object-cover opacity-32"
+              className="object-cover opacity-[0.22] saturate-50 contrast-125 mix-blend-multiply"
               sizes="(max-width: 1536px) 100vw, 1536px"
             />
           </div>
         </div>
 
         {/* ── Gradient overlay ── */}
-        <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/92 to-canvas/72" />
+        <div className="absolute inset-0 bg-gradient-to-b from-canvas via-canvas/90 to-canvas/80" />
 
         {/* ── Content overlay ── */}
-        <Container swiss className="relative z-10 h-full flex flex-col justify-between pt-[14vh] md:pt-[16vh] pb-8 md:pb-12">
+        <Container swiss className="relative z-10 h-full flex flex-col justify-between pt-[14vh] md:pt-[18vh] pb-8 md:pb-12">
+          
           {/* TOP AREA - 12 Column Grid */}
-          <div ref={contentRef} className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 w-full will-change-transform">
+          <div ref={contentRef} className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-12 w-full will-change-transform text-ink/90">
             
-            {/* Col 1-4: Eyebrow */}
-            <div className="md:col-span-4 lg:col-span-3">
-              <p className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
-                <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.04}>
-                  DFW Modern Design-Build
-                </SwissTextReveal>
-              </p>
+            {/* Col 1-4: Brand Name + Line */}
+            <div className="md:col-span-4 lg:col-span-4 flex flex-col gap-6">
+              <div className="flex items-center gap-4">
+                <span className="font-mono text-xs uppercase tracking-[0.15em] font-medium">
+                  <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.04}>
+                    Premium Home Design
+                  </SwissTextReveal>
+                </span>
+                <div className="h-[1px] w-12 bg-ink/30" />
+              </div>
             </div>
 
             {/* Col 5-8: The Blueprint (List) */}
             <div className="md:col-span-4 lg:col-span-3 lg:col-start-6">
-              <h2 className="font-mono text-xs uppercase tracking-[0.1em] text-muted mb-4">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-ink/60">
                 <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.1}>
-                  The Blueprint
+                  THE BLUEPRINT
                 </SwissTextReveal>
               </h2>
-              <ul className="space-y-3 text-xs sm:text-sm text-ink/90 border-t border-line/40 pt-4" aria-label="Key proof points">
-                <li className="flex justify-between">
-                  <span className="text-muted">Model</span> 
+              <ul className="space-y-4 text-xs tracking-wide" aria-label="Key proof points">
+                <li className="flex justify-between items-baseline">
+                  <span className="text-ink/60 mr-4">Model</span> 
                   <span className="text-right">DFW-Only Operation</span>
                 </li>
-                <li className="flex justify-between">
-                  <span className="text-muted">Experience</span> 
+                <li className="flex justify-between items-baseline">
+                  <span className="text-ink/60 mr-4">Experience</span> 
                   <span className="text-right">60+ Homes Delivered</span>
                 </li>
-                <li className="flex justify-between">
-                  <span className="text-muted">Process</span> 
+                <li className="flex justify-between items-baseline">
+                  <span className="text-ink/60 mr-4">Process</span> 
                   <span className="text-right">Decision-Gated Planning</span>
+                </li>
+                <li className="flex justify-between items-baseline">
+                  <span className="text-ink/60 mr-4">Architecture</span> 
+                  <span className="text-right">Modern & Transitional</span>
                 </li>
               </ul>
             </div>
 
             {/* Col 9-12: About & CTA */}
-            <div className="md:col-span-4 lg:col-span-3 lg:col-start-10 flex flex-col justify-between">
+            <div className="md:col-span-4 lg:col-span-3 lg:col-start-10 flex flex-col justify-between h-full">
               <div>
-                <h2 className="font-mono text-xs uppercase tracking-[0.1em] text-muted mb-4">
+                <h2 className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-ink/60">
                   <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.15}>
-                    About Us
+                    ABOUT US
                   </SwissTextReveal>
                 </h2>
-                <div className="border-t border-line/40 pt-4">
-                  <p className="text-sm leading-relaxed text-ink/90">
+                <div className="text-xs leading-[1.8] text-ink/80 tracking-wide pr-4">
+                  <p>
                     <SwissTextReveal as="span" mode="line" stagger={0.1} delay={0.2}>
-                      {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth. Every phase is tied to clear deliverables and decision gates."}
+                      {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth. Every phase is tied to clear deliverables and decision gates to ensure builder-grade control over the final architecture."}
                     </SwissTextReveal>
                   </p>
                 </div>
               </div>
               
-              <div
-                ref={ctaGroupRef}
-                className="mt-8 flex flex-col gap-3"
-              >
+              <div ref={ctaGroupRef} className="mt-12 flex flex-col gap-3">
                 <CtaLink
                   href={scheduleUrl}
                   target="_blank"
                   rel="noreferrer"
                   eventName="cta_schedule_click"
                   variant="ghost"
-                  className="w-fit text-xs md:text-sm px-0 border-b border-transparent hover:border-accent pb-0.5 text-ink hover:text-accent focus-visible:outline-none rounded-none"
+                  className="w-fit text-[11px] uppercase tracking-[0.15em] font-mono px-0 border-b-0 text-ink/80 hover:text-ink focus-visible:outline-none rounded-none"
                 >
-                  [ SCHEDULE CONSULTATION ]
-                </CtaLink>
-                <CtaLink
-                  href={phoneHref}
-                  eventName="cta_call_click"
-                  variant="ghost"
-                  className="w-fit text-xs md:text-sm px-0 border-b border-transparent hover:border-accent pb-0.5 text-ink hover:text-accent focus-visible:outline-none rounded-none"
-                >
-                  [ CALL {phoneDisplay} ]
+                  ( SCHEDULE CONSULTATION )
                 </CtaLink>
               </div>
             </div>
           </div>
 
           {/* BOTTOM AREA - Giant Typography */}
-          <div className="w-full mt-auto">
+          <div className="w-full mt-auto mb-2">
             <h1
               ref={titleRef}
-              className="text-[12vw] sm:text-[10vw] leading-[0.85] tracking-tighter font-bold text-ink uppercase opacity-90 will-change-transform pb-4 sm:pb-0"
-              style={{ wordSpacing: "-0.1em" }}
+              className="text-[14vw] sm:text-[13vw] leading-[0.8] tracking-tighter font-normal text-ink uppercase opacity-90 will-change-transform pb-2 md:pb-4"
+              style={{ wordSpacing: "-0.02em" }}
             >
               <SwissTextReveal as="span" mode="line" stagger={0.12} delay={0.14}>
                 {"ARCHITECTURAL\n(CUSTOM) HOMES"}
               </SwissTextReveal>
             </h1>
-            <div className="flex flex-wrap justify-between items-center mt-6 md:mt-8 font-mono text-[10px] sm:text-xs text-muted uppercase tracking-widest border-t border-line/40 pt-4">
+            
+            <div className="flex flex-wrap justify-between items-center mt-4 sm:mt-6 font-mono text-[9px] sm:text-[10px] text-ink/60 uppercase tracking-[0.15em] border-t border-line/30 pt-4">
               <span>Dallas-Fort Worth</span>
-              <span className="hidden sm:inline">Builder-Grade Control</span>
-              <span>Est. 2026</span>
+              <span className="hidden sm:inline">Delivering since 2018</span>
+              <span>Copyright © 2026</span>
             </div>
           </div>
         </Container>
