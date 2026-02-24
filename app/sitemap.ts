@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getBlogPosts, getProjects } from "@/lib/data";
+import { getBlogPosts, getProjects, getServiceDetails } from "@/lib/data";
 import { getSiteUrl } from "@/lib/config/site";
 
 type StaticRoute = {
@@ -24,9 +24,10 @@ const staticRoutes: StaticRoute[] = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = getSiteUrl();
   const lastModified = new Date().toISOString();
-  const [projects, blogPosts] = await Promise.all([
+  const [projects, blogPosts, serviceDetails] = await Promise.all([
     getProjects(),
     getBlogPosts(),
+    getServiceDetails(),
   ]);
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
@@ -43,6 +44,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
+  const serviceEntries: MetadataRoute.Sitemap = serviceDetails.map((service) => ({
+    url: `${siteUrl}/services/${service.slug}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+
   const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${siteUrl}/blogs/${post.slug}`,
     lastModified: post.date || lastModified,
@@ -50,5 +58,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...projectEntries, ...blogEntries];
+  return [...staticEntries, ...projectEntries, ...serviceEntries, ...blogEntries];
 }
