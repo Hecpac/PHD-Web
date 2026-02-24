@@ -1,26 +1,122 @@
 "use client";
 
-import { useState } from "react";
-import type { EmblaCarouselType } from "embla-carousel";
+import { useRef } from "react";
+import Image from "next/image";
 
+import { gsap, useGSAP } from "@/lib/gsap";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CtaLink } from "@/components/ui/cta-link";
-import { FeaturedProjectsGrid } from "@/components/home/featured-projects-grid";
-import { CarouselDots, CarouselNextButton, CarouselPrevButton, useCarouselButtons } from "@/components/ui/carousel-controls";
-import type { Project } from "@/lib/types/content";
+import type { Project, GalleryImage } from "@/lib/types/content";
+
+function getCardImage(project: Project): GalleryImage | undefined {
+  return project.heroImage ?? project.gallery[0];
+}
+
+function ProjectCapsule({ project, index }: { project: Project; index: number }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+
+  const cardImage = getCardImage(project);
+
+  useGSAP(() => {
+    if (!containerRef.current || !bgRef.current || !textRef.current) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reducedMotion) {
+      gsap.set(textRef.current, { opacity: 1, y: 0 });
+      return;
+    }
+
+    // Parallax simétrico: imagen se desplaza -10% → 10% durante el scroll
+    gsap.fromTo(
+      bgRef.current,
+      { yPercent: -10 },
+      {
+        yPercent: 10,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      }
+    );
+
+    // Text reveal: aparece al entrar en viewport, sin scrub (duración fija)
+    gsap.from(textRef.current, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  }, { scope: containerRef });
+
+  return (
+    <div
+      ref={containerRef}
+      className="sticky top-0 h-screen w-full overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] shadow-2xl"
+      style={{ zIndex: index + 1 }}
+    >
+      {/* Imagen de fondo con parallax */}
+      <div
+        ref={bgRef}
+        className="absolute inset-0 z-0 h-[120%] -top-[10%] w-full pointer-events-none"
+      >
+        <Image
+          src={cardImage?.src ?? "/projects/north-dallas-courtyard-residence/hero.jpg"}
+          alt={cardImage?.alt ?? project.title}
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority={index === 0}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+
+      {/* Contenido centrado verticalmente */}
+      <div
+        ref={textRef}
+        className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center sm:px-6"
+      >
+        <h3 className="mb-4 text-4xl font-medium tracking-tight text-white sm:text-6xl lg:text-7xl">
+          {project.title}
+        </h3>
+        <p className="mb-8 font-mono text-xs uppercase tracking-widest text-white/80 sm:text-sm">
+          {project.location.display} · {project.year}
+        </p>
+        <CtaLink
+          href={`/projects/${project.slug}`}
+          variant="secondary"
+          eventName="gallery_interaction"
+          className="border-white/20 bg-white/10 text-white backdrop-blur-md transition-colors duration-300 hover:border-white hover:bg-white hover:text-ink"
+        >
+          Explore Project
+        </CtaLink>
+      </div>
+    </div>
+  );
+}
 
 type FeaturedProjectsSectionProps = {
   projects: Project[];
 };
 
 export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionProps) {
-  const [emblaApi, setEmblaApi] = useState<EmblaCarouselType>();
-  const { canPrev, canNext, scrollPrev, scrollNext } = useCarouselButtons(emblaApi);
-
   return (
-    <section id="featured-projects" className="section-shell section-brand-wash-bold">
-      <Container swiss className="space-y-10">
+    <section
+      id="featured-projects"
+      className="relative overflow-visible bg-brand-red pt-24 pb-0 text-white sm:pt-32"
+    >
+      <Container swiss className="mb-16 space-y-10">
         <SectionHeading
           eyebrow="Featured Projects"
           title="Built work across the DFW Metroplex"
@@ -28,46 +124,14 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
         />
       </Container>
 
-      <div className="overflow-hidden">
-        <FeaturedProjectsGrid
-          projects={projects}
-          prioritizeFirst
-          onApiChange={setEmblaApi}
-        />
-      </div>
-
-      <Container swiss>
-        <div className="pt-8 sm:pt-10 flex flex-col items-center justify-center gap-6 sm:flex-row">
-          {projects.length > 1 && (
-            <div className="brand-red-outline brand-red-surface flex w-fit items-center gap-3 rounded-full border border-line/90 bg-surface/92 px-3 py-2 shadow-[0_10px_25px_-20px_rgba(15,15,15,0.75)]">
-              <CarouselPrevButton
-                onClick={scrollPrev}
-                disabled={!canPrev}
-                aria-label="Previous featured project"
-                className="h-[44px] w-[44px]"
-              />
-              <CarouselDots emblaApi={emblaApi} className="gap-1.5" />
-              <CarouselNextButton
-                onClick={scrollNext}
-                disabled={!canNext}
-                aria-label="Next featured project"
-                className="h-[44px] w-[44px]"
-              />
-            </div>
-          )}
-
-          <div className="brand-red-outline brand-red-surface flex w-full max-w-xl justify-center rounded-xl border border-line/90 bg-surface/92 px-4 py-4 sm:w-fit sm:px-6 sm:py-6">
-            <CtaLink
-              href="/projects"
-              variant="secondary"
-              eventName="gallery_interaction"
-              className="w-full min-h-[44px] rounded-md border-line/80 bg-surface text-ink/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
-            >
-              View All Projects
-            </CtaLink>
-          </div>
+      {/* Edge-to-edge con px mínimo para mostrar bordes redondeados vs fondo rojo */}
+      <div className="px-3 sm:px-4">
+        <div className="relative flex flex-col">
+          {projects.map((project, index) => (
+            <ProjectCapsule key={project.id} project={project} index={index} />
+          ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
