@@ -4,9 +4,11 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { JsonLd } from "@/components/ui/json-ld";
+import { LeadMagnetBanner } from "@/components/ui/lead-magnet-banner";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { SocialProofStrip } from "@/components/ui/social-proof-strip";
 import { getSiteUrl } from "@/lib/config/site";
-import { getServiceDetailBySlug, getServiceDetails } from "@/lib/data";
+import { getReviews, getServiceDetailBySlug, getServiceDetails } from "@/lib/data";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
 
 type ServicePageProps = {
@@ -47,11 +49,16 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
   const { slug } = await params;
-  const service = await getServiceDetailBySlug(slug);
+  const [service, reviews] = await Promise.all([
+    getServiceDetailBySlug(slug),
+    getReviews(),
+  ]);
 
   if (!service) {
     notFound();
   }
+
+  const contextualReviews = reviews.slice(0, 2);
 
   return (
     <>
@@ -110,13 +117,17 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </div>
           </div>
 
+          <SocialProofStrip title="Client confidence at this stage" reviews={contextualReviews} />
+
+          <LeadMagnetBanner />
+
           {/* CTA */}
           <div className="border-t border-line pt-8">
             <p className="mb-4 text-sm text-muted">
               Ready to discuss {service.title.toLowerCase()} for your DFW project?
             </p>
             <CtaLink href="/contact" eventName="cta_schedule_click">
-              Schedule Consultation
+              Start with Vision Builder
             </CtaLink>
           </div>
         </Container>

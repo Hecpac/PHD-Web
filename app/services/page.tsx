@@ -4,9 +4,11 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { LedgerSection } from "@/components/home/ledger-section";
 import { JsonLd } from "@/components/ui/json-ld";
+import { LeadMagnetBanner } from "@/components/ui/lead-magnet-banner";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { SocialProofStrip } from "@/components/ui/social-proof-strip";
 import { getSiteUrl } from "@/lib/config/site";
-import { getServiceDetails, getServices } from "@/lib/data";
+import { getReviews, getServiceDetails, getServices } from "@/lib/data";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -28,9 +30,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ServicesPage() {
-  const [services, serviceDetails] = await Promise.all([
+  const [services, serviceDetails, reviews] = await Promise.all([
     getServices(),
     getServiceDetails(),
+    getReviews(),
   ]);
 
   return (
@@ -73,6 +76,9 @@ export default async function ServicesPage() {
               </Link>
             ))}
           </div>
+
+          <LeadMagnetBanner compact />
+          <SocialProofStrip reviews={reviews.slice(0, 2)} />
         </Container>
       </section>
 

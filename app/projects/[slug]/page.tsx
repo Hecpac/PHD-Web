@@ -7,7 +7,8 @@ import { CtaLink } from "@/components/ui/cta-link";
 import { JsonLd } from "@/components/ui/json-ld";
 import { ProjectGallerySection } from "@/components/ui/project-gallery-section";
 import { ProjectViewTracker } from "@/components/ui/project-view-tracker";
-import { getProjectBySlug, getProjects } from "@/lib/data";
+import { SocialProofStrip } from "@/components/ui/social-proof-strip";
+import { getProjectBySlug, getProjects, getReviews } from "@/lib/data";
 import { getCtaConfig, getSiteUrl } from "@/lib/config/site";
 import {
   createProjectPageBreadcrumbSchema,
@@ -70,15 +71,54 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   };
 }
 
+function getContextualCta(project: { location: { city: string }; style: string }) {
+  const city = project.location.city.toLowerCase();
+
+  if (city.includes("highland park")) {
+    return {
+      title: "Planning in Highland Park?",
+      body: "We’ll walk through architectural review, timeline risk, and permit sequencing before design starts.",
+      button: "Book Highland Park Feasibility Call",
+    };
+  }
+
+  if (city.includes("southlake")) {
+    return {
+      title: "Building in Southlake?",
+      body: "Get a scope and budget discussion calibrated for luxury lots, timeline constraints, and finish level.",
+      button: "Book Southlake Consultation",
+    };
+  }
+
+  if (city.includes("prosper")) {
+    return {
+      title: "Planning in Prosper?",
+      body: "We’ll align lot-readiness, utilities, and architectural scope before your first design milestone.",
+      button: "Book Prosper Project Call",
+    };
+  }
+
+  return {
+    title: `Planning in ${project.location.city}?`,
+    body: `Discuss design-build scope, budget guardrails, and execution path for a ${project.style.toLowerCase()} custom home.`,
+    button: `Book ${project.location.city} Consultation`,
+  };
+}
+
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = await getProjectBySlug(slug);
+  const [project, reviews] = await Promise.all([getProjectBySlug(slug), getReviews()]);
 
   if (!project) {
     notFound();
   }
 
   const { scheduleUrl, phoneHref, phoneDisplay } = getCtaConfig();
+  const cta = getContextualCta(project);
+  const contextualReviews = reviews
+    .filter((review) => review.location.toLowerCase().includes(project.location.city.toLowerCase()))
+    .slice(0, 1);
+  const socialProof = contextualReviews.length > 0 ? contextualReviews : reviews.slice(0, 1);
 
   return (
     <article className="section-shell">
@@ -123,14 +163,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
 
             <div className="rounded-2xl border border-line bg-surface p-5">
-              <h2 className="text-lg font-semibold">Start Your DFW Project</h2>
-              <p className="mt-2 text-sm leading-6 text-muted">
-                Planning a custom home in Dallas-Fort Worth? Share your brief and schedule a consultation.
-              </p>
+              <h2 className="text-lg font-semibold">{cta.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-muted">{cta.body}</p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <BookingModal
                   bookingUrl={scheduleUrl}
-                  triggerLabel="Schedule Consultation"
+                  triggerLabel={cta.button}
                   title="Book your custom home consultation"
                   description="Pick a slot and we will review your project scope live."
                 />
@@ -141,6 +179,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
           </aside>
         </div>
+
+        <SocialProofStrip
+          title={`Client feedback from ${project.location.city} and nearby areas`}
+          reviews={socialProof}
+        />
       </Container>
     </article>
   );
