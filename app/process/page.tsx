@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { BlueprintSection } from "@/components/home/blueprint-section";
+import { GsapProcessTimeline } from "@/components/process/gsap-process-timeline";
 import { JsonLd } from "@/components/ui/json-ld";
 import { getSiteUrl } from "@/lib/config/site";
 import { getProcessSteps } from "@/lib/data";
@@ -35,7 +35,7 @@ export default async function ProcessPage() {
           { name: "Process", href: "/process" },
         ])}
       />
-      <BlueprintSection steps={steps} headingAs="h1" />
+      <GsapProcessTimeline steps={steps} />
     </>
   );
 }

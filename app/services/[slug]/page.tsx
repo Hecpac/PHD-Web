@@ -9,11 +9,21 @@ import { LeadMagnetBanner } from "@/components/ui/lead-magnet-banner";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SocialProofStrip } from "@/components/ui/social-proof-strip";
 import { getSiteUrl } from "@/lib/config/site";
-import { getReviews, getServiceDetailBySlug, getServiceDetails } from "@/lib/data";
-import { createBreadcrumbSchema } from "@/lib/seo/schema";
+import { getFaqs, getReviews, getServiceDetailBySlug, getServiceDetails } from "@/lib/data";
+import { createBreadcrumbSchema, createFaqSchema } from "@/lib/seo/schema";
 
 type ServicePageProps = {
   params: Promise<{ slug: string }>;
+};
+
+const FAQ_CATEGORY_MAP: Record<string, string[]> = {
+  "architectural-design": ["Design", "Process", "Timeline"],
+  "interior-design": ["Design", "Process", "Budget"],
+  "landscape-architecture": ["Design", "Process", "Service Area"],
+  "3d-rendering": ["Design", "Process"],
+  consulting: ["Process", "Budget", "Timeline"],
+  "project-management": ["Process", "Timeline", "Budget"],
+  "feasibility-studies": ["Budget", "Process", "Timeline"],
 };
 
 export async function generateStaticParams() {
@@ -50,9 +60,10 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
   const { slug } = await params;
-  const [service, reviews] = await Promise.all([
+  const [service, reviews, faqs] = await Promise.all([
     getServiceDetailBySlug(slug),
     getReviews(),
+    getFaqs(),
   ]);
 
   if (!service) {
@@ -60,6 +71,10 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
   }
 
   const contextualReviews = reviews.slice(0, 2);
+  const mappedCategories = FAQ_CATEGORY_MAP[service.slug] ?? ["Process", "Budget", "Timeline"];
+  const serviceFaqs = faqs
+    .filter((faq) => mappedCategories.includes(faq.category))
+    .slice(0, 5);
 
   return (
     <>
@@ -70,6 +85,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           { name: service.title, href: `/services/${service.slug}` },
         ])}
       />
+      {serviceFaqs.length > 0 ? <JsonLd data={createFaqSchema(serviceFaqs)} /> : null}
       <PageIntentTracker entityType="service" slug={service.slug} />
       <section className="section-shell" aria-labelledby="service-heading">
         <Container swiss className="space-y-10">
@@ -122,6 +138,20 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <SocialProofStrip title="Client confidence at this stage" reviews={contextualReviews} />
 
           <LeadMagnetBanner />
+
+          {serviceFaqs.length > 0 ? (
+            <section className="space-y-4 rounded-xl border border-line bg-surface p-6" aria-label="Service FAQs">
+              <h3 className="text-lg font-semibold tracking-tight text-ink">Frequently asked questions</h3>
+              <ul className="space-y-3">
+                {serviceFaqs.map((faq) => (
+                  <li key={faq.id} className="text-sm leading-6 text-muted">
+                    <span className="font-semibold text-ink">{faq.question}</span>
+                    <p>{faq.answer}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
 
           {/* CTA */}
           <div className="border-t border-line pt-8">
