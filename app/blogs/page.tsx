@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { BlogList } from "@/components/blog/blog-list";
 import { Container } from "@/components/layout/container";
 import { JsonLd } from "@/components/ui/json-ld";
+import { LeadMagnetBanner } from "@/components/ui/lead-magnet-banner";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getSiteUrl } from "@/lib/config/site";
 import { getBlogPosts } from "@/lib/data";
@@ -54,6 +55,8 @@ export default async function BlogsPage() {
             title="Insights on building custom homes in DFW"
             description="Practical knowledge from our design-build team on architecture, process, budgets, and the realities of building in the Dallas-Fort Worth Metroplex."
           />
+
+          <LeadMagnetBanner compact />
 
           <BlogList posts={posts} />
         </Container>

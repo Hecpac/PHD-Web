@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { JsonLd } from "@/components/ui/json-ld";
+import { LeadMagnetBanner } from "@/components/ui/lead-magnet-banner";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getCtaConfig, getSiteUrl } from "@/lib/config/site";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
@@ -151,6 +152,8 @@ export default function DallasFortWorthPage() {
                 Out-of-area inquiries are redirected to local partner recommendations when possible.
               </li>
             </ul>
+
+            <LeadMagnetBanner className="mt-6" compact />
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <CtaLink

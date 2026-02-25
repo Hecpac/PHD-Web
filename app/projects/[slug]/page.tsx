@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { Container } from "@/components/layout/container";
+import { BookingModal } from "@/components/ui/booking-modal";
 import { CtaLink } from "@/components/ui/cta-link";
 import { JsonLd } from "@/components/ui/json-ld";
 import { ProjectGallerySection } from "@/components/ui/project-gallery-section";
@@ -77,7 +78,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  const { scheduleUrl } = getCtaConfig();
+  const { scheduleUrl, phoneHref, phoneDisplay } = getCtaConfig();
 
   return (
     <article className="section-shell">
@@ -126,14 +127,15 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               <p className="mt-2 text-sm leading-6 text-muted">
                 Planning a custom home in Dallas-Fort Worth? Share your brief and schedule a consultation.
               </p>
-              <div className="mt-4">
-                <CtaLink
-                  href={scheduleUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  eventName="cta_schedule_click"
-                >
-                  Schedule Consultation
+              <div className="mt-4 flex flex-wrap items-center gap-3">
+                <BookingModal
+                  bookingUrl={scheduleUrl}
+                  triggerLabel="Schedule Consultation"
+                  title="Book your custom home consultation"
+                  description="Pick a slot and we will review your project scope live."
+                />
+                <CtaLink href={phoneHref} eventName="cta_call_click" variant="secondary">
+                  Call {phoneDisplay}
                 </CtaLink>
               </div>
             </div>
