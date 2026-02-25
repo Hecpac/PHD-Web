@@ -1,5 +1,5 @@
 import { getCtaConfig, getSiteUrl, siteConfig } from "@/lib/config/site";
-import type { BlogPost, FAQ, Project } from "@/lib/types/content";
+import type { BlogPost, FAQ, ProcessStep, Project, ServiceDetail } from "@/lib/types/content";
 
 export function createLocalBusinessSchema() {
   const siteUrl = getSiteUrl();
@@ -265,6 +265,73 @@ export function createBlogCollectionSchema(posts: BlogPost[]) {
       "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
       name: siteConfig.name,
       url: siteUrl,
+    },
+  };
+}
+
+export function createHowToSchema(steps: ProcessStep[]) {
+  const siteUrl = getSiteUrl();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to Build a Custom Home in Dallas-Fort Worth",
+    description:
+      "A stage-based design-build process with decision gates for custom home projects in the DFW Metroplex.",
+    url: `${siteUrl}/process`,
+    provider: {
+      "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+      name: siteConfig.name,
+      url: siteUrl,
+    },
+    step: steps.map((step) => ({
+      "@type": "HowToStep",
+      position: step.stepNumber,
+      name: step.title,
+      text: step.description,
+      itemListElement: step.deliverables.map((d) => ({
+        "@type": "HowToDirection",
+        text: d,
+      })),
+    })),
+  };
+}
+
+export function createServiceSchema(service: ServiceDetail) {
+  const siteUrl = getSiteUrl();
+  const { phoneE164 } = getCtaConfig();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.summary,
+    url: `${siteUrl}/services/${service.slug}`,
+    provider: {
+      "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+      name: siteConfig.name,
+      url: siteUrl,
+      telephone: phoneE164,
+      areaServed: {
+        "@type": "AdministrativeArea",
+        name: "Dallas-Fort Worth Metroplex",
+      },
+    },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "Dallas-Fort Worth Metroplex",
+    },
+    serviceType: service.title,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: `${service.title} Deliverables`,
+      itemListElement: service.deliverables.map((d) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: d,
+        },
+      })),
     },
   };
 }

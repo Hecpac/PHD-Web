@@ -114,12 +114,17 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
   return (
     <section
       id="featured-projects"
-      className="relative overflow-visible bg-brand-red pt-24 pb-0 text-white sm:pt-32"
+      className="relative overflow-visible bg-[#1c1c1c] pt-24 pb-0 text-white sm:pt-32"
     >
       <Container swiss className="mb-16 space-y-10">
         <SectionHeading
           eyebrow="Featured Projects"
-          title="Built work across the DFW Metroplex"
+          title={
+            <>
+              Built work across the{" "}
+              <em className="not-italic text-accent">DFW Metroplex</em>
+            </>
+          }
           description="Portfolio evidence comes first. Each project reflects design intent, execution discipline, and documented handoff quality."
         />
       </Container>

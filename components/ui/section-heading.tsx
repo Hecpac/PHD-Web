@@ -1,9 +1,10 @@
 import { cn } from "@/lib/utils";
 import { SwissTextReveal } from "@/components/ui/swiss-text-reveal";
+import type { ReactNode } from "react";
 
 type SectionHeadingProps = {
   eyebrow?: string;
-  title: string;
+  title: ReactNode;
   description?: string;
   className?: string;
   /** Optional id for the rendered heading element (h1/h2). */

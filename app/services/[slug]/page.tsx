@@ -10,7 +10,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { SocialProofStrip } from "@/components/ui/social-proof-strip";
 import { getSiteUrl } from "@/lib/config/site";
 import { getFaqs, getReviews, getServiceDetailBySlug, getServiceDetails } from "@/lib/data";
-import { createBreadcrumbSchema, createFaqSchema } from "@/lib/seo/schema";
+import { createBreadcrumbSchema, createFaqSchema, createServiceSchema } from "@/lib/seo/schema";
 
 type ServicePageProps = {
   params: Promise<{ slug: string }>;
@@ -85,6 +85,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           { name: service.title, href: `/services/${service.slug}` },
         ])}
       />
+      <JsonLd data={createServiceSchema(service)} />
       {serviceFaqs.length > 0 ? <JsonLd data={createFaqSchema(serviceFaqs)} /> : null}
       <PageIntentTracker entityType="service" slug={service.slug} />
       <section className="section-shell" aria-labelledby="service-heading">
@@ -98,13 +99,13 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
           {/* Description */}
           <div className="max-w-3xl">
-            <p className="text-sm leading-7 text-muted">{service.description}</p>
+            <p className="type-prose text-muted">{service.description}</p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2">
             {/* Deliverables */}
-            <div className="border border-line bg-surface p-6">
-              <h3 className="type-h3-standard mb-4">Deliverables</h3>
+            <div className="group border border-line bg-surface p-6 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)]">
+              <h3 className="type-h3-standard mb-4 transition-colors duration-200 group-hover:text-accent">Deliverables</h3>
               <ul className="space-y-3">
                 {service.deliverables.map((item) => (
                   <li key={item} className="flex gap-3 text-sm leading-6 text-muted">
@@ -119,8 +120,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </div>
 
             {/* Benefits */}
-            <div className="border border-line bg-surface p-6">
-              <h3 className="type-h3-standard mb-4">Why It Matters</h3>
+            <div className="group border border-line bg-surface p-6 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)]">
+              <h3 className="type-h3-standard mb-4 transition-colors duration-200 group-hover:text-accent">Why It Matters</h3>
               <ul className="space-y-3">
                 {service.benefits.map((item) => (
                   <li key={item} className="flex gap-3 text-sm leading-6 text-muted">
@@ -140,7 +141,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <LeadMagnetBanner />
 
           {serviceFaqs.length > 0 ? (
-            <section className="space-y-4 rounded-xl border border-line bg-surface p-6" aria-label="Service FAQs">
+            <section className="group space-y-4 rounded-xl border border-line bg-surface p-6 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)]" aria-label="Service FAQs">
               <h3 className="text-lg font-semibold tracking-tight text-ink">Frequently asked questions</h3>
               <ul className="space-y-3">
                 {serviceFaqs.map((faq) => (

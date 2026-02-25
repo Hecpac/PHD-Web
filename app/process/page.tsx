@@ -4,7 +4,7 @@ import { GsapProcessTimeline } from "@/components/process/gsap-process-timeline"
 import { JsonLd } from "@/components/ui/json-ld";
 import { getSiteUrl } from "@/lib/config/site";
 import { getProcessSteps } from "@/lib/data";
-import { createBreadcrumbSchema } from "@/lib/seo/schema";
+import { createBreadcrumbSchema, createHowToSchema } from "@/lib/seo/schema";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
@@ -35,6 +35,7 @@ export default async function ProcessPage() {
           { name: "Process", href: "/process" },
         ])}
       />
+      <JsonLd data={createHowToSchema(steps)} />
       <GsapProcessTimeline steps={steps} />
     </>
   );

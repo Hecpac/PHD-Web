@@ -204,6 +204,70 @@ function normalizeProcessStep(doc: SanityProcessStep): ProcessStep | null {
   };
 }
 
+type SanityServiceDetail = {
+  _id?: string;
+  slug?: string;
+  title?: string;
+  summary?: string;
+  description?: string;
+  deliverables?: string[];
+  benefits?: string[];
+  order?: number;
+  icon?: string;
+};
+
+type SanityReview = {
+  _id?: string;
+  author?: string;
+  location?: string;
+  rating?: number;
+  text?: string;
+  projectType?: string;
+  date?: string;
+};
+
+function normalizeServiceDetail(doc: SanityServiceDetail): ServiceDetail | null {
+  const title = doc.title?.trim();
+  const summary = doc.summary?.trim();
+  const description = doc.description?.trim();
+  const slug = doc.slug?.trim();
+
+  if (!title || !summary || !description || !slug) {
+    return null;
+  }
+
+  return {
+    id: doc._id || `service-detail-${slug}`,
+    slug,
+    title,
+    summary,
+    description,
+    deliverables: doc.deliverables?.filter(Boolean) ?? [],
+    benefits: doc.benefits?.filter(Boolean) ?? [],
+    order: doc.order ?? 99,
+    icon: doc.icon || "Dot",
+  };
+}
+
+function normalizeReview(doc: SanityReview): Review | null {
+  const author = doc.author?.trim();
+  const text = doc.text?.trim();
+
+  if (!author || !text || typeof doc.rating !== "number") {
+    return null;
+  }
+
+  return {
+    id: doc._id || `review-${slugify(author)}`,
+    author,
+    location: doc.location?.trim() || "Dallas-Fort Worth, TX",
+    rating: Math.min(5, Math.max(1, doc.rating)),
+    text,
+    projectType: doc.projectType?.trim() || "Custom Home",
+    date: doc.date?.trim() || new Date().getFullYear().toString(),
+  };
+}
+
 function normalizeFaq(doc: SanityFaq): FAQ | null {
   const question = doc.question?.trim();
   const answer = doc.answer?.trim();
@@ -311,9 +375,14 @@ export async function getFaqs(): Promise<FAQ[]> {
 }
 
 export async function getServiceDetails(): Promise<ServiceDetail[]> {
-  const docs = await fetchFromSanity<ServiceDetail[]>(serviceDetailsQuery, fallbackServiceDetails);
-  if (!hasSanityConfig) return docs;
-  return Array.isArray(docs) && docs.length > 0 ? docs : fallbackServiceDetails;
+  const docs = await fetchFromSanity<SanityServiceDetail[]>(serviceDetailsQuery, fallbackServiceDetails as unknown as SanityServiceDetail[]);
+  if (!hasSanityConfig) return fallbackServiceDetails;
+
+  const normalized = (docs as SanityServiceDetail[])
+    .map(normalizeServiceDetail)
+    .filter((s): s is ServiceDetail => Boolean(s));
+
+  return normalized.length > 0 ? normalized : fallbackServiceDetails;
 }
 
 export async function getServiceDetailBySlug(slug: string): Promise<ServiceDetail | null> {
@@ -326,9 +395,14 @@ export async function getServiceDetailBySlug(slug: string): Promise<ServiceDetai
 }
 
 export async function getReviews(): Promise<Review[]> {
-  const docs = await fetchFromSanity<Review[]>(reviewsQuery, fallbackReviews);
-  if (!hasSanityConfig) return docs;
-  return Array.isArray(docs) && docs.length > 0 ? docs : fallbackReviews;
+  const docs = await fetchFromSanity<SanityReview[]>(reviewsQuery, fallbackReviews as unknown as SanityReview[]);
+  if (!hasSanityConfig) return fallbackReviews;
+
+  const normalized = (docs as SanityReview[])
+    .map(normalizeReview)
+    .filter((r): r is Review => Boolean(r));
+
+  return normalized.length > 0 ? normalized : fallbackReviews;
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {

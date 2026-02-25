@@ -12,8 +12,8 @@ const bentoItems: BentoItem[] = [
       "Architecture, engineering, and construction managed under one agreement. One team, one schedule, one point of accountability across the DFW Metroplex.",
     span: "2x2",
     variant: "image",
-    imageSrc: "/projects/fort-worth-bluff-house/kitchen.jpg",
-    imageAlt: "Modern kitchen and living layout in a Dallas-Fort Worth custom home",
+    imageSrc: "/projects/1300-roxkliff/kitchen.jpg",
+    imageAlt: "Kitchen and living area in a custom home renovation in Plano, TX",
   },
   {
     id: "bento-projects",

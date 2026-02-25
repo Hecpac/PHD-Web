@@ -48,7 +48,12 @@ export default async function FaqPage() {
         <div className="space-y-4">
           {faqs.map((faq) => (
             <details key={faq.id} className="rounded-2xl border border-line bg-surface p-5">
-              <summary className="cursor-pointer text-base font-medium">{faq.question}</summary>
+              <summary
+                className="cursor-pointer list-none text-base font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                aria-label={faq.question}
+              >
+                {faq.question}
+              </summary>
               <p className="mt-3 text-sm leading-6 text-muted">{faq.answer}</p>
             </details>
           ))}

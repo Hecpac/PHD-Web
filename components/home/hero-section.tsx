@@ -197,9 +197,9 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
 
         {/* ── Content overlay ── */}
         <Container swiss className="relative z-10 h-full flex flex-col justify-between pt-[14vh] md:pt-[18vh] pb-8 md:pb-12">
-          
+
           {/* TOP AREA - 12 Column Grid */}
-          <div ref={contentRef} className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-12 w-full will-change-transform text-white/90">
+          <div ref={contentRef} className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-12 w-full will-change-transform text-white">
             
             {/* Col 1-4: Brand Name + Line */}
             <div className="md:col-span-4 lg:col-span-4 flex flex-col gap-6">

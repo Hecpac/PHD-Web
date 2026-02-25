@@ -153,9 +153,14 @@ export default function DallasFortWorthPage() {
               </li>
             </ul>
 
-            <LeadMagnetBanner className="mt-6" compact />
+            <div style={{ "--color-accent": "rgb(212 45 62)", "--color-accent-hover": "rgb(190 34 50)", "--color-on-accent": "rgb(255 244 245)" } as React.CSSProperties}>
+              <LeadMagnetBanner className="mt-6" compact />
+            </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+            <div
+              className="mt-6 flex flex-wrap items-center gap-3"
+              style={{ "--color-accent": "rgb(212 45 62)", "--color-accent-hover": "rgb(190 34 50)", "--color-on-accent": "rgb(255 244 245)" } as React.CSSProperties}
+            >
               <CtaLink
                 href={scheduleUrl}
                 target="_blank"
@@ -164,7 +169,7 @@ export default function DallasFortWorthPage() {
               >
                 Schedule a DFW Consultation
               </CtaLink>
-              <CtaLink href={phoneHref} eventName="cta_call_click" variant="secondary">
+              <CtaLink href={phoneHref} eventName="cta_call_click">
                 Call {phoneDisplay}
               </CtaLink>
             </div>
