@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useMemo, useState } from "react";
+import { useActionState, useEffect, useMemo, useState } from "react";
 
 import { submitVisionBuilder, type VisionBuilderState } from "@/actions/contact";
 import { CtaLink } from "@/components/ui/cta-link";
@@ -46,6 +46,27 @@ export function MultiStepForm() {
   const [investmentRange, setInvestmentRange] = useState<(typeof INVESTMENT_RANGE_OPTIONS)[number] | "">("");
 
   const [state, formAction, isPending] = useActionState(submitVisionBuilder, initialState);
+  const [utm] = useState(() => {
+    if (typeof window === "undefined") {
+      return {
+        source: "",
+        medium: "",
+        campaign: "",
+        content: "",
+        term: "",
+        landingPath: "",
+      };
+    }
+
+    return {
+      source: window.sessionStorage.getItem("utm_source") || "",
+      medium: window.sessionStorage.getItem("utm_medium") || "",
+      campaign: window.sessionStorage.getItem("utm_campaign") || "",
+      content: window.sessionStorage.getItem("utm_content") || "",
+      term: window.sessionStorage.getItem("utm_term") || "",
+      landingPath: window.sessionStorage.getItem("utm_landing_path") || "",
+    };
+  });
   const { phoneDisplay, phoneHref } = getCtaConfig();
 
   const progress = useMemo(() => ((step + 1) / stepTitles.length) * 100, [step]);
@@ -76,6 +97,28 @@ export function MultiStepForm() {
   const handleBack = () => {
     setStep((current) => Math.max(0, current - 1));
   };
+
+  useEffect(() => {
+    if (!state.message) {
+      return;
+    }
+
+    if (state.success) {
+      trackEvent("submit_contact", {
+        form: "vision_builder",
+        status: "captured",
+        lotStatus,
+        investmentRange,
+      });
+      return;
+    }
+
+    trackEvent("form_error", {
+      form: "vision_builder",
+      message: state.message,
+      errors: state.errors,
+    });
+  }, [investmentRange, lotStatus, state]);
 
   const renderStep = () => {
     if (step === 0) {
@@ -248,6 +291,13 @@ export function MultiStepForm() {
       </div>
 
       <form action={formAction} className="space-y-6" noValidate>
+        <input type="hidden" name="utm_source" value={utm.source} />
+        <input type="hidden" name="utm_medium" value={utm.medium} />
+        <input type="hidden" name="utm_campaign" value={utm.campaign} />
+        <input type="hidden" name="utm_content" value={utm.content} />
+        <input type="hidden" name="utm_term" value={utm.term} />
+        <input type="hidden" name="utm_landing_path" value={utm.landingPath} />
+
         {renderStep()}
 
         <div className="flex flex-wrap items-center gap-3 border-t border-line pt-4">
@@ -274,10 +324,7 @@ export function MultiStepForm() {
             <button
               type="submit"
               disabled={isPending}
-              onClick={() => {
-                handleStart();
-                trackEvent("form_submit", { form: "vision_builder", stage: "submit_attempt" });
-              }}
+              onClick={handleStart}
               className="min-h-11 rounded-md border border-accent bg-accent px-5 text-sm font-semibold text-on-accent disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isPending ? "Submitting…" : "Submit Vision"}

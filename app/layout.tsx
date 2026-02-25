@@ -13,6 +13,8 @@ import { CustomCursor } from "@/components/ui/custom-cursor";
 import { JsonLd } from "@/components/ui/json-ld";
 import { TransitionProvider } from "@/components/ui/page-transition";
 import { GoogleTagManager } from "@/components/analytics/gtm";
+import { UTMTracker } from "@/components/analytics/utm-tracker";
+import { MobileStickyBar } from "@/components/layout/mobile-sticky-bar";
 import { getSiteUrl, siteConfig } from "@/lib/config/site";
 import { createLocalBusinessSchema, createWebSiteSchema } from "@/lib/seo/schema";
 
@@ -131,6 +133,7 @@ export default function RootLayout({
           </noscript>
         ) : null}
         {GTM_ID ? <GoogleTagManager id={GTM_ID} /> : null}
+        <UTMTracker />
         <JsonLd data={createWebSiteSchema()} />
         <JsonLd data={createLocalBusinessSchema()} />
         <SmoothScroll>
@@ -140,7 +143,7 @@ export default function RootLayout({
           >
             <div className="flex min-h-screen flex-col bg-canvas text-ink">
               <SiteHeader />
-              <main id="main-content">
+              <main id="main-content" className="pb-20 md:pb-0">
                 <TransitionProvider>{children}</TransitionProvider>
               </main>
               <BackToTop />
@@ -149,6 +152,7 @@ export default function RootLayout({
           <SiteFooter />
           <FooterHeightObserver />
         </SmoothScroll>
+        <MobileStickyBar />
         <CustomCursor />
         <CadMode />
         <ConsoleBrand />

@@ -39,6 +39,15 @@ export type VisionBuilderState = {
   errors: VisionBuilderErrors;
 };
 
+type UTMAttribution = {
+  source: string;
+  medium: string;
+  campaign: string;
+  content: string;
+  term: string;
+  landingPath: string;
+};
+
 type ContactLead = {
   name: string;
   email: string;
@@ -47,6 +56,7 @@ type ContactLead = {
   message: string;
   submittedAt: string;
   source: "website-contact-form";
+  utm: UTMAttribution;
 };
 
 type VisionBuilderLead = {
@@ -61,6 +71,7 @@ type VisionBuilderLead = {
   source: "vision-builder";
   qualification: "qualified" | "nurture" | "not_fit";
   lifecycleStage: "ready_now" | "nurture";
+  utm: UTMAttribution;
 };
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -69,6 +80,17 @@ const CHEAP_REMODEL_REGEX = /\b(remodel|renovation|kitchen|bath|bathroom|cheap|b
 function getString(formData: FormData, field: string): string {
   const value = formData.get(field);
   return typeof value === "string" ? value.trim() : "";
+}
+
+function extractUtm(formData: FormData): UTMAttribution {
+  return {
+    source: getString(formData, "utm_source"),
+    medium: getString(formData, "utm_medium"),
+    campaign: getString(formData, "utm_campaign"),
+    content: getString(formData, "utm_content"),
+    term: getString(formData, "utm_term"),
+    landingPath: getString(formData, "utm_landing_path"),
+  };
 }
 
 function validateForm(fields: {
@@ -257,6 +279,7 @@ export async function submitContactForm(
     phone: getString(formData, "phone"),
     message: getString(formData, "message"),
   };
+  const utm = extractUtm(formData);
 
   const errors = validateForm(fields);
 
@@ -272,6 +295,7 @@ export async function submitContactForm(
     ...fields,
     submittedAt: new Date().toISOString(),
     source: "website-contact-form",
+    utm,
   };
 
   const webhookUrl = process.env.CONTACT_WEBHOOK_URL?.trim();
@@ -356,6 +380,7 @@ export async function submitVisionBuilder(
     phone: getString(formData, "phone"),
     message: getString(formData, "message"),
   };
+  const utm = extractUtm(formData);
 
   const errors = validateVisionBuilder(fields);
 
@@ -388,6 +413,7 @@ export async function submitVisionBuilder(
     source: "vision-builder",
     qualification,
     lifecycleStage: lotStatus === "looking-lot" ? "nurture" : "ready_now",
+    utm,
   };
 
   const webhookUrl = process.env.VISION_BUILDER_WEBHOOK_URL?.trim() || process.env.CONTACT_WEBHOOK_URL?.trim();

@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useId, useRef } from "react";
+import { useActionState, useEffect, useId, useRef, useState } from "react";
 import { ArrowUpRight, BadgeCheck, Clock3, MapPin } from "lucide-react";
 
 import { submitContactForm, type ContactFormState } from "@/actions/contact";
@@ -26,6 +26,27 @@ const initialState: ContactFormState = {
 export function ContactTerminal({ id = "contact", withHeading = true }: ContactTerminalProps) {
   const startedRef = useRef(false);
   const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
+  const [utm] = useState(() => {
+    if (typeof window === "undefined") {
+      return {
+        source: "",
+        medium: "",
+        campaign: "",
+        content: "",
+        term: "",
+        landingPath: "",
+      };
+    }
+
+    return {
+      source: window.sessionStorage.getItem("utm_source") || "",
+      medium: window.sessionStorage.getItem("utm_medium") || "",
+      campaign: window.sessionStorage.getItem("utm_campaign") || "",
+      content: window.sessionStorage.getItem("utm_content") || "",
+      term: window.sessionStorage.getItem("utm_term") || "",
+      landingPath: window.sessionStorage.getItem("utm_landing_path") || "",
+    };
+  });
 
   const formRef = useRef<HTMLFormElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -60,7 +81,8 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
   useEffect(() => {
     if (state.message) {
       if (state.success) {
-        trackEvent("form_submit", {
+        trackEvent("submit_contact", {
+          form: "contact_terminal",
           status: "captured",
           message: state.message,
         });
@@ -157,6 +179,13 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
             </div>
 
             <form ref={formRef} action={formAction} className="grid gap-4 sm:gap-6 md:grid-cols-2" onFocus={onFormFocus} noValidate>
+              <input type="hidden" name="utm_source" value={utm.source} />
+              <input type="hidden" name="utm_medium" value={utm.medium} />
+              <input type="hidden" name="utm_campaign" value={utm.campaign} />
+              <input type="hidden" name="utm_content" value={utm.content} />
+              <input type="hidden" name="utm_term" value={utm.term} />
+              <input type="hidden" name="utm_landing_path" value={utm.landingPath} />
+
               <label className="space-y-1.5 text-sm">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Full name <span className="text-accent" aria-hidden="true">*</span></span>
                 <input

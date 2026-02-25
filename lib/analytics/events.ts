@@ -2,6 +2,7 @@ export type AnalyticsEventName =
   | "cta_schedule_click"
   | "cta_call_click"
   | "form_start"
+  | "submit_contact"
   | "form_submit"
   | "form_error"
   | "project_view"
