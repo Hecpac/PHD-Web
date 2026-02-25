@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { PageIntentTracker } from "@/components/analytics/page-intent-tracker";
 import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -69,6 +70,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           { name: service.title, href: `/services/${service.slug}` },
         ])}
       />
+      <PageIntentTracker entityType="service" slug={service.slug} />
       <section className="section-shell" aria-labelledby="service-heading">
         <Container swiss className="space-y-10">
           <SectionHeading
@@ -126,7 +128,11 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <p className="mb-4 text-sm text-muted">
               Ready to discuss {service.title.toLowerCase()} for your DFW project?
             </p>
-            <CtaLink href="/contact" eventName="cta_schedule_click">
+            <CtaLink
+              href="/contact"
+              eventName="cta_schedule_click"
+              data-analytics-cta="service_primary_contact"
+            >
               Start with Vision Builder
             </CtaLink>
           </div>

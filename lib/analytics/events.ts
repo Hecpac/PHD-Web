@@ -6,6 +6,9 @@ export type AnalyticsEventName =
   | "form_submit"
   | "form_error"
   | "project_view"
+  | "service_view"
+  | "scroll_depth"
+  | "cta_visible"
   | "gallery_interaction";
 
 declare global {

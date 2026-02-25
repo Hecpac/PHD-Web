@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { PageIntentTracker } from "@/components/analytics/page-intent-tracker";
 import { Container } from "@/components/layout/container";
 import { BookingModal } from "@/components/ui/booking-modal";
 import { CtaLink } from "@/components/ui/cta-link";
 import { JsonLd } from "@/components/ui/json-ld";
 import { ProjectGallerySection } from "@/components/ui/project-gallery-section";
-import { ProjectViewTracker } from "@/components/ui/project-view-tracker";
 import { SocialProofStrip } from "@/components/ui/social-proof-strip";
 import { getProjectBySlug, getProjects, getReviews } from "@/lib/data";
 import { getCtaConfig, getSiteUrl } from "@/lib/config/site";
@@ -124,7 +124,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     <article className="section-shell">
       <JsonLd data={createProjectPageBreadcrumbSchema(project)} />
       <JsonLd data={createProjectSchema(project)} />
-      <ProjectViewTracker slug={project.slug} />
+      <PageIntentTracker entityType="project" slug={project.slug} />
       <Container swiss className="space-y-8">
         <hgroup className="space-y-4">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{project.location.display}</p>
@@ -171,8 +171,14 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   triggerLabel={cta.button}
                   title="Book your custom home consultation"
                   description="Pick a slot and we will review your project scope live."
+                  analyticsId="project_primary_schedule"
                 />
-                <CtaLink href={phoneHref} eventName="cta_call_click" variant="secondary">
+                <CtaLink
+                  href={phoneHref}
+                  eventName="cta_call_click"
+                  variant="secondary"
+                  data-analytics-cta="project_primary_call"
+                >
                   Call {phoneDisplay}
                 </CtaLink>
               </div>

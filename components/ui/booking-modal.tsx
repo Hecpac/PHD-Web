@@ -10,6 +10,7 @@ type BookingModalProps = {
   description?: string;
   bookingUrl: string;
   triggerLabel?: string;
+  analyticsId?: string;
 };
 
 export function BookingModal({
@@ -17,6 +18,7 @@ export function BookingModal({
   description = "Choose a time that works for you.",
   bookingUrl,
   triggerLabel = "Book Consultation",
+  analyticsId,
 }: BookingModalProps) {
   const [open, setOpen] = useState(false);
 
@@ -32,6 +34,7 @@ export function BookingModal({
       <button
         type="button"
         onClick={openModal}
+        data-analytics-cta={analyticsId}
         className="inline-flex min-h-[52px] items-center justify-center rounded-sm border border-accent bg-accent px-7 py-[14px] text-[14px] font-bold uppercase tracking-[0.05em] text-on-accent transition-colors duration-[var(--dur-fast)] hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         {triggerLabel}
