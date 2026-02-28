@@ -62,28 +62,28 @@ export default async function HomePage() {
         <HowWeWorkSection />
         <BlueprintSection steps={processSteps} />
 
-        <div className="content-auto" style={{ containIntrinsicSize: "1px 2400px" }}>
+        <div className="content-auto">
           <FeaturedProjectsSection projects={featuredProjects} />
         </div>
-        <div className="content-auto" style={{ containIntrinsicSize: "1px 700px" }}>
+        <div className="content-auto">
           <BentoSection />
         </div>
-        <div className="content-auto" style={{ containIntrinsicSize: "1px 600px" }}>
+        <div className="content-auto">
           <DfwSection />
         </div>
-        <div className="content-auto" style={{ containIntrinsicSize: "1px 400px" }}>
+        <div className="content-auto">
           <TrustSection />
         </div>
-        <div className="content-auto" style={{ containIntrinsicSize: "1px 600px" }}>
+        <div className="content-auto">
           <WhyChooseUsSection />
         </div>
-        <div className="content-auto" style={{ containIntrinsicSize: "1px 700px" }}>
+        <div className="content-auto">
           <TestimonialsSection reviews={reviews} />
         </div>
-        <div className="content-auto" style={{ containIntrinsicSize: "1px 800px" }}>
+        <div className="content-auto">
           <FaqSection faqs={faqs} />
         </div>
-        <div className="content-auto" style={{ containIntrinsicSize: "1px 700px" }}>
+        <div className="content-auto">
           <ContactTerminal />
         </div>
       </div>

@@ -51,7 +51,6 @@ export default async function FaqPage() {
             <details key={faq.id} className="rounded-2xl border border-line bg-surface p-5">
               <summary
                 className="cursor-pointer list-none text-base font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                aria-label={faq.question}
               >
                 {faq.question}
               </summary>

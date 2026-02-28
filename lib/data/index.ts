@@ -268,6 +268,51 @@ function normalizeReview(doc: SanityReview): Review | null {
   };
 }
 
+type SanityBlogPost = {
+  _id?: string;
+  title?: string;
+  slug?: string;
+  excerpt?: string;
+  category?: string;
+  author?: string;
+  date?: string;
+  readTime?: string;
+  content?: string;
+  coverImage?: SanityImage;
+  tags?: string[];
+};
+
+function normalizeBlogPost(doc: SanityBlogPost): BlogPost | null {
+  const title = doc.title?.trim();
+  const slug = doc.slug?.trim();
+  const excerpt = doc.excerpt?.trim();
+
+  if (!title || !slug || !excerpt) {
+    return null;
+  }
+
+  return {
+    id: doc._id || `blog-${slug}`,
+    title,
+    slug,
+    excerpt,
+    category: doc.category?.trim() || "General",
+    author: doc.author?.trim() || "Premium Home Design",
+    date: doc.date?.trim() || new Date().toISOString().split("T")[0],
+    readTime: doc.readTime?.trim() || "5 min read",
+    content: doc.content,
+    coverImage: doc.coverImage?.url
+      ? {
+          src: doc.coverImage.url,
+          alt: doc.coverImage.alt?.trim() || `${title} cover image`,
+          width: doc.coverImage.width ?? 1200,
+          height: doc.coverImage.height ?? 630,
+        }
+      : undefined,
+    tags: doc.tags?.filter(Boolean),
+  };
+}
+
 function normalizeFaq(doc: SanityFaq): FAQ | null {
   const question = doc.question?.trim();
   const answer = doc.answer?.trim();
@@ -409,9 +454,14 @@ export async function getReviews(): Promise<Review[]> {
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
-  const docs = await fetchFromSanity<BlogPost[]>(blogPostsQuery, fallbackBlogPosts);
-  if (!hasSanityConfig) return docs;
-  return Array.isArray(docs) && docs.length > 0 ? docs : fallbackBlogPosts;
+  const docs = await fetchFromSanity<SanityBlogPost[]>(blogPostsQuery, []);
+  if (!hasSanityConfig) return fallbackBlogPosts;
+
+  const normalized = (docs as SanityBlogPost[])
+    .map(normalizeBlogPost)
+    .filter((p): p is BlogPost => Boolean(p));
+
+  return normalized.length > 0 ? normalized : fallbackBlogPosts;
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
@@ -419,8 +469,11 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     return fallbackBlogPosts.find((post) => post.slug === slug) ?? null;
   }
 
-  const doc = await fetchFromSanity<BlogPost | null>(blogPostBySlugQuery, null, { slug });
-  if (doc) return doc;
+  const doc = await fetchFromSanity<SanityBlogPost | null>(blogPostBySlugQuery, null, { slug });
+  if (doc) {
+    const normalized = normalizeBlogPost(doc);
+    if (normalized) return normalized;
+  }
   return fallbackBlogPosts.find((post) => post.slug === slug) ?? null;
 }
 

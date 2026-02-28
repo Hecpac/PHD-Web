@@ -18,7 +18,7 @@ export const siteConfig: SiteConfig = {
   description:
     "Build your dream custom home in DFW with our design-build approach. Architecture + construction under one roof. Licensed since 2016.",
   serviceArea: "Dallas-Fort Worth Metroplex",
-  contactEmail: "Info@phomedesign.us",
+  contactEmail: "info@premiumhome.design",
   socialLinks: [
     {
       label: "TikTok",

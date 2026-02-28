@@ -22,7 +22,7 @@ export function SectionHeading({
   as: Heading = "h2",
 }: SectionHeadingProps) {
   return (
-    <hgroup className={cn("flex flex-col", className)}>
+    <div role="group" className={cn("flex flex-col", className)}>
       {eyebrow ? (
         <span className="mb-4 block type-mono-label text-muted md:mb-5">
           {eyebrow}
@@ -42,6 +42,6 @@ export function SectionHeading({
       {description ? (
         <p className="type-subhead max-w-prose text-muted">{description}</p>
       ) : null}
-    </hgroup>
+    </div>
   );
 }

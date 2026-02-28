@@ -47,3 +47,8 @@ next-env.d.ts
 
 # local raw media staging (do not commit)
 /assets/raw-imports/
+
+# agent/system-prompt files (internal, not for public repos)
+SOUL.md
+BOOTSTRAP.md
+AGENTS.md

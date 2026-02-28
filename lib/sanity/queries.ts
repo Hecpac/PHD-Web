@@ -48,43 +48,6 @@ export const projectBySlugQuery = groq`
   }
 `;
 
-export const featuredProjectsQuery = groq`
-  *[_type == "project" && isFeatured == true] | order(featuredOrder asc) [0...6] {
-    _id,
-    title,
-    "slug": slug.current,
-    location {
-      city,
-      neighborhood
-    },
-    style,
-    year,
-    summary,
-    description,
-    highlights,
-    specs,
-    isFeatured,
-    featuredOrder,
-    tags,
-    "displayLocation": select(
-      defined(location.neighborhood) => location.neighborhood + ", " + location.city,
-      location.city + ", DFW Metroplex"
-    ),
-    "heroImage": heroImage {
-      "url": asset->url,
-      alt,
-      "width": asset->metadata.dimensions.width,
-      "height": asset->metadata.dimensions.height
-    },
-    gallery[] {
-      "url": asset->url,
-      alt,
-      "width": asset->metadata.dimensions.width,
-      "height": asset->metadata.dimensions.height
-    }
-  }
-`;
-
 export const featuredProjectsWithHeroQuery = groq`
   *[_type == "project" && isFeatured == true] | order(featuredOrder asc) [0...6] {
     _id,
@@ -97,39 +60,6 @@ export const featuredProjectsWithHeroQuery = groq`
     style,
     year,
     summary,
-    highlights,
-    specs,
-    isFeatured,
-    featuredOrder,
-    tags,
-    "heroImage": heroImage {
-      "url": asset->url,
-      alt,
-      "width": asset->metadata.dimensions.width,
-      "height": asset->metadata.dimensions.height
-    },
-    gallery[] {
-      "url": asset->url,
-      alt,
-      "width": asset->metadata.dimensions.width,
-      "height": asset->metadata.dimensions.height
-    }
-  }
-`;
-
-export const projectBySlugDetailQuery = groq`
-  *[_type == "project" && slug.current == $slug][0] {
-    _id,
-    title,
-    "slug": slug.current,
-    location {
-      city,
-      neighborhood
-    },
-    style,
-    year,
-    summary,
-    description,
     highlights,
     specs,
     isFeatured,
