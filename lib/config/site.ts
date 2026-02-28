@@ -56,6 +56,7 @@ export const siteNavigation: readonly NavItem[] = [
       { href: "/services/feasibility-studies", label: "Feasibility Studies" },
     ],
   },
+  { href: "/for-builders", label: "For Builders" },
   { href: "/projects", label: "Projects" },
   { href: "/reviews", label: "Reviews" },
   { href: "/blogs", label: "Blogs" },

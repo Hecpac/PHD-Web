@@ -336,6 +336,54 @@ export function createServiceSchema(service: ServiceDetail) {
   };
 }
 
+export function createB2BDraftingServiceSchema() {
+  const siteUrl = getSiteUrl();
+  const { phoneE164 } = getCtaConfig();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Outsourced Drafting Services for Builders",
+    description:
+      "Permit-ready construction documents, 3D renders, and full coordination for residential builders in Dallas-Fort Worth.",
+    url: `${siteUrl}/for-builders`,
+    provider: {
+      "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+      name: siteConfig.name,
+      url: siteUrl,
+      telephone: phoneE164,
+      areaServed: {
+        "@type": "AdministrativeArea",
+        name: "Dallas-Fort Worth Metroplex",
+      },
+    },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "Dallas-Fort Worth Metroplex",
+    },
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: "Residential builders and general contractors",
+    },
+    serviceType: "Architectural Drafting",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "B2B Drafting Services",
+      itemListElement: [
+        "Floor Plans & Construction Drawings",
+        "3D Renders & Visualizations",
+        "Permit-Ready Documentation",
+        "Structural Coordination",
+        "MEP Layouts",
+        "Elevations & Sections",
+      ].map((name) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name },
+      })),
+    },
+  };
+}
+
 export function createBlogBreadcrumbSchema(post?: BlogPost) {
   const items = [
     { name: "Home", href: "/" },
