@@ -44,3 +44,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 /Wix (1)/
+
+# local raw media staging (do not commit)
+/assets/raw-imports/
