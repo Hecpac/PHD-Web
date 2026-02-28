@@ -290,7 +290,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
             <div className="flex flex-wrap justify-between items-center mt-4 sm:mt-6 font-mono text-[9px] sm:text-[10px] text-white uppercase tracking-[0.15em] border-t border-white/30 pt-4">
               <span>Dallas-Fort Worth</span>
               <span className="hidden sm:inline text-red-500">Delivering 2016</span>
-              <span>Copyright © 2026</span>
+              <span>Copyright © {new Date().getFullYear()}</span>
             </div>
           </div>
         </Container>

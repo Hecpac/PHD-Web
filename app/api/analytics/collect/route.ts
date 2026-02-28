@@ -36,8 +36,8 @@ async function forwardToWebhook(payload: Record<string, unknown>): Promise<void>
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        ...(process.env.CONTACT_WEBHOOK_BEARER_TOKEN
-          ? { Authorization: `Bearer ${process.env.CONTACT_WEBHOOK_BEARER_TOKEN}` }
+        ...(process.env.ANALYTICS_WEBHOOK_BEARER_TOKEN || process.env.CONTACT_WEBHOOK_BEARER_TOKEN
+          ? { Authorization: `Bearer ${process.env.ANALYTICS_WEBHOOK_BEARER_TOKEN ?? process.env.CONTACT_WEBHOOK_BEARER_TOKEN}` }
           : {}),
       },
       body: JSON.stringify(payload),

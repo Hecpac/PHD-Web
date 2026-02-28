@@ -8,11 +8,11 @@
     "start": "next start",
     "lint": "eslint --max-warnings 0",
     "test:unit": "vitest run",
-    "test:contact": "vitest run actions/contact.test.ts"
+    "test:contact": "vitest run actions/contact.test.ts",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@lottiefiles/dotlottie-react": "^0.18.1",
     "embla-carousel": "^8.6.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
