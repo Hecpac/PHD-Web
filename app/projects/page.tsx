@@ -48,6 +48,7 @@ export default async function ProjectsPage() {
       <Container swiss className="space-y-10 md:space-y-12">
         <SectionHeading
           as="h1"
+          titleId="projects-heading"
           eyebrow="Portfolio"
           title="Custom home projects in DFW"
           description="Built work that demonstrates architectural clarity, planning discipline, and field execution quality."

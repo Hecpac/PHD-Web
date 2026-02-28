@@ -87,11 +87,21 @@ export const featuredProjectsQuery = groq`
 
 export const featuredProjectsWithHeroQuery = groq`
   *[_type == "project" && isFeatured == true] | order(featuredOrder asc) [0...6] {
-    ...,
-    "displayLocation": select(
-      defined(location.neighborhood) => location.neighborhood + ", " + location.city,
-      location.city + ", DFW Metroplex"
-    ),
+    _id,
+    title,
+    "slug": slug.current,
+    location {
+      city,
+      neighborhood
+    },
+    style,
+    year,
+    summary,
+    highlights,
+    specs,
+    isFeatured,
+    featuredOrder,
+    tags,
     "heroImage": heroImage {
       "url": asset->url,
       alt,

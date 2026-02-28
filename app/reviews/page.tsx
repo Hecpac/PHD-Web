@@ -60,6 +60,7 @@ export default async function ReviewsPage() {
         <Container swiss className="space-y-10">
           <SectionHeading
             as="h1"
+            titleId="reviews-heading"
             eyebrow="Reviews"
             title="What our DFW homeowners say"
             description="Verified testimonials from clients who have completed the design-build process with our team across the Dallas-Fort Worth Metroplex."

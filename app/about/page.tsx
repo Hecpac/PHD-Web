@@ -98,6 +98,7 @@ export default function AboutPage() {
         <Container swiss className="space-y-8">
           <SectionHeading
             as="h1"
+            titleId="about-heading"
             eyebrow="About"
             title="A design-build practice focused on modern homes in DFW"
             description="We combine architecture rigor with construction control to deliver custom homes that match the drawings, meet the budget, and finish on schedule."

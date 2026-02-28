@@ -12,12 +12,6 @@ export function SiteHeader() {
 
   return (
     <>
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-on-accent"
-      >
-        Skip to main content
-      </a>
       <header className="absolute top-0 z-50 w-full" role="banner">
         <div className="container-swiss">
           <div className="flex items-center justify-between py-4 md:py-6">

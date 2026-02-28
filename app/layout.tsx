@@ -16,6 +16,7 @@ import { GoogleTagManager } from "@/components/analytics/gtm";
 import { UTMTracker } from "@/components/analytics/utm-tracker";
 import { MobileStickyBar } from "@/components/layout/mobile-sticky-bar";
 import { getSiteUrl, siteConfig } from "@/lib/config/site";
+import { getReviews } from "@/lib/data";
 import { createLocalBusinessSchema, createWebSiteSchema } from "@/lib/seo/schema";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
@@ -89,11 +90,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const reviews = await getReviews();
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -102,15 +104,8 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `(() => {
-  const root = document.documentElement;
-  root.classList.add('light');
-  root.dataset.fontVariant = 'archivo';
-
-  try {
-    localStorage.removeItem('phd_font_variant');
-  } catch {
-    // no-op
-  }
+  document.documentElement.classList.add('light');
+  window.dataLayer = window.dataLayer || [];
 })();`,
           }}
         />
@@ -135,7 +130,7 @@ export default function RootLayout({
         {GTM_ID ? <GoogleTagManager id={GTM_ID} /> : null}
         <UTMTracker />
         <JsonLd data={createWebSiteSchema()} />
-        <JsonLd data={createLocalBusinessSchema()} />
+        <JsonLd data={createLocalBusinessSchema(reviews)} />
         <SmoothScroll>
           <div
             className="relative z-[1] bg-canvas"

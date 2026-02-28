@@ -92,6 +92,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         <Container swiss className="space-y-10">
           <SectionHeading
             as="h1"
+            titleId="service-heading"
             eyebrow={`Services — ${service.icon}`}
             title={service.title}
             description={service.summary}

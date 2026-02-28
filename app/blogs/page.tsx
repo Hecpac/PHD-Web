@@ -51,6 +51,7 @@ export default async function BlogsPage() {
         <Container swiss className="space-y-10">
           <SectionHeading
             as="h1"
+            titleId="blog-heading"
             eyebrow="Blog"
             title="Insights on building custom homes in DFW"
             description="Practical knowledge from our design-build team on architecture, process, budgets, and the realities of building in the Dallas-Fort Worth Metroplex."

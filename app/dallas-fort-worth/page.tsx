@@ -69,6 +69,7 @@ export default function DallasFortWorthPage() {
         <Container swiss className="space-y-8">
           <SectionHeading
             as="h1"
+            titleId="dfw-heading"
             eyebrow="Service Area"
             title="We build exclusively in Dallas-Fort Worth"
             description="Geographic focus is a strategic choice, not a limitation. By serving only the DFW Metroplex, we deliver better outcomes — faster permitting, deeper trade networks, and construction methods proven for North Texas conditions."

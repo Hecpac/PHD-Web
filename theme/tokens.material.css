@@ -32,7 +32,7 @@
   --color-blueprint: var(--token-blueprint);
 
   /* Typography — editorial grotesk pairing (matches next/font variables in app/layout.tsx) */
-  --font-sans: var(--font-archivo), "Neue Haas Grotesk Text Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Neue Haas Grotesk Text Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: var(--font-plex-mono), "IBM Plex Mono", "SFMono-Regular", ui-monospace, Menlo, monospace;
 
   /* Motion — quiet luxury */
@@ -85,63 +85,4 @@
   --token-blueprint: rgb(203 33 49 / 0.12);
 }
 
-/* Runtime mapping — Light High Contrast (Warm Paper) */
-.light-hc {
-  color-scheme: light;
-
-  --token-canvas: var(--md-sys-color-background);
-  --token-ink: var(--md-sys-color-on-background);
-
-  --token-surface: var(--md-sys-color-surface);
-  --token-surface-2: var(--md-sys-color-surface-variant);
-
-  --token-muted: var(--md-sys-color-on-surface-variant);
-  --token-subtle: rgb(96 93 87);
-  --token-line: var(--md-sys-color-outline-variant);
-
-  --token-accent: rgb(172 23 37);
-  --token-accent-hover: rgb(148 19 32);
-  --token-accent-pressed: rgb(126 16 27);
-  --token-accent-ink: rgb(255 247 247);
-  --token-accent-soft: rgb(248 219 224);
-  --token-accent-soft-ink: rgb(96 14 23);
-  --token-on-accent: rgb(255 247 247);
-
-  --token-danger: var(--md-sys-color-error);
-  --token-danger-ink: var(--md-sys-color-on-error);
-  --token-danger-soft: var(--md-sys-color-error-container);
-  --token-danger-soft-ink: var(--md-sys-color-on-error-container);
-
-  --token-blueprint: rgb(199 56 52 / 0.10);
-}
-
-/* Runtime mapping — Light Medium Contrast (Warm Paper) */
-.light-mc {
-  color-scheme: light;
-
-  --token-canvas: var(--md-sys-color-background);
-  --token-ink: var(--md-sys-color-on-background);
-
-  --token-surface: var(--md-sys-color-surface);
-  --token-surface-2: var(--md-sys-color-surface-variant);
-
-  --token-muted: var(--md-sys-color-on-surface-variant);
-  --token-subtle: rgb(120 120 118);
-  --token-line: var(--md-sys-color-outline-variant);
-
-  --token-accent: rgb(188 29 44);
-  --token-accent-hover: rgb(165 24 38);
-  --token-accent-pressed: rgb(141 20 32);
-  --token-accent-ink: rgb(255 246 246);
-  --token-accent-soft: rgb(249 224 228);
-  --token-accent-soft-ink: rgb(103 17 28);
-  --token-on-accent: rgb(255 246 246);
-
-  --token-danger: var(--md-sys-color-error);
-  --token-danger-ink: var(--md-sys-color-on-error);
-  --token-danger-soft: var(--md-sys-color-error-container);
-  --token-danger-soft-ink: var(--md-sys-color-on-error-container);
-
-  --token-blueprint: rgb(199 56 52 / 0.08);
-}
 

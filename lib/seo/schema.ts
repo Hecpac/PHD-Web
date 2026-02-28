@@ -1,11 +1,11 @@
 import { getCtaConfig, getSiteUrl, siteConfig } from "@/lib/config/site";
-import type { BlogPost, FAQ, ProcessStep, Project, ServiceDetail } from "@/lib/types/content";
+import type { BlogPost, FAQ, ProcessStep, Project, Review, ServiceDetail } from "@/lib/types/content";
 
-export function createLocalBusinessSchema() {
+export function createLocalBusinessSchema(reviews?: Review[]) {
   const siteUrl = getSiteUrl();
   const { phoneE164 } = getCtaConfig();
 
-  return {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
     name: siteConfig.name,
@@ -39,12 +39,18 @@ export function createLocalBusinessSchema() {
     },
     priceRange: "$$$",
     sameAs: siteConfig.socialLinks.map((social) => social.href),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: "6",
-    },
   };
+
+  if (reviews && reviews.length > 0) {
+    const avg = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: avg.toFixed(1),
+      reviewCount: String(reviews.length),
+    };
+  }
+
+  return schema;
 }
 
 export function createWebSiteSchema() {

@@ -389,13 +389,16 @@ export async function getServiceDetailBySlug(slug: string): Promise<ServiceDetai
   if (!hasSanityConfig || !sanityClient) {
     return fallbackServiceDetails.find((s) => s.slug === slug) ?? null;
   }
-  const doc = await fetchFromSanity<ServiceDetail | null>(serviceDetailBySlugQuery, null, { slug });
-  if (doc) return doc;
+  const doc = await fetchFromSanity<SanityServiceDetail | null>(serviceDetailBySlugQuery, null, { slug });
+  if (doc) {
+    const normalized = normalizeServiceDetail(doc);
+    if (normalized) return normalized;
+  }
   return fallbackServiceDetails.find((s) => s.slug === slug) ?? null;
 }
 
 export async function getReviews(): Promise<Review[]> {
-  const docs = await fetchFromSanity<SanityReview[]>(reviewsQuery, fallbackReviews as unknown as SanityReview[]);
+  const docs = await fetchFromSanity<SanityReview[]>(reviewsQuery, []);
   if (!hasSanityConfig) return fallbackReviews;
 
   const normalized = (docs as SanityReview[])

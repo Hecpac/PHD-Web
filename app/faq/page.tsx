@@ -40,6 +40,7 @@ export default async function FaqPage() {
       <Container swiss className="space-y-8">
         <SectionHeading
           as="h1"
+          titleId="faq-heading"
           eyebrow="FAQ"
           title="Answers for DFW project planning"
           description="Common questions about process, timeline, and service area for modern custom homes in Dallas-Fort Worth."
