@@ -64,7 +64,7 @@ export const siteNavigation: readonly NavItem[] = [
 ] as const;
 
 const DEFAULT_SITE_URL = "https://www.premiumhome.design";
-const DEFAULT_SCHEDULE_URL = "https://www.premiumhome.design/contact";
+const DEFAULT_SCHEDULE_URL = "/contact";
 const DEFAULT_PHONE_E164 = "+19726036794";
 
 export function getSiteUrl(): string {

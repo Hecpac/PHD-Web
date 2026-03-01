@@ -45,8 +45,7 @@ export function SiteHeader() {
               <div aria-hidden className="hidden h-3 w-px bg-white/30 lg:block mx-1" />
               <CtaLink
                 href={ctaConfig.scheduleUrl}
-                target="_blank"
-                rel="noreferrer"
+                {...(ctaConfig.scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
                 eventName="cta_schedule_click"
                 variant="ghost"
                 className="hidden md:inline-flex text-[10px] sm:text-[11px] uppercase tracking-[0.15em] font-mono px-0 border-b-0 text-white/80 hover:text-white focus-visible:outline-none rounded-none"

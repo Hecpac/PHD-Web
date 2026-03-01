@@ -260,8 +260,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
               <div ref={ctaGroupRef} className="mt-12 flex flex-col gap-3">
                 <CtaLink
                   href={scheduleUrl}
-                  target="_blank"
-                  rel="noreferrer"
+                  {...(scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
                   eventName="cta_schedule_click"
                   variant="ghost"
                   className="w-fit text-[11px] uppercase tracking-[0.15em] font-mono px-0 border-b-0 text-white/80 hover:text-white focus-visible:outline-none rounded-none"

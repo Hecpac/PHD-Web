@@ -251,8 +251,7 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
                 <div className="flex flex-col gap-3">
                   <a
                     href={cta.scheduleUrl}
-                    target="_blank"
-                    rel="noreferrer"
+                    {...(cta.scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
                     className="flex min-h-12 items-center justify-center rounded-md border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                   >
                     Schedule Consultation
