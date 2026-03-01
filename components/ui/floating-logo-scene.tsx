@@ -1,7 +1,8 @@
 "use client";
 
-import { Suspense, useRef } from "react";
+import { Suspense, useCallback, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import type { Mesh } from "three";
@@ -38,6 +39,17 @@ function LogoMesh({ paused }: { paused: boolean }) {
 
 export function FloatingLogoScene() {
   const shouldReduceMotion = useReducedMotion();
+  const pathname = usePathname();
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (pathname === "/") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    },
+    [pathname],
+  );
 
   return (
     <div className="pointer-events-none fixed bottom-24 left-6 z-[85] hidden h-20 w-44 md:block">
@@ -68,6 +80,7 @@ export function FloatingLogoScene() {
         aria-label="Premium Home Design — Go to homepage"
         className="pointer-events-auto absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
         data-cursor="link"
+        onClick={handleClick}
       >
         <span className="sr-only">Premium Home Design — Go to homepage</span>
       </Link>
