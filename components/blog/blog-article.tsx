@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
+import { CtaLink } from "@/components/ui/cta-link";
 import type { BlogPost } from "@/lib/types/content";
 
 type BlogArticleProps = {
@@ -89,6 +90,19 @@ export function BlogArticle({ post }: BlogArticleProps) {
             ))}
           </div>
         )}
+
+        <div className="border-t border-line pt-8 space-y-2">
+          <p className="text-sm text-muted">
+            Ready to discuss your custom home project in Dallas-Fort Worth?
+          </p>
+          <CtaLink
+            href="/contact"
+            eventName="cta_schedule_click"
+            data-analytics-cta="blog_footer_contact"
+          >
+            Start with Vision Builder
+          </CtaLink>
+        </div>
 
         <footer className="border-t border-line pt-6">
           <Link
