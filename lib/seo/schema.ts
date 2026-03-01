@@ -349,9 +349,9 @@ export function createB2BDraftingServiceSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Outsourced Drafting Services for Builders",
+    name: "Outsourced Architectural Drafting & Construction Documents for DFW Builders",
     description:
-      "Permit-ready construction documents, 3D renders, and full coordination for residential builders in Dallas-Fort Worth.",
+      "Permit-ready custom home floor plans, 3D renders, and full construction document packages with 5-7 day turnaround for residential builders in Dallas, Fort Worth, Frisco, Plano, and Southlake.",
     url: `${siteUrl}/for-builders`,
     provider: {
       "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],

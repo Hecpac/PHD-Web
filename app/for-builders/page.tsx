@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { B2BContactForm } from "@/components/for-builders/b2b-contact-form";
 import { B2BHero } from "@/components/for-builders/b2b-hero";
 import { B2BProcess } from "@/components/for-builders/b2b-process";
+import { BuilderProjectsShowcase } from "@/components/for-builders/builder-projects";
+import { BuilderTrustBar } from "@/components/for-builders/builder-trust-bar";
 import { Container } from "@/components/layout/container";
 import { Accordion } from "@/components/ui/accordion";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -18,13 +20,13 @@ export function generateMetadata(): Metadata {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "Drafting Services for Builders | DFW Outsourced Drafting",
+    title: "Architectural Drafting Services Dallas Fort Worth | Outsourced Construction Documents",
     description:
-      "Outsource permit-ready construction documents, 3D renders, and full drafting coordination to a DFW-exclusive partner. Serving Dallas-Fort Worth builders.",
+      "Outsource permit-ready construction documents, custom home floor plans, 3D renders, and full CDs to a DFW-exclusive drafting partner. 5-7 day turnaround for Dallas-Fort Worth builders.",
     openGraph: {
-      title: "Drafting Services for Builders | DFW Outsourced Drafting",
+      title: "Architectural Drafting Services Dallas Fort Worth | Outsourced Construction Documents",
       description:
-        "Outsource permit-ready construction documents, 3D renders, and full drafting coordination to a DFW-exclusive partner.",
+        "Permit-ready custom home floor plans, 3D renders, and full construction documents for DFW builders. 5-7 day turnaround.",
     },
     alternates: {
       canonical: `${siteUrl}/for-builders`,
@@ -168,13 +170,16 @@ export default function ForBuildersPage() {
       {/* 1. Hero */}
       <B2BHero />
 
-      {/* 2. Services Grid */}
+      {/* 2. Trust Bar */}
+      <BuilderTrustBar />
+
+      {/* 3. Services Grid */}
       <section id="b2b-services" className="section-shell border-t border-line">
         <Container swiss className="space-y-8">
           <SectionHeading
             eyebrow="Complete Drafting Package"
-            title="Everything your builds need, documented"
-            description="Six core drafting services — each delivered to permit-ready standard with tracked revisions."
+            title="Permit-ready construction documents for every build"
+            description="Floor plans, 3D renders, full CDs, and permit support — delivered to DFW jurisdictions with tracked revisions."
           />
 
           <div className="grid gap-px border border-line md:grid-cols-2 xl:grid-cols-3">
@@ -207,10 +212,13 @@ export default function ForBuildersPage() {
         </Container>
       </section>
 
-      {/* 3. Process */}
+      {/* 5. Builder Projects */}
+      <BuilderProjectsShowcase />
+
+      {/* 6. Process */}
       <B2BProcess />
 
-      {/* 4. Why Outsource */}
+      {/* 7. Why Outsource */}
       <section id="why-outsource" className="section-shell border-t border-line">
         <Container swiss className="space-y-8">
           <SectionHeading
@@ -232,7 +240,7 @@ export default function ForBuildersPage() {
         </Container>
       </section>
 
-      {/* 5. FAQ */}
+      {/* 8. FAQ */}
       <section id="b2b-faq" className="section-shell border-t border-line">
         <Container swiss className="space-y-8">
           <SectionHeading
@@ -245,7 +253,7 @@ export default function ForBuildersPage() {
         </Container>
       </section>
 
-      {/* 6. Contact Form */}
+      {/* 9. Contact Form */}
       <B2BContactForm />
     </>
   );

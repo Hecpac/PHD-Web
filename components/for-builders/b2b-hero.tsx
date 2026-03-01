@@ -56,20 +56,34 @@ export function B2BHero() {
     <section
       ref={sectionRef}
       id="b2b-hero"
-      aria-label="Drafting partner program for builders"
+      aria-label="Design-build documentation partner for DFW builders"
       className="relative min-h-[85vh] overflow-hidden border-b border-line bg-black"
     >
-      {/* Background floor-plan image */}
-      <Image
-        src="/for-builders/hero-bg.jpg"
-        alt=""
-        fill
-        priority
-        fetchPriority="high"
-        className="object-cover opacity-40"
-        sizes="100vw"
-        aria-hidden="true"
-      />
+      {/* Background media — video with reduced-motion fallback */}
+      {shouldReduceMotion ? (
+        <Image
+          src="/for-builders/hero-bg.jpg"
+          alt=""
+          fill
+          priority
+          fetchPriority="high"
+          className="object-cover opacity-40"
+          sizes="100vw"
+          aria-hidden="true"
+        />
+      ) : (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/for-builders/hero-bg.jpg"
+          className="absolute inset-0 h-full w-full object-cover opacity-40"
+          aria-hidden="true"
+        >
+          <source src="/for-builders/hero-video.mp4" type="video/mp4" />
+        </video>
+      )}
 
       {/* Gradient overlay */}
       <div
@@ -80,18 +94,18 @@ export function B2BHero() {
       <Container swiss className="relative z-10 flex min-h-[85vh] flex-col justify-center py-24 md:py-32">
         <div ref={contentRef} className="max-w-3xl space-y-6">
           <span className="block font-mono text-xs uppercase tracking-[0.2em] text-accent">
-            Drafting Partner Program
+            Design-Build Documentation Partner
           </span>
 
           <h1 className="type-hero max-w-2xl text-white">
             <SwissTextReveal mode="word" as="span" noInitialHide>
-              Outsource your drafting. Keep your schedule.
+              Outsourced Drafting &amp; Construction Documents for DFW Builders
             </SwissTextReveal>
           </h1>
 
           <p className="max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-            Permit-ready construction documents, 3D renders, and full
-            coordination for DFW builders.
+            Permit-ready floor plans, 3D renders, and full CDs with 5–7 day
+            turnaround — exclusively for Dallas–Fort Worth builders.
           </p>
         </div>
 
@@ -111,10 +125,19 @@ export function B2BHero() {
             href="#b2b-contact"
             variant="primary"
             eventName="cta_schedule_click"
-            eventPayload={{ source: "b2b_hero" }}
+            eventPayload={{ source: "b2b_hero", intent: "documentation" }}
             className="focus-visible:ring-offset-black"
           >
-            Request a Quote
+            Request Documentation Quote
+          </CtaLink>
+          <CtaLink
+            href="#b2b-contact"
+            variant="secondary"
+            eventName="cta_schedule_click"
+            eventPayload={{ source: "b2b_hero", intent: "full_package" }}
+            className="border-white/40 text-white hover:text-white/80"
+          >
+            Full Design-Build Package
           </CtaLink>
           <CtaLink
             href={phoneHref}
