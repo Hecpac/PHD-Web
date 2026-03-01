@@ -21,6 +21,7 @@ export function B2BHero() {
   const contentRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const mediaRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const { phoneDisplay, phoneHref } = getCtaConfig();
 
@@ -48,6 +49,49 @@ export function B2BHero() {
         delay: 0.15,
         ease: "power2.out",
       });
+
+      // Scroll-out parallax — desktop + motion-safe
+      const mm = gsap.matchMedia();
+      mm.add(
+        "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          if (!mediaRef.current) return;
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top top",
+              end: "bottom top",
+              scrub: 1,
+            },
+          });
+
+          tl.to(mediaRef.current, {
+            yPercent: -15,
+            scale: 1.08,
+            duration: 1,
+            ease: "none",
+            force3D: true,
+          }, 0);
+
+          tl.to(contentRef.current, {
+            opacity: 0,
+            yPercent: -8,
+            duration: 1,
+            ease: "none",
+            force3D: true,
+          }, 0);
+
+          tl.to([statsRef.current, ctaRef.current], {
+            opacity: 0,
+            duration: 0.6,
+            ease: "none",
+            force3D: true,
+          }, 0);
+        }
+      );
+
+      return () => mm.revert();
     },
     { scope: sectionRef, dependencies: [shouldReduceMotion] },
   );
@@ -60,30 +104,32 @@ export function B2BHero() {
       className="relative min-h-[85vh] overflow-hidden border-b border-line bg-black"
     >
       {/* Background media — video with reduced-motion fallback */}
-      {shouldReduceMotion ? (
-        <Image
-          src="/for-builders/hero-bg.jpg"
-          alt=""
-          fill
-          priority
-          fetchPriority="high"
-          className="object-cover opacity-40"
-          sizes="100vw"
-          aria-hidden="true"
-        />
-      ) : (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/for-builders/hero-bg.jpg"
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
-          aria-hidden="true"
-        >
-          <source src="/for-builders/hero-video.mp4" type="video/mp4" />
-        </video>
-      )}
+      <div ref={mediaRef} className="absolute inset-0">
+        {shouldReduceMotion ? (
+          <Image
+            src="/for-builders/hero-bg.jpg"
+            alt=""
+            fill
+            priority
+            fetchPriority="high"
+            className="object-cover opacity-40"
+            sizes="100vw"
+            aria-hidden="true"
+          />
+        ) : (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/for-builders/hero-bg.jpg"
+            className="absolute inset-0 h-full w-full object-cover opacity-40"
+            aria-hidden="true"
+          >
+            <source src="/for-builders/hero-video.mp4" type="video/mp4" />
+          </video>
+        )}
+      </div>
 
       {/* Gradient overlay */}
       <div

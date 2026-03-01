@@ -152,7 +152,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
       ref={heroRef}
       id="hero"
       aria-label="Hero — DFW custom home builder"
-      className="sticky top-0 z-0 h-screen w-full overflow-hidden"
+      className="sticky top-0 z-0 -mt-14 mb-14 h-screen w-full overflow-hidden md:-mt-[72px] md:mb-[72px]"
     >
       {/* Overscroll easter egg — visible on rubber-band pull-down */}
       <div
@@ -280,10 +280,10 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
               style={{ wordSpacing: "-0.02em" }}
             >
               <SwissTextReveal as="span" mode="word" stagger={0.12} delay={0.14} className="text-white">
-                ARCHITECTURAL
+                MODERN
               </SwissTextReveal>
               <SwissTextReveal as="span" mode="word" stagger={0.12} delay={0.20} className="text-red-500">
-                (CUSTOM) HOMES
+                (LUXURY) LIVING
               </SwissTextReveal>
             </h1>
             

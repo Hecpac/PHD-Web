@@ -62,6 +62,33 @@ export function BuilderProjectsShowcase() {
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set(cards, { opacity: 1, y: 0 });
       });
+
+      // Image parallax inside cards — desktop + motion-safe
+      mm.add(
+        "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          const images = gsap.utils.toArray<HTMLElement>("[data-project-image]");
+          images.forEach((img) => {
+            const card = img.closest("[data-project-card]");
+            if (!card) return;
+            gsap.fromTo(
+              img,
+              { yPercent: -8 },
+              {
+                yPercent: 8,
+                ease: "none",
+                force3D: true,
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              }
+            );
+          });
+        }
+      );
     },
     { scope: sectionRef },
   );
@@ -87,13 +114,15 @@ export function BuilderProjectsShowcase() {
               className="group overflow-hidden rounded-xl border border-line bg-surface shadow-[var(--shadow-card)]"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={`${project.title} — ${project.location}`}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
+                <div data-project-image className="absolute -top-[10%] left-0 right-0 h-[120%]">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} — ${project.location}`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
                 <div
                   className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
                   aria-hidden="true"

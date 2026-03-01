@@ -8,6 +8,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 
 import { CadMode } from "@/components/ui/cad-mode";
+import { FloatingLogo } from "@/components/ui/floating-logo";
 import { ConsoleBrand } from "@/components/ui/console-brand";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -131,14 +132,14 @@ export default async function RootLayout({
         <UTMTracker />
         <JsonLd data={createWebSiteSchema()} />
         <JsonLd data={createLocalBusinessSchema(reviews)} />
+        <SiteHeader />
         <SmoothScroll>
           <div
             className="relative z-[1] bg-canvas"
             style={{ marginBottom: "var(--footer-height, 0px)" }}
           >
             <div className="flex min-h-screen flex-col bg-canvas text-ink">
-              <SiteHeader />
-              <main id="main-content" className="pb-20 md:pb-0">
+              <main id="main-content" className="pt-14 pb-20 md:pt-[72px] md:pb-0">
                 <TransitionProvider>{children}</TransitionProvider>
               </main>
               <BackToTop />
@@ -148,6 +149,7 @@ export default async function RootLayout({
           <FooterHeightObserver />
         </SmoothScroll>
         <MobileStickyBar />
+        <FloatingLogo />
         <CustomCursor />
         <CadMode />
         <ConsoleBrand />

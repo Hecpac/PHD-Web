@@ -485,8 +485,8 @@ type SanityHomeHero = {
 const fallbackHomeHero: HomeHero = {
   id: "default-hero",
   heroImage: {
-    src: "/projects/north-dallas-courtyard-residence/hero.jpg",
-    alt: "Front elevation of a modern custom home in Dallas-Fort Worth",
+    src: "/hero-home.jpeg",
+    alt: "Modern luxury kitchen with marble island and pendant lighting in a DFW custom home",
     width: 1600,
     height: 1000,
   },

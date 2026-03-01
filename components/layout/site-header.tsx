@@ -1,27 +1,20 @@
-import Link from "next/link";
-
 import { AnimatedNavLink } from "@/components/layout/animated-nav-link";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 import { NavDropdown } from "@/components/layout/nav-dropdown";
 import { CtaLink } from "@/components/ui/cta-link";
 import { SocialLinks } from "@/components/ui/social-links";
-import { getCtaConfig, siteConfig, siteNavigation } from "@/lib/config/site";
+import { getCtaConfig, siteNavigation } from "@/lib/config/site";
 
 export function SiteHeader() {
   const ctaConfig = getCtaConfig();
 
   return (
     <>
-      <header className="absolute top-0 z-50 w-full" role="banner">
+      <header className="fixed top-0 z-50 w-full bg-black/60 backdrop-blur-md" role="banner">
         <div className="container-swiss">
           <div className="flex items-center justify-between py-4 md:py-6">
-            <Link
-              href="/"
-              className="font-mono text-xs uppercase tracking-[0.15em] font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/55 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-              aria-label={`${siteConfig.shortName} — Home`}
-            >
-              {siteConfig.shortName}
-            </Link>
+            {/* Spacer — logo 3D is fixed in bottom-left via FloatingLogo */}
+            <div className="w-10 shrink-0 md:hidden" />
 
             <nav
               aria-label="Primary navigation"
