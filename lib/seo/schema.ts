@@ -390,6 +390,45 @@ export function createB2BDraftingServiceSchema() {
   };
 }
 
+export function createReviewPageSchema(reviews: Review[]) {
+  const siteUrl = getSiteUrl();
+  const { phoneE164 } = getCtaConfig();
+  const avg = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+    name: siteConfig.name,
+    url: siteUrl,
+    telephone: phoneE164,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Dallas",
+      addressRegion: "TX",
+      addressCountry: "US",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: avg.toFixed(1),
+      reviewCount: String(reviews.length),
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: reviews.map((r) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: r.author },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: String(r.rating),
+        bestRating: "5",
+        worstRating: "1",
+      },
+      reviewBody: r.text,
+      datePublished: r.date,
+    })),
+  };
+}
+
 export function createBlogBreadcrumbSchema(post?: BlogPost) {
   const items = [
     { name: "Home", href: "/" },

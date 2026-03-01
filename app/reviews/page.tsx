@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getSiteUrl } from "@/lib/config/site";
 import { getReviews } from "@/lib/data";
-import { createBreadcrumbSchema } from "@/lib/seo/schema";
+import { createBreadcrumbSchema, createReviewPageSchema } from "@/lib/seo/schema";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
@@ -56,6 +56,7 @@ export default async function ReviewsPage() {
           { name: "Reviews", href: "/reviews" },
         ])}
       />
+      <JsonLd data={createReviewPageSchema(reviews)} />
       <section className="section-shell" aria-labelledby="reviews-heading">
         <Container swiss className="space-y-10">
           <SectionHeading
