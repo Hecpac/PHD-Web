@@ -8,6 +8,7 @@ import { useTexture } from "@react-three/drei";
 import type { Mesh } from "three";
 
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
+import { getLenisInstance } from "@/lib/lenis";
 
 const LOGO_SRC = "/logo/logo.png";
 const ASPECT = 3040 / 1408; // real logo aspect ratio ~2.16
@@ -45,7 +46,12 @@ export function FloatingLogoScene() {
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (pathname === "/") {
         e.preventDefault();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        const lenis = getLenisInstance();
+        if (lenis) {
+          lenis.scrollTo(0, { immediate: false });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
       }
     },
     [pathname],
