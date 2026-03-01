@@ -164,8 +164,7 @@ export default function DallasFortWorthPage() {
             >
               <CtaLink
                 href={scheduleUrl}
-                target="_blank"
-                rel="noreferrer"
+                {...(scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
                 eventName="cta_schedule_click"
               >
                 Schedule a DFW Consultation

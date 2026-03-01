@@ -307,8 +307,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   <div className="flex flex-wrap items-center gap-2.5 rounded-lg border border-line/70 bg-canvas/45 p-2 sm:gap-3">
                     <CtaLink
                       href={scheduleUrl}
-                      target="_blank"
-                      rel="noreferrer"
+                      {...(scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
                       eventName="cta_schedule_click"
                       variant="secondary"
                       className="min-h-11 rounded-md border-line/80 bg-surface/78 px-4 py-2 text-sm text-ink/92 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"

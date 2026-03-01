@@ -23,8 +23,7 @@ export function MobileStickyBar() {
 
         <CtaLink
           href={scheduleUrl}
-          target="_blank"
-          rel="noreferrer"
+          {...(scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
           eventName="cta_schedule_click"
           className="min-h-11 flex-1 rounded-md px-2 text-[12px] font-semibold uppercase tracking-[0.04em]"
         >
