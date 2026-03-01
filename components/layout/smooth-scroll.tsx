@@ -25,14 +25,16 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const isSmallViewport = window.matchMedia("(max-width: 1023px)").matches;
 
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || isCoarsePointer || isSmallViewport) return;
 
     // ── Create GSAP context for scoped cleanup ──
     const ctx = gsap.context(() => {
       // ── Initialize Lenis ──
       const lenis = new Lenis({
-        lerp: 0.1,
+        lerp: 0.08,
         smoothWheel: true,
         // Native touch scroll on mobile — no JS interpolation
       });
@@ -41,6 +43,24 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
       // ── Sync Lenis → ScrollTrigger ──
       lenis.on("scroll", ScrollTrigger.update);
+
+      // ── Configure ScrollTrigger to use Lenis's scrollerProxy ──
+      ScrollTrigger.scrollerProxy(document.body, {
+        scrollTop(value) {
+          if (arguments.length && value !== undefined) {
+            lenis.scrollTo(value, { immediate: true });
+          }
+          return lenis.animatedScroll;
+        },
+        getBoundingClientRect() {
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+          };
+        },
+      });
 
       // ── Drive Lenis from GSAP ticker (single RAF loop) ──
       const rafCallback = (time: number) => {

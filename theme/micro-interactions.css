@@ -2,13 +2,16 @@
    Micro-Interactions — CSS-only utilities
    ────────────────────────────────────────────── */
 
-/* Card lift on hover: subtle translateY + shadow */
+/* Card lift on hover: subtle translateY + shadow (tokenized) */
 .mi-card-lift {
-  transition: transform 150ms ease, box-shadow 150ms ease;
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--dur-med) var(--ease-standard),
+    box-shadow var(--dur-med) var(--ease-standard);
 }
 .mi-card-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgb(0 0 0 / 0.08);
+  box-shadow: var(--shadow-card-hover);
 }
 
 /* Press effect: scale down on active */
@@ -26,15 +29,16 @@
   bottom: -2px;
   left: 0;
   width: 100%;
-  height: 1px;
+  height: 3px;
   background: var(--color-accent);
   transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 200ms ease;
+  transform-origin: right;
+  transition: transform var(--dur-slow) var(--ease-lux);
 }
 .mi-underline-reveal:hover::after,
 .mi-underline-reveal:focus-visible::after {
   transform: scaleX(1);
+  transform-origin: left;
 }
 
 /* Dropdown enter animation */
@@ -49,7 +53,7 @@
   }
 }
 .mi-dropdown-enter {
-  animation: mi-dropdown-enter 150ms ease forwards;
+  animation: mi-dropdown-enter var(--dur-fast) var(--ease-standard) forwards;
 }
 
 /* ── Reduced Motion ────────────────────────── */

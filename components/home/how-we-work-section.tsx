@@ -5,9 +5,7 @@ import { useRef } from "react";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CtaLink } from "@/components/ui/cta-link";
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import { gsap, useGSAP } from "@/lib/gsap";
-import { createSequentialTimeline } from "@/lib/gsap/scroll-animations";
 
 type Step = {
   number: string;
@@ -68,24 +66,62 @@ const steps: Step[] = [
 ];
 
 export function HowWeWorkSection() {
-  const gridRef = useRef<HTMLDivElement>(null);
-  const connectorRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (!gridRef.current) return;
-    const stepEls = gsap.utils.toArray<HTMLElement>(gridRef.current.children);
-    createSequentialTimeline({
-      trigger: gridRef.current,
-      steps: stepEls,
-      connector: connectorRef.current ?? undefined,
-      stagger: 0.15,
+    if (!cardsRef.current) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      const cards = gsap.utils.toArray<HTMLElement>(
+        cardsRef.current!.querySelectorAll("[data-step-card]")
+      );
+
+      cards.forEach((card, i) => {
+        if (i === cards.length - 1) return; // Last card doesn't need to shrink
+
+        gsap.to(card, {
+          scale: 0.94,
+          y: -20,
+          opacity: 0.4,
+          ease: "none",
+          scrollTrigger: {
+            trigger: cards[i + 1],
+            start: "top 80%",
+            end: "top 20vh",
+            scrub: true,
+          },
+        });
+      });
     });
-  }, { scope: gridRef });
+
+    // Mobile: simple entrance animations
+    mm.add("(max-width: 767px), (prefers-reduced-motion: reduce)", () => {
+      const cards = gsap.utils.toArray<HTMLElement>(
+        cardsRef.current!.querySelectorAll("[data-step-card]")
+      );
+
+      cards.forEach((card) => {
+        gsap.from(card, {
+          opacity: 0,
+          y: 30,
+          duration: 0.7,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+    });
+  }, { scope: cardsRef });
 
   return (
-    <section id="how-we-work" className="section-shell">
-      <Container swiss className="space-y-16">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
+    <section id="how-we-work" className="section-shell section-brand-wash-bold">
+      <Container swiss className="space-y-10 md:space-y-16">
+        <div className="grid grid-cols-1 gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-8">
           {/* Sticky Header (Left) */}
           <div className="lg:col-span-4 lg:relative">
             <div className="lg:sticky lg:top-32">
@@ -97,62 +133,29 @@ export function HowWeWorkSection() {
             </div>
           </div>
 
-          {/* Connector line between heading and steps */}
-          <div
-            ref={connectorRef}
-            className="mx-auto hidden h-12 w-px bg-line lg:block"
-            aria-hidden="true"
-          />
-
-          {/* Steps Grid (Right) */}
-          <div ref={gridRef} className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
-            {steps.map((step) => (
-              <div key={step.number}>
-                <CardContainer containerClassName="py-0 h-full">
-                  <CardBody className="group/card relative h-full w-full rounded-xl border border-line bg-surface-2 p-6 hover:shadow-2xl hover:shadow-black/30">
-                    {/* Step number */}
-                    <CardItem
-                      translateZ="30"
-                      className="!w-auto font-mono text-xs font-medium tracking-widest text-muted"
-                    >
-                      STEP {step.number}
-                    </CardItem>
-
-                    {/* Icon */}
-                    <CardItem translateZ="50" className="mt-4 text-ink/80">
-                      {step.icon}
-                    </CardItem>
-
-                    {/* Title */}
-                    <CardItem
-                      translateZ="40"
-                      className="mt-5 text-xl font-bold text-ink"
-                    >
-                      {step.title}
-                    </CardItem>
-
-                    {/* Description */}
-                    <CardItem
-                      as="p"
-                      translateZ="30"
-                      className="mt-3 text-sm leading-relaxed text-muted"
-                    >
-                      {step.description}
-                    </CardItem>
-
-                    {/* Bottom accent line */}
-                    <CardItem translateZ="20" className="mt-6">
-                      <div className="h-0.5 w-10 rounded-full bg-accent transition-all duration-300 group-hover/card:w-full" />
-                    </CardItem>
-                  </CardBody>
-                </CardContainer>
+          {/* Steps (Right) — sticky stack */}
+          <div ref={cardsRef} className="flex flex-col gap-6 sm:gap-8 lg:col-span-8">
+            {steps.map((step, index) => (
+              <div
+                key={step.number}
+                data-step-card
+                className="brand-red-outline brand-red-surface-2 rounded-xl border border-line/85 bg-surface-2 p-5 shadow-[0_12px_24px_rgb(0_0_0/0.08)] sm:p-6 lg:sticky"
+                style={{ top: `calc(20vh + ${index * 12}px)`, zIndex: index + 1 }}
+              >
+                <div className="font-mono text-xs font-medium tracking-widest text-muted">
+                  STEP {step.number}
+                </div>
+                <div className="mt-4 text-ink/80">{step.icon}</div>
+                <h3 className="mt-6 type-h3-standard text-ink">{step.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{step.description}</p>
+                <div className="mt-6 h-0.5 w-10 rounded-full bg-accent" />
               </div>
             ))}
           </div>
         </div>
 
         {/* CTA */}
-        <div className="flex flex-col items-center gap-4 text-center">
+        <div className="flex flex-col items-center gap-3 text-center sm:gap-4">
           <p className="max-w-xl text-muted">
             Ready to start your custom home project in Dallas–Fort Worth?
           </p>
@@ -160,7 +163,7 @@ export function HowWeWorkSection() {
             href="#contact"
             variant="primary"
             eventName="cta_schedule_click"
-            className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="w-full min-h-12 px-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
           >
             Schedule a Consultation
           </CtaLink>

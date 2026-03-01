@@ -10,7 +10,7 @@ import {
   type MouseEvent,
   type ReactNode,
 } from "react";
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
 type MouseEnterContextValue = [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 const MouseEnterContext = createContext<MouseEnterContextValue | undefined>(undefined);
@@ -60,7 +60,7 @@ export function CardContainer({
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           className={cn(
-            "relative flex items-center justify-center transition-all duration-200 ease-linear",
+            "relative flex items-center justify-center transition-transform duration-200 ease-linear",
             className,
           )}
           style={{ transformStyle: "preserve-3d" }}

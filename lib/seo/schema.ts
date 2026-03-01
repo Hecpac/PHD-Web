@@ -1,16 +1,18 @@
-import { getSiteUrl, siteConfig } from "@/lib/config/site";
-import type { BlogPost, FAQ, Project } from "@/lib/types/content";
+import { getCtaConfig, getSiteUrl, siteConfig } from "@/lib/config/site";
+import type { BlogPost, FAQ, ProcessStep, Project, Review, ServiceDetail } from "@/lib/types/content";
 
-export function createLocalBusinessSchema() {
+export function createLocalBusinessSchema(reviews?: Review[]) {
   const siteUrl = getSiteUrl();
+  const { phoneE164 } = getCtaConfig();
 
-  return {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteUrl,
-    telephone: process.env.NEXT_PUBLIC_PHONE_E164 || "+14695550101",
+    telephone: phoneE164,
+    email: siteConfig.contactEmail,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Dallas",
@@ -36,8 +38,19 @@ export function createLocalBusinessSchema() {
       name: "Dallas-Fort Worth Metroplex",
     },
     priceRange: "$$$",
-    sameAs: [],
+    sameAs: siteConfig.socialLinks.map((social) => social.href),
   };
+
+  if (reviews && reviews.length > 0) {
+    const avg = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: avg.toFixed(1),
+      reviewCount: String(reviews.length),
+    };
+  }
+
+  return schema;
 }
 
 export function createWebSiteSchema() {
@@ -215,6 +228,13 @@ export function createBlogPostSchema(post: BlogPost) {
       url: siteUrl,
     },
     datePublished: post.date,
+    dateModified: post.date,
+    ...(post.coverImage && {
+      image: {
+        "@type": "ImageObject",
+        url: `${siteUrl}${post.coverImage.src}`,
+      },
+    }),
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${siteUrl}/blogs/${post.slug}`,
@@ -251,6 +271,121 @@ export function createBlogCollectionSchema(posts: BlogPost[]) {
       "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
       name: siteConfig.name,
       url: siteUrl,
+    },
+  };
+}
+
+export function createHowToSchema(steps: ProcessStep[]) {
+  const siteUrl = getSiteUrl();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to Build a Custom Home in Dallas-Fort Worth",
+    description:
+      "A stage-based design-build process with decision gates for custom home projects in the DFW Metroplex.",
+    url: `${siteUrl}/process`,
+    provider: {
+      "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+      name: siteConfig.name,
+      url: siteUrl,
+    },
+    step: steps.map((step) => ({
+      "@type": "HowToStep",
+      position: step.stepNumber,
+      name: step.title,
+      text: step.description,
+      itemListElement: step.deliverables.map((d) => ({
+        "@type": "HowToDirection",
+        text: d,
+      })),
+    })),
+  };
+}
+
+export function createServiceSchema(service: ServiceDetail) {
+  const siteUrl = getSiteUrl();
+  const { phoneE164 } = getCtaConfig();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.summary,
+    url: `${siteUrl}/services/${service.slug}`,
+    provider: {
+      "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+      name: siteConfig.name,
+      url: siteUrl,
+      telephone: phoneE164,
+      areaServed: {
+        "@type": "AdministrativeArea",
+        name: "Dallas-Fort Worth Metroplex",
+      },
+    },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "Dallas-Fort Worth Metroplex",
+    },
+    serviceType: service.title,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: `${service.title} Deliverables`,
+      itemListElement: service.deliverables.map((d) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: d,
+        },
+      })),
+    },
+  };
+}
+
+export function createB2BDraftingServiceSchema() {
+  const siteUrl = getSiteUrl();
+  const { phoneE164 } = getCtaConfig();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Outsourced Drafting Services for Builders",
+    description:
+      "Permit-ready construction documents, 3D renders, and full coordination for residential builders in Dallas-Fort Worth.",
+    url: `${siteUrl}/for-builders`,
+    provider: {
+      "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+      name: siteConfig.name,
+      url: siteUrl,
+      telephone: phoneE164,
+      areaServed: {
+        "@type": "AdministrativeArea",
+        name: "Dallas-Fort Worth Metroplex",
+      },
+    },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "Dallas-Fort Worth Metroplex",
+    },
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: "Residential builders and general contractors",
+    },
+    serviceType: "Architectural Drafting",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "B2B Drafting Services",
+      itemListElement: [
+        "Floor Plans & Construction Drawings",
+        "3D Renders & Visualizations",
+        "Permit-Ready Documentation",
+        "Structural Coordination",
+        "MEP Layouts",
+        "Elevations & Sections",
+      ].map((name) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name },
+      })),
     },
   };
 }

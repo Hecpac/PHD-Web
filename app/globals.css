@@ -1,7 +1,5 @@
 @import "tailwindcss";
 @import "../theme/material/light.css";
-@import "../theme/material/light-hc.css";
-@import "../theme/material/light-mc.css";
 @import "../theme/tokens.material.css";
 @import "../theme/swiss-grid.css";
 @import "../theme/swiss-typography.css";
@@ -15,10 +13,11 @@
   /* Baseline grid: 8px base unit */
   --baseline: 8px;
 
-  /* Swiss Grid System */
-  --grid-columns: 16;
+  /* Swiss Grid System (PHD baseline) */
+  --grid-columns: 12;
   --grid-gutter: 24px;
   --grid-margin: 48px;
+  /* Canon-inspired margin tuned for current rhythm */
 
   /* Spacing scale (multiples of 8) */
   --space-1: 8px;
@@ -31,16 +30,20 @@
   --space-16: 128px;
 
   /* Reading width */
-  --reading-width: 72ch;
+  --reading-width: 65ch;
 
-  /* Font stacks (inherited from tokens) */
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  /* Font stacks — defined in tokens.material.css */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   :root {
     --grid-margin: 24px;
+  }
+}
+
+@media (max-width: 639px) {
+  :root {
+    --grid-margin: 16px;
   }
 }
 
@@ -58,23 +61,18 @@ body {
 /* Improve text rendering across browsers */
 html {
   font-size: 1rem;
+  touch-action: manipulation;
 }
 
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1200px) {
   html {
-    font-size: calc(0.34318555008210183rem + 0.6568144499178982vw);
+    font-size: 0.96875rem;
   }
 }
 
 @media screen and (max-width: 991px) {
   html {
-    font-size: 0.75rem;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  html {
-    font-size: 0.65rem;
+    font-size: 0.9375rem;
   }
 }
 
@@ -88,15 +86,40 @@ body {
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
+body.custom-cursor-enabled,
+body.custom-cursor-enabled * {
+  cursor: none !important;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  body.custom-cursor-enabled,
+  body.custom-cursor-enabled * {
+    cursor: auto !important;
+  }
+}
+
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+[id] {
+  scroll-margin-top: 6rem;
+}
+
 /* Swiss typography: bold headings, tight tracking */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
+  text-wrap: balance;
 }
 
 ::selection {
@@ -104,12 +127,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Accessibility: touch targets */
-a,
 button,
 input,
 textarea,
 select {
-  min-height: 24px;
+  min-height: 44px;
 }
 
 :focus-visible {
@@ -119,6 +141,15 @@ select {
 
 /* ── Swiss Grid & Layout ───────────────────── */
 
+/* Ensure header stays on top if we move it out */
+.fixed-header-shell {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
 .container-swiss {
   width: 100%;
   max-width: 1440px;
@@ -127,7 +158,20 @@ select {
 }
 
 .section-shell {
-  padding-block: clamp(3rem, 8vw, 6rem);
+  --section-padding-lg: 64px;
+  padding-block: var(--section-padding-lg);
+}
+
+.section-shell-tight {
+  --section-padding-md: 48px;
+  padding-block: var(--section-padding-md);
+}
+
+@supports (content-visibility: auto) {
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 900px;
+  }
 }
 
 .text-reading {
@@ -137,9 +181,9 @@ select {
 /* Minimal transitions — Swiss-lite */
 a,
 button {
-  transition-property: opacity, color, background-color, border-color;
-  transition-duration: 150ms;
-  transition-timing-function: ease;
+  transition-property: opacity, color, background-color, border-color, transform, box-shadow;
+  transition-duration: var(--dur-med);
+  transition-timing-function: var(--ease-standard);
 }
 
 /* ── Alternating Section: Bone White ────── */
@@ -166,6 +210,51 @@ button {
   color: rgb(33 32 27);
 }
 
+/* ── Brand Red Section Utilities ─────────── */
+/* Hector request: keep sections clean/white. */
+
+.section-brand-wash,
+.section-brand-wash-soft,
+.section-brand-wash-bold,
+.section-brand-band {
+  background-image: none;
+}
+
+.section-brand-divider {
+  border-top-color: var(--color-line);
+}
+
+.brand-red-outline {
+  border-color: var(--color-line);
+}
+
+.brand-red-surface,
+.brand-red-surface-2,
+.brand-red-surface-bold {
+  background: var(--color-surface);
+}
+
+/* ── Intake Gradient (reuse) ─────────────── */
+
+.section-intake-gradient {
+  /* Same palette overrides as ContactTerminal */
+  --color-canvas: rgb(47 34 39);
+  --color-ink: rgb(244 238 238);
+  --color-surface: rgb(36 29 33);
+  --color-surface-2: rgb(46 37 43);
+  --color-muted: rgb(197 182 186);
+  --color-line: rgb(232 205 208 / 0.24);
+  --color-accent: rgb(212 45 62);
+  --color-accent-hover: rgb(190 34 50);
+  --color-accent-pressed: rgb(164 28 42);
+  --color-on-accent: rgb(255 244 245);
+  --color-accent-soft: rgb(91 48 58);
+  --color-accent-soft-ink: rgb(248 230 233);
+
+  background: linear-gradient(145deg, #2a0d13 0%, #7c1628 48%, #1e2024 100%);
+  color: rgb(244 238 238);
+}
+
 /* ── Backdrop Blur Header ────────────────── */
 
 .backdrop-blur-header {
@@ -179,34 +268,71 @@ button {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
 }
 
-@layer utilities {
-  @keyframes glitch {
-    0% {
-      transform: translate(0);
-    }
-    20% {
-      transform: translate(-2px, 2px);
-    }
-    40% {
-      transform: translate(-2px, -2px);
-    }
-    60% {
-      transform: translate(2px, 2px);
-    }
-    80% {
-      transform: translate(2px, -2px);
-    }
-    100% {
-      transform: translate(0);
-    }
-  }
+/* ── CTA Primary Fill Effect ─────────────── */
 
-  .glitch-effect {
-    animation: glitch 0.3s ease-in-out;
+.cta-primary-fill {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-primary-fill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      color-mix(in oklab, var(--color-accent), white 8%) 0%,
+      color-mix(in oklab, var(--color-accent), black 26%) 100%);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--dur-slow) var(--ease-lux);
+  z-index: 0;
+}
+
+.cta-primary-fill:hover::before {
+  transform: scaleY(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
+}
+
+/* ── C.A.D. Mode (D-F-W Easter Egg) ─────── */
+
+.cad-mode {
+  --color-canvas: #0A192F;
+  --color-ink: #e6f1ff;
+  --color-surface: #112240;
+  --color-surface-2: #1a3358;
+  --color-muted: #8892b0;
+  --color-line: #233554;
+  --color-accent: #64ffda;
+  --color-accent-hover: #4ad8b7;
+  --color-accent-pressed: #38c9a8;
+  --color-on-accent: #0A192F;
+}
+
+.cad-mode img {
+  filter: invert(1) contrast(200%) grayscale(100%);
+}
+
+.cad-mode [class*="border"] {
+  border-color: #233554;
+}
+
+.cad-mode * {
+  outline-color: #233554;
 }

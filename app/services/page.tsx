@@ -4,28 +4,36 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { LedgerSection } from "@/components/home/ledger-section";
 import { JsonLd } from "@/components/ui/json-ld";
+import { LeadMagnetBanner } from "@/components/ui/lead-magnet-banner";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { getServiceDetails, getServices } from "@/lib/data";
+import { SocialProofStrip } from "@/components/ui/social-proof-strip";
+import { getSiteUrl } from "@/lib/config/site";
+import { getReviews, getServiceDetails, getServices } from "@/lib/data";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
 
-export const metadata: Metadata = {
-  title: "Services | Capabilities for DFW Homes",
-  description:
-    "Capabilities and deliverables for architecture-forward custom home projects in Dallas-Fort Worth.",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
     title: "Services | Capabilities for DFW Homes",
     description:
       "Capabilities and deliverables for architecture-forward custom home projects in Dallas-Fort Worth.",
-  },
-  alternates: {
-    canonical: "/services",
-  },
-};
+    openGraph: {
+      title: "Services | Capabilities for DFW Homes",
+      description:
+        "Capabilities and deliverables for architecture-forward custom home projects in Dallas-Fort Worth.",
+    },
+    alternates: {
+      canonical: `${siteUrl}/services`,
+    },
+  };
+}
 
 export default async function ServicesPage() {
-  const [services, serviceDetails] = await Promise.all([
+  const [services, serviceDetails, reviews] = await Promise.all([
     getServices(),
     getServiceDetails(),
+    getReviews(),
   ]);
 
   return (
@@ -51,7 +59,7 @@ export default async function ServicesPage() {
               <Link
                 key={detail.id}
                 href={`/services/${detail.slug}`}
-                className="group flex flex-col justify-between border border-line bg-surface p-6 hover:bg-surface-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="group flex flex-col justify-between border border-line bg-surface p-6 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 <div>
                   <p className="type-mono-label text-muted">{detail.icon}</p>
@@ -68,6 +76,9 @@ export default async function ServicesPage() {
               </Link>
             ))}
           </div>
+
+          <LeadMagnetBanner compact />
+          <SocialProofStrip reviews={reviews.slice(0, 2)} />
         </Container>
       </section>
 

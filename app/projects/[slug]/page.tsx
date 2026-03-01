@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { PageIntentTracker } from "@/components/analytics/page-intent-tracker";
 import { Container } from "@/components/layout/container";
+import { BookingModal } from "@/components/ui/booking-modal";
 import { CtaLink } from "@/components/ui/cta-link";
 import { JsonLd } from "@/components/ui/json-ld";
 import { ProjectGallerySection } from "@/components/ui/project-gallery-section";
-import { ProjectViewTracker } from "@/components/ui/project-view-tracker";
-import { getProjectBySlug, getProjects } from "@/lib/data";
+import { SocialProofStrip } from "@/components/ui/social-proof-strip";
+import { getProjectBySlug, getProjects, getReviews } from "@/lib/data";
 import { getCtaConfig, getSiteUrl } from "@/lib/config/site";
 import {
   createProjectPageBreadcrumbSchema,
@@ -28,17 +30,18 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
 
+  const siteUrl = getSiteUrl();
+
   if (!project) {
     return {
       title: "Project Not Found",
       alternates: {
-        canonical: "/projects",
+        canonical: `${siteUrl}/projects`,
       },
     };
   }
 
   const ogImage = project.heroImage ?? project.gallery[0];
-  const siteUrl = getSiteUrl();
 
   return {
     title: `${project.title} | ${project.location.city}`,
@@ -63,32 +66,71 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       "geo.placename": `${project.location.city}, TX`,
     },
     alternates: {
-      canonical: `/projects/${project.slug}`,
+      canonical: `${siteUrl}/projects/${project.slug}`,
     },
+  };
+}
+
+function getContextualCta(project: { location: { city: string }; style: string }) {
+  const city = project.location.city.toLowerCase();
+
+  if (city.includes("highland park")) {
+    return {
+      title: "Planning in Highland Park?",
+      body: "We’ll walk through architectural review, timeline risk, and permit sequencing before design starts.",
+      button: "Book Highland Park Feasibility Call",
+    };
+  }
+
+  if (city.includes("southlake")) {
+    return {
+      title: "Building in Southlake?",
+      body: "Get a scope and budget discussion calibrated for luxury lots, timeline constraints, and finish level.",
+      button: "Book Southlake Consultation",
+    };
+  }
+
+  if (city.includes("prosper")) {
+    return {
+      title: "Planning in Prosper?",
+      body: "We’ll align lot-readiness, utilities, and architectural scope before your first design milestone.",
+      button: "Book Prosper Project Call",
+    };
+  }
+
+  return {
+    title: `Planning in ${project.location.city}?`,
+    body: `Discuss design-build scope, budget guardrails, and execution path for a ${project.style.toLowerCase()} custom home.`,
+    button: `Book ${project.location.city} Consultation`,
   };
 }
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = await getProjectBySlug(slug);
+  const [project, reviews] = await Promise.all([getProjectBySlug(slug), getReviews()]);
 
   if (!project) {
     notFound();
   }
 
-  const { scheduleUrl } = getCtaConfig();
+  const { scheduleUrl, phoneHref, phoneDisplay } = getCtaConfig();
+  const cta = getContextualCta(project);
+  const contextualReviews = reviews
+    .filter((review) => review.location.toLowerCase().includes(project.location.city.toLowerCase()))
+    .slice(0, 1);
+  const socialProof = contextualReviews.length > 0 ? contextualReviews : reviews.slice(0, 1);
 
   return (
     <article className="section-shell">
       <JsonLd data={createProjectPageBreadcrumbSchema(project)} />
       <JsonLd data={createProjectSchema(project)} />
-      <ProjectViewTracker slug={project.slug} />
-      <Container className="space-y-8">
-        <header className="space-y-4">
+      <PageIntentTracker entityType="project" slug={project.slug} />
+      <Container swiss className="space-y-8">
+        <hgroup className="space-y-4">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{project.location.display}</p>
           <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">{project.title}</h1>
           <p className="text-reading text-base leading-7 text-muted">{project.summary}</p>
-        </header>
+        </hgroup>
 
         <div className="grid gap-5 lg:grid-cols-12">
           <div className="lg:col-span-8">
@@ -121,23 +163,33 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
 
             <div className="rounded-2xl border border-line bg-surface p-5">
-              <h2 className="text-lg font-semibold">Start Your DFW Project</h2>
-              <p className="mt-2 text-sm leading-6 text-muted">
-                Planning a custom home in Dallas-Fort Worth? Share your brief and schedule a consultation.
-              </p>
-              <div className="mt-4">
+              <h2 className="text-lg font-semibold">{cta.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-muted">{cta.body}</p>
+              <div className="mt-4 flex flex-wrap items-center gap-3">
+                <BookingModal
+                  bookingUrl={scheduleUrl}
+                  triggerLabel={cta.button}
+                  title="Book your custom home consultation"
+                  description="Pick a slot and we will review your project scope live."
+                  analyticsId="project_primary_schedule"
+                />
                 <CtaLink
-                  href={scheduleUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  eventName="cta_schedule_click"
+                  href={phoneHref}
+                  eventName="cta_call_click"
+                  variant="secondary"
+                  data-analytics-cta="project_primary_call"
                 >
-                  Schedule Consultation
+                  Call {phoneDisplay}
                 </CtaLink>
               </div>
             </div>
           </aside>
         </div>
+
+        <SocialProofStrip
+          title={`Client feedback from ${project.location.city} and nearby areas`}
+          reviews={socialProof}
+        />
       </Container>
     </article>
   );

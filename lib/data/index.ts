@@ -14,6 +14,7 @@ import {
   blogPostsQuery,
   faqsQuery,
   featuredProjectsWithHeroQuery,
+  homeHeroQuery,
   processStepsQuery,
   projectBySlugQuery,
   projectsQuery,
@@ -22,7 +23,7 @@ import {
   serviceDetailsQuery,
   servicesQuery,
 } from "@/lib/sanity/queries";
-import type { BlogPost, FAQ, ProcessStep, Project, Review, Service, ServiceDetail } from "@/lib/types/content";
+import type { BlogPost, FAQ, HomeHero, ProcessStep, Project, Review, Service, ServiceDetail } from "@/lib/types/content";
 import { isDfwCity } from "@/lib/types/content";
 
 type SanityImage = {
@@ -90,7 +91,9 @@ async function fetchFromSanity<T>(query: string, fallbackValue: T, params?: Quer
 
   try {
     const safeParams: QueryParams = params ?? {};
-    const result = await sanityClient.fetch<T>(query, safeParams);
+    const result = await sanityClient.fetch<T>(query, safeParams, {
+      next: { tags: ['sanity'] }
+    });
 
     if (result == null) {
       return fallbackValue;
@@ -201,6 +204,115 @@ function normalizeProcessStep(doc: SanityProcessStep): ProcessStep | null {
   };
 }
 
+type SanityServiceDetail = {
+  _id?: string;
+  slug?: string;
+  title?: string;
+  summary?: string;
+  description?: string;
+  deliverables?: string[];
+  benefits?: string[];
+  order?: number;
+  icon?: string;
+};
+
+type SanityReview = {
+  _id?: string;
+  author?: string;
+  location?: string;
+  rating?: number;
+  text?: string;
+  projectType?: string;
+  date?: string;
+};
+
+function normalizeServiceDetail(doc: SanityServiceDetail): ServiceDetail | null {
+  const title = doc.title?.trim();
+  const summary = doc.summary?.trim();
+  const description = doc.description?.trim();
+  const slug = doc.slug?.trim();
+
+  if (!title || !summary || !description || !slug) {
+    return null;
+  }
+
+  return {
+    id: doc._id || `service-detail-${slug}`,
+    slug,
+    title,
+    summary,
+    description,
+    deliverables: doc.deliverables?.filter(Boolean) ?? [],
+    benefits: doc.benefits?.filter(Boolean) ?? [],
+    order: doc.order ?? 99,
+    icon: doc.icon || "Dot",
+  };
+}
+
+function normalizeReview(doc: SanityReview): Review | null {
+  const author = doc.author?.trim();
+  const text = doc.text?.trim();
+
+  if (!author || !text || typeof doc.rating !== "number") {
+    return null;
+  }
+
+  return {
+    id: doc._id || `review-${slugify(author)}`,
+    author,
+    location: doc.location?.trim() || "Dallas-Fort Worth, TX",
+    rating: Math.min(5, Math.max(1, doc.rating)),
+    text,
+    projectType: doc.projectType?.trim() || "Custom Home",
+    date: doc.date?.trim() || new Date().getFullYear().toString(),
+  };
+}
+
+type SanityBlogPost = {
+  _id?: string;
+  title?: string;
+  slug?: string;
+  excerpt?: string;
+  category?: string;
+  author?: string;
+  date?: string;
+  readTime?: string;
+  content?: string;
+  coverImage?: SanityImage;
+  tags?: string[];
+};
+
+function normalizeBlogPost(doc: SanityBlogPost): BlogPost | null {
+  const title = doc.title?.trim();
+  const slug = doc.slug?.trim();
+  const excerpt = doc.excerpt?.trim();
+
+  if (!title || !slug || !excerpt) {
+    return null;
+  }
+
+  return {
+    id: doc._id || `blog-${slug}`,
+    title,
+    slug,
+    excerpt,
+    category: doc.category?.trim() || "General",
+    author: doc.author?.trim() || "Premium Home Design",
+    date: doc.date?.trim() || new Date().toISOString().split("T")[0],
+    readTime: doc.readTime?.trim() || "5 min read",
+    content: doc.content,
+    coverImage: doc.coverImage?.url
+      ? {
+          src: doc.coverImage.url,
+          alt: doc.coverImage.alt?.trim() || `${title} cover image`,
+          width: doc.coverImage.width ?? 1200,
+          height: doc.coverImage.height ?? 630,
+        }
+      : undefined,
+    tags: doc.tags?.filter(Boolean),
+  };
+}
+
 function normalizeFaq(doc: SanityFaq): FAQ | null {
   const question = doc.question?.trim();
   const answer = doc.answer?.trim();
@@ -308,30 +420,48 @@ export async function getFaqs(): Promise<FAQ[]> {
 }
 
 export async function getServiceDetails(): Promise<ServiceDetail[]> {
-  const docs = await fetchFromSanity<ServiceDetail[]>(serviceDetailsQuery, fallbackServiceDetails);
-  if (!hasSanityConfig) return docs;
-  return Array.isArray(docs) && docs.length > 0 ? docs : fallbackServiceDetails;
+  const docs = await fetchFromSanity<SanityServiceDetail[]>(serviceDetailsQuery, fallbackServiceDetails as unknown as SanityServiceDetail[]);
+  if (!hasSanityConfig) return fallbackServiceDetails;
+
+  const normalized = (docs as SanityServiceDetail[])
+    .map(normalizeServiceDetail)
+    .filter((s): s is ServiceDetail => Boolean(s));
+
+  return normalized.length > 0 ? normalized : fallbackServiceDetails;
 }
 
 export async function getServiceDetailBySlug(slug: string): Promise<ServiceDetail | null> {
   if (!hasSanityConfig || !sanityClient) {
     return fallbackServiceDetails.find((s) => s.slug === slug) ?? null;
   }
-  const doc = await fetchFromSanity<ServiceDetail | null>(serviceDetailBySlugQuery, null, { slug });
-  if (doc) return doc;
+  const doc = await fetchFromSanity<SanityServiceDetail | null>(serviceDetailBySlugQuery, null, { slug });
+  if (doc) {
+    const normalized = normalizeServiceDetail(doc);
+    if (normalized) return normalized;
+  }
   return fallbackServiceDetails.find((s) => s.slug === slug) ?? null;
 }
 
 export async function getReviews(): Promise<Review[]> {
-  const docs = await fetchFromSanity<Review[]>(reviewsQuery, fallbackReviews);
-  if (!hasSanityConfig) return docs;
-  return Array.isArray(docs) && docs.length > 0 ? docs : fallbackReviews;
+  const docs = await fetchFromSanity<SanityReview[]>(reviewsQuery, []);
+  if (!hasSanityConfig) return fallbackReviews;
+
+  const normalized = (docs as SanityReview[])
+    .map(normalizeReview)
+    .filter((r): r is Review => Boolean(r));
+
+  return normalized.length > 0 ? normalized : fallbackReviews;
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
-  const docs = await fetchFromSanity<BlogPost[]>(blogPostsQuery, fallbackBlogPosts);
-  if (!hasSanityConfig) return docs;
-  return Array.isArray(docs) && docs.length > 0 ? docs : fallbackBlogPosts;
+  const docs = await fetchFromSanity<SanityBlogPost[]>(blogPostsQuery, []);
+  if (!hasSanityConfig) return fallbackBlogPosts;
+
+  const normalized = (docs as SanityBlogPost[])
+    .map(normalizeBlogPost)
+    .filter((p): p is BlogPost => Boolean(p));
+
+  return normalized.length > 0 ? normalized : fallbackBlogPosts;
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
@@ -339,7 +469,43 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     return fallbackBlogPosts.find((post) => post.slug === slug) ?? null;
   }
 
-  const doc = await fetchFromSanity<BlogPost | null>(blogPostBySlugQuery, null, { slug });
-  if (doc) return doc;
+  const doc = await fetchFromSanity<SanityBlogPost | null>(blogPostBySlugQuery, null, { slug });
+  if (doc) {
+    const normalized = normalizeBlogPost(doc);
+    if (normalized) return normalized;
+  }
   return fallbackBlogPosts.find((post) => post.slug === slug) ?? null;
+}
+
+type SanityHomeHero = {
+  _id?: string;
+  heroImage?: SanityImage;
+};
+
+const fallbackHomeHero: HomeHero = {
+  id: "default-hero",
+  heroImage: {
+    src: "/projects/north-dallas-courtyard-residence/hero.jpg",
+    alt: "Front elevation of a modern custom home in Dallas-Fort Worth",
+    width: 1600,
+    height: 1000,
+  },
+};
+
+export async function getHomeHero(): Promise<HomeHero> {
+  const doc = await fetchFromSanity<SanityHomeHero | null>(homeHeroQuery, null);
+
+  if (!doc || !doc.heroImage?.url) {
+    return fallbackHomeHero;
+  }
+
+  return {
+    id: doc._id || "home-hero",
+    heroImage: {
+      src: doc.heroImage.url,
+      alt: doc.heroImage.alt?.trim() || "Modern custom home in Dallas-Fort Worth",
+      width: doc.heroImage.width ?? 1600,
+      height: doc.heroImage.height ?? 1000,
+    },
+  };
 }

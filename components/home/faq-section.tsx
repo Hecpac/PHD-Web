@@ -17,18 +17,18 @@ export function FaqSection({ faqs, id = "faq" }: FaqSectionProps) {
     }));
 
     return (
-        <section id={id} className="section-shell border-t border-line">
+        <section id={id} className="section-shell section-shell-tight section-brand-band border-t border-line section-brand-divider">
             <Container swiss>
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-24">
                     <div className="lg:col-span-5">
                         <SectionHeading
                             eyebrow="Common Questions"
                             title="Clarity before commitment"
-                            description="We believe in answering the hard questions upfront. Here is what most expecting owners ask us about building in DFW."
+                            description="We believe in answering hard questions upfront. Here is what most prospective owners ask us about building in DFW."
                         />
                     </div>
                     <div className="lg:col-span-7">
-                        <Accordion items={displayedFaqs} />
+                        <Accordion items={displayedFaqs} className="brand-red-outline brand-red-surface rounded-xl border border-line/90 bg-surface/92 px-5 sm:px-6" />
                     </div>
                 </div>
             </Container>

@@ -4,9 +4,8 @@ import { useRef } from "react";
 
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { SwissCard } from "@/components/ui/swiss-card";
 import { SwissBeam } from "@/components/ui/swiss-beam";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
 import { createStaggerReveal } from "@/lib/gsap/scroll-animations";
 import { animateSwissEntrance } from "@/lib/gsap/animations";
 
@@ -22,7 +21,7 @@ const differentiators = [
         viewBox="0 0 28 28"
         fill="none"
         aria-hidden="true"
-        className="text-accent"
+        className="text-accent transition-[transform,color] duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:text-white"
       >
         <path
           d="M4 24L14 4l10 20H4z"
@@ -53,7 +52,7 @@ const differentiators = [
         viewBox="0 0 28 28"
         fill="none"
         aria-hidden="true"
-        className="text-accent"
+        className="text-accent transition-[transform,color] duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:text-white"
       >
         <circle cx="14" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" />
         <path
@@ -66,7 +65,7 @@ const differentiators = [
     ),
     title: "DFW Market Fluency",
     description:
-      "We know Dallas\u2013Fort Worth down to the soil reports. Expansive clay conditions, municipality-specific permitting timelines, HOA design review boards\u2014our local expertise keeps your project moving without avoidable delays.",
+      "We know Dallas–Fort Worth down to the soil reports. Expansive clay conditions, municipality-specific permitting timelines, HOA design review boards—our local expertise keeps your project moving without avoidable delays.",
   },
   {
     id: "transparent-process",
@@ -77,7 +76,7 @@ const differentiators = [
         viewBox="0 0 28 28"
         fill="none"
         aria-hidden="true"
-        className="text-accent"
+        className="text-accent transition-[transform,color] duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:text-white"
       >
         <rect
           x="4"
@@ -108,7 +107,7 @@ const differentiators = [
     ),
     title: "Open-Book Transparency",
     description:
-      "Every line item, allowance, and change order is visible to you in real time. Our open-book budgeting and documented decision gates mean you approve costs before they're committed\u2014never after.",
+      "Every line item, allowance, and change order is visible to you in real time. Our open-book budgeting and documented decision gates mean you approve costs before they're committed—never after.",
   },
   {
     id: "quality-craftsmanship",
@@ -119,7 +118,7 @@ const differentiators = [
         viewBox="0 0 28 28"
         fill="none"
         aria-hidden="true"
-        className="text-accent"
+        className="text-accent transition-[transform,color] duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:text-white"
       >
         <path
           d="M6 22l4-8 4 4 4-10 4 14"
@@ -143,7 +142,7 @@ const differentiators = [
         viewBox="0 0 28 28"
         fill="none"
         aria-hidden="true"
-        className="text-accent"
+        className="text-accent transition-[transform,color] duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:text-white"
       >
         <circle cx="14" cy="10" r="5" stroke="currentColor" strokeWidth="1.5" />
         <path
@@ -156,7 +155,7 @@ const differentiators = [
     ),
     title: "Client-Driven Scope",
     description:
-      "Your priorities\u2014not ours\u2014define the project. We listen before we draw, confirm before we build, and adapt when your needs evolve. Every decision is yours to make with clear data behind it.",
+      "Your priorities—not ours—define the project. We listen before we draw, confirm before we build, and adapt when your needs evolve. Every decision is yours to make with clear data behind it.",
   },
   {
     id: "documented-decisions",
@@ -167,7 +166,7 @@ const differentiators = [
         viewBox="0 0 28 28"
         fill="none"
         aria-hidden="true"
-        className="text-accent"
+        className="text-accent transition-[transform,color] duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:text-white"
       >
         <rect
           x="6"
@@ -210,20 +209,32 @@ const differentiators = [
   },
 ];
 
+const marqueeHighlights = [
+  "Architect-Led Planning",
+  "Open-Book Budgeting",
+  "Decision Gates",
+  "DFW Permit Fluency",
+  "Milestone QA",
+  "Trade Partner Network",
+  "Client-Driven Scope",
+  "Schedule Discipline",
+];
+
 /* ── Component ───────────────────────────────────────── */
 
-const HEADING_ID = "why-choose-us-heading";
+const HEADING_ID = "why-choose-us-title";
 
 export function WhyChooseUsSection() {
   const gridRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
       if (!gridRef.current) return;
 
       // Stagger reveal for the cards
-      createStaggerReveal({
+      const staggerReveal = createStaggerReveal({
         trigger: gridRef.current,
         targets: gsap.utils.toArray<HTMLElement>(
           gridRef.current.querySelectorAll(".why-card"),
@@ -233,18 +244,75 @@ export function WhyChooseUsSection() {
         start: "top 80%",
       });
 
-      // Heading entrance animation
-      if (headingRef.current) {
-        animateSwissEntrance(headingRef.current, {
-          y: 32,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Heading entrance animation
+        if (headingRef.current) {
+          animateSwissEntrance(headingRef.current, {
+            y: 32,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          });
+        }
+
+        // Card row choreography for icon/title/copy
+        const cardBodies = gsap.utils.toArray<HTMLElement>(
+          gridRef.current!.querySelectorAll(".why-card article"),
+        );
+
+        cardBodies.forEach((card) => {
+          const rows = gsap.utils.toArray<HTMLElement>(card.querySelectorAll("[data-why-row]"));
+          if (!rows.length) return;
+
+          gsap.from(rows, {
+            opacity: 0,
+            y: 20,
+            stagger: 0.06,
+            duration: 0.58,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 82%",
+              toggleActions: "play none none none",
+            },
+          });
         });
+      });
+
+      // Velocity-based skew on marquee
+      let velocityTracker: ScrollTrigger | null = null;
+      if (marqueeRef.current) {
+        const marqueeEl = marqueeRef.current;
+        const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!prefersReduced) {
+          // Create a ScrollTrigger to track scroll velocity
+          velocityTracker = ScrollTrigger.create({
+            trigger: document.body,
+            start: "top top",
+            end: "bottom bottom",
+            onUpdate: (self) => {
+              const velocity = self.getVelocity();
+              const clampedSkew = gsap.utils.clamp(-15, 15, velocity * -0.015);
+              gsap.to(marqueeEl, {
+                skewX: clampedSkew,
+                ease: "power3.out",
+                duration: 0.3,
+                overwrite: true,
+              });
+            },
+          });
+        }
       }
+
+      return () => {
+        staggerReveal.revert();
+        mm.revert();
+        velocityTracker?.kill();
+      };
     },
     { scope: gridRef },
   );
@@ -252,17 +320,35 @@ export function WhyChooseUsSection() {
   return (
     <section
       id="why-choose-us"
-      className="section-shell border-t border-line"
+      className="section-shell section-brand-wash-bold border-t border-line section-brand-divider"
       aria-labelledby={HEADING_ID}
     >
       <Container swiss className="space-y-10">
         <div ref={headingRef}>
           <SectionHeading
+            titleId={HEADING_ID}
             eyebrow="Why Choose Us"
-            title="Dallas\u2013Fort Worth\u2019s architecture-first builder"
-            description="Design and construction under one roof, backed by deep local knowledge. Here\u2019s what sets our Dallas\u2013Fort Worth custom home process apart."
+            title="Dallas–Fort Worth’s architecture-first builder"
+            description="Design and construction under one roof, backed by deep local knowledge. Here’s what sets our Dallas–Fort Worth custom home process apart."
             className="[&_h2]:scroll-mt-24"
           />
+        </div>
+
+        {/* Marquee highlights */}
+        <div className="overflow-hidden" aria-hidden="true">
+          <div
+            ref={marqueeRef}
+            className="flex whitespace-nowrap will-change-transform motion-safe:animate-[swiss-marquee_17s_linear_infinite] sm:motion-safe:animate-[swiss-marquee_20s_linear_infinite] lg:motion-safe:animate-[swiss-marquee_24s_linear_infinite] motion-safe:hover:[animation-play-state:paused]"
+          >
+            {marqueeHighlights.map((item) => (
+              <span
+                key={item}
+                className="mr-4 inline-flex min-h-10 shrink-0 items-center rounded-full bg-canvas/80 px-4 text-[0.68rem] font-mono uppercase tracking-[0.08em] text-ink/80 pointer-events-none select-none"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Decorative beam above the grid */}
@@ -270,27 +356,36 @@ export function WhyChooseUsSection() {
 
         <div ref={gridRef} className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {differentiators.map((item) => (
-            <SwissCard key={item.id} spotlight className="why-card">
-              <article aria-labelledby={`why-card-title-${item.id}`}>
+            <article
+              key={item.id}
+              aria-labelledby={`why-card-title-${item.id}`}
+              className="why-card relative overflow-hidden group flex min-h-[clamp(18rem,34vw,24rem)] flex-col rounded-xl border border-line bg-surface p-6 sm:p-8 md:p-10 transition-[border-color,box-shadow,transform] duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(203,33,49,0.3)] hover:border-accent"
+            >
+              {/* Luxurious animated red background */}
+              <div className="absolute inset-0 bg-accent opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 pointer-events-none z-0" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_60%)] opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 pointer-events-none z-0" />
+
+              <div className="relative z-10 flex flex-col h-full">
                 {/* Icon */}
-                <div className="mb-4 flex h-10 w-10 items-center justify-center border border-line bg-canvas">
+                <div data-why-row className="mb-6 flex h-14 w-14 items-center justify-center rounded-md border border-line bg-accent/8 transition-colors duration-500 group-hover:border-white/30 group-hover:bg-white/10">
                   {item.icon}
                 </div>
 
                 {/* Title */}
                 <h3
                   id={`why-card-title-${item.id}`}
-                  className="type-heading"
+                  data-why-row
+                  className="mb-3 type-h3-standard text-ink transition-colors duration-500 group-hover:text-white"
                 >
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="mt-2 text-sm leading-6 text-muted">
+                <p data-why-row className="text-base leading-relaxed text-muted transition-colors duration-500 group-hover:text-white/80">
                   {item.description}
                 </p>
-              </article>
-            </SwissCard>
+              </div>
+            </article>
           ))}
         </div>
 
@@ -298,10 +393,6 @@ export function WhyChooseUsSection() {
         <SwissBeam direction="horizontal" length="100%" thickness={1} delay={0.3} />
       </Container>
 
-      {/* Hidden label for aria-labelledby (visual heading is inside SectionHeading) */}
-      <span id={HEADING_ID} className="sr-only">
-        Why Choose Us
-      </span>
     </section>
   );
 }

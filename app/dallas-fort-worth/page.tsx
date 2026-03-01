@@ -3,24 +3,29 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { JsonLd } from "@/components/ui/json-ld";
+import { LeadMagnetBanner } from "@/components/ui/lead-magnet-banner";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { getCtaConfig } from "@/lib/config/site";
+import { getCtaConfig, getSiteUrl } from "@/lib/config/site";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
 import { DFW_CITIES } from "@/lib/types/content";
 
-export const metadata: Metadata = {
-  title: "Dallas-Fort Worth Service Area",
-  description:
-    "Custom home design-build service area covering Dallas, Fort Worth, Plano, Frisco, Southlake, and the entire DFW Metroplex.",
-  openGraph: {
-    title: "Dallas-Fort Worth Service Area | DFW Modern Design-Build",
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
+    title: "Dallas-Fort Worth Service Area",
     description:
       "Custom home design-build service area covering Dallas, Fort Worth, Plano, Frisco, Southlake, and the entire DFW Metroplex.",
-  },
-  alternates: {
-    canonical: "/dallas-fort-worth",
-  },
-};
+    openGraph: {
+      title: "Dallas-Fort Worth Service Area | DFW Modern Design-Build",
+      description:
+        "Custom home design-build service area covering Dallas, Fort Worth, Plano, Frisco, Southlake, and the entire DFW Metroplex.",
+    },
+    alternates: {
+      canonical: `${siteUrl}/dallas-fort-worth`,
+    },
+  };
+}
 
 const whyDfwOnly = [
   {
@@ -61,9 +66,10 @@ export default function DallasFortWorthPage() {
 
       {/* Hero */}
       <section className="section-shell" aria-labelledby="dfw-heading">
-        <Container className="space-y-8">
+        <Container swiss className="space-y-8">
           <SectionHeading
             as="h1"
+            titleId="dfw-heading"
             eyebrow="Service Area"
             title="We build exclusively in Dallas-Fort Worth"
             description="Geographic focus is a strategic choice, not a limitation. By serving only the DFW Metroplex, we deliver better outcomes — faster permitting, deeper trade networks, and construction methods proven for North Texas conditions."
@@ -84,7 +90,7 @@ export default function DallasFortWorthPage() {
 
       {/* Cities grid */}
       <section className="section-shell border-t border-line section-bone">
-        <Container className="space-y-8">
+        <Container swiss className="space-y-8">
           <SectionHeading
             eyebrow="Cities We Serve"
             title="16 communities across the Metroplex"
@@ -107,7 +113,7 @@ export default function DallasFortWorthPage() {
 
       {/* Why DFW only */}
       <section className="section-shell border-t border-line">
-        <Container className="space-y-8">
+        <Container swiss className="space-y-8">
           <SectionHeading
             eyebrow="Why DFW Only"
             title="Focus produces better outcomes"
@@ -116,7 +122,7 @@ export default function DallasFortWorthPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {whyDfwOnly.map((item) => (
               <article key={item.title} className="border border-line bg-surface p-6">
-                <h3 className="text-base font-bold text-ink">{item.title}</h3>
+                <h3 className="type-h3-compact text-ink">{item.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted">{item.description}</p>
               </article>
             ))}
@@ -126,7 +132,7 @@ export default function DallasFortWorthPage() {
 
       {/* Policy + CTA */}
       <section className="section-shell border-t border-line section-bone">
-        <Container className="space-y-6">
+        <Container swiss className="space-y-6">
           <SectionHeading
             eyebrow="Policy"
             title="DFW-only project intake"
@@ -148,7 +154,14 @@ export default function DallasFortWorthPage() {
               </li>
             </ul>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+            <div style={{ "--color-accent": "rgb(212 45 62)", "--color-accent-hover": "rgb(190 34 50)", "--color-on-accent": "rgb(255 244 245)" } as React.CSSProperties}>
+              <LeadMagnetBanner className="mt-6" compact />
+            </div>
+
+            <div
+              className="mt-6 flex flex-wrap items-center gap-3"
+              style={{ "--color-accent": "rgb(212 45 62)", "--color-accent-hover": "rgb(190 34 50)", "--color-on-accent": "rgb(255 244 245)" } as React.CSSProperties}
+            >
               <CtaLink
                 href={scheduleUrl}
                 target="_blank"
@@ -157,7 +170,7 @@ export default function DallasFortWorthPage() {
               >
                 Schedule a DFW Consultation
               </CtaLink>
-              <CtaLink href={phoneHref} eventName="cta_call_click" variant="secondary">
+              <CtaLink href={phoneHref} eventName="cta_call_click">
                 Call {phoneDisplay}
               </CtaLink>
             </div>

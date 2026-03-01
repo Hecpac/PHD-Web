@@ -19,7 +19,7 @@ export function BlogArticle({ post }: BlogArticleProps) {
 
   return (
     <article className="section-shell">
-      <Container className="max-w-3xl space-y-8">
+      <Container swiss className="max-w-3xl space-y-8">
         <nav aria-label="Breadcrumb">
           <ol className="flex items-center gap-2 text-xs text-muted">
             <li>
@@ -40,14 +40,14 @@ export function BlogArticle({ post }: BlogArticleProps) {
           </ol>
         </nav>
 
-        <header className="space-y-4">
+        <hgroup className="space-y-4">
           <div className="flex flex-wrap items-center gap-3">
             <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
               {post.category}
             </span>
             <span className="text-xs text-muted">{post.readTime}</span>
           </div>
-          <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+          <h1 className="type-display text-balance">
             {post.title}
           </h1>
           <div className="flex items-center gap-3 text-sm text-muted">
@@ -55,7 +55,7 @@ export function BlogArticle({ post }: BlogArticleProps) {
             <span aria-hidden>&middot;</span>
             <time dateTime={post.date}>{formattedDate}</time>
           </div>
-        </header>
+        </hgroup>
 
         {post.coverImage && (
           <div className="overflow-hidden rounded-lg">
@@ -71,7 +71,7 @@ export function BlogArticle({ post }: BlogArticleProps) {
           </div>
         )}
 
-        <div className="space-y-6 text-base leading-7 text-muted">
+        <div className="space-y-6 text-base leading-7 text-ink/90">
           {paragraphs.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}

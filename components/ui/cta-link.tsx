@@ -18,11 +18,12 @@ type CtaLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
 };
 
 const baseClassName =
-  "inline-flex min-h-11 min-w-11 items-center justify-center rounded-sm border px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+  "inline-flex items-center justify-center rounded-sm px-7 py-[14px] min-h-[52px] text-[14px] font-bold uppercase tracking-[0.05em] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-standard)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 const variantClassNames: Record<CtaVariant, string> = {
-  primary: "border-accent bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-pressed",
-  secondary: "border-line bg-surface text-ink hover:bg-surface-2",
+  primary:
+    "cta-primary-fill border border-accent bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-pressed shadow-[var(--shadow-pop)] hover:-translate-y-[1px] hover:shadow-[var(--shadow-card)] active:translate-y-[1px] transition-[transform,box-shadow,background-color,color,border-color] duration-[var(--dur-med)] ease-[var(--ease-lux)]",
+  secondary: "min-h-[44px] px-5 py-3 text-[13px] border-[1.5px] border-currentColor bg-transparent text-ink hover:opacity-80",
   ghost: "mi-underline-reveal border-transparent bg-transparent text-ink px-0",
 };
 
@@ -54,12 +55,12 @@ export function CtaLink({
   };
 
   const content = (
-    <>
+    <span className="relative z-10 inline-flex items-center">
       {children}
       {withArrow && (
-        <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
+        <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1" />
       )}
-    </>
+    </span>
   );
 
   const linkElement = isInternalHref(href) ? (

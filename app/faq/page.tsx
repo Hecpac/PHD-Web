@@ -3,22 +3,27 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { getSiteUrl } from "@/lib/config/site";
 import { getFaqs } from "@/lib/data";
 import { createBreadcrumbSchema, createFaqSchema } from "@/lib/seo/schema";
 
-export const metadata: Metadata = {
-  title: "FAQ | Dallas-Fort Worth Custom Homes",
-  description:
-    "Frequently asked questions about custom home design-build services in Dallas-Fort Worth.",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
     title: "FAQ | Dallas-Fort Worth Custom Homes",
     description:
       "Frequently asked questions about custom home design-build services in Dallas-Fort Worth.",
-  },
-  alternates: {
-    canonical: "/faq",
-  },
-};
+    openGraph: {
+      title: "FAQ | Dallas-Fort Worth Custom Homes",
+      description:
+        "Frequently asked questions about custom home design-build services in Dallas-Fort Worth.",
+    },
+    alternates: {
+      canonical: `${siteUrl}/faq`,
+    },
+  };
+}
 
 export default async function FaqPage() {
   const faqs = await getFaqs();
@@ -32,9 +37,10 @@ export default async function FaqPage() {
           { name: "FAQ", href: "/faq" },
         ])}
       />
-      <Container className="space-y-8">
+      <Container swiss className="space-y-8">
         <SectionHeading
           as="h1"
+          titleId="faq-heading"
           eyebrow="FAQ"
           title="Answers for DFW project planning"
           description="Common questions about process, timeline, and service area for modern custom homes in Dallas-Fort Worth."
@@ -43,7 +49,11 @@ export default async function FaqPage() {
         <div className="space-y-4">
           {faqs.map((faq) => (
             <details key={faq.id} className="rounded-2xl border border-line bg-surface p-5">
-              <summary className="cursor-pointer text-base font-medium">{faq.question}</summary>
+              <summary
+                className="cursor-pointer list-none text-base font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              >
+                {faq.question}
+              </summary>
               <p className="mt-3 text-sm leading-6 text-muted">{faq.answer}</p>
             </details>
           ))}

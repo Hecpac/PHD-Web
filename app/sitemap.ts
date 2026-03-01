@@ -15,15 +15,17 @@ const staticRoutes: StaticRoute[] = [
   { path: "/services", changeFrequency: "monthly", priority: 0.8 },
   { path: "/process", changeFrequency: "monthly", priority: 0.7 },
   { path: "/dallas-fort-worth", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/for-builders", changeFrequency: "monthly", priority: 0.7 },
   { path: "/about", changeFrequency: "monthly", priority: 0.6 },
   { path: "/faq", changeFrequency: "monthly", priority: 0.6 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.7 },
   { path: "/blogs", changeFrequency: "weekly", priority: 0.7 },
+  { path: "/reviews", changeFrequency: "monthly", priority: 0.6 },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = getSiteUrl();
-  const lastModified = new Date().toISOString();
+  const lastModified = new Date().toISOString().split("T")[0];
   const [projects, blogPosts, serviceDetails] = await Promise.all([
     getProjects(),
     getBlogPosts(),

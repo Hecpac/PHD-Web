@@ -4,20 +4,25 @@ import { Container } from "@/components/layout/container";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
+import { getSiteUrl } from "@/lib/config/site";
 
-export const metadata: Metadata = {
-  title: "About | DFW Design-Build Team",
-  description:
-    "Learn how our architecture + builder workflow delivers modern custom homes across the DFW Metroplex.",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
     title: "About | DFW Design-Build Team",
     description:
       "Learn how our architecture + builder workflow delivers modern custom homes across the DFW Metroplex.",
-  },
-  alternates: {
-    canonical: "/about",
-  },
-};
+    openGraph: {
+      title: "About | DFW Design-Build Team",
+      description:
+        "Learn how our architecture + builder workflow delivers modern custom homes across the DFW Metroplex.",
+    },
+    alternates: {
+      canonical: `${siteUrl}/about`,
+    },
+  };
+}
 
 const principles = [
   {
@@ -90,9 +95,10 @@ export default function AboutPage() {
 
       {/* Hero section */}
       <section className="section-shell" aria-labelledby="about-heading">
-        <Container className="space-y-8">
+        <Container swiss className="space-y-8">
           <SectionHeading
             as="h1"
+            titleId="about-heading"
             eyebrow="About"
             title="A design-build practice focused on modern homes in DFW"
             description="We combine architecture rigor with construction control to deliver custom homes that match the drawings, meet the budget, and finish on schedule."
@@ -111,8 +117,9 @@ export default function AboutPage() {
 
       {/* Numbers section */}
       <section className="section-shell border-t border-line section-bone">
-        <Container className="space-y-8">
+        <Container swiss className="space-y-8">
           <SectionHeading
+            as="h2"
             eyebrow="Track Record"
             title="Numbers from the field"
           />
@@ -120,7 +127,7 @@ export default function AboutPage() {
             {differentiators.map((item) => (
               <div key={item.label} className="space-y-2">
                 <p className="text-5xl font-bold tabular-nums text-accent">{item.stat}</p>
-                <p className="text-base font-bold text-ink">{item.label}</p>
+                <h3 className="type-h3-compact text-ink">{item.label}</h3>
                 <p className="text-sm leading-6 text-muted">{item.detail}</p>
               </div>
             ))}
@@ -130,15 +137,16 @@ export default function AboutPage() {
 
       {/* Values section */}
       <section className="section-shell border-t border-line">
-        <Container className="space-y-8">
+        <Container swiss className="space-y-8">
           <SectionHeading
+            as="h2"
             eyebrow="How We Think"
             title="What sets us apart in DFW"
           />
           <div className="grid gap-6 md:grid-cols-3">
             {values.map((value) => (
               <article key={value.title} className="border border-line bg-surface p-6">
-                <h3 className="text-base font-bold text-ink">{value.title}</h3>
+                <h3 className="type-h3-compact text-ink">{value.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted">{value.description}</p>
               </article>
             ))}
@@ -148,8 +156,9 @@ export default function AboutPage() {
 
       {/* Credentials section */}
       <section className="section-shell border-t border-line section-bone">
-        <Container className="space-y-6">
+        <Container swiss className="space-y-6">
           <SectionHeading
+            as="h2"
             eyebrow="Credentials"
             title="Licensed, insured, and locally established"
           />

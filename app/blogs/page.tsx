@@ -3,36 +3,42 @@ import type { Metadata } from "next";
 import { BlogList } from "@/components/blog/blog-list";
 import { Container } from "@/components/layout/container";
 import { JsonLd } from "@/components/ui/json-ld";
+import { LeadMagnetBanner } from "@/components/ui/lead-magnet-banner";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { getSiteUrl } from "@/lib/config/site";
 import { getBlogPosts } from "@/lib/data";
 import {
   createBlogBreadcrumbSchema,
   createBlogCollectionSchema,
 } from "@/lib/seo/schema";
 
-export const metadata: Metadata = {
-  title: "Blog | Insights for DFW Custom Homes",
-  description:
-    "Articles on architecture, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.",
-  openGraph: {
-    title: "Blog | DFW Custom Home Building Insights",
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = getSiteUrl();
+
+  return {
+    title: "Blog | Insights for DFW Custom Homes",
     description:
       "Articles on architecture, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: "Blog | DFW Custom Home Building Insights",
-    description:
-      "Articles on architecture, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.",
-  },
-  alternates: {
-    canonical: "/blogs",
-    types: {
-      "application/rss+xml": "/blogs/feed.xml",
+    openGraph: {
+      title: "Blog | DFW Custom Home Building Insights",
+      description:
+        "Articles on architecture, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.",
+      type: "website",
     },
-  },
-};
+    twitter: {
+      card: "summary",
+      title: "Blog | DFW Custom Home Building Insights",
+      description:
+        "Articles on architecture, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.",
+    },
+    alternates: {
+      canonical: `${siteUrl}/blogs`,
+      types: {
+        "application/rss+xml": "/blogs/feed.xml",
+      },
+    },
+  };
+}
 
 export default async function BlogsPage() {
   const posts = await getBlogPosts();
@@ -45,10 +51,13 @@ export default async function BlogsPage() {
         <Container swiss className="space-y-10">
           <SectionHeading
             as="h1"
+            titleId="blog-heading"
             eyebrow="Blog"
             title="Insights on building custom homes in DFW"
             description="Practical knowledge from our design-build team on architecture, process, budgets, and the realities of building in the Dallas-Fort Worth Metroplex."
           />
+
+          <LeadMagnetBanner compact />
 
           <BlogList posts={posts} />
         </Container>

@@ -1,31 +1,37 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
-import useEmblaCarousel from "embla-carousel-react";
 import { useReducedMotion } from "framer-motion";
 
 import { Container } from "@/components/layout/container";
-import { CarouselDots, CarouselPrevButton, CarouselNextButton, useCarouselButtons } from "@/components/ui/carousel-controls";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { StarRating } from "@/components/ui/star-rating";
+import { SwissMarquee } from "@/components/ui/swiss-marquee";
 import type { Review } from "@/lib/types/content";
+import { cn } from "@/lib/utils";
 
 type TestimonialsSectionProps = {
   reviews: Review[];
 };
 
-function ReviewCard({ review }: { review: Review }) {
+function ReviewCard({ review, className }: { review: Review; className?: string }) {
   return (
-    <article className="flex h-full flex-col justify-between rounded-lg border border-line bg-surface p-6">
+    <article
+      className={cn(
+        "brand-red-outline brand-red-surface flex h-full flex-col justify-between rounded-xl border border-line bg-surface p-6 sm:p-8 w-[320px] md:w-[400px] shrink-0",
+        className
+      )}
+    >
       <div className="space-y-4">
         <StarRating rating={review.rating} />
-        <blockquote className="text-sm leading-relaxed text-ink/90">
+        <blockquote className="text-base leading-relaxed text-ink/90">
           &ldquo;{review.text}&rdquo;
         </blockquote>
       </div>
-      <footer className="mt-6 border-t border-line pt-4">
-        <p className="text-sm font-semibold text-ink">{review.author}</p>
-        <p className="font-mono text-xs text-muted">
+      <footer className="mt-8 border-t border-line/80 pt-6">
+        <p className="text-base font-bold text-ink">{review.author}</p>
+        <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
           {review.location} · {review.projectType}
         </p>
       </footer>
@@ -34,22 +40,25 @@ function ReviewCard({ review }: { review: Review }) {
 }
 
 export function TestimonialsSection({ reviews }: TestimonialsSectionProps) {
-  const displayReviews = reviews.slice(0, 3);
   const shouldReduceMotion = useReducedMotion();
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    dragFree: false,
-    duration: shouldReduceMotion ? 0 : 20,
-  });
-  const { canPrev, canNext, scrollPrev, scrollNext } = useCarouselButtons(emblaApi);
+  if (!reviews || reviews.length === 0) return null;
 
-  if (displayReviews.length === 0) return null;
+  // Split reviews into two rows for the marquee
+  // If there are few reviews, duplicate them to ensure the marquee fills the screen nicely
+  const displayReviews = reviews.length < 6 ? [...reviews, ...reviews, ...reviews] : reviews;
+  const half = Math.ceil(displayReviews.length / 2);
+  const row1 = displayReviews.slice(0, half);
+  const row2 = displayReviews.slice(half);
 
   return (
-    <section id="testimonials" className="section-shell" aria-label="Client testimonials">
-      <Container swiss className="space-y-10">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+    <section
+      id="testimonials"
+      className="section-shell section-shell-tight section-brand-wash-bold overflow-hidden"
+      aria-label="Client testimonials"
+    >
+      <Container swiss className="mb-12 sm:mb-16">
+        <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
             eyebrow="Testimonials"
             title="Confidence built through evidence, not claims"
@@ -57,50 +66,41 @@ export function TestimonialsSection({ reviews }: TestimonialsSectionProps) {
           />
           <Link
             href="/reviews"
-            className="text-sm font-medium text-accent underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="mb-2 inline-flex min-h-[44px] items-center text-sm font-bold uppercase tracking-[0.05em] text-accent underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             View all reviews
           </Link>
         </div>
+      </Container>
 
-        {/* Desktop: 3-column grid */}
-        <div className="hidden gap-6 md:grid md:grid-cols-3">
-          {displayReviews.map((review) => (
-            <ReviewCard key={review.id} review={review} />
-          ))}
-        </div>
-
-        {/* Mobile: Embla carousel */}
-        <div className="md:hidden">
-          <div
-            ref={emblaRef}
-            className="overflow-hidden"
-            aria-roledescription="carousel"
-            aria-label="Client testimonials carousel"
-          >
-            <div className="flex" aria-live="polite">
-              {displayReviews.map((review) => (
-                <div
-                  key={review.id}
-                  className="min-w-0 flex-[0_0_100%] px-1"
-                  role="group"
-                  aria-roledescription="slide"
-                >
-                  <ReviewCard review={review} />
-                </div>
+      {/* Marquee Grid */}
+      <div className="flex flex-col gap-6 sm:gap-8 pb-4">
+        {shouldReduceMotion ? (
+          <Container swiss>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {reviews.slice(0, 3).map((review, i) => (
+                <ReviewCard key={`${review.id}-${i}`} review={review} className="w-full md:w-full" />
               ))}
             </div>
-          </div>
+          </Container>
+        ) : (
+          <>
+            <SwissMarquee speed={30} direction="left" className="border-y-0 py-0" gap="1.5rem">
+              {row1.map((review, i) => (
+                <ReviewCard key={`${review.id}-${i}-row1`} review={review} />
+              ))}
+            </SwissMarquee>
 
-          {displayReviews.length > 1 && (
-            <div className="mt-4 flex items-center justify-center gap-4">
-              <CarouselPrevButton onClick={scrollPrev} disabled={!canPrev} aria-label="Previous review" />
-              <CarouselDots emblaApi={emblaApi} />
-              <CarouselNextButton onClick={scrollNext} disabled={!canNext} aria-label="Next review" />
-            </div>
-          )}
-        </div>
-      </Container>
+            {row2.length > 0 && (
+              <SwissMarquee speed={25} direction="right" className="border-y-0 py-0" gap="1.5rem">
+                {row2.map((review, i) => (
+                  <ReviewCard key={`${review.id}-${i}-row2`} review={review} />
+                ))}
+              </SwissMarquee>
+            )}
+          </>
+        )}
+      </div>
     </section>
   );
 }

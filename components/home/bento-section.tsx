@@ -12,14 +12,14 @@ const bentoItems: BentoItem[] = [
       "Architecture, engineering, and construction managed under one agreement. One team, one schedule, one point of accountability across the DFW Metroplex.",
     span: "2x2",
     variant: "image",
-    imageSrc: "/projects/fort-worth-bluff-house/kitchen.jpg",
-    imageAlt: "Modern kitchen and living layout in a Dallas-Fort Worth custom home",
+    imageSrc: "/projects/1300-roxkliff/kitchen.jpg",
+    imageAlt: "Kitchen and living area in a custom home renovation in Plano, TX",
   },
   {
     id: "bento-projects",
     eyebrow: "Track Record",
     // Integrated Counter component
-    stat: <Counter value={40} suffix="+" />,
+    stat: <Counter value={60} suffix="+" />,
     statLabel: "Custom homes delivered in DFW",
     title: "Built Portfolio",
     span: "1x1",
@@ -50,7 +50,7 @@ const bentoItems: BentoItem[] = [
     title: "Milestone QA Inspections",
     description:
       "Third-party and internal quality checkpoints at foundation, framing, rough-in, and final walkthrough.",
-    span: "1x2",
+    span: "1x1",
     variant: "surface",
   },
   {
@@ -66,14 +66,14 @@ const bentoItems: BentoItem[] = [
 
 export function BentoSection() {
   return (
-    <section id="bento" className="section-shell border-t border-line">
+    <section id="bento" className="section-shell section-brand-wash-soft border-t border-line section-brand-divider">
       <Container swiss className="space-y-10">
         <SectionHeading
           eyebrow="Why Us"
           title="Engineered for precision, built for DFW"
           description="A design-build practice structured around transparency, schedule control, and documented quality at every milestone."
         />
-        <BentoGrid items={bentoItems} />
+        <BentoGrid items={bentoItems} className="brand-red-outline border border-line" />
       </Container>
     </section>
   );

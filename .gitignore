@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# local agent/LLM tooling
+/.claude/skills/dist/
+
 # production
 /build
 
@@ -40,3 +43,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/Wix (1)/
+
+# local raw media staging (do not commit)
+/assets/raw-imports/
+
+# agent/system-prompt files (internal, not for public repos)
+SOUL.md
+BOOTSTRAP.md
+AGENTS.md
