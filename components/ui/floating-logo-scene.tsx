@@ -40,7 +40,7 @@ export function FloatingLogoScene() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="pointer-events-none fixed bottom-6 left-4 z-[85] h-16 w-36 md:bottom-24 md:left-6 md:h-20 md:w-44">
+    <div className="pointer-events-none fixed bottom-24 left-6 z-[85] hidden h-20 w-44 md:block">
       <Canvas
         dpr={[1, 1.5]}
         gl={{ alpha: true, antialias: true }}
