@@ -48,10 +48,10 @@ export function FloatingLogoScene() {
         e.preventDefault();
         const lenis = getLenisInstance();
         if (lenis) {
-          lenis.scrollTo(0, { immediate: false });
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          lenis.scrollTo(0, { immediate: true, force: true });
         }
+        // Native fallback — also covers when Lenis is not active
+        window.scrollTo(0, 0);
       }
     },
     [pathname],
