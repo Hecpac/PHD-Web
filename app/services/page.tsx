@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
 import { LedgerSection } from "@/components/home/ledger-section";
+import { ServiceIcon } from "@/components/ui/service-icon";
 import { JsonLd } from "@/components/ui/json-ld";
 import { LeadMagnetBanner } from "@/components/ui/lead-magnet-banner";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -62,7 +63,7 @@ export default async function ServicesPage() {
                 className="group flex flex-col justify-between border border-line bg-surface p-6 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 <div>
-                  <p className="type-mono-label text-muted">{detail.icon}</p>
+                  <ServiceIcon name={detail.icon} className="h-5 w-5 text-muted" />
                   <h2 className="mt-2 type-heading text-ink group-hover:text-accent">
                     {detail.title}
                   </h2>
