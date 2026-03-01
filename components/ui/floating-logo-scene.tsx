@@ -40,7 +40,7 @@ export function FloatingLogoScene() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="fixed bottom-40 left-4 z-[85] h-16 w-36 md:bottom-24 md:left-6 md:h-20 md:w-44">
+    <div className="pointer-events-none fixed bottom-6 left-4 z-[85] h-16 w-36 md:bottom-24 md:left-6 md:h-20 md:w-44">
       <Canvas
         dpr={[1, 1.5]}
         gl={{ alpha: true, antialias: true }}
@@ -66,7 +66,7 @@ export function FloatingLogoScene() {
       <Link
         href="/"
         aria-label="Premium Home Design — Go to homepage"
-        className="absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+        className="pointer-events-auto absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
         data-cursor="link"
       >
         <span className="sr-only">Premium Home Design — Go to homepage</span>
