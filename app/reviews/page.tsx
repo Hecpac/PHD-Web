@@ -79,7 +79,7 @@ export default async function ReviewsPage() {
                     &ldquo;{review.text}&rdquo;
                   </blockquote>
                 </div>
-                <footer className="mt-6 border-t border-line pt-4">
+                <div className="mt-6 border-t border-line pt-4">
                   <p className="text-sm font-bold text-ink">{review.author}</p>
                   <p className="type-mono-label mt-1 text-muted">
                     {review.location}
@@ -91,7 +91,7 @@ export default async function ReviewsPage() {
                       month: "long",
                     })}
                   </p>
-                </footer>
+                </div>
               </article>
             ))}
           </div>
