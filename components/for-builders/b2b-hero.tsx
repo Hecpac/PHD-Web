@@ -103,7 +103,7 @@ export function B2BHero() {
       ref={sectionRef}
       id="b2b-hero"
       aria-label="Premium Custom Home Design and Visualization for DFW builders"
-      className="relative min-h-[85vh] overflow-hidden border-b border-line bg-black"
+      className="relative -mt-14 min-h-[85vh] overflow-hidden border-b border-line bg-black md:-mt-[72px]"
     >
       {/* Background media — elegant dark video or image fallback */}
       <div ref={mediaRef} className="absolute inset-0">
