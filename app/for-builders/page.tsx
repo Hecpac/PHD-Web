@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { B2BContactForm } from "@/components/for-builders/b2b-contact-form";
 import { B2BHero } from "@/components/for-builders/b2b-hero";
 import { B2BProcess } from "@/components/for-builders/b2b-process";
+import { B2BBespokeDesign } from "@/components/for-builders/b2b-bespoke-design";
 import { BuilderProjectsShowcase } from "@/components/for-builders/builder-projects";
 import { BuilderTrustBar } from "@/components/for-builders/builder-trust-bar";
 import { Container } from "@/components/layout/container";
@@ -170,16 +171,19 @@ export default function ForBuildersPage() {
       {/* 1. Hero */}
       <B2BHero />
 
-      {/* 2. Trust Bar */}
+      {/* 2. Bespoke Design & Visualization */}
+      <B2BBespokeDesign />
+
+      {/* 3. Trust Bar */}
       <BuilderTrustBar />
 
-      {/* 3. Services Grid */}
+      {/* 4. Services Grid */}
       <section id="b2b-services" className="section-shell border-t border-line">
         <Container swiss className="space-y-8">
           <SectionHeading
-            eyebrow="Complete Drafting Package"
-            title="Permit-ready construction documents for every build"
-            description="Floor plans, 3D renders, full CDs, and permit support — delivered to DFW jurisdictions with tracked revisions."
+            eyebrow="Comprehensive Documentation"
+            title="Execution rigor with verified quality checkpoints"
+            description="Our operational side ensures your custom designs are perfectly translated into permit-ready construction documents for predictable execution."
           />
 
           <div className="grid gap-px border border-line md:grid-cols-2 xl:grid-cols-3">

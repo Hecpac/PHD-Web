@@ -15,7 +15,6 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { TransitionProvider } from "@/components/ui/page-transition";
 import { GoogleTagManager } from "@/components/analytics/gtm";
 import { UTMTracker } from "@/components/analytics/utm-tracker";
-import { MobileStickyBar } from "@/components/layout/mobile-sticky-bar";
 import { getSiteUrl, siteConfig } from "@/lib/config/site";
 import { getReviews } from "@/lib/data";
 import { createLocalBusinessSchema, createWebSiteSchema } from "@/lib/seo/schema";
@@ -150,7 +149,6 @@ export default async function RootLayout({
           <SiteFooter />
           <FooterHeightObserver />
         </SmoothScroll>
-        <MobileStickyBar />
         <FloatingLogo />
         <CustomCursor />
         <CadMode />

@@ -21,7 +21,7 @@ const BUILDER_PROJECTS = [
     location: "Southlake, TX",
     sqFt: "6,800",
     turnaround: "21 days",
-    image: "/for-builders/projects/project-2.jpg",
+    image: "/hectorpachano_architectural_floor_plan_3D_isometric_view_mode_2f29cc4b-8226-422c-9f1a-7f98ce131593_1.png",
     services: ["Floor Plans", "3D Renders", "Full CDs", "MEP"],
   },
   {
@@ -44,38 +44,41 @@ export function BuilderProjectsShowcase() {
 
       const mm = gsap.matchMedia();
 
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from(cards, {
-          opacity: 0,
-          y: 40,
-          stagger: 0.12,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-      });
-
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set(cards, { opacity: 1, y: 0 });
       });
 
-      // Image parallax inside cards — desktop + motion-safe
       mm.add(
         "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
         () => {
+          // Sticky cards parallax scale effect
+          cards.forEach((card, i) => {
+            if (i === cards.length - 1) return;
+            
+            gsap.to(card, {
+              scale: 0.95,
+              opacity: 0.5,
+              transformOrigin: "top center",
+              ease: "none",
+              scrollTrigger: {
+                trigger: cards[i + 1],
+                start: "top 85%",
+                end: "top 20%",
+                scrub: true,
+              },
+            });
+          });
+
+          // Image parallax inside cards
           const images = gsap.utils.toArray<HTMLElement>("[data-project-image]");
           images.forEach((img) => {
             const card = img.closest("[data-project-card]");
             if (!card) return;
             gsap.fromTo(
               img,
-              { yPercent: -8 },
+              { yPercent: -5 },
               {
-                yPercent: 8,
+                yPercent: 5,
                 ease: "none",
                 force3D: true,
                 scrollTrigger: {
@@ -89,6 +92,21 @@ export function BuilderProjectsShowcase() {
           });
         }
       );
+
+      mm.add("(max-width: 767px) and (prefers-reduced-motion: no-preference)", () => {
+        gsap.from(cards, {
+          opacity: 0,
+          y: 40,
+          stagger: 0.12,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
     },
     { scope: sectionRef },
   );
@@ -106,45 +124,48 @@ export function BuilderProjectsShowcase() {
           description="Recent documentation packages produced for local builders — from schematic floor plans to full permit-ready CDs."
         />
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {BUILDER_PROJECTS.map((project) => (
+        <div className="flex flex-col gap-10 md:gap-24 relative pb-10">
+          {BUILDER_PROJECTS.map((project, index) => (
             <article
               key={project.title}
               data-project-card
-              className="group overflow-hidden rounded-xl border border-line bg-surface shadow-[var(--shadow-card)]"
+              className="group overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)] md:sticky"
+              style={{ top: `calc(12vh + ${index * 16}px)`, zIndex: index + 1 }}
             >
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <div data-project-image className="absolute -top-[10%] left-0 right-0 h-[120%]">
+              <div className="relative aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-canvas">
+                <div data-project-image className="absolute -top-[5%] left-0 right-0 h-[110%]">
                   <Image
                     src={project.image}
                     alt={`${project.title} — ${project.location}`}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="100vw"
                   />
                 </div>
                 <div
-                  className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+                  className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"
                   aria-hidden="true"
                 />
-                <div className="absolute bottom-3 left-3 flex gap-2">
-                  <span className="rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-black">
+                <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 flex gap-3">
+                  <span className="rounded-full bg-white/95 px-3 py-1.5 text-xs md:text-sm font-semibold text-black backdrop-blur-sm">
                     {project.sqFt} sf
                   </span>
-                  <span className="rounded-full bg-accent/90 px-2.5 py-1 text-xs font-semibold text-on-accent">
+                  <span className="rounded-full bg-accent/95 px-3 py-1.5 text-xs md:text-sm font-semibold text-on-accent backdrop-blur-sm">
                     {project.turnaround}
                   </span>
                 </div>
               </div>
 
-              <div className="p-4">
-                <h3 className="type-h3-compact">{project.title}</h3>
-                <p className="mt-0.5 text-xs text-muted">{project.location}</p>
-                <div className="mt-3 flex flex-wrap gap-1.5">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 md:p-8">
+                <div>
+                  <h3 className="type-h3-standard text-xl md:text-2xl">{project.title}</h3>
+                  <p className="mt-1.5 text-sm md:text-base text-muted">{project.location}</p>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
                   {project.services.map((service) => (
                     <span
                       key={service}
-                      className="rounded-md border border-line bg-canvas px-2 py-0.5 text-[11px] text-muted"
+                      className="rounded-md border border-line bg-canvas px-3 py-1.5 text-xs md:text-sm text-muted"
                     >
                       {service}
                     </span>

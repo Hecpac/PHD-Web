@@ -217,24 +217,24 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
             <div className="md:col-span-4 lg:col-span-3 lg:col-start-6">
               <h2 className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-white/60">
                 <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.1}>
-                  THE BLUEPRINT
+                  OUR EXPERTISE
                 </SwissTextReveal>
               </h2>
               <ul className="space-y-4 text-xs tracking-wide text-white/90" aria-label="Key proof points">
                 <li className="flex justify-between items-baseline">
-                  <span className="text-white/60 mr-4">Model</span> 
-                  <span className="text-right">DFW-Only Operation</span>
+                  <span className="text-white/60 mr-4">Focus</span> 
+                  <span className="text-right">Custom Residential Design</span>
                 </li>
                 <li className="flex justify-between items-baseline">
-                  <span className="text-white/60 mr-4">Experience</span> 
-                  <span className="text-right">60+ Homes Delivered</span>
+                  <span className="text-white/60 mr-4">Delivery</span> 
+                  <span className="text-right">60+ Projects Completed</span>
                 </li>
                 <li className="flex justify-between items-baseline">
-                  <span className="text-white/60 mr-4">Process</span> 
-                  <span className="text-right">Decision-Gated Planning</span>
+                  <span className="text-white/60 mr-4">Approach</span> 
+                  <span className="text-right">Precision-Driven Workflow</span>
                 </li>
                 <li className="flex justify-between items-baseline">
-                  <span className="text-white/60 mr-4">Architecture</span> 
+                  <span className="text-white/60 mr-4">Style</span> 
                   <span className="text-right">Modern & Transitional</span>
                 </li>
               </ul>
@@ -245,13 +245,13 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
               <div>
                 <h2 className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-white/60">
                   <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.15}>
-                    ABOUT US
+                    THE STUDIO
                   </SwissTextReveal>
                 </h2>
                 <div className="text-xs leading-[1.8] text-white/80 tracking-wide pr-4">
                   <p>
                     <SwissTextReveal as="span" mode="line" stagger={0.1} delay={0.2}>
-                      {"We plan, coordinate, and build modern residences exclusively across Dallas-Fort Worth. Every phase is tied to clear deliverables and decision gates to ensure builder-grade control over the final architecture."}
+                      {"We translate visionary concepts into permit-ready construction plans and photorealistic renders. Exclusively serving Dallas-Fort Worth with uncompromising precision and aesthetic excellence."}
                     </SwissTextReveal>
                   </p>
                 </div>
@@ -263,9 +263,9 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                   {...(scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
                   eventName="cta_schedule_click"
                   variant="ghost"
-                  className="w-fit text-[11px] uppercase tracking-[0.15em] font-mono px-0 border-b-0 text-white/80 hover:text-white focus-visible:outline-none rounded-none"
+                  className="w-fit text-[11px] tracking-[0.15em] font-mono px-0 border-b-0 text-white/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-4 focus-visible:ring-offset-black rounded-sm whitespace-nowrap"
                 >
-                  ( SCHEDULE CONSULTATION )
+                  ( Schedule a Consultation )
                 </CtaLink>
               </div>
             </div>
@@ -279,16 +279,16 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
               style={{ wordSpacing: "-0.02em" }}
             >
               <SwissTextReveal as="span" mode="word" stagger={0.12} delay={0.14} className="text-white">
-                MODERN
+                BESPOKE
               </SwissTextReveal>
               <SwissTextReveal as="span" mode="word" stagger={0.12} delay={0.20} className="text-red-500">
-                (LUXURY) LIVING
+                (CUSTOM) DESIGN
               </SwissTextReveal>
             </h1>
             
             <div className="flex flex-wrap justify-between items-center mt-4 sm:mt-6 font-mono text-[9px] sm:text-[10px] text-white uppercase tracking-[0.15em] border-t border-white/30 pt-4">
               <span>Dallas-Fort Worth</span>
-              <span className="hidden sm:inline text-red-500">Delivering 2016</span>
+              <span className="hidden sm:inline text-red-500">Established 2016</span>
               <span>Copyright © {new Date().getFullYear()}</span>
             </div>
           </div>
