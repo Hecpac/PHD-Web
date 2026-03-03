@@ -10,6 +10,7 @@ import { Container } from "@/components/layout/container";
 import { Accordion } from "@/components/ui/accordion";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { GlareCard } from "@/components/ui/glare-card";
 import { getSiteUrl } from "@/lib/config/site";
 import {
   createB2BDraftingServiceSchema,
@@ -188,29 +189,30 @@ export default function ForBuildersPage() {
 
           <div className="grid gap-px border border-line md:grid-cols-2 xl:grid-cols-3">
             {B2B_SERVICES.map((service) => (
-              <article
-                key={service.number}
-                className="flex flex-col justify-between border border-line bg-surface p-6"
-              >
-                <div>
-                  <p className="font-mono text-xs font-medium tracking-widest text-accent">
-                    {service.number}
-                  </p>
-                  <h3 className="mt-2 type-heading text-ink">{service.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted">{service.summary}</p>
-                </div>
-                <ul className="mt-4 space-y-1" aria-label={`${service.title} deliverables`}>
-                  {service.deliverables.map((d) => (
-                    <li key={d} className="flex items-start gap-2 text-xs text-muted">
-                      <span
-                        className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent"
-                        aria-hidden="true"
-                      />
-                      {d}
-                    </li>
-                  ))}
-                </ul>
-              </article>
+              <GlareCard key={service.number} className="h-full w-full">
+                <article
+                  className="group/card flex h-full flex-col justify-between border border-line bg-surface p-6 transition-colors duration-300 hover:bg-red-600"
+                >
+                  <div>
+                    <p className="font-mono text-xs font-medium tracking-widest text-accent group-hover/card:text-red-100">
+                      {service.number}
+                    </p>
+                    <h3 className="mt-2 type-heading text-ink group-hover/card:text-white">{service.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted group-hover/card:text-red-50">{service.summary}</p>
+                  </div>
+                  <ul className="mt-4 space-y-1" aria-label={`${service.title} deliverables`}>
+                    {service.deliverables.map((d) => (
+                      <li key={d} className="flex items-start gap-2 text-xs text-muted group-hover/card:text-white">
+                        <span
+                          className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent group-hover/card:bg-white"
+                          aria-hidden="true"
+                        />
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </GlareCard>
             ))}
           </div>
         </Container>

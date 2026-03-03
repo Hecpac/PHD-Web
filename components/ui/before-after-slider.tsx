@@ -133,7 +133,7 @@ export function BeforeAfterSlider({
         style={{ left: `calc(${sliderPosition}% - 2px)` }}
       >
         <div className="absolute top-1/2 left-1/2 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-accent text-on-accent shadow-lg transition-transform group-hover:scale-110">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinelinejoin="round">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="m9 18 6-6-6-6" />
             <path d="m15 18-6-6 6-6" />
           </svg>
