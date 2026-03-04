@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 export function HeroRenderSection() {
@@ -55,10 +56,13 @@ export function HeroRenderSection() {
           </video>
         ) : (
           /* Show poster image while video is not yet loaded */
-          <img
+          <Image
             src="/media/render-3d-poster.jpg"
             alt="3D architectural render showcase"
-            className="absolute inset-0 h-full w-full bg-black object-cover"
+            fill
+            sizes="100vw"
+            className="absolute inset-0 bg-black object-cover"
+            priority={false}
           />
         )}
 

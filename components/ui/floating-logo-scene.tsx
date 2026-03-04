@@ -16,12 +16,6 @@ const ASPECT = 754 / 331; // real logo aspect ratio ~2.27
 function LogoMesh({ paused, hovered }: { paused: boolean; hovered: boolean }) {
   const texture = useTexture(LOGO_SRC);
   
-  // Optimize texture quality and color accuracy
-  texture.anisotropy = 16;
-  texture.colorSpace = THREE.SRGBColorSpace;
-  texture.generateMipmaps = true;
-  texture.minFilter = THREE.LinearMipmapLinearFilter;
-
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame((state, delta) => {

@@ -2,7 +2,6 @@
 
 import { Container } from "@/components/layout/container";
 import { BeforeAfterSlider } from "@/components/ui/before-after-slider";
-import { SectionHeading } from "@/components/ui/section-heading";
 
 export function B2BBespokeDesign() {
   return (
