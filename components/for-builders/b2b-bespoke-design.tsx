@@ -13,7 +13,7 @@ export function B2BBespokeDesign() {
               Custom Home Plans
            </h2>
            <p className="text-2xl md:text-3xl font-light text-white leading-relaxed tracking-tight">
-             Bespoke Architectural Designs Tailored to Your Lifestyle.
+             Bespoke Designs Tailored to Your Lifestyle.
            </p>
            <p className="mt-6 text-lg text-white/70 max-w-2xl leading-relaxed">
              Working with our team to realize your dream home is a collaborative journey. 
@@ -24,15 +24,14 @@ export function B2BBespokeDesign() {
 
         {/* Before and After Interactive Experience */}
         <div className="w-full">
-           <BeforeAfterSlider 
-             beforeImage="/blueprint-kitchen.jpeg" 
-             afterImage="/hero-home.jpeg"
+           <BeforeAfterSlider
+             beforeImage="/for-builders/Gemini_Generated_Image_8lcca98lcca98lcc.jpeg"
+             afterImage="/for-builders/hectorpachano_Photorealistic_3D_architectural_interior_render_25ba458a-f690-49de-85ad-fba993fb05a0_1.png"
              beforeLabel="Blueprint & Planning"
              afterLabel="Photorealistic Render"
              className="shadow-2xl shadow-black/50"
            />
         </div>
-
         {/* Value Pillars */}
         <div className="grid gap-8 border-t border-white/10 pt-12 md:grid-cols-3">
            <div className="space-y-3">

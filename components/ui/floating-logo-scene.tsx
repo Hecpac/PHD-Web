@@ -10,11 +10,18 @@ import * as THREE from "three";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { getLenisInstance } from "@/lib/lenis";
 
-const LOGO_SRC = "/logo/logo.png";
-const ASPECT = 3040 / 1408; // real logo aspect ratio ~2.16
+const LOGO_SRC = "/logo/PHD_logo_white.png";
+const ASPECT = 754 / 331; // real logo aspect ratio ~2.27
 
 function LogoMesh({ paused, hovered }: { paused: boolean; hovered: boolean }) {
   const texture = useTexture(LOGO_SRC);
+  
+  // Optimize texture quality and color accuracy
+  texture.anisotropy = 16;
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.generateMipmaps = true;
+  texture.minFilter = THREE.LinearMipmapLinearFilter;
+
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame((state, delta) => {
@@ -40,11 +47,10 @@ function LogoMesh({ paused, hovered }: { paused: boolean; hovered: boolean }) {
     <group ref={groupRef}>
       <mesh>
         <planeGeometry args={[ASPECT, 1]} />
-        <meshStandardMaterial
+        <meshBasicMaterial
           map={texture}
           transparent
-          metalness={0.4}
-          roughness={0.1}
+          toneMapped={false}
         />
       </mesh>
     </group>
@@ -88,15 +94,13 @@ export function FloatingLogoScene() {
   );
 
   return (
-    <div className="pointer-events-none fixed bottom-20 left-4 z-[85] h-16 w-36 md:bottom-24 md:left-6 md:h-20 md:w-44">
-      {/* Balanced backdrop glow for legibility over dark backgrounds */}
-      <div className="absolute -inset-2 z-0 rounded-[50%] bg-white/30 blur-[16px] dark:bg-white/20" aria-hidden="true" />
+    <div className="pointer-events-none fixed bottom-32 right-2 z-[85] h-16 w-36 md:bottom-24 md:right-6 md:h-28 md:w-64">
       
       <Canvas
-        className="relative z-10"
-        dpr={[1, 1.5]}
+        className="relative z-10 w-full h-full"
+        dpr={[1, 2]}
         gl={{ alpha: true, antialias: true }}
-        style={{ pointerEvents: "none" }}
+        style={{ pointerEvents: "none", filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.5)) drop-shadow(0 0 2px rgba(0,0,0,0.8))" }}
         camera={{ position: [0, 0, 1.8], fov: 45 }}
         fallback={
           <Link
@@ -108,11 +112,11 @@ export function FloatingLogoScene() {
           </Link>
         }
       >
-        {/* Bright studio lighting setup for high legibility */}
-        <ambientLight intensity={1.5} />
-        <directionalLight position={[2, 5, 3]} intensity={2.5} />
-        <directionalLight position={[-2, -5, -3]} intensity={1.5} />
-        <spotLight position={[0, 0, 5]} intensity={2} penumbra={1} />
+        {/* Maximum legibility lighting */}
+        <ambientLight intensity={3.0} />
+        <directionalLight position={[0, 0, 5]} intensity={4.0} />
+        <directionalLight position={[2, 2, 3]} intensity={2.0} />
+        <directionalLight position={[-2, -2, 3]} intensity={2.0} />
         
         <Suspense fallback={null}>
           <LogoMesh paused={shouldReduceMotion} hovered={hovered} />

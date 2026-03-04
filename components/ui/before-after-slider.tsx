@@ -101,8 +101,8 @@ export function BeforeAfterSlider({
         priority
         sizes="(max-width: 768px) 100vw, 50vw"
       />
-      <div className="absolute top-4 right-4 z-10 rounded-md bg-canvas/80 px-3 py-1 backdrop-blur-sm">
-        <span className="font-mono text-xs font-semibold tracking-widest text-accent uppercase">{afterLabel}</span>
+      <div className="absolute top-2 right-2 md:top-4 md:right-4 z-10 max-w-[45%] rounded-md bg-canvas/80 px-2 md:px-3 py-1 backdrop-blur-sm">
+        <span className="block truncate font-mono text-[9px] md:text-xs font-semibold tracking-widest text-accent uppercase">{afterLabel}</span>
       </div>
 
       {/* Foreground (Before) Image - e.g. Floor Plan */}
@@ -123,8 +123,8 @@ export function BeforeAfterSlider({
         </div>
       </div>
 
-      <div className="absolute top-4 left-4 z-30 rounded-md bg-canvas/80 px-3 py-1 backdrop-blur-sm">
-        <span className="font-mono text-xs font-semibold tracking-widest text-muted uppercase">{beforeLabel}</span>
+      <div className="absolute top-2 left-2 md:top-4 md:left-4 z-30 max-w-[45%] rounded-md bg-canvas/80 px-2 md:px-3 py-1 backdrop-blur-sm">
+        <span className="block truncate font-mono text-[9px] md:text-xs font-semibold tracking-widest text-muted uppercase">{beforeLabel}</span>
       </div>
 
       {/* Slider Handle */}

@@ -17,6 +17,14 @@ const BUILDER_PROJECTS = [
     services: ["Floor Plans", "Full CDs", "Permit Support"],
   },
   {
+    title: "Modern Family Home",
+    location: "Dallas, TX",
+    sqFt: "5,400",
+    turnaround: "18 days",
+    image: "/hectorpachano_Photorealistic_3D_architectural_render_of_a_lux_302dcd34-2992-410a-baca-2a11508e029c_0.png",
+    services: ["Concept Design", "3D Renders", "Floor Plans"],
+  },
+  {
     title: "Contemporary Estate",
     location: "Southlake, TX",
     sqFt: "6,800",
