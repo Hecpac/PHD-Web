@@ -1,14 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const FloatingLogoScene = dynamic(
-  () =>
-    import("@/components/ui/floating-logo-scene").then(
-      (mod) => mod.FloatingLogoScene,
-    ),
-  { ssr: false },
-);
+import { FloatingLogoScene } from "@/components/ui/floating-logo-scene";
 
 export function FloatingLogo() {
   return <FloatingLogoScene />;
