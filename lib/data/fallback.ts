@@ -454,7 +454,7 @@ export const fallbackServiceDetails: ServiceDetail[] = [
   {
     id: "detail-landscape-architecture",
     slug: "landscape-architecture",
-    title: "Landscape Architecture",
+    title: "Landscape Design",
     summary: "Outdoor environments engineered for the DFW climate and integrated with the home's architecture.",
     description:
       "Our landscape design extends the architectural intent to the full site. We work with the DFW climate — heat-tolerant plantings, smart irrigation, drainage engineering — and coordinate hardscape, pools, and outdoor living spaces with the home's structural and MEP systems.",

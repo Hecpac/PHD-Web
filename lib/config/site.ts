@@ -51,7 +51,7 @@ export const siteNavigation: readonly NavItem[] = [
       { href: "/services/interior-design", label: "Interior Design & Planning" },
       { href: "/services/consulting", label: "Consulting Services" },
       { href: "/services/project-management", label: "Project Management" },
-      { href: "/services/landscape-architecture", label: "Landscape Architecture" },
+      { href: "/services/landscape-architecture", label: "Landscape Design" },
       { href: "/services/3d-rendering", label: "3D Rendering Visualization" },
       { href: "/services/feasibility-studies", label: "Feasibility Studies" },
     ],
