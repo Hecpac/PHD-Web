@@ -15,41 +15,25 @@ export function SiteHeader() {
   const ctaConfig = getCtaConfig();
   const { scrollY } = useScroll();
   
-  const [hidden, setHidden] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
-    
     // Determine if we are at the very top
     if (latest <= 50) {
       setIsAtTop(true);
-      setHidden(false);
     } else {
       setIsAtTop(false);
-      // Hide if scrolling down and past 150px, show if scrolling up
-      if (latest > 150 && latest > previous) {
-        setHidden(true);
-      } else {
-        setHidden(false);
-      }
     }
   });
 
   return (
     <>
-      <motion.header 
-        variants={{
-          visible: { y: 0 },
-          hidden: { y: "-100%" },
-        }}
-        animate={hidden ? "hidden" : "visible"}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
+      <header 
         className={cn(
-          "fixed top-0 z-50 w-full transition-colors duration-500",
+          "fixed top-0 z-50 w-full transition-all duration-300",
           isAtTop 
             ? "bg-transparent border-transparent" 
-            : "bg-black/80 backdrop-blur-md shadow-lg"
+            : "bg-black/80 backdrop-blur-md shadow-lg border-b border-white/10"
         )} 
         role="banner"
       >
@@ -102,7 +86,7 @@ export function SiteHeader() {
             </div>
           </div>
         </div>
-      </motion.header>
+      </header>
     </>
   );
 }
