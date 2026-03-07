@@ -90,8 +90,8 @@ export function FloatingLogoScene() {
 
   return (
     <div className="pointer-events-none fixed bottom-32 right-2 z-[85] h-16 w-36 md:bottom-24 md:right-6 md:h-28 md:w-64">
-      {/* Frosted white glass pill guarantees the grey/red logo is legible against any background */}
-      <div className="absolute inset-0 rounded-2xl bg-white/85 backdrop-blur-md shadow-[0_6px_24px_rgba(0,0,0,0.15),0_1px_4px_rgba(0,0,0,0.08)] border border-black/8" />
+      {/* Soft radial glow behind the logo ensures contrast on dark backgrounds without looking like a rigid card */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[80%] w-[90%] rounded-[100%] bg-white/90 blur-[20px] md:blur-[32px] pointer-events-none" />
 
       <Canvas
         className="relative z-10 w-full h-full"
