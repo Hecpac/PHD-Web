@@ -8,7 +8,7 @@ const trustPoints = [
   },
   {
     title: "Builder + Design Coordination",
-    description: "Architecture intent and construction realities are coordinated before field execution.",
+    description: "Design intent and construction realities are coordinated before field execution.",
   },
   {
     title: "Transparent Owner Updates",

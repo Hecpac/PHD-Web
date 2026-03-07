@@ -9,11 +9,11 @@ const bentoItems: BentoItem[] = [
     eyebrow: "Single Contract",
     title: "Design-Build Delivery",
     description:
-      "Architecture, engineering, and construction managed under one agreement. One team, one schedule, one point of accountability across the DFW Metroplex.",
+      "Design, engineering, and construction managed under one agreement. One team, one schedule, one point of accountability across the DFW Metroplex.",
     span: "2x2",
     variant: "image",
     imageSrc: "/projects/1300-roxkliff/open-living.jpg",
-    imageAlt: "Kitchen and living area in a custom home renovation in Plano, TX",
+    imageAlt: "Kitchen and living area in a new construction custom home in Plano, TX",
   },
   {
     id: "bento-projects",

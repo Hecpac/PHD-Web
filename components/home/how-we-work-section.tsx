@@ -31,7 +31,7 @@ const steps: Step[] = [
     number: "02",
     title: "Concept & Cost Alignment",
     description:
-      "Architecture and builder teams align scope, systems, and cost targets. You approve the schematic direction before drawings advance.",
+      "Design and builder teams align scope, systems, and cost targets. You approve the schematic direction before drawings advance.",
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <rect x="6" y="6" width="28" height="28" rx="3" stroke="currentColor" strokeWidth="2" />

@@ -47,7 +47,7 @@ export function HeroRenderSection() {
             loop
             playsInline
             preload="auto"
-            aria-label="3D architectural render showcase"
+            aria-label="3D render showcase"
           >
             {/* WebM for better compression (~2MB), MP4 as fallback */}
             <source src="/media/render-3d.webm" type="video/webm" />
@@ -58,7 +58,7 @@ export function HeroRenderSection() {
           /* Show poster image while video is not yet loaded */
           <Image
             src="/media/render-3d-poster.jpg"
-            alt="3D architectural render showcase"
+            alt="3D render showcase"
             fill
             sizes="100vw"
             className="absolute inset-0 bg-black object-cover"

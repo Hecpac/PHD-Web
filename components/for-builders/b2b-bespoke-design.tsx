@@ -41,7 +41,7 @@ export function B2BBespokeDesign() {
                  </svg>
               </div>
               <h3 className="text-xl font-bold text-white">Tailored Floor Plans</h3>
-              <p className="text-white/60">Architectural Precision</p>
+              <p className="text-white/60">Drafting Precision</p>
            </div>
 
            <div className="space-y-3">

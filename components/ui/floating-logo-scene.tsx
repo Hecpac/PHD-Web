@@ -45,6 +45,7 @@ function LogoMesh({ paused, hovered }: { paused: boolean; hovered: boolean }) {
           map={texture}
           transparent
           toneMapped={false}
+          color="#8a8a8a"
         />
       </mesh>
     </group>
@@ -89,12 +90,13 @@ export function FloatingLogoScene() {
 
   return (
     <div className="pointer-events-none fixed bottom-32 right-2 z-[85] h-16 w-36 md:bottom-24 md:right-6 md:h-28 md:w-64">
-      
+      <div className="absolute inset-0 rounded-2xl bg-black/15 backdrop-blur-sm" />
+
       <Canvas
         className="relative z-10 w-full h-full"
         dpr={[1, 2]}
         gl={{ alpha: true, antialias: true }}
-        style={{ pointerEvents: "none", filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.5)) drop-shadow(0 0 2px rgba(0,0,0,0.8))" }}
+        style={{ pointerEvents: "none" }}
         camera={{ position: [0, 0, 1.8], fov: 45 }}
         fallback={
           <Link
