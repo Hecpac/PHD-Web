@@ -18,6 +18,14 @@ const VOLUME_OPTIONS = [
   "15+ homes/month",
 ] as const;
 
+const SERVICE_OPTIONS = [
+  { label: "Floor Plans", name: "service_floor_plans" },
+  { label: "3D Renders", name: "service_3d_renders" },
+  { label: "Full CDs", name: "service_full_cds" },
+  { label: "Permit Support", name: "service_permit_support" },
+  { label: "Design from Scratch", name: "service_design_scratch" },
+] as const;
+
 const initialState: ContactFormState = {
   success: false,
   message: "",
@@ -99,13 +107,19 @@ export function B2BContactForm() {
     const volume = (formData.get("volume") as string)?.trim() ?? "";
     const details = (formData.get("projectDetails") as string)?.trim() ?? "";
 
+    // Collect checked services
+    const selectedServices = SERVICE_OPTIONS
+      .filter((opt) => formData.get(opt.name) === "yes")
+      .map((opt) => opt.label);
+    const servicesStr = selectedServices.length > 0 ? selectedServices.join(", ") : "Not specified";
+
     // Map to existing server action fields
     const mapped = new FormData();
     mapped.set("name", contact ? `${contact} (${company})` : company);
     mapped.set("email", (formData.get("email") as string) ?? "");
     mapped.set("phone", (formData.get("phone") as string) ?? "");
     mapped.set("city", "Dallas");
-    mapped.set("message", `[B2B Lead | Volume: ${volume}] ${details}`);
+    mapped.set("message", `[B2B Lead | Volume: ${volume} | Services: ${servicesStr}] ${details}`);
 
     // Preserve UTM
     mapped.set("utm_source", formData.get("utm_source") as string ?? "");
@@ -302,7 +316,27 @@ export function B2BContactForm() {
                 ) : null}
               </label>
 
-              <div className="sm:col-span-1" aria-hidden="true" />
+              <fieldset className="space-y-2 md:col-span-2">
+                <legend className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
+                  Services needed
+                </legend>
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                  {SERVICE_OPTIONS.map((opt) => (
+                    <label
+                      key={opt.name}
+                      className="flex cursor-pointer items-center gap-2 rounded-lg border border-line px-3 py-2.5 text-sm text-ink transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5"
+                    >
+                      <input
+                        type="checkbox"
+                        name={opt.name}
+                        value="yes"
+                        className="h-4 w-4 rounded border-line text-accent accent-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                      />
+                      {opt.label}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
 
               <label className="space-y-1.5 text-sm md:col-span-2">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">

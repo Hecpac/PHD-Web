@@ -36,7 +36,10 @@ function StepCard({
       initial={reduceMotion ? false : { opacity: 0, y: 24 }}
       animate={isInView && !reduceMotion ? { opacity: 1, y: 0 } : undefined}
       transition={{ ...springTransition, delay: index * 0.08 }}
-      className="h-full min-w-0"
+      className="sticky h-auto min-w-0 md:static md:h-full"
+      style={{
+        top: `calc(5rem + ${index * 1.5}rem)`, // mobile sticky stack offset
+      }}
     >
       <CardContainer containerClassName="h-full" className="w-full h-full">
         <CardBody className="brand-red-outline brand-red-surface flex h-full w-full flex-col rounded-xl border border-line bg-surface p-6 sm:p-8 shadow-sm hover:shadow-2xl hover:shadow-accent/[0.1] transition-[border-color,box-shadow,transform] duration-300">
@@ -113,7 +116,8 @@ export function BlueprintSection({
 
         <h2 className="sr-only">Process steps</h2>
 
-        <div className="mt-12 grid gap-6 sm:mt-16 sm:gap-8 md:grid-cols-2 xl:grid-cols-4">
+        {/* Mobile: Sticky stack using flex-col. Desktop: Grid layout */}
+        <div className="relative mt-12 flex flex-col gap-6 sm:mt-16 sm:gap-8 md:grid md:grid-cols-2 xl:grid-cols-4 pb-12 md:pb-0">
           {steps.map((step, idx) => (
             <StepCard key={step.id} step={step} index={idx} reduceMotion={!!shouldReduceMotion} />
           ))}

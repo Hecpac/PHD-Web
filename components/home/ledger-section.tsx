@@ -6,20 +6,8 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
-import {
-  Box,
-  ClipboardList,
-  Compass,
-  Hammer,
-  MessageCircle,
-  Palette,
-  Ruler,
-  Search,
-  TreePine,
-  type LucideIcon,
-} from "lucide-react";
-
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { resolveIcon } from "@/lib/icons";
 import { createStaggerReveal } from "@/lib/gsap/scroll-animations";
 import type { Service } from "@/lib/types/content";
 
@@ -30,18 +18,6 @@ type LedgerSectionProps = {
 };
 
 const springTransition = { type: "spring" as const, stiffness: 70, damping: 18 };
-
-const iconMap: Record<string, LucideIcon> = {
-  Compass,
-  Ruler,
-  Hammer,
-  Palette,
-  MessageCircle,
-  ClipboardList,
-  TreePine,
-  Box,
-  Search,
-};
 
 export function LedgerSection({ services, id = "ledger", withHeading = true }: LedgerSectionProps) {
   const [openId, setOpenId] = useState<string>(services[0]?.id ?? "");
@@ -139,7 +115,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
             const hasMore = service.deliverables.length > previewCount;
             const extraDeliverables = service.deliverables.slice(previewCount);
 
-            const Icon = iconMap[service.icon as string];
+            const Icon = resolveIcon(service.icon as string);
 
             const buttonId = `${uid}-btn-${service.id}`;
 

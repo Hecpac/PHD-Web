@@ -111,7 +111,10 @@ export function SwissMarquee({
         )}
         style={{
           gap,
-          animation: `swiss-marquee ${duration}s linear infinite`,
+          animationName: "swiss-marquee",
+          animationDuration: `${duration}s`,
+          animationTimingFunction: "linear",
+          animationIterationCount: "infinite",
           animationDirection,
         }}
       >

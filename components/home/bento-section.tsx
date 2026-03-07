@@ -9,11 +9,11 @@ const bentoItems: BentoItem[] = [
     eyebrow: "Single Contract",
     title: "Design-Build Delivery",
     description:
-      "Architecture, engineering, and construction managed under one agreement. One team, one schedule, one point of accountability across the DFW Metroplex.",
+      "Design, engineering, and construction managed under one agreement. One team, one schedule, one point of accountability across the DFW Metroplex.",
     span: "2x2",
     variant: "image",
-    imageSrc: "/projects/1300-roxkliff/kitchen.jpg",
-    imageAlt: "Kitchen and living area in a custom home renovation in Plano, TX",
+    imageSrc: "/projects/1300-roxkliff/open-living.jpg",
+    imageAlt: "Kitchen and living area in a new construction custom home in Plano, TX",
   },
   {
     id: "bento-projects",
@@ -42,7 +42,9 @@ const bentoItems: BentoItem[] = [
     description:
       "Budget alignment, scope verification, and owner approval before advancing. No surprises, no ambiguity.",
     span: "2x1",
-    variant: "default",
+    variant: "image",
+    imageSrc: "/projects/north-dallas-courtyard-residence/hero.jpg",
+    imageAlt: "Modern courtyard residence exterior",
   },
   {
     id: "bento-quality",
@@ -60,7 +62,9 @@ const bentoItems: BentoItem[] = [
     description:
       "Every trade partner, code requirement, and site condition is calibrated for DFW. We don't spread thin outside the Metroplex.",
     span: "1x1",
-    variant: "default",
+    variant: "image",
+    imageSrc: "/projects/806-mango/exterior-rear.jpg",
+    imageAlt: "Rear exterior of a modern Dallas-Fort Worth home",
   },
 ];
 

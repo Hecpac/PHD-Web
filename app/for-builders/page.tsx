@@ -3,10 +3,14 @@ import type { Metadata } from "next";
 import { B2BContactForm } from "@/components/for-builders/b2b-contact-form";
 import { B2BHero } from "@/components/for-builders/b2b-hero";
 import { B2BProcess } from "@/components/for-builders/b2b-process";
+import { B2BBespokeDesign } from "@/components/for-builders/b2b-bespoke-design";
+import { BuilderProjectsShowcase } from "@/components/for-builders/builder-projects";
+import { BuilderTrustBar } from "@/components/for-builders/builder-trust-bar";
 import { Container } from "@/components/layout/container";
 import { Accordion } from "@/components/ui/accordion";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { GlareCard } from "@/components/ui/glare-card";
 import { getSiteUrl } from "@/lib/config/site";
 import {
   createB2BDraftingServiceSchema,
@@ -18,13 +22,13 @@ export function generateMetadata(): Metadata {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "Drafting Services for Builders | DFW Outsourced Drafting",
+    title: "Architectural Drafting Services Dallas Fort Worth | Outsourced Construction Documents",
     description:
-      "Outsource permit-ready construction documents, 3D renders, and full drafting coordination to a DFW-exclusive partner. Serving Dallas-Fort Worth builders.",
+      "Outsource permit-ready construction documents, custom home floor plans, 3D renders, and full CDs to a DFW-exclusive drafting partner. 5-7 day turnaround for Dallas-Fort Worth builders.",
     openGraph: {
-      title: "Drafting Services for Builders | DFW Outsourced Drafting",
+      title: "Architectural Drafting Services Dallas Fort Worth | Outsourced Construction Documents",
       description:
-        "Outsource permit-ready construction documents, 3D renders, and full drafting coordination to a DFW-exclusive partner.",
+        "Permit-ready custom home floor plans, 3D renders, and full construction documents for DFW builders. 5-7 day turnaround.",
     },
     alternates: {
       canonical: `${siteUrl}/for-builders`,
@@ -168,49 +172,59 @@ export default function ForBuildersPage() {
       {/* 1. Hero */}
       <B2BHero />
 
-      {/* 2. Services Grid */}
+      {/* 2. Bespoke Design & Visualization */}
+      <B2BBespokeDesign />
+
+      {/* 3. Trust Bar */}
+      <BuilderTrustBar />
+
+      {/* 4. Services Grid */}
       <section id="b2b-services" className="section-shell border-t border-line">
         <Container swiss className="space-y-8">
           <SectionHeading
-            eyebrow="Complete Drafting Package"
-            title="Everything your builds need, documented"
-            description="Six core drafting services — each delivered to permit-ready standard with tracked revisions."
+            eyebrow="Comprehensive Documentation"
+            title="Execution rigor with verified quality checkpoints"
+            description="Our operational side ensures your custom designs are perfectly translated into permit-ready construction documents for predictable execution."
           />
 
           <div className="grid gap-px border border-line md:grid-cols-2 xl:grid-cols-3">
             {B2B_SERVICES.map((service) => (
-              <article
-                key={service.number}
-                className="flex flex-col justify-between border border-line bg-surface p-6"
-              >
-                <div>
-                  <p className="font-mono text-xs font-medium tracking-widest text-accent">
-                    {service.number}
-                  </p>
-                  <h3 className="mt-2 type-heading text-ink">{service.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted">{service.summary}</p>
-                </div>
-                <ul className="mt-4 space-y-1" aria-label={`${service.title} deliverables`}>
-                  {service.deliverables.map((d) => (
-                    <li key={d} className="flex items-start gap-2 text-xs text-muted">
-                      <span
-                        className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent"
-                        aria-hidden="true"
-                      />
-                      {d}
-                    </li>
-                  ))}
-                </ul>
-              </article>
+              <GlareCard key={service.number} className="h-full w-full">
+                <article
+                  className="group/card flex h-full flex-col justify-between border border-line bg-surface p-6 transition-colors duration-300 hover:bg-red-600"
+                >
+                  <div>
+                    <p className="font-mono text-xs font-medium tracking-widest text-accent group-hover/card:text-red-100">
+                      {service.number}
+                    </p>
+                    <h3 className="mt-2 type-heading text-ink group-hover/card:text-white">{service.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted group-hover/card:text-red-50">{service.summary}</p>
+                  </div>
+                  <ul className="mt-4 space-y-1" aria-label={`${service.title} deliverables`}>
+                    {service.deliverables.map((d) => (
+                      <li key={d} className="flex items-start gap-2 text-xs text-muted group-hover/card:text-white">
+                        <span
+                          className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent group-hover/card:bg-white"
+                          aria-hidden="true"
+                        />
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </GlareCard>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* 3. Process */}
+      {/* 5. Builder Projects */}
+      <BuilderProjectsShowcase />
+
+      {/* 6. Process */}
       <B2BProcess />
 
-      {/* 4. Why Outsource */}
+      {/* 7. Why Outsource */}
       <section id="why-outsource" className="section-shell border-t border-line">
         <Container swiss className="space-y-8">
           <SectionHeading
@@ -232,7 +246,7 @@ export default function ForBuildersPage() {
         </Container>
       </section>
 
-      {/* 5. FAQ */}
+      {/* 8. FAQ */}
       <section id="b2b-faq" className="section-shell border-t border-line">
         <Container swiss className="space-y-8">
           <SectionHeading
@@ -245,7 +259,7 @@ export default function ForBuildersPage() {
         </Container>
       </section>
 
-      {/* 6. Contact Form */}
+      {/* 9. Contact Form */}
       <B2BContactForm />
     </>
   );

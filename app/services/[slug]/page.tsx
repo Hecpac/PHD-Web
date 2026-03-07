@@ -93,7 +93,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <SectionHeading
             as="h1"
             titleId="service-heading"
-            eyebrow={`Services — ${service.icon}`}
+            eyebrow="Services"
             title={service.title}
             description={service.summary}
           />

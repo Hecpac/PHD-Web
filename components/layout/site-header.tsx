@@ -1,27 +1,62 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 import { AnimatedNavLink } from "@/components/layout/animated-nav-link";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 import { NavDropdown } from "@/components/layout/nav-dropdown";
 import { CtaLink } from "@/components/ui/cta-link";
 import { SocialLinks } from "@/components/ui/social-links";
-import { getCtaConfig, siteConfig, siteNavigation } from "@/lib/config/site";
+import { getCtaConfig, siteNavigation } from "@/lib/config/site";
+import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const ctaConfig = getCtaConfig();
+  const { scrollY } = useScroll();
+  
+  const [hidden, setHidden] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    
+    // Determine if we are at the very top
+    if (latest <= 50) {
+      setIsAtTop(true);
+      setHidden(false);
+    } else {
+      setIsAtTop(false);
+      // Hide if scrolling down and past 150px, show if scrolling up
+      if (latest > 150 && latest > previous) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+    }
+  });
 
   return (
     <>
-      <header className="absolute top-0 z-50 w-full" role="banner">
+      <motion.header 
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: "-100%" },
+        }}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className={cn(
+          "fixed top-0 z-50 w-full transition-colors duration-500",
+          isAtTop 
+            ? "bg-transparent border-transparent" 
+            : "bg-black/80 backdrop-blur-md shadow-lg"
+        )} 
+        role="banner"
+      >
         <div className="container-swiss">
-          <div className="flex items-center justify-between py-4 md:py-6">
-            <Link
-              href="/"
-              className="font-mono text-xs uppercase tracking-[0.15em] font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/55 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-              aria-label={`${siteConfig.shortName} — Home`}
-            >
-              {siteConfig.shortName}
-            </Link>
+          <div className="flex items-center justify-between py-4 md:py-5">
+            {/* Spacer — logo 3D is fixed in bottom-left via FloatingLogo */}
+            <div className="w-10 shrink-0 md:hidden" />
 
             <nav
               aria-label="Primary navigation"
@@ -43,22 +78,22 @@ export function SiteHeader() {
               )}
             </nav>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <SocialLinks
                 iconOnly
                 className="hidden lg:flex"
-                linkClassName="!min-h-10 !min-w-10 text-white/60 hover:text-white transition-colors border-0 shadow-none bg-transparent"
+                linkClassName="!min-h-9 !min-w-9 text-white/60 hover:text-white transition-colors border-0 shadow-none bg-transparent"
               />
-              <div aria-hidden className="hidden h-3 w-px bg-white/30 lg:block mx-1" />
+              <div aria-hidden className="hidden h-4 w-px bg-white/20 lg:block mx-1" />
+              
+              {/* Enhanced Pill CTA */}
               <CtaLink
                 href={ctaConfig.scheduleUrl}
-                target="_blank"
-                rel="noreferrer"
+                {...(ctaConfig.scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
                 eventName="cta_schedule_click"
-                variant="ghost"
-                className="hidden md:inline-flex text-[10px] sm:text-[11px] uppercase tracking-[0.15em] font-mono px-0 border-b-0 text-white/80 hover:text-white focus-visible:outline-none rounded-none"
+                className="hidden md:inline-flex items-center justify-center text-[10px] sm:text-[11px] tracking-[0.1em] font-mono font-medium px-5 py-2.5 rounded-full border border-white/20 bg-white/5 text-white backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:scale-[1.02] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
-                ( SCHEDULE )
+                SCHEDULE
               </CtaLink>
 
               <div className="md:hidden">
@@ -67,7 +102,7 @@ export function SiteHeader() {
             </div>
           </div>
         </div>
-      </header>
+      </motion.header>
     </>
   );
 }

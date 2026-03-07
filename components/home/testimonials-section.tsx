@@ -29,12 +29,12 @@ function ReviewCard({ review, className }: { review: Review; className?: string 
           &ldquo;{review.text}&rdquo;
         </blockquote>
       </div>
-      <footer className="mt-8 border-t border-line/80 pt-6">
+      <div className="mt-8 border-t border-line/80 pt-6">
         <p className="text-base font-bold text-ink">{review.author}</p>
         <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
           {review.location} · {review.projectType}
         </p>
-      </footer>
+      </div>
     </article>
   );
 }

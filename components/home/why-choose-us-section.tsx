@@ -41,7 +41,7 @@ const differentiators = [
     ),
     title: "Integrated Design-Build",
     description:
-      "One team carries your project from schematic design through final punch list. That single point of accountability eliminates the costly miscommunications that plague traditional architect-then-contractor workflows.",
+      "One team carries your project from schematic design through final punch list. That single point of accountability eliminates the costly miscommunications that plague traditional designer-then-contractor workflows.",
   },
   {
     id: "dfw-expertise",
@@ -131,7 +131,7 @@ const differentiators = [
     ),
     title: "Uncompromised Craft",
     description:
-      "Vetted trade partners, third-party inspections at every critical milestone, and construction detailing that honors the original architectural intent. The result is a home that performs as well as it photographs.",
+      "Vetted trade partners, third-party inspections at every critical milestone, and construction detailing that honors the original design intent. The result is a home that performs as well as it photographs.",
   },
   {
     id: "client-first",
@@ -210,7 +210,7 @@ const differentiators = [
 ];
 
 const marqueeHighlights = [
-  "Architect-Led Planning",
+  "Design-Led Planning",
   "Open-Book Budgeting",
   "Decision Gates",
   "DFW Permit Fluency",
@@ -328,7 +328,7 @@ export function WhyChooseUsSection() {
           <SectionHeading
             titleId={HEADING_ID}
             eyebrow="Why Choose Us"
-            title="Dallas–Fort Worth’s architecture-first builder"
+            title="Dallas–Fort Worth’s design-first builder"
             description="Design and construction under one roof, backed by deep local knowledge. Here’s what sets our Dallas–Fort Worth custom home process apart."
             className="[&_h2]:scroll-mt-24"
           />

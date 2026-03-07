@@ -65,7 +65,8 @@
   --token-surface: var(--md-sys-color-surface);
   --token-surface-2: var(--md-sys-color-surface-variant);
 
-  --token-muted: var(--md-sys-color-on-surface-variant);
+  /* WCAG AA compliant contrast for muted text (4.5:1 minimum on cream backgrounds) */
+  --token-muted: rgb(85 80 70);
   --token-subtle: rgb(120 116 109);
   --token-line: var(--md-sys-color-outline-variant);
 

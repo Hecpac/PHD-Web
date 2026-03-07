@@ -5,6 +5,7 @@ import Lenis from "lenis";
 
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/lib/hooks/use-isomorphic-layout-effect";
+import { setLenisInstance } from "@/lib/lenis";
 
 /**
  * SmoothScroll — global provider that initializes Lenis and syncs it
@@ -40,6 +41,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       });
 
       lenisRef.current = lenis;
+      setLenisInstance(lenis);
 
       // ── Sync Lenis → ScrollTrigger ──
       lenis.on("scroll", ScrollTrigger.update);
@@ -85,6 +87,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       if (lenisRef.current) {
         lenisRef.current.destroy();
         lenisRef.current = null;
+        setLenisInstance(null);
       }
     };
   }, []);

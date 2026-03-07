@@ -163,7 +163,7 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
-            className="fixed inset-0 z-[60] overscroll-contain bg-ink/30 px-3 pb-3 pt-[5.25rem] backdrop-blur-[2px]"
+            className="fixed top-0 left-0 h-[100dvh] w-full z-[60] overscroll-contain bg-ink/30 px-3 pb-3 pt-[5.25rem] backdrop-blur-[2px]"
             variants={prefersReduced ? undefined : overlayVariants}
             initial={prefersReduced ? undefined : "hidden"}
             animate={prefersReduced ? undefined : "visible"}
@@ -251,8 +251,7 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
                 <div className="flex flex-col gap-3">
                   <a
                     href={cta.scheduleUrl}
-                    target="_blank"
-                    rel="noreferrer"
+                    {...(cta.scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
                     className="flex min-h-12 items-center justify-center rounded-md border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                   >
                     Schedule Consultation

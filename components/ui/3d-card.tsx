@@ -92,7 +92,6 @@ export function CardBody({
 }
 
 export function CardItem({
-  as: Component = "div",
   children,
   className,
   translateX = 0,
@@ -101,9 +100,7 @@ export function CardItem({
   rotateX = 0,
   rotateY = 0,
   rotateZ = 0,
-  ...rest
 }: {
-  as?: React.ElementType;
   children: ReactNode;
   className?: string;
   translateX?: number | string;
@@ -112,7 +109,6 @@ export function CardItem({
   rotateX?: number | string;
   rotateY?: number | string;
   rotateZ?: number | string;
-  [key: string]: unknown;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const context = useContext(MouseEnterContext);
@@ -123,13 +119,12 @@ export function CardItem({
     : "translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)";
 
   return (
-    <Component
+    <div
       ref={ref}
       className={cn("w-full transition duration-200 ease-linear", className)}
       style={{ transform }}
-      {...rest}
     >
       {children}
-    </Component>
+    </div>
   );
 }

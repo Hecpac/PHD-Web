@@ -8,13 +8,13 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 
 import { CadMode } from "@/components/ui/cad-mode";
+import { FloatingLogo } from "@/components/ui/floating-logo";
 import { ConsoleBrand } from "@/components/ui/console-brand";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { JsonLd } from "@/components/ui/json-ld";
 import { TransitionProvider } from "@/components/ui/page-transition";
 import { GoogleTagManager } from "@/components/analytics/gtm";
 import { UTMTracker } from "@/components/analytics/utm-tracker";
-import { MobileStickyBar } from "@/components/layout/mobile-sticky-bar";
 import { getSiteUrl, siteConfig } from "@/lib/config/site";
 import { getReviews } from "@/lib/data";
 import { createLocalBusinessSchema, createWebSiteSchema } from "@/lib/seo/schema";
@@ -99,6 +99,8 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} Blog`} href="/blogs/feed.xml" />
         <script
@@ -131,14 +133,14 @@ export default async function RootLayout({
         <UTMTracker />
         <JsonLd data={createWebSiteSchema()} />
         <JsonLd data={createLocalBusinessSchema(reviews)} />
+        <SiteHeader />
         <SmoothScroll>
           <div
             className="relative z-[1] bg-canvas"
             style={{ marginBottom: "var(--footer-height, 0px)" }}
           >
             <div className="flex min-h-screen flex-col bg-canvas text-ink">
-              <SiteHeader />
-              <main id="main-content" className="pb-20 md:pb-0">
+              <main id="main-content" className="pt-14 pb-20 md:pt-[72px] md:pb-0">
                 <TransitionProvider>{children}</TransitionProvider>
               </main>
               <BackToTop />
@@ -147,7 +149,7 @@ export default async function RootLayout({
           <SiteFooter />
           <FooterHeightObserver />
         </SmoothScroll>
-        <MobileStickyBar />
+        <FloatingLogo />
         <CustomCursor />
         <CadMode />
         <ConsoleBrand />

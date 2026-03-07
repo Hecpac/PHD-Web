@@ -22,7 +22,7 @@ export function SiteFooter() {
           <div className="space-y-5 lg:col-span-5">
             <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">DFW Only</p>
             <h2 className="type-title text-ink">
-              Architecture-first design-build across Dallas-Fort Worth.
+              Design-first custom homes across Dallas-Fort Worth.
             </h2>
             <p className="max-w-md text-sm leading-6 text-muted">
               We operate as a focused regional team so your project gets consistent planning,
@@ -44,8 +44,7 @@ export function SiteFooter() {
               </CtaLink>
               <CtaLink
                 href={scheduleUrl}
-                target="_blank"
-                rel="noreferrer"
+                {...(scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
                 eventName="cta_schedule_click"
               >
                 Schedule Consultation

@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getSiteUrl } from "@/lib/config/site";
 import { getReviews } from "@/lib/data";
-import { createBreadcrumbSchema } from "@/lib/seo/schema";
+import { createBreadcrumbSchema, createReviewPageSchema } from "@/lib/seo/schema";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
@@ -56,6 +56,7 @@ export default async function ReviewsPage() {
           { name: "Reviews", href: "/reviews" },
         ])}
       />
+      <JsonLd data={createReviewPageSchema(reviews)} />
       <section className="section-shell" aria-labelledby="reviews-heading">
         <Container swiss className="space-y-10">
           <SectionHeading
@@ -78,7 +79,7 @@ export default async function ReviewsPage() {
                     &ldquo;{review.text}&rdquo;
                   </blockquote>
                 </div>
-                <footer className="mt-6 border-t border-line pt-4">
+                <div className="mt-6 border-t border-line pt-4">
                   <p className="text-sm font-bold text-ink">{review.author}</p>
                   <p className="type-mono-label mt-1 text-muted">
                     {review.location}
@@ -90,7 +91,7 @@ export default async function ReviewsPage() {
                       month: "long",
                     })}
                   </p>
-                </footer>
+                </div>
               </article>
             ))}
           </div>
