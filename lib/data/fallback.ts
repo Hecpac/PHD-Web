@@ -283,8 +283,8 @@ export const fallbackProjects: Project[] = [
 
 export const fallbackServices: Service[] = [
   {
-    id: "service-architecture",
-    title: "Architectural Design Coordination",
+    id: "service-custom-home-design",
+    title: "Custom Home Design",
     summary: "We align architecture, structural systems, and buildability from day one.",
     deliverables: [
       "Concept massing and planning package",
@@ -360,9 +360,9 @@ export const fallbackProcessSteps: ProcessStep[] = [
 
 export const fallbackServiceDetails: ServiceDetail[] = [
   {
-    id: "detail-architectural-design",
-    slug: "architectural-design",
-    title: "Architectural Design",
+    id: "detail-custom-home-design",
+    slug: "custom-home-design",
+    title: "Custom Home Design",
     summary: "Architecture-led concept development calibrated for DFW lot conditions, codes, and climate.",
     description:
       "Our architectural design process starts with site analysis and program definition specific to the Dallas-Fort Worth Metroplex. We coordinate massing, orientation, and material strategies with structural and MEP consultants from day one, ensuring the design intent survives the transition to construction documentation.",
