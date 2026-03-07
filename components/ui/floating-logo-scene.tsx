@@ -1,21 +1,21 @@
 "use client";
 
-import { Suspense, useCallback, useState, useRef } from "react";
+import { Suspense, useCallback, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useTexture, Float } from "@react-three/drei";
+import { Float, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { getLenisInstance } from "@/lib/lenis";
 
 const LOGO_SRC = "/logo/PHD_logo-removebg-preview.png";
-const ASPECT = 754 / 331; // real logo aspect ratio ~2.27
+const ASPECT = 754 / 331;
 
 function LogoMesh({ paused, hovered }: { paused: boolean; hovered: boolean }) {
   const texture = useTexture(LOGO_SRC);
-
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame((_, delta) => {
@@ -70,10 +70,24 @@ function LogoMesh({ paused, hovered }: { paused: boolean; hovered: boolean }) {
   );
 }
 
+function canCreateWebGlContext() {
+  try {
+    const canvas = document.createElement("canvas");
+    return Boolean(
+      canvas.getContext("webgl2") ||
+      canvas.getContext("webgl") ||
+      canvas.getContext("experimental-webgl"),
+    );
+  } catch {
+    return false;
+  }
+}
+
 export function FloatingLogoScene() {
   const shouldReduceMotion = useReducedMotion();
   const pathname = usePathname();
   const [hovered, setHovered] = useState(false);
+  const canRenderScene = useMemo(() => canCreateWebGlContext(), []);
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -90,35 +104,42 @@ export function FloatingLogoScene() {
     [pathname],
   );
 
+  const fallbackLogo = (
+    <div className="relative z-10 h-full w-full px-3 py-2">
+      <Image
+        src={LOGO_SRC}
+        alt="Premium Home Design"
+        fill
+        className="object-contain"
+        sizes="256px"
+      />
+    </div>
+  );
+
   return (
     <div className="pointer-events-none fixed bottom-24 right-6 z-[85] hidden h-28 w-64 md:block">
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white/90 blur-[32px]" />
 
-      <Canvas
-        className="relative z-10 h-full w-full"
-        dpr={[1, 2]}
-        gl={{ alpha: true, antialias: true }}
-        style={{ pointerEvents: "none" }}
-        camera={{ position: [0, 0, 1.8], fov: 45 }}
-        fallback={
-          <Link
-            href="/"
-            className="flex h-full w-full items-center justify-center font-mono text-xs uppercase tracking-[0.15em] text-gold"
-            aria-label="Premium Home Design - Go to homepage"
-          >
-            PHD
-          </Link>
-        }
-      >
-        <ambientLight intensity={3.0} />
-        <directionalLight position={[0, 0, 5]} intensity={4.0} />
-        <directionalLight position={[2, 2, 3]} intensity={2.0} />
-        <directionalLight position={[-2, -2, 3]} intensity={2.0} />
+      {canRenderScene ? (
+        <Canvas
+          className="relative z-10 h-full w-full"
+          dpr={[1, 2]}
+          gl={{ alpha: true, antialias: true }}
+          style={{ pointerEvents: "none" }}
+          camera={{ position: [0, 0, 1.8], fov: 45 }}
+        >
+          <ambientLight intensity={3.0} />
+          <directionalLight position={[0, 0, 5]} intensity={4.0} />
+          <directionalLight position={[2, 2, 3]} intensity={2.0} />
+          <directionalLight position={[-2, -2, 3]} intensity={2.0} />
 
-        <Suspense fallback={null}>
-          <LogoMesh paused={shouldReduceMotion} hovered={hovered} />
-        </Suspense>
-      </Canvas>
+          <Suspense fallback={null}>
+            <LogoMesh paused={shouldReduceMotion} hovered={hovered} />
+          </Suspense>
+        </Canvas>
+      ) : (
+        fallbackLogo
+      )}
 
       <Link
         href="/"
