@@ -11,9 +11,15 @@ type NavDropdownProps = {
   label: string;
   href: string;
   items: readonly { href: string; label: string }[];
+  tone?: "light" | "dark";
 };
 
-export function NavDropdown({ label, href, items }: NavDropdownProps) {
+export function NavDropdown({
+  label,
+  href,
+  items,
+  tone = "light",
+}: NavDropdownProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -21,6 +27,7 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
   const isPathActive = (target: string) =>
     pathname === target || (target !== "/" && pathname.startsWith(`${target}/`));
   const isActive = isPathActive(href) || items.some((item) => isPathActive(item.href));
+  const isDarkTone = tone === "dark";
 
   function handleEnter() {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -40,10 +47,16 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
       <Link
         href={href}
         aria-current={isActive ? "page" : undefined}
-        className={`inline-flex min-h-10 items-center gap-1.5 px-1 py-2 font-mono text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 ${
+        className={`inline-flex min-h-10 items-center gap-1.5 px-1 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.15em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 sm:text-[11px] ${
+          isDarkTone ? "focus-visible:outline-accent" : "focus-visible:outline-white/50"
+        } ${
           isActive
-            ? "text-white"
-            : "text-white/60 hover:text-white"
+            ? isDarkTone
+              ? "text-ink"
+              : "text-white"
+            : isDarkTone
+              ? "text-ink/72 hover:text-ink"
+              : "text-white/60 hover:text-white"
         }`}
         aria-expanded={open}
         aria-haspopup="true"
@@ -58,7 +71,13 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
           fill="none"
           aria-hidden="true"
           className={`transition-transform duration-150 ${open ? "rotate-180" : ""} ${
-            isActive ? "text-white" : "text-white/60"
+            isActive
+              ? isDarkTone
+                ? "text-ink"
+                : "text-white"
+              : isDarkTone
+                ? "text-ink/72"
+                : "text-white/60"
           }`}
         >
           <path

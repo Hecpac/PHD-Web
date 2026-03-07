@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 type MobileMenuProps = {
   navigation: readonly NavItem[];
   cta: CtaConfig;
+  tone?: "light" | "dark";
 };
 
 const overlayVariants = {
@@ -36,7 +37,11 @@ const itemVariants = {
   },
 };
 
-export function MobileMenu({ navigation, cta }: MobileMenuProps) {
+export function MobileMenu({
+  navigation,
+  cta,
+  tone = "light",
+}: MobileMenuProps) {
   const [open, setOpen] = useState(false);
   const [expandedHref, setExpandedHref] = useState<string | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -118,6 +123,7 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
   }, [open]);
 
   const menuId = "mobile-nav-overlay";
+  const isDarkTone = tone === "dark";
 
   return (
     <>
@@ -125,7 +131,12 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
       <button
         ref={buttonRef}
         type="button"
-        className="relative flex h-[44px] w-[44px] items-center justify-center rounded-lg border border-white/30 bg-transparent text-white shadow-[0_3px_12px_rgb(0_0_0/0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 md:hidden"
+        className={cn(
+          "relative flex h-[44px] w-[44px] items-center justify-center rounded-lg border bg-transparent shadow-[0_3px_12px_rgb(0_0_0/0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 md:hidden",
+          isDarkTone
+            ? "border-line/80 bg-surface/90 text-ink focus-visible:outline-accent"
+            : "border-white/30 text-white focus-visible:outline-white/50",
+        )}
         aria-expanded={open}
         aria-controls={menuId}
         aria-label={open ? "Close menu" : "Open menu"}
@@ -135,19 +146,22 @@ export function MobileMenu({ navigation, cta }: MobileMenuProps) {
         <span className="flex h-5 w-6 flex-col justify-between" aria-hidden="true">
           <span
             className={cn(
-              "block h-0.5 w-full bg-white transition-transform duration-200",
+              "block h-0.5 w-full transition-transform duration-200",
+              isDarkTone ? "bg-ink" : "bg-white",
               open && "translate-y-[9px] rotate-45",
             )}
           />
           <span
             className={cn(
-              "block h-0.5 w-full bg-white transition-opacity duration-200",
+              "block h-0.5 w-full transition-opacity duration-200",
+              isDarkTone ? "bg-ink" : "bg-white",
               open && "opacity-0",
             )}
           />
           <span
             className={cn(
-              "block h-0.5 w-full bg-white transition-transform duration-200",
+              "block h-0.5 w-full transition-transform duration-200",
+              isDarkTone ? "bg-ink" : "bg-white",
               open && "-translate-y-[9px] -rotate-45",
             )}
           />

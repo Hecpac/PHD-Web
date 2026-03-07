@@ -15,24 +15,27 @@ const ASPECT = 754 / 331; // real logo aspect ratio ~2.27
 
 function LogoMesh({ paused, hovered }: { paused: boolean; hovered: boolean }) {
   const texture = useTexture(LOGO_SRC);
-  
+
   const groupRef = useRef<THREE.Group>(null);
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (groupRef.current && !paused) {
-      // Dynamic movement on hover/touch
       const targetScale = hovered ? 1.15 : 1;
       const targetRotationX = hovered ? -0.15 : 0;
       const targetRotationY = hovered ? 0.25 : 0;
 
       groupRef.current.scale.setScalar(
-        THREE.MathUtils.lerp(groupRef.current.scale.x, targetScale, delta * 10)
+        THREE.MathUtils.lerp(groupRef.current.scale.x, targetScale, delta * 10),
       );
       groupRef.current.rotation.x = THREE.MathUtils.lerp(
-        groupRef.current.rotation.x, targetRotationX, delta * 8
+        groupRef.current.rotation.x,
+        targetRotationX,
+        delta * 8,
       );
       groupRef.current.rotation.y = THREE.MathUtils.lerp(
-        groupRef.current.rotation.y, targetRotationY, delta * 8
+        groupRef.current.rotation.y,
+        targetRotationY,
+        delta * 8,
       );
     }
   });
@@ -80,7 +83,6 @@ export function FloatingLogoScene() {
         if (lenis) {
           lenis.scrollTo(0);
         } else {
-          // Native fallback — also covers when Lenis is not active
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
       }
@@ -89,12 +91,11 @@ export function FloatingLogoScene() {
   );
 
   return (
-    <div className="pointer-events-none fixed bottom-32 right-2 z-[85] h-16 w-36 md:bottom-24 md:right-6 md:h-28 md:w-64">
-      {/* Soft radial glow behind the logo ensures contrast on dark backgrounds without looking like a rigid card */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[80%] w-[90%] rounded-[100%] bg-white/90 blur-[20px] md:blur-[32px] pointer-events-none" />
+    <div className="pointer-events-none fixed bottom-24 right-6 z-[85] hidden h-28 w-64 md:block">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white/90 blur-[32px]" />
 
       <Canvas
-        className="relative z-10 w-full h-full"
+        className="relative z-10 h-full w-full"
         dpr={[1, 2]}
         gl={{ alpha: true, antialias: true }}
         style={{ pointerEvents: "none" }}
@@ -103,18 +104,17 @@ export function FloatingLogoScene() {
           <Link
             href="/"
             className="flex h-full w-full items-center justify-center font-mono text-xs uppercase tracking-[0.15em] text-gold"
-            aria-label="Premium Home Design — Go to homepage"
+            aria-label="Premium Home Design - Go to homepage"
           >
             PHD
           </Link>
         }
       >
-        {/* Maximum legibility lighting */}
         <ambientLight intensity={3.0} />
         <directionalLight position={[0, 0, 5]} intensity={4.0} />
         <directionalLight position={[2, 2, 3]} intensity={2.0} />
         <directionalLight position={[-2, -2, 3]} intensity={2.0} />
-        
+
         <Suspense fallback={null}>
           <LogoMesh paused={shouldReduceMotion} hovered={hovered} />
         </Suspense>
@@ -122,7 +122,7 @@ export function FloatingLogoScene() {
 
       <Link
         href="/"
-        aria-label="Premium Home Design — Go to homepage"
+        aria-label="Premium Home Design - Go to homepage"
         className="pointer-events-auto absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
         data-cursor="link"
         onClick={handleClick}
@@ -131,7 +131,7 @@ export function FloatingLogoScene() {
         onTouchStart={() => setHovered(true)}
         onTouchEnd={() => setHovered(false)}
       >
-        <span className="sr-only">Premium Home Design — Go to homepage</span>
+        <span className="sr-only">Premium Home Design - Go to homepage</span>
       </Link>
     </div>
   );
