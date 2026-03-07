@@ -10,7 +10,7 @@ import * as THREE from "three";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { getLenisInstance } from "@/lib/lenis";
 
-const LOGO_SRC = "/logo/PHD_logo_white.png";
+const LOGO_SRC = "/logo/PHD_logo-removebg-preview.png";
 const ASPECT = 754 / 331; // real logo aspect ratio ~2.27
 
 function LogoMesh({ paused, hovered }: { paused: boolean; hovered: boolean }) {
@@ -90,10 +90,11 @@ export function FloatingLogoScene() {
 
   return (
     <div className="pointer-events-none fixed bottom-32 right-2 z-[85] h-16 w-36 md:bottom-24 md:right-6 md:h-28 md:w-64">
-      <div className="absolute inset-0 rounded-2xl bg-black/15 backdrop-blur-sm" />
+      {/* Frosted white glass pill guarantees the grey/red logo is legible against any background */}
+      <div className="absolute inset-0 rounded-2xl bg-white/80 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.4)] border border-white/50" />
 
       <Canvas
-        className="relative z-10 w-full h-full drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] drop-shadow-[0_0_2px_rgba(255,255,255,0.9)]"
+        className="relative z-10 w-full h-full"
         dpr={[1, 2]}
         gl={{ alpha: true, antialias: true }}
         style={{ pointerEvents: "none" }}
