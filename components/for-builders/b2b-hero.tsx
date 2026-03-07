@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
 
 import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
@@ -105,32 +104,18 @@ export function B2BHero() {
       aria-label="Premium Custom Home Design and Visualization for DFW builders"
       className="relative -mt-14 min-h-[85vh] overflow-hidden border-b border-line bg-black md:-mt-[72px]"
     >
-      {/* Background media — elegant dark video or image fallback */}
-      <div ref={mediaRef} className="absolute inset-0">
-        {shouldReduceMotion ? (
-          <Image
-            src="/for-builders/hero-bg.jpg"
-            alt=""
-            fill
-            priority
-            fetchPriority="high"
-            className="object-cover opacity-60"
-            sizes="100vw"
-            aria-hidden="true"
-          />
-        ) : (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/for-builders/hero-bg.jpg"
-            className="absolute inset-0 h-full w-full object-cover opacity-60"
-            aria-hidden="true"
-          >
-            <source src="/Architect_s_Blueprint_Motion_Video.mp4" type="video/mp4" />
-          </video>
-        )}
+      {/* Background media — elegant dark video */}
+      <div ref={mediaRef} className="absolute inset-0 bg-black">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover opacity-60"
+          aria-hidden="true"
+        >
+          <source src="/Architect_s_Blueprint_Motion_Video.mp4" type="video/mp4" />
+        </video>
       </div>
 
       <Container swiss className="relative z-10 flex min-h-[85vh] flex-col justify-center py-24 md:py-32">

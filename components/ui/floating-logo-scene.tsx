@@ -45,7 +45,7 @@ function LogoMesh({ paused, hovered }: { paused: boolean; hovered: boolean }) {
           map={texture}
           transparent
           toneMapped={false}
-          color="#8a8a8a"
+          color="#ffffff"
         />
       </mesh>
     </group>
@@ -93,7 +93,7 @@ export function FloatingLogoScene() {
       <div className="absolute inset-0 rounded-2xl bg-black/15 backdrop-blur-sm" />
 
       <Canvas
-        className="relative z-10 w-full h-full"
+        className="relative z-10 w-full h-full drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] drop-shadow-[0_0_2px_rgba(255,255,255,0.9)]"
         dpr={[1, 2]}
         gl={{ alpha: true, antialias: true }}
         style={{ pointerEvents: "none" }}
