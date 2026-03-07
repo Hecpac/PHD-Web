@@ -33,7 +33,7 @@ export function SiteHeader() {
           "fixed top-0 z-50 w-full transition-all duration-300",
           isAtTop 
             ? "bg-transparent border-transparent" 
-            : "bg-black/80 backdrop-blur-md shadow-lg border-b border-white/10"
+            : "bg-[#1a1a1a]/95 backdrop-blur-md shadow-lg border-b border-white/10"
         )} 
         role="banner"
       >
