@@ -313,6 +313,17 @@ function normalizeBlogPost(doc: SanityBlogPost): BlogPost | null {
   };
 }
 
+function sortBlogPostsByDateDesc(posts: BlogPost[]): BlogPost[] {
+  return [...posts].sort((left, right) => {
+    const leftTime = Date.parse(left.date);
+    const rightTime = Date.parse(right.date);
+    const safeLeftTime = Number.isNaN(leftTime) ? 0 : leftTime;
+    const safeRightTime = Number.isNaN(rightTime) ? 0 : rightTime;
+
+    return safeRightTime - safeLeftTime;
+  });
+}
+
 function normalizeFaq(doc: SanityFaq): FAQ | null {
   const question = doc.question?.trim();
   const answer = doc.answer?.trim();
@@ -455,13 +466,15 @@ export async function getReviews(): Promise<Review[]> {
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const docs = await fetchFromSanity<SanityBlogPost[]>(blogPostsQuery, []);
-  if (!hasSanityConfig) return fallbackBlogPosts;
+  if (!hasSanityConfig) return sortBlogPostsByDateDesc(fallbackBlogPosts);
 
   const normalized = (docs as SanityBlogPost[])
     .map(normalizeBlogPost)
     .filter((p): p is BlogPost => Boolean(p));
 
-  return normalized.length > 0 ? normalized : fallbackBlogPosts;
+  return normalized.length > 0
+    ? sortBlogPostsByDateDesc(normalized)
+    : sortBlogPostsByDateDesc(fallbackBlogPosts);
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {

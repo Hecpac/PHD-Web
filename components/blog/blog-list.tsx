@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import type { BlogPost } from "@/lib/types/content";
 
@@ -12,25 +13,60 @@ type BlogListProps = {
 };
 
 export function BlogList({ posts }: BlogListProps) {
-  const [activeCategory, setActiveCategory] = useState<string>(ALL_CATEGORY);
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const categories = useMemo(() => {
-    const unique = Array.from(new Set(posts.map((p) => p.category)));
+    const unique = Array.from(new Set(posts.map((post) => post.category)));
     unique.sort();
     return unique;
   }, [posts]);
 
+  const requestedCategory = searchParams.get("category");
+  const activeCategory =
+    requestedCategory && categories.includes(requestedCategory)
+      ? requestedCategory
+      : ALL_CATEGORY;
+
+  useEffect(() => {
+    if (!requestedCategory || categories.includes(requestedCategory)) {
+      return;
+    }
+
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("category");
+    const nextUrl = params.size > 0 ? `${pathname}?${params.toString()}` : pathname;
+    router.replace(nextUrl, { scroll: false });
+  }, [categories, pathname, requestedCategory, router, searchParams]);
+
   const filteredPosts = useMemo(() => {
-    if (activeCategory === ALL_CATEGORY) return posts;
-    return posts.filter((p) => p.category === activeCategory);
-  }, [posts, activeCategory]);
+    if (activeCategory === ALL_CATEGORY) {
+      return posts;
+    }
+
+    return posts.filter((post) => post.category === activeCategory);
+  }, [activeCategory, posts]);
+
+  const handleCategoryChange = (category: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (category === ALL_CATEGORY) {
+      params.delete("category");
+    } else {
+      params.set("category", category);
+    }
+
+    const nextUrl = params.size > 0 ? `${pathname}?${params.toString()}` : pathname;
+    router.push(nextUrl, { scroll: false });
+  };
 
   return (
     <div className="space-y-8">
       <BlogCategoryFilter
         categories={categories}
         activeCategory={activeCategory}
-        onCategoryChange={setActiveCategory}
+        onCategoryChange={handleCategoryChange}
       />
 
       {filteredPosts.length > 0 ? (
@@ -48,7 +84,7 @@ export function BlogList({ posts }: BlogListProps) {
           </p>
           <button
             type="button"
-            onClick={() => setActiveCategory(ALL_CATEGORY)}
+            onClick={() => handleCategoryChange(ALL_CATEGORY)}
             className="mt-4 rounded-full border border-accent bg-accent px-5 py-2 text-sm font-medium text-on-accent transition-colors duration-150 hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             View all posts

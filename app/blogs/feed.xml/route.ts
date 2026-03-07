@@ -4,6 +4,7 @@ import { getSiteUrl, siteConfig } from "@/lib/config/site";
 export async function GET() {
   const siteUrl = getSiteUrl();
   const posts = await getBlogPosts();
+  const lastBuildDate = posts[0]?.date ? new Date(posts[0].date).toUTCString() : new Date().toUTCString();
 
   const items = posts
     .map(
@@ -21,10 +22,11 @@ export async function GET() {
   const feed = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${escapeXml(siteConfig.name)} – Blog</title>
+    <title>${escapeXml(siteConfig.name)} - Blog</title>
     <link>${siteUrl}/blogs</link>
     <description>Articles on architecture, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.</description>
     <language>en-us</language>
+    <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${siteUrl}/blogs/feed.xml" rel="self" type="application/rss+xml" />
 ${items}
   </channel>

@@ -5,6 +5,8 @@ import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import type { BlogPost } from "@/lib/types/content";
 
+import { BlogRichText } from "./blog-rich-text";
+
 type BlogArticleProps = {
   post: BlogPost;
 };
@@ -15,8 +17,6 @@ export function BlogArticle({ post }: BlogArticleProps) {
     month: "long",
     day: "numeric",
   });
-
-  const paragraphs = post.content?.split("\n\n").filter(Boolean) ?? [];
 
   return (
     <article className="section-shell">
@@ -35,7 +35,7 @@ export function BlogArticle({ post }: BlogArticleProps) {
               </Link>
             </li>
             <li aria-hidden>/</li>
-            <li aria-current="page" className="text-ink truncate max-w-[200px] sm:max-w-none">
+            <li aria-current="page" className="max-w-[200px] truncate text-ink sm:max-w-none">
               {post.title}
             </li>
           </ol>
@@ -72,11 +72,7 @@ export function BlogArticle({ post }: BlogArticleProps) {
           </div>
         )}
 
-        <div className="space-y-6 text-base leading-7 text-ink/90">
-          {paragraphs.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
-        </div>
+        <BlogRichText content={post.content} />
 
         {post.tags && post.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 border-t border-line pt-6">
@@ -91,7 +87,7 @@ export function BlogArticle({ post }: BlogArticleProps) {
           </div>
         )}
 
-        <div className="border-t border-line pt-8 space-y-2">
+        <div className="space-y-2 border-t border-line pt-8">
           <p className="text-sm text-muted">
             Ready to discuss your custom home project in Dallas-Fort Worth?
           </p>

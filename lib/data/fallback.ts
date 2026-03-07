@@ -582,13 +582,13 @@ export const fallbackReviews: Review[] = [
 export const fallbackBlogPosts: BlogPost[] = [
   {
     id: "blog-1",
-    title: "The True Cost of Building a Custom Home in Dallas-Fort Worth (2025-2026)",
-    slug: "true-cost-building-custom-home-dfw-2025",
+    title: "The True Cost of Building a Custom Home in Dallas-Fort Worth (2026)",
+    slug: "true-cost-building-custom-home-dfw-2026",
     excerpt:
-      "A realistic breakdown of custom home construction costs per square foot in DFW, from entry-level builds to high-end luxury estates.",
+      "An up-to-date 2026 breakdown of custom home construction costs per square foot in DFW, from efficient luxury builds to fully bespoke estates.",
     category: "Budget",
     author: "DFW Design-Build Team",
-    date: "2025-08-20",
+    date: "2026-03-05",
     readTime: "6 min read",
     coverImage: {
       src: "/projects/north-dallas-courtyard-residence/hero.jpg",
@@ -597,7 +597,7 @@ export const fallbackBlogPosts: BlogPost[] = [
       height: 1334,
     },
     content:
-      "One of the first questions any prospective homeowner asks is: *'What does it cost per square foot to build a custom home in Dallas-Fort Worth?'* The answer depends heavily on the level of customization, materials, and the specific municipality.\n\nHeading into 2025 and 2026, the DFW construction market continues to reflect the premium nature of true custom building. According to recent market data, **entry-level custom homes**—which typically feature efficient layouts and standard finishes—start between **$180 and $250 per square foot**. Moving up to **mid-range custom homes** with semi-custom layouts, upgraded finishes like quartz countertops, and hardwood floors, expect to invest between **$250 and $350 per square foot**.\n\nFor **high-end and luxury custom homes**—the category where we focus—prices generally range from **$350 to $600+ per square foot**. These homes involve architect-driven designs, complex structural engineering, premium mechanical systems, and highly bespoke interior finishes.\n\nIt is crucial to understand that these figures represent the *vertical construction cost* (materials, labor, and builder fees). They **do not include the cost of land**, which in premium neighborhoods like Preston Hollow or Southlake can easily exceed $1M to $3M alone. Other exclusions typically include site preparation, utility extensions, extensive landscaping, and swimming pools. When you enter our Discovery & Feasibility phase, we provide a holistic budget band that accounts for the hard costs of the home, the land, and the site-specific soft costs so there are no surprises.",
+      "One of the first questions serious homeowners ask is: *What does it cost per square foot to build a custom home in Dallas-Fort Worth in 2026?* The honest answer depends on design complexity, structural demands, finish level, municipality, and how early scope gets aligned.\n\n## Current 2026 pricing bands\n\nAs of March 2026, the DFW market still rewards disciplined planning. For projects with efficient layouts and restrained finish packages, **entry-level custom homes** generally begin around **$190 to $260 per square foot**. Once the project moves into more tailored architecture, upgraded millwork, larger spans, premium windows, and layered finish selections, **mid-range custom homes** typically land between **$260 and $380 per square foot**.\n\nFor the kind of architect-driven homes we are usually asked to deliver, **high-end custom homes** commonly start around **$380 per square foot** and can exceed **$650 per square foot** when the brief includes complex engineering, imported finishes, advanced mechanical systems, or extensive site work.\n\n## What those numbers usually do not include\n\nThose ranges describe **vertical construction cost**. They rarely include land acquisition, demolition, abnormal foundations, major utility upgrades, pools, extensive landscape packages, retaining walls, or unusually strict municipal and HOA review requirements. In neighborhoods like Preston Hollow, Southlake, and Highland Park, those add-ons can move the all-in project cost dramatically.\n\n## Where design-build changes the outcome\n\nThe difference between a controllable budget and a drifting budget is usually not one finish selection. It is whether architecture, engineering assumptions, allowances, and site realities are coordinated before drawings advance. Our Discovery and Feasibility process is built to establish that budget band early, so the design direction stays ambitious without becoming financially fictional.",
     tags: ["Budget", "Cost Per Sqft", "DFW", "2026"],
   },
   {
@@ -605,10 +605,10 @@ export const fallbackBlogPosts: BlogPost[] = [
     title: "Building on Expansive Clay Soils in North Texas: Foundation Solutions",
     slug: "building-expansive-clay-soils-north-texas",
     excerpt:
-      "Understanding the Blackland Prairie soil of DFW and why engineered post-tension slabs or pier and beam foundations are critical for longevity.",
+      "Understanding the Blackland Prairie soil of DFW and why engineered post-tension slabs or pier and beam foundations remain critical in 2026.",
     category: "Engineering",
     author: "DFW Design-Build Team",
-    date: "2025-09-05",
+    date: "2026-02-24",
     readTime: "7 min read",
     coverImage: {
       src: "/projects/fort-worth-bluff-house/hero.jpg",
@@ -617,7 +617,7 @@ export const fallbackBlogPosts: BlogPost[] = [
       height: 2666,
     },
     content:
-      "The Dallas-Fort Worth area sits atop the Blackland Prairie, characterized by highly expansive clay soil. This soil undergoes a continuous 'shrink-swell cycle'—it expands significantly when wet and shrinks dramatically during our scorching, dry summers. This constant movement puts immense stress on building foundations and is the leading cause of structural failure in North Texas.\n\nTo successfully build a custom home that will last generations in DFW, the foundation must be specifically engineered for these conditions. There are two primary solutions we deploy:\n\n**1. Post-Tension Slab Foundations**\nUnlike traditional concrete slabs that can crack under pressure, post-tension slabs are designed to 'float' on the moving soil. Before the concrete is poured, high-strength steel cables (tendons) are laid in a grid. Once the concrete cures, these cables are pulled tight (tensioned). This puts the entire slab under compression, vastly increasing its strength and resistance to the tensile forces caused by shifting clay.\n\n**2. Pier and Beam Foundations**\nA pier and beam foundation elevates the home above the volatile surface soil, creating a crawl space. Concrete or steel piers are driven deep into the ground until they reach stable soil or bedrock, bypassing the active clay layer entirely. While often more expensive upfront than a slab, pier and beam foundations provide superior long-term stability and offer the added benefit of easy access to under-floor plumbing and electrical systems.\n\nBefore we ever pour a foundation, a geotechnical engineer performs a soil test on your specific lot to determine the exact plasticity index of the clay. This data dictates the structural engineering of the foundation, ensuring your home is built on a solid, scientifically validated base.",
+      "The Dallas-Fort Worth area still sits on one of the most unforgiving residential building conditions in Texas: expansive clay. This Blackland Prairie soil expands when saturated, contracts during prolonged heat, and puts constant pressure on slabs, grade beams, and utility runs. In 2026, it remains the single most common geotechnical issue behind structural distress in North Texas homes.\n\n## Post-tension slabs\n\nFor many flat or gently sloped sites, a **post-tension slab** remains the most practical foundation strategy. Steel tendons are tensioned after the pour, keeping the slab in compression and improving its ability to tolerate differential soil movement. When engineered correctly for the lot's soil report, this approach can deliver strong long-term performance with reasonable cost control.\n\n## Pier and beam systems\n\nWhere the site is more volatile, the architecture is more demanding, or long-term serviceability takes priority over first cost, **pier and beam** often becomes the better answer. Deep piers transfer load below the active clay zone, while the crawl space improves access to plumbing and electrical systems over the life of the home. That flexibility matters on complex estates where future modifications are expected.\n\n## Why soils reports still drive the decision\n\nNo serious recommendation should be made before a geotechnical engineer studies the actual lot. Plasticity index, moisture variation, drainage behavior, and topography all affect the correct structural response. In practice, the best 2026 foundation strategy is not a template. It is a lot-specific system coordinated between the geotechnical report, structural engineer, and construction team before pricing is finalized.",
     tags: ["Engineering", "Foundations", "Soils", "DFW"],
   },
   {
@@ -625,10 +625,10 @@ export const fallbackBlogPosts: BlogPost[] = [
     title: "Navigating Architectural Review Boards: Highland Park & Beyond",
     slug: "navigating-architectural-review-boards-highland-park",
     excerpt:
-      "A guide to the strict zoning and HOA architectural guidelines in premium DFW municipalities like Highland Park and Southlake.",
+      "A current guide to zoning, ARC, and HOA review in premium DFW municipalities like Highland Park, University Park, and Southlake.",
     category: "Regulations",
     author: "DFW Design-Build Team",
-    date: "2025-09-18",
+    date: "2026-02-10",
     readTime: "6 min read",
     coverImage: {
       src: "/projects/highland-park-tudor-revival/hero.jpg",
@@ -637,7 +637,7 @@ export const fallbackBlogPosts: BlogPost[] = [
       height: 1334,
     },
     content:
-      "Building a luxury custom home in established DFW municipalities involves much more than simply securing a city building permit. Upscale neighborhoods and independent towns—most notably Highland Park, University Park, and certain communities in Southlake—enforce rigorous zoning ordinances and require approval from strict Architectural Review Committees (ARCs).\n\n**The Highland Park Standard**\nIn the Town of Highland Park, Chapter 14 of the Zoning Ordinance heavily dictates building height, bulk, lot coverage, and Floor-Area-Ratio (FAR). But beyond basic zoning, your design must pass an architectural review. Committees often regulate aesthetic compatibility with the neighborhood. For instance, flat or low-slope roofs may be explicitly prohibited in favor of specific pitches. Exterior materials are highly scrutinized; many enclaves mandate a high percentage of natural stone or brick, and front-facing garages are almost universally banned.\n\n**Southlake and Frisco HOAs**\nIn Southlake and Frisco, high-end subdivisions often layer their own HOA design guidelines on top of city codes. These can dictate everything from the preservation of existing mature trees to the exact color palettes permitted on exterior trim.\n\nNavigating these boards requires experience and diplomacy. A design-build approach is particularly advantageous here. We involve our architectural team and project managers early to analyze the specific ARC guidelines of your lot before conceptual design begins. We prepare detailed submission packages, including 3D renderings and material boards, to anticipate the committee's concerns and secure approval faster, keeping your project on schedule.",
+      "Building a luxury custom home in established DFW municipalities involves much more than obtaining a city permit. In 2026, the most schedule-sensitive approvals often come from layered review structures: city zoning, neighborhood conservation rules, HOA design standards, and formal Architectural Review Committees.\n\n## The Highland Park standard\n\nIn Highland Park and nearby legacy neighborhoods, the review is rarely limited to square footage and setbacks. Boards pay close attention to roof forms, street presence, garage orientation, exterior material percentages, and how new construction fits the surrounding block. A technically compliant submittal can still face resistance if the design appears tone-deaf to neighborhood expectations.\n\n## Southlake, Frisco, and master-planned communities\n\nIn Southlake, Frisco, and other high-end communities, HOA design controls often sit on top of municipal rules. Tree preservation, drainage strategy, fence design, masonry palette, and even lighting placement can all become part of review. Those requirements are not side notes. They affect architecture, estimating, and schedule from the beginning.\n\n## Why preparation matters\n\nThe projects that move through review efficiently are the ones that anticipate objections early. That means validating the lot restrictions before concept design, building the submission package with the right drawings and renderings, and coordinating the narrative around why the design belongs there. In practical terms, review boards are not an afterthought in DFW. They are a design constraint that needs to be priced and managed from day one.",
     tags: ["HOA", "Zoning", "Highland Park", "Regulations"],
   },
   {
@@ -645,10 +645,10 @@ export const fallbackBlogPosts: BlogPost[] = [
     title: "2026 Interior Architecture Trends for DFW Custom Homes",
     slug: "2026-interior-architecture-trends-dfw",
     excerpt:
-      "A shift towards warm, earthy palettes, authentic natural materials, and integrated wellness features defines the upcoming design cycle for luxury homes in Dallas-Fort Worth.",
+      "The strongest 2026 interior direction in DFW favors warmth, tactile materials, layered lighting, and wellness-driven planning over sterile minimalism.",
     category: "Design",
     author: "DFW Design-Build Team",
-    date: "2025-10-12",
+    date: "2026-01-30",
     readTime: "8 min read",
     coverImage: {
       src: "/projects/southlake-estate-retreat/open-living.jpg",
@@ -657,7 +657,7 @@ export const fallbackBlogPosts: BlogPost[] = [
       height: 1334,
     },
     content:
-      "As we approach 2026, the interior architecture of custom homes in Dallas-Fort Worth is undergoing a notable shift. We are moving away from the stark, sterile minimalism and all-gray palettes that dominated previous years, leaning heavily into spaces that feel warm, authentic, and deeply lived-in. Homeowners in communities like Southlake, Westlake, and Preston Hollow are requesting environments that serve as personal sanctuaries rather than just showpieces.\n\n**Warmth, Earthy Palettes, and Meaningful Maximalism**\nThe new baseline for luxury interiors involves warm neutral tones—creams, taupes, clays, and rich terracottas. We are frequently implementing 'color drenching', a technique where a single rich hue, such as deep olive or tobacco brown, is applied across walls, trim, and ceilings to create an immersive, cocoon-like atmosphere. Alongside this color shift, a trend towards 'meaningful maximalism' is emerging, where clients are choosing to curate personal, intentional collections of art and artifacts that add character without feeling cluttered.\n\n**Authentic Materials and Wellness Integration**\nMateriality is paramount. We are specifying extensive natural wood, particularly rift-sawn white oak and walnut, paired with heavily veined natural stones like quartzite and travertine. Walls are receiving tactile treatments like limewash or plaster, adding subtle depth. \n\nBeyond aesthetics, wellness-centered design has become a non-negotiable for high-end builds. Our recent floor plans integrate dedicated recovery spaces featuring infrared saunas and cold plunges, advanced whole-home air filtration systems, and biophilic elements such as indoor courtyards and expansive glass walls that seamlessly connect the interior with the Texas landscape. The resulting homes are not just visually stunning; they actively contribute to the well-being of their inhabitants.",
+      "Interior architecture in Dallas-Fort Worth has become noticeably more grounded in 2026. Clients are asking for spaces that feel composed, tactile, and deeply livable rather than cold, over-minimal, or designed only for listing photography.\n\n## Warm palettes and quieter contrast\n\nThe dominant direction is warm neutrals with depth: mineral whites, clay tones, tobacco browns, olive accents, and muted stone colors. Instead of relying on hard black-and-white contrast, strong interiors are using layered tonal variation, softer shadow lines, and richer natural textures to create visual weight.\n\n## Materials that read authentic up close\n\nWhite oak, walnut, limewash, plaster, quartzite, travertine, unlacquered metal, and handmade tile all continue to lead because they age with dignity. The common thread is not trendiness. It is credibility. Clients want materials that still look expensive when viewed at arm's length, not only in a polished rendering.\n\n## Wellness and retreat spaces\n\nAnother clear shift is the amount of square footage being allocated to recovery and privacy. In 2026, we are seeing more requests for quiet lounge spaces, gym-adjacent wellness rooms, secondary prep kitchens, filtered-air strategies, cold plunge or sauna zones, and stronger indoor-outdoor continuity. The homes that feel most current are not simply more decorative. They are better calibrated to how families actually recover, host, and live.",
     tags: ["Design Trends", "Interior Architecture", "Wellness", "2026"],
   },
   {
@@ -665,10 +665,10 @@ export const fallbackBlogPosts: BlogPost[] = [
     title: "Designing Luxury Outdoor Living for the North Texas Climate",
     slug: "luxury-outdoor-living-north-texas-climate",
     excerpt:
-      "How to engineer custom pools, outdoor kitchens, and climate-controlled patios that extend the entertaining season despite DFW's extreme weather.",
+      "How 2026 DFW outdoor living spaces balance heat, storm exposure, hospitality, and year-round usability without feeling overbuilt.",
     category: "Architecture",
     author: "DFW Design-Build Team",
-    date: "2025-11-04",
+    date: "2026-01-17",
     readTime: "7 min read",
     coverImage: {
       src: "/projects/southlake-estate-retreat/hero.jpg",
@@ -677,7 +677,7 @@ export const fallbackBlogPosts: BlogPost[] = [
       height: 1126,
     },
     content:
-      "In the Dallas-Fort Worth Metroplex, a luxury custom home is incomplete without a highly engineered outdoor living space. However, designing these spaces requires a deep understanding of our demanding climate—which ranges from triple-digit summer heat to sudden winter freezes. The current standard for outdoor entertaining areas focuses on seamless indoor-outdoor flow, advanced climate control, and resort-style amenities.\n\n**Seamless Flow and Resort Pools**\nThe boundaries between indoor and outdoor living are virtually disappearing. We frequently install expansive, multi-panel sliding or folding glass wall systems that open the main living area directly onto a covered lanai. The focal point of these spaces is often a sleek, modern pool featuring infinity edges, large Baja shelves (tanning ledges), and integrated, flush-level spas. To elevate the experience, we are integrating automated LED lighting and fire-on-water bowls that create dramatic nighttime ambiance.\n\n**Climate Adaptation and Gourmet Kitchens**\nTo make these spaces usable for more than just a few months a year, aggressive climate control is required. Motorized louvered pergolas equipped with automated rain and wind sensors allow homeowners to adjust shade and weather protection on demand. We incorporate high-velocity misting systems and flush-mounted radiant heaters directly into the architectural structure.\n\nFurthermore, the outdoor kitchen has evolved far beyond a built-in grill. Today's luxury outdoor culinary centers include pizza ovens, specialized beverage stations, under-counter refrigeration, and durable, weather-resistant cabinetry, ensuring that hosting a large gathering outdoors is as effortless as doing so in the main kitchen.",
+      "In Dallas-Fort Worth, outdoor living is no longer a bonus space. On premium projects in 2026, it is one of the primary environments the architecture must solve. The challenge is doing that in a climate defined by severe heat, sun exposure, sudden storms, and short cold snaps.\n\n## Resort amenities are now baseline expectations\n\nExpansive covered patios, outdoor kitchens, integrated pool edges, flush spas, concealed AV, and motorized screening systems have moved from luxury extras to standard expectations on many upper-tier homes. The question is no longer whether those amenities are included. It is how elegantly they are integrated.\n\n## Climate control has to be designed in, not added on\n\nThe strongest projects start by coordinating shade structures, prevailing wind, drainage, lighting, and equipment locations before the detailing phase. Radiant heat, misting, louvers, and rain sensing systems only feel premium when they are embedded into the architecture rather than attached as visible afterthoughts.\n\n## The best outdoor rooms still feel like architecture\n\nWhat separates a polished outdoor living environment from a crowded backyard is restraint. Material transitions need to feel intentional, circulation has to stay clean, and the view from the primary interior spaces has to remain composed. In North Texas, the most successful outdoor rooms are the ones that extend the house without visually competing with it.",
     tags: ["Outdoor Living", "Pool Design", "Climate Adaptation", "DFW"],
   },
   {
@@ -685,10 +685,10 @@ export const fallbackBlogPosts: BlogPost[] = [
     title: "Heat-Tolerant Landscaping for Dallas-Fort Worth Estates",
     slug: "heat-tolerant-landscaping-dfw-estates",
     excerpt:
-      "Strategic plant selection, efficient irrigation, and intelligent hardscaping to create lush, sustainable landscapes that thrive in the Texas heat.",
+      "A 2026 guide to plant selection, irrigation zoning, and hardscape strategy for landscapes that stay disciplined under North Texas heat.",
     category: "Landscape",
     author: "DFW Design-Build Team",
-    date: "2025-11-20",
+    date: "2026-01-08",
     readTime: "6 min read",
     coverImage: {
       src: "/projects/prosper-linear-pavilion/hero.jpg",
@@ -697,9 +697,9 @@ export const fallbackBlogPosts: BlogPost[] = [
       height: 1126,
     },
     content:
-      "A beautifully designed custom home can be entirely undermined by a failing landscape. In North Texas, the combination of intense summer heat, prolonged dry spells, and heavy, expansive clay soils presents a unique challenge. Successful estate landscaping in DFW relies on a balance of native plant selection, smart water management, and strategic hardscaping—achieving a lush aesthetic without fighting the local environment.\n\n**Native Plant Palettes and Hydrozoning**\nThe foundation of a heat-tolerant landscape is selecting native and deeply adapted species that naturally thrive in USDA Zone 8a. We anchor designs with resilient shade trees like Texas Red Oak and Cedar Elm. For structural shrubs and groundcover, we utilize Texas Sage (Cenizo), Dwarf Yaupon Holly, Autumn Sage (Salvia greggii), and ornamental grasses like Gulf Muhly. \n\nCrucially, we employ 'hydrozoning'—grouping plants with similar water requirements together. This allows for highly targeted, efficient drip irrigation zones, ensuring that water-intensive ornamentals receive what they need without overwatering drought-tolerant native sections.\n\n**Smart Hardscaping and Soil Management**\nHardscaping plays a vital role in reducing the overall water footprint and mitigating the 'heat island' effect. We incorporate permeable materials like decomposed granite pathways and spaced flagstone patios, which allow rainwater to percolate back into the soil rather than running off into storm drains. \n\nFinally, managing the volatile Blackland Prairie clay soil is essential. We heavily amend planting beds with organic matter to improve drainage and apply thick layers of hardwood or cedar mulch. This simple step drastically reduces soil temperature, limits evaporation, and protects root systems during the brutal August heat, ensuring the estate's grounds remain vibrant year-round.",
+      "A strong home can be visually undermined by a weak landscape package. In North Texas, that usually happens when plant selection ignores heat tolerance, irrigation is not zoned intelligently, or hardscape coverage is treated as an afterthought. In 2026, the most resilient estate landscapes are balancing aesthetics with water discipline from the beginning.\n\n## Plant palettes should match the site, not the mood board\n\nNative and well-adapted species still outperform exotic palettes under sustained DFW heat. Texas Red Oak, Cedar Elm, Texas Sage, Yaupon Holly, Autumn Sage, and hardy ornamental grasses remain dependable because they are suited to the region's actual stress profile. They also age better visually than fragile, high-maintenance planting schemes.\n\n## Irrigation strategy matters as much as plant choice\n\nHydrozoning remains essential. Grouping plants by water demand allows irrigation to be tuned precisely, which protects both drought-tolerant material and higher-demand accent planting. In practice, this is one of the simplest ways to keep a landscape performing well through August without wasting water or overworking root systems.\n\n## Hardscape and soil preparation do the quiet work\n\nPermeable paving, decomposed granite paths, well-drained planting beds, and heavy mulch layers do not get the same visual attention as a pool or facade, but they are often what make the landscape durable. On estate work across DFW, the best 2026 landscape packages are the ones that feel clean and lush while quietly respecting soil movement, drainage, and maintenance reality.",
     tags: ["Landscape", "Heat-Tolerant", "Native Plants", "Texas"],
-  }
+  },
 ];
 
 export const fallbackFaqs: FAQ[] = [

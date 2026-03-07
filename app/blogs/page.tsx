@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 
+import { BlogCard } from "@/components/blog/blog-card";
 import { BlogList } from "@/components/blog/blog-list";
 import { Container } from "@/components/layout/container";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -40,6 +42,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+function BlogListFallback({ posts }: { posts: Awaited<ReturnType<typeof getBlogPosts>> }) {
+  return (
+    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {posts.map((post) => (
+        <BlogCard key={post.id} post={post} />
+      ))}
+    </div>
+  );
+}
+
 export default async function BlogsPage() {
   const posts = await getBlogPosts();
 
@@ -59,7 +71,9 @@ export default async function BlogsPage() {
 
           <LeadMagnetBanner compact />
 
-          <BlogList posts={posts} />
+          <Suspense fallback={<BlogListFallback posts={posts} />}>
+            <BlogList posts={posts} />
+          </Suspense>
         </Container>
       </section>
     </>
