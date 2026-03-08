@@ -138,17 +138,11 @@ export function FloatingLogoScene() {
 
       e.preventDefault();
 
-      const target = document.getElementById(HOME_SECTION_ID);
-      if (!target) {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        return;
-      }
-
       const lenis = getLenisInstance();
       if (lenis) {
-        lenis.scrollTo(target);
+        lenis.scrollTo(0);
       } else {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
       window.history.replaceState(null, "", HOME_SECTION_HREF);
