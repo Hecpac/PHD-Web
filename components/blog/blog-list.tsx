@@ -12,6 +12,10 @@ type BlogListProps = {
   posts: BlogPost[];
 };
 
+const CATEGORY_ALIASES: Record<string, string> = {
+  Architecture: "Outdoor Living",
+};
+
 export function BlogList({ posts }: BlogListProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -24,21 +28,51 @@ export function BlogList({ posts }: BlogListProps) {
   }, [posts]);
 
   const requestedCategory = searchParams.get("category");
+  const normalizedCategory = requestedCategory
+    ? CATEGORY_ALIASES[requestedCategory] ?? requestedCategory
+    : null;
   const activeCategory =
-    requestedCategory && categories.includes(requestedCategory)
-      ? requestedCategory
+    normalizedCategory && categories.includes(normalizedCategory)
+      ? normalizedCategory
       : ALL_CATEGORY;
 
   useEffect(() => {
-    if (!requestedCategory || categories.includes(requestedCategory)) {
+    if (!requestedCategory) {
+      return;
+    }
+
+    if (
+      requestedCategory === normalizedCategory &&
+      normalizedCategory &&
+      categories.includes(normalizedCategory)
+    ) {
       return;
     }
 
     const params = new URLSearchParams(searchParams.toString());
-    params.delete("category");
-    const nextUrl = params.size > 0 ? `${pathname}?${params.toString()}` : pathname;
-    router.replace(nextUrl, { scroll: false });
-  }, [categories, pathname, requestedCategory, router, searchParams]);
+
+    if (normalizedCategory && categories.includes(normalizedCategory)) {
+      params.set("category", normalizedCategory);
+    } else {
+      params.delete("category");
+    }
+
+    const currentQuery = searchParams.toString();
+    const nextQuery = params.toString();
+    const currentUrl = currentQuery ? `${pathname}?${currentQuery}` : pathname;
+    const nextUrl = nextQuery ? `${pathname}?${nextQuery}` : pathname;
+
+    if (nextUrl !== currentUrl) {
+      router.replace(nextUrl, { scroll: false });
+    }
+  }, [
+    categories,
+    normalizedCategory,
+    pathname,
+    requestedCategory,
+    router,
+    searchParams,
+  ]);
 
   const filteredPosts = useMemo(() => {
     if (activeCategory === ALL_CATEGORY) {

@@ -666,7 +666,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     slug: "luxury-outdoor-living-north-texas-climate",
     excerpt:
       "How 2026 DFW outdoor living spaces balance heat, storm exposure, hospitality, and year-round usability without feeling overbuilt.",
-    category: "Architecture",
+    category: "Outdoor Living",
     author: "DFW Design-Build Team",
     date: "2026-01-17",
     readTime: "7 min read",
