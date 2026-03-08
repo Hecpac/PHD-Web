@@ -20,6 +20,8 @@ import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { getLenisInstance } from "@/lib/lenis";
 
 const LOGO_SRC = "/logo/logo.png";
+const HOME_SECTION_ID = "hero";
+const HOME_SECTION_HREF = `/#${HOME_SECTION_ID}`;
 const ASPECT = 3040 / 1408;
 
 type SceneBoundaryProps = {
@@ -130,15 +132,26 @@ export function FloatingLogoScene() {
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (pathname === "/") {
-        e.preventDefault();
-        const lenis = getLenisInstance();
-        if (lenis) {
-          lenis.scrollTo(0);
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
+      if (pathname !== "/") {
+        return;
       }
+
+      e.preventDefault();
+
+      const target = document.getElementById(HOME_SECTION_ID);
+      if (!target) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
+      const lenis = getLenisInstance();
+      if (lenis) {
+        lenis.scrollTo(target);
+      } else {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      window.history.replaceState(null, "", HOME_SECTION_HREF);
     },
     [pathname],
   );
@@ -186,8 +199,8 @@ export function FloatingLogoScene() {
       )}
 
       <Link
-        href="/"
-        aria-label="Premium Home Design - Go to homepage"
+        href={HOME_SECTION_HREF}
+        aria-label="Premium Home Design - Go to home hero section"
         className="pointer-events-auto absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
         data-cursor="link"
         onClick={handleClick}
@@ -196,7 +209,7 @@ export function FloatingLogoScene() {
         onTouchStart={() => setHovered(true)}
         onTouchEnd={() => setHovered(false)}
       >
-        <span className="sr-only">Premium Home Design - Go to homepage</span>
+        <span className="sr-only">Premium Home Design - Go to home hero section</span>
       </Link>
     </div>
   );
