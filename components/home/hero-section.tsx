@@ -281,6 +281,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
               <SwissTextReveal as="span" mode="word" stagger={0.12} delay={0.14} className="text-white">
                 BESPOKE
               </SwissTextReveal>
+              {" "}
               <SwissTextReveal as="span" mode="word" stagger={0.12} delay={0.20} className="text-red-500">
                 CUSTOM DESIGN
               </SwissTextReveal>

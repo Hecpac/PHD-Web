@@ -106,8 +106,8 @@ export function SwissTextReveal({
       <Tag
         ref={setContainerRef}
         className={cn("inline-block leading-tight", className)}
+        aria-label={text}
       >
-        <span className="sr-only">{text}</span>
         <span aria-hidden="true">
           {chars.map((char, i) => (
             <span
@@ -134,8 +134,8 @@ export function SwissTextReveal({
       <Tag
         ref={setContainerRef}
         className={cn("inline-block leading-tight", className)}
+        aria-label={text}
       >
-        <span className="sr-only">{text}</span>
         <span aria-hidden="true" className="animated-heading">
           {words.map((word, i) => (
             <React.Fragment key={`${i}-${word}`}>
