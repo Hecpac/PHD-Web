@@ -38,6 +38,14 @@ export function createLocalBusinessSchema(reviews?: Review[]) {
       name: "Dallas-Fort Worth Metroplex",
     },
     priceRange: "$$$",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "18:00",
+      },
+    ],
     sameAs: siteConfig.socialLinks.map((social) => social.href),
   };
 

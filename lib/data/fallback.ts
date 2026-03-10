@@ -735,7 +735,7 @@ export const fallbackFaqs: FAQ[] = [
     id: "faq-5",
     question: "What does a custom home cost per square foot in Dallas-Fort Worth?",
     answer:
-      "Custom homes in DFW typically range from $250–$500+ per square foot depending on site conditions, finishes, and design complexity. We develop a detailed budget range during the Discovery phase so you have realistic numbers before committing to design. Our goal is no budget surprises — ever.",
+      "In DFW, efficient custom homes typically begin around $190–$260 per square foot, more tailored homes often land between $260–$380, and architect-driven high-end homes commonly start around $380 and can exceed $650 per square foot. Final pricing depends on site conditions, structural complexity, and finish level. We develop a detailed budget range during Discovery so you have realistic numbers before design advances.",
     category: "Budget",
   },
   {
