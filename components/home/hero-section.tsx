@@ -248,12 +248,17 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                     THE STUDIO
                   </SwissTextReveal>
                 </h2>
-                <div className="text-xs leading-[1.8] text-white/80 tracking-wide pr-4">
-                  <p>
+                <div className="space-y-4 pr-4">
+                  <p className="text-sm leading-7 text-white/85 text-pretty max-w-[34ch]">
                     <SwissTextReveal as="span" mode="line" stagger={0.1} delay={0.2}>
-                      {"We translate visionary concepts into permit-ready construction plans and photorealistic renders. Exclusively serving Dallas-Fort Worth with uncompromising precision and aesthetic excellence."}
+                      {"Architect-led custom homes across Dallas-Fort Worth — from concept and cost alignment to permit-ready documentation and builder-coordinated delivery."}
                     </SwissTextReveal>
                   </p>
+                  <ul className="flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.08em] text-white/80" aria-label="Key trust signals">
+                    <li className="rounded-full border border-white/15 bg-white/8 px-2.5 py-1">DFW only</li>
+                    <li className="rounded-full border border-white/15 bg-white/8 px-2.5 py-1">60+ projects</li>
+                    <li className="rounded-full border border-white/15 bg-white/8 px-2.5 py-1">Response in 1 business day</li>
+                  </ul>
                 </div>
               </div>
               
@@ -262,11 +267,12 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                   href={scheduleUrl}
                   {...(scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
                   eventName="cta_schedule_click"
-                  variant="ghost"
-                  className="w-fit text-[11px] tracking-[0.15em] font-mono px-0 border-b-0 text-white/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-4 focus-visible:ring-offset-black rounded-sm whitespace-nowrap"
+                  variant="primary"
+                  className="w-fit min-h-11 rounded-md px-4 py-2 text-[11px] tracking-[0.15em] font-mono whitespace-nowrap shadow-[0_10px_24px_rgb(0_0_0/0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-4 focus-visible:ring-offset-black"
                 >
-                  ( Schedule a Consultation )
+                  Schedule a Consultation
                 </CtaLink>
+                <p className="text-[11px] text-white/60">Ground-up custom homes, preconstruction & design-led delivery.</p>
               </div>
             </div>
           </div>
@@ -287,10 +293,10 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
               </SwissTextReveal>
             </h1>
             
-            <div className="flex flex-wrap justify-between items-center mt-4 sm:mt-6 font-mono text-[9px] sm:text-[10px] text-white uppercase tracking-[0.15em] border-t border-white/30 pt-4">
+            <div className="flex flex-wrap justify-between items-center gap-2 mt-4 sm:mt-6 font-mono text-[9px] sm:text-[10px] text-white uppercase tracking-[0.15em] border-t border-white/30 pt-4">
               <span>Dallas-Fort Worth</span>
               <span className="hidden sm:inline text-red-500">Established 2016</span>
-              <span>Copyright © {new Date().getFullYear()}</span>
+              <span>Architect-led custom home delivery</span>
             </div>
           </div>
         </Container>
