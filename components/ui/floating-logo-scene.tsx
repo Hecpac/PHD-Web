@@ -19,7 +19,7 @@ import * as THREE from "three";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { getLenisInstance } from "@/lib/lenis";
 
-const LOGO_SRC = "/logo/logo.png";
+const LOGO_SRC = "/logo/PHD_logo-removebg-preview.png";
 const HOME_SECTION_ID = "hero";
 const HOME_SECTION_HREF = `/#${HOME_SECTION_ID}`;
 const ASPECT = 3040 / 1408;
