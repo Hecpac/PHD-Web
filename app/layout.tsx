@@ -8,9 +8,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 
 import { CadMode } from "@/components/ui/cad-mode";
-import { FloatingLogo } from "@/components/ui/floating-logo";
-import { ConsoleBrand } from "@/components/ui/console-brand";
-import { CustomCursor } from "@/components/ui/custom-cursor";
+import { LazyEnhancements } from "@/components/ui/lazy-enhancements";
 import { JsonLd } from "@/components/ui/json-ld";
 import { TransitionProvider } from "@/components/ui/page-transition";
 import { GoogleTagManager } from "@/components/analytics/gtm";
@@ -149,10 +147,8 @@ export default async function RootLayout({
           <SiteFooter />
           <FooterHeightObserver />
         </SmoothScroll>
-        <FloatingLogo />
-        <CustomCursor />
+        <LazyEnhancements />
         <CadMode />
-        <ConsoleBrand />
       </body>
     </html>
   );
