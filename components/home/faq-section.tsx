@@ -1,5 +1,6 @@
 import { Container } from "@/components/layout/container";
 import { Accordion } from "@/components/ui/accordion";
+import { CtaLink } from "@/components/ui/cta-link";
 import { SectionHeading } from "@/components/ui/section-heading";
 import type { FAQ } from "@/lib/types/content";
 
@@ -27,8 +28,22 @@ export function FaqSection({ faqs, id = "faq" }: FaqSectionProps) {
                             description="We believe in answering hard questions upfront. Here is what most prospective owners ask us about building in DFW."
                         />
                     </div>
-                    <div className="lg:col-span-7">
+                    <div className="lg:col-span-7 space-y-5">
                         <Accordion items={displayedFaqs} className="brand-red-outline brand-red-surface rounded-xl border border-line/90 bg-surface/92 px-5 sm:px-6" />
+                        <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-5 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <p className="font-semibold text-ink">Still deciding if the project is a fit?</p>
+                                <p className="mt-1 text-sm leading-6 text-muted">Share your lot status, target zone, and budget direction. We will point you to the right next step.</p>
+                            </div>
+                            <CtaLink
+                                href="#contact"
+                                variant="primary"
+                                eventName="cta_schedule_click"
+                                className="min-h-11 px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+                            >
+                                Start Project Intake
+                            </CtaLink>
+                        </div>
                     </div>
                 </div>
             </Container>

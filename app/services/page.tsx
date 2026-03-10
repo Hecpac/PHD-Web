@@ -63,7 +63,7 @@ export default async function ServicesPage() {
                 key={detail.id}
                 href={`/services/${detail.slug}`}
                 className={cn(
-                  "group flex flex-col justify-between border border-line bg-surface p-6 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent xl:col-span-2",
+                  "group flex flex-col justify-between border border-line bg-surface p-6 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent xl:col-span-2",
                   desktopRemainder === 1 && index === detailCount - 1 && "xl:col-span-6",
                   desktopRemainder === 2 && index >= detailCount - 2 && "xl:col-span-3",
                 )}

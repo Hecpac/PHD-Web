@@ -61,8 +61,8 @@ export function TestimonialsSection({ reviews }: TestimonialsSectionProps) {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
             eyebrow="Testimonials"
-            title="Confidence built through evidence, not claims"
-            description="Our process is designed to reduce surprises and keep design quality intact during execution."
+            title="Selected client proof from across DFW"
+            description="Read how homeowners describe our communication, process control, and design-build delivery after working with the team in Dallas–Fort Worth."
           />
           <Link
             href="/reviews"

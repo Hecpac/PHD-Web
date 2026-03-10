@@ -46,7 +46,7 @@ export function HeroRenderSection() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             aria-label="3D render showcase"
           >
             {/* WebM for better compression (~2MB), MP4 as fallback */}

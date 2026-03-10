@@ -101,8 +101,8 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
           <div ref={headingRef}>
             <SectionHeading
               eyebrow="The Ledger"
-              title="Capabilities defined by concrete deliverables"
-              description="Each capability maps to outputs, owners, and checkpoints. The goal is predictable execution, not abstract promises."
+              title="Capabilities tied to real deliverables"
+              description="Each service is defined by outputs, owners, and checkpoints so you can see what is actually being delivered before the project advances."
             />
           </div>
         ) : null}

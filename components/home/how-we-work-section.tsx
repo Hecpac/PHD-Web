@@ -127,8 +127,8 @@ export function HowWeWorkSection() {
             <div className="lg:sticky lg:top-32">
               <SectionHeading
                 eyebrow="How We Work"
-                title="A structured path from vision to move-in"
-                description="Every project follows four decision-gated phases. Nothing advances without your alignment — no surprises, no ambiguity."
+                title="A structured path from feasibility to handover"
+                description="Every project moves through four decision-gated phases: lot and feasibility review, concept and cost alignment, permit-ready documentation, and managed execution."
               />
             </div>
           </div>
@@ -156,17 +156,27 @@ export function HowWeWorkSection() {
 
         {/* CTA */}
         <div className="flex flex-col items-center gap-3 text-center sm:gap-4">
-          <p className="max-w-xl text-muted">
-            Ready to start your custom home project in Dallas–Fort Worth?
+          <p className="max-w-2xl text-muted">
+            If you already have a lot, a target area, or an early budget range, we can usually tell you quickly whether the project is ready for the next phase.
           </p>
-          <CtaLink
-            href="#contact"
-            variant="primary"
-            eventName="cta_schedule_click"
-            className="w-full min-h-12 px-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
-          >
-            Schedule a Consultation
-          </CtaLink>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:justify-center">
+            <CtaLink
+              href="#contact"
+              variant="primary"
+              eventName="cta_schedule_click"
+              className="w-full min-h-12 px-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
+            >
+              Start Project Intake
+            </CtaLink>
+            <CtaLink
+              href="/contact"
+              variant="secondary"
+              eventName="cta_schedule_click"
+              className="w-full min-h-12 px-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
+            >
+              View Full Intake Page
+            </CtaLink>
+          </div>
         </div>
       </Container>
     </section>

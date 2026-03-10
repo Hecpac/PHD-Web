@@ -328,8 +328,8 @@ export function WhyChooseUsSection() {
           <SectionHeading
             titleId={HEADING_ID}
             eyebrow="Why Choose Us"
-            title="Dallas–Fort Worth’s design-first builder"
-            description="Design and construction under one roof, backed by deep local knowledge. Here’s what sets our Dallas–Fort Worth custom home process apart."
+            title="Why serious DFW clients choose this process"
+            description="The advantage is not just design taste. It is tighter cost control, fewer handoff mistakes, clearer approvals, and stronger execution across the full project lifecycle."
             className="[&_h2]:scroll-mt-24"
           />
         </div>
