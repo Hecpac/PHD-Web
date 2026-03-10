@@ -179,6 +179,12 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
             </div>
 
             <form ref={formRef} action={formAction} className="grid gap-4 sm:gap-6 md:grid-cols-2" onFocus={onFormFocus} noValidate>
+              <div className="hidden" aria-hidden="true">
+                <label>
+                  Website
+                  <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+                </label>
+              </div>
               <input type="hidden" name="utm_source" value={utm.source} />
               <input type="hidden" name="utm_medium" value={utm.medium} />
               <input type="hidden" name="utm_campaign" value={utm.campaign} />

@@ -10,13 +10,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "About | DFW Design-Build Team",
+    title: "About | Premium Home Design",
     description:
-      "Learn how our architecture + builder workflow delivers modern custom homes across the DFW Metroplex.",
+      "Learn how Premium Home Design structures architecture, preconstruction, and project delivery for modern custom homes across DFW.",
     openGraph: {
-      title: "About | DFW Design-Build Team",
+      title: "About | Premium Home Design",
       description:
-        "Learn how our architecture + builder workflow delivers modern custom homes across the DFW Metroplex.",
+        "Learn how Premium Home Design structures architecture, preconstruction, and project delivery for modern custom homes across DFW.",
     },
     alternates: {
       canonical: `${siteUrl}/about`,
@@ -80,6 +80,24 @@ const values = [
     title: "No surprises",
     description:
       "Our phased process with documented decision gates means you always know the scope, cost, and timeline before the next phase begins. Change orders are documented with full cost and schedule impact before any work proceeds.",
+  },
+];
+
+const teamStructure = [
+  {
+    role: "Architecture & Design",
+    description:
+      "Concept development, plan refinement, finish direction, and design intent protection across the full project lifecycle.",
+  },
+  {
+    role: "Preconstruction & Estimating",
+    description:
+      "Scope alignment, allowances, milestone budgeting, and feasibility review before drawings move too far ahead of cost reality.",
+  },
+  {
+    role: "Project Delivery",
+    description:
+      "Field coordination, critical-path scheduling, trade management, and client communication from permit through handover.",
   },
 ];
 
@@ -148,6 +166,26 @@ export default function AboutPage() {
               <article key={value.title} className="border border-line bg-surface p-6">
                 <h3 className="type-h3-compact text-ink">{value.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted">{value.description}</p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Team structure section */}
+      <section className="section-shell border-t border-line section-bone">
+        <Container swiss className="space-y-8">
+          <SectionHeading
+            as="h2"
+            eyebrow="Team Structure"
+            title="A coordinated team across design, cost, and delivery"
+            description="We currently present the practice through role coverage and operating structure rather than individual bios. The goal is simple: clear accountability from concept to handover."
+          />
+          <div className="grid gap-6 md:grid-cols-3">
+            {teamStructure.map((item) => (
+              <article key={item.role} className="border border-line bg-surface p-6">
+                <h3 className="type-h3-compact text-ink">{item.role}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted">{item.description}</p>
               </article>
             ))}
           </div>

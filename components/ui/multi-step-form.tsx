@@ -291,6 +291,12 @@ export function MultiStepForm() {
       </div>
 
       <form action={formAction} className="space-y-6" noValidate>
+        <div className="hidden" aria-hidden="true">
+          <label>
+            Website
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+          </label>
+        </div>
         <input type="hidden" name="utm_source" value={utm.source} />
         <input type="hidden" name="utm_medium" value={utm.medium} />
         <input type="hidden" name="utm_campaign" value={utm.campaign} />

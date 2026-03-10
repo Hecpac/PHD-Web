@@ -12,6 +12,8 @@ type ContactFormErrors = Partial<{
   message: string;
 }>;
 
+const HONEYPOT_FIELD = "website";
+
 export type ContactFormState = {
   success: boolean;
   message: string;
@@ -252,6 +254,14 @@ export async function submitContactForm(
   _prevState: ContactFormState,
   formData: FormData
 ): Promise<ContactFormState> {
+  if (getString(formData, HONEYPOT_FIELD)) {
+    return {
+      success: true,
+      message: "Thanks — your request has been received.",
+      errors: {},
+    };
+  }
+
   // Rate limit: 5 submissions per 10 minutes per IP (per warm instance).
   // Fails open if headers() is unavailable.
   try {
@@ -352,6 +362,14 @@ export async function submitVisionBuilder(
   _prevState: VisionBuilderState,
   formData: FormData,
 ): Promise<VisionBuilderState> {
+  if (getString(formData, HONEYPOT_FIELD)) {
+    return {
+      success: true,
+      message: "Thanks — your request has been received.",
+      errors: {},
+    };
+  }
+
   try {
     const headersList = await headers();
     const ip =
