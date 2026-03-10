@@ -156,7 +156,6 @@ export function FloatingLogoScene() {
         src={LOGO_SRC}
         alt="Premium Home Design"
         fill
-        unoptimized
         className="object-contain"
         sizes="256px"
       />
@@ -175,7 +174,7 @@ export function FloatingLogoScene() {
         <SceneBoundary fallback={fallbackLogo} onError={() => setSceneFailed(true)}>
           <Canvas
             className="relative z-10 h-full w-full"
-            dpr={[1, 2]}
+            dpr={[1, 1.5]}
             gl={{ alpha: true, antialias: true }}
             style={{ pointerEvents: "none" }}
             camera={{ position: [0, 0, 1.8], fov: 45 }}

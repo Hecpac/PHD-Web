@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { MultiStepForm } from "@/components/ui/multi-step-form";
 import { SocialLinks } from "@/components/ui/social-links";
 import { createBreadcrumbSchema } from "@/lib/seo/schema";
-import { getSiteUrl, siteConfig } from "@/lib/config/site";
+import { getCtaConfig, getSiteUrl, siteConfig } from "@/lib/config/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
@@ -26,6 +26,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function ContactPage() {
+  const { phoneDisplay, phoneHref } = getCtaConfig();
+
   return (
     <>
       <JsonLd
@@ -53,7 +55,30 @@ export default function ContactPage() {
             >
               {siteConfig.contactEmail}
             </a>
+            <a
+              href={phoneHref}
+              className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
+            >
+              {phoneDisplay}
+            </a>
+            <span className="text-sm text-muted">Mon–Fri · 9:00 AM–6:00 PM</span>
+            <span className="text-sm text-muted">Dallas–Fort Worth projects only</span>
             <SocialLinks />
+          </div>
+
+          <div className="grid gap-4 rounded-xl border border-line bg-surface p-5 text-sm text-muted sm:grid-cols-3">
+            <div>
+              <p className="font-semibold text-ink">Response time</p>
+              <p className="mt-1 leading-6">Most qualified inquiries receive a response within 1 business day.</p>
+            </div>
+            <div>
+              <p className="font-semibold text-ink">Best fit</p>
+              <p className="mt-1 leading-6">Ground-up custom homes, preconstruction, and architect-led project delivery in DFW.</p>
+            </div>
+            <div>
+              <p className="font-semibold text-ink">Not a fit?</p>
+              <p className="mt-1 leading-6">We do not route generic remodeling or out-of-market requests through this intake.</p>
+            </div>
           </div>
 
           <MultiStepForm />

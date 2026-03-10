@@ -64,8 +64,12 @@ export default async function ReviewsPage() {
             titleId="reviews-heading"
             eyebrow="Reviews"
             title="What our DFW homeowners say"
-            description="Verified testimonials from clients who have completed the design-build process with our team across the Dallas-Fort Worth Metroplex."
+            description="Selected testimonials from clients across the Dallas-Fort Worth Metroplex about our design-build process, communication, and delivery experience."
           />
+
+          <div className="rounded-xl border border-line bg-surface p-4 text-sm text-muted">
+            These reviews are presented as client testimonials from completed projects. For formal due diligence, we still recommend reviewing scope, references, credentials, and fit during the intake process.
+          </div>
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {reviews.map((review) => (

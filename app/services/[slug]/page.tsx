@@ -105,7 +105,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
           <div className="grid gap-8 md:grid-cols-2">
             {/* Deliverables */}
-            <div className="group border border-line bg-surface p-6 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)]">
+            <div className="group border border-line bg-surface p-6 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)]">
               <h3 className="type-h3-standard mb-4 transition-colors duration-200 group-hover:text-accent">Deliverables</h3>
               <ul className="space-y-3">
                 {service.deliverables.map((item) => (
@@ -121,7 +121,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </div>
 
             {/* Benefits */}
-            <div className="group border border-line bg-surface p-6 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)]">
+            <div className="group border border-line bg-surface p-6 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)]">
               <h3 className="type-h3-standard mb-4 transition-colors duration-200 group-hover:text-accent">Why It Matters</h3>
               <ul className="space-y-3">
                 {service.benefits.map((item) => (
@@ -142,7 +142,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <LeadMagnetBanner />
 
           {serviceFaqs.length > 0 ? (
-            <section className="group space-y-4 rounded-xl border border-line bg-surface p-6 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)]" aria-label="Service FAQs">
+            <section className="group space-y-4 rounded-xl border border-line bg-surface p-6 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0/0.12)]" aria-label="Service FAQs">
               <h3 className="text-lg font-semibold tracking-tight text-ink">Frequently asked questions</h3>
               <ul className="space-y-3">
                 {serviceFaqs.map((faq) => (
