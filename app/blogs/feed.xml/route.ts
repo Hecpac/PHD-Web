@@ -24,7 +24,7 @@ export async function GET() {
   <channel>
     <title>${escapeXml(siteConfig.name)} - Blog</title>
     <link>${siteUrl}/blogs</link>
-    <description>Articles on architecture, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.</description>
+    <description>Articles on design, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.</description>
     <language>en-us</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${siteUrl}/blogs/feed.xml" rel="self" type="application/rss+xml" />

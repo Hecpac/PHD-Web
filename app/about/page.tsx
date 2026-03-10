@@ -12,11 +12,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "About | Premium Home Design",
     description:
-      "Learn how Premium Home Design structures architecture, preconstruction, and project delivery for modern custom homes across DFW.",
+      "Learn how Premium Home Design structures design, preconstruction, and project delivery for modern custom homes across DFW.",
     openGraph: {
       title: "About | Premium Home Design",
       description:
-        "Learn how Premium Home Design structures architecture, preconstruction, and project delivery for modern custom homes across DFW.",
+        "Learn how Premium Home Design structures design, preconstruction, and project delivery for modern custom homes across DFW.",
     },
     alternates: {
       canonical: `${siteUrl}/about`,
@@ -28,7 +28,7 @@ const principles = [
   {
     title: "Design intent protected",
     description:
-      "Architecture decisions are documented and enforced through construction — not diluted by value-engineering shortcuts.",
+      "Design decisions are documented and enforced through construction — not diluted by value-engineering shortcuts.",
   },
   {
     title: "Transparent process",
@@ -72,9 +72,9 @@ const values = [
       "We build exclusively in the Dallas-Fort Worth Metroplex. This constraint is intentional — it means deeper trade relationships, faster permitting knowledge, and construction timelines calibrated to local conditions.",
   },
   {
-    title: "Architecture-first, builder-backed",
+    title: "Design-first, builder-backed",
     description:
-      "Most builders treat design as a preliminary step. We treat it as the foundation. Our team includes architecture-trained professionals who protect design intent through every construction decision.",
+      "Most builders treat design as a preliminary step. We treat it as the foundation. Our team protects design intent through every construction decision.",
   },
   {
     title: "No surprises",
@@ -119,7 +119,7 @@ export default function AboutPage() {
             titleId="about-heading"
             eyebrow="About"
             title="A design-build practice focused on modern homes in DFW"
-            description="We combine architecture rigor with construction control to deliver custom homes that match the drawings, meet the budget, and finish on schedule."
+            description="We combine design rigor with construction control to deliver custom homes that match the drawings, meet the budget, and finish on schedule."
           />
 
           <div className="grid gap-4 md:grid-cols-3">

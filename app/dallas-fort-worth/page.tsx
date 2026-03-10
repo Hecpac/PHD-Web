@@ -36,7 +36,7 @@ const whyDfwOnly = [
   {
     title: "Faster permitting knowledge",
     description:
-      "Every DFW municipality has different codes, review timelines, and inspection processes. We know the specifics for each city we serve — from Highland Park's architectural review board to Prosper's rapid-growth infrastructure requirements.",
+      "Every DFW municipality has different codes, review timelines, and inspection processes. We know the specifics for each city we serve — from Highland Park's design review board to Prosper's rapid-growth infrastructure requirements.",
   },
   {
     title: "Climate-calibrated construction",

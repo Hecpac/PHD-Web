@@ -51,7 +51,7 @@ export default async function ProjectsPage() {
           titleId="projects-heading"
           eyebrow="Portfolio"
           title="Custom home projects in DFW"
-          description="Built work that demonstrates architectural clarity, planning discipline, and field execution quality."
+          description="Built work that demonstrates design clarity, planning discipline, and field execution quality."
         />
 
         {leadProject ? (

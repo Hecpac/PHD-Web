@@ -263,7 +263,7 @@ export function createBlogCollectionSchema(posts: BlogPost[]) {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: `Blog – ${siteConfig.name}`,
-    description: `Articles on architecture, construction, budgeting, and the design-build process for custom homes in Dallas–Fort Worth.`,
+    description: `Articles on design, construction, budgeting, and the design-build process for custom homes in Dallas–Fort Worth.`,
     url: `${siteUrl}/blogs`,
     mainEntity: {
       "@type": "ItemList",

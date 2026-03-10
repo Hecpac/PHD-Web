@@ -73,7 +73,7 @@ export default function ContactPage() {
             </div>
             <div>
               <p className="font-semibold text-ink">Best fit</p>
-              <p className="mt-1 leading-6">Ground-up custom homes, preconstruction, and architect-led project delivery in DFW.</p>
+              <p className="mt-1 leading-6">Ground-up custom homes, preconstruction, and coordinated project delivery in DFW.</p>
             </div>
             <div>
               <p className="font-semibold text-ink">Not a fit?</p>

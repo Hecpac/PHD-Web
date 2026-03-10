@@ -77,7 +77,7 @@ function getContextualCta(project: { location: { city: string }; style: string }
   if (city.includes("highland park")) {
     return {
       title: "Planning in Highland Park?",
-      body: "We’ll walk through architectural review, timeline risk, and permit sequencing before design starts.",
+      body: "We’ll walk through design review, timeline risk, and permit sequencing before design starts.",
       button: "Book Highland Park Feasibility Call",
     };
   }
@@ -93,7 +93,7 @@ function getContextualCta(project: { location: { city: string }; style: string }
   if (city.includes("prosper")) {
     return {
       title: "Planning in Prosper?",
-      body: "We’ll align lot-readiness, utilities, and architectural scope before your first design milestone.",
+      body: "We’ll align lot-readiness, utilities, and project scope before your first design milestone.",
       button: "Book Prosper Project Call",
     };
   }

@@ -210,7 +210,7 @@ const differentiators = [
 ];
 
 const marqueeHighlights = [
-  "Design-Led Planning",
+  "Design-Driven Planning",
   "Open-Book Budgeting",
   "Decision Gates",
   "DFW Permit Fluency",

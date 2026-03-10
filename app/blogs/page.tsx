@@ -20,18 +20,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Blog | Insights for DFW Custom Homes",
     description:
-      "Articles on architecture, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.",
+      "Articles on design, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.",
     openGraph: {
       title: "Blog | DFW Custom Home Building Insights",
       description:
-        "Articles on architecture, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.",
+        "Articles on design, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.",
       type: "website",
     },
     twitter: {
       card: "summary",
       title: "Blog | DFW Custom Home Building Insights",
       description:
-        "Articles on architecture, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.",
+        "Articles on design, construction, budgeting, and the design-build process for custom homes in Dallas-Fort Worth.",
     },
     alternates: {
       canonical: `${siteUrl}/blogs`,
@@ -66,7 +66,7 @@ export default async function BlogsPage() {
             titleId="blog-heading"
             eyebrow="Blog"
             title="Insights on building custom homes in DFW"
-            description="Practical knowledge from our design-build team on architecture, process, budgets, and the realities of building in the Dallas-Fort Worth Metroplex."
+            description="Practical knowledge from our design-build team on design, process, budgets, and the realities of building in the Dallas-Fort Worth Metroplex."
           />
 
           <LeadMagnetBanner compact />

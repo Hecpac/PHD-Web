@@ -251,7 +251,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                 <div className="space-y-4 pr-4">
                   <p className="text-sm leading-7 text-white/85 text-pretty max-w-[34ch]">
                     <SwissTextReveal as="span" mode="line" stagger={0.1} delay={0.2}>
-                      {"Architect-led custom homes across Dallas-Fort Worth — from concept and cost alignment to permit-ready documentation and builder-coordinated delivery."}
+                      {"Custom homes across Dallas-Fort Worth — from concept and cost alignment to permit-ready documentation and builder-coordinated delivery."}
                     </SwissTextReveal>
                   </p>
                   <ul className="flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.08em] text-white/80" aria-label="Key trust signals">
@@ -272,7 +272,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                 >
                   Schedule a Consultation
                 </CtaLink>
-                <p className="text-[11px] text-white/60">Ground-up custom homes, preconstruction & design-led delivery.</p>
+                <p className="text-[11px] text-white/60">Ground-up custom homes, preconstruction & coordinated delivery.</p>
               </div>
             </div>
           </div>
@@ -296,7 +296,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
             <div className="flex flex-wrap justify-between items-center gap-2 mt-4 sm:mt-6 font-mono text-[9px] sm:text-[10px] text-white uppercase tracking-[0.15em] border-t border-white/30 pt-4">
               <span>Dallas-Fort Worth</span>
               <span className="hidden sm:inline text-red-500">Established 2016</span>
-              <span>Architect-led custom home delivery</span>
+              <span>Custom home delivery</span>
             </div>
           </div>
         </Container>
