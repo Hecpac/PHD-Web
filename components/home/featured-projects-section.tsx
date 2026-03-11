@@ -8,6 +8,7 @@ import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CtaLink } from "@/components/ui/cta-link";
 import type { Project, GalleryImage } from "@/lib/types/content";
+import { cn } from "@/lib/utils";
 
 function getCardImage(project: Project): GalleryImage | undefined {
   return project.heroImage ?? project.gallery[0];
@@ -23,53 +24,59 @@ function ProjectCapsule({ project, index }: { project: Project; index: number })
   useGSAP(() => {
     if (!containerRef.current || !bgRef.current || !textRef.current) return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    gsap.set(bgRef.current, { yPercent: 0 });
+    gsap.set(textRef.current, { opacity: 1, y: 0 });
 
-    if (reducedMotion) {
-      gsap.set(textRef.current, { opacity: 1, y: 0 });
-      return;
-    }
+    const mm = gsap.matchMedia();
 
-    // Parallax simétrico: imagen se desplaza -10% → 10% durante el scroll
-    gsap.fromTo(
-      bgRef.current,
-      { yPercent: -10 },
-      {
-        yPercent: 10,
-        ease: "none",
+    mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+      // Parallax simétrico: imagen se desplaza -10% → 10% durante el scroll
+      gsap.fromTo(
+        bgRef.current,
+        { yPercent: -10 },
+        {
+          yPercent: 10,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+
+      // Text reveal: aparece al entrar en viewport, sin scrub (duración fija)
+      gsap.from(textRef.current, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
         },
-      }
-    );
-
-    // Text reveal: aparece al entrar en viewport, sin scrub (duración fija)
-    gsap.from(textRef.current, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      },
+      });
     });
+
+    return () => mm.revert();
   }, { scope: containerRef });
 
   return (
     <div
       ref={containerRef}
-      className="sticky top-0 h-screen w-full overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] shadow-2xl"
+      className={cn(
+        "relative h-[68vh] w-full overflow-hidden rounded-[2.5rem] shadow-2xl sm:h-[72vh] sm:rounded-[3.5rem] lg:sticky lg:top-0 lg:h-screen"
+      )}
       style={{ zIndex: index + 1 }}
     >
       {/* Imagen de fondo con parallax */}
       <div
         ref={bgRef}
-        className="absolute inset-0 z-0 h-[120%] -top-[10%] w-full pointer-events-none"
+        className={cn(
+          "pointer-events-none absolute inset-0 z-0 w-full h-full top-0 lg:h-[120%] lg:-top-[10%]"
+        )}
       >
         <Image
           src={cardImage?.src ?? "/projects/north-dallas-courtyard-residence/hero.jpg"}

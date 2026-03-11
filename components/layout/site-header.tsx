@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 
@@ -21,6 +23,7 @@ export function SiteHeader() {
     pathname === "/" || pathname === "/es" || pathname.startsWith("/for-builders");
   const isSolidHeader = !supportsTransparentHeader || !isAtTop;
   const navTone = isSolidHeader ? "dark" : "light";
+  const mobileLogoSrc = isSolidHeader ? "/logo/PHD_logo-removebg-preview.png" : "/logo/PHD_logo_white.png";
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsAtTop(latest <= 50);
@@ -38,7 +41,19 @@ export function SiteHeader() {
     >
       <div className="container-swiss">
         <div className="flex items-center justify-between py-4 md:py-5">
-          <div className="w-10 shrink-0 md:hidden" />
+          <Link
+            href="/"
+            className="relative block h-10 w-[7.5rem] shrink-0 md:hidden"
+            aria-label="Go to homepage"
+          >
+            <Image
+              src={mobileLogoSrc}
+              alt="PHD logo"
+              fill
+              sizes="120px"
+              className="object-contain object-left"
+            />
+          </Link>
 
           <nav
             aria-label="Primary navigation"
