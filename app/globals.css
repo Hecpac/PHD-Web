@@ -89,17 +89,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-body.custom-cursor-enabled,
-body.custom-cursor-enabled * {
-  cursor: none !important;
-}
-
-@media (pointer: coarse), (prefers-reduced-motion: reduce) {
-  body.custom-cursor-enabled,
-  body.custom-cursor-enabled * {
-    cursor: auto !important;
-  }
-}
 
 body {
   padding-bottom: env(safe-area-inset-bottom);

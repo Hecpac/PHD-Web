@@ -20,8 +20,7 @@ import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { getLenisInstance } from "@/lib/lenis";
 
 const LOGO_SRC = "/logo/PHD_logo-removebg-preview.png";
-const HOME_SECTION_ID = "hero";
-const HOME_SECTION_HREF = `/#${HOME_SECTION_ID}`;
+const HOME_HREF = "/";
 const ASPECT = 3040 / 1408;
 
 type SceneBoundaryProps = {
@@ -144,8 +143,6 @@ export function FloatingLogoScene() {
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-
-      window.history.replaceState(null, "", HOME_SECTION_HREF);
     },
     [pathname],
   );
@@ -192,8 +189,8 @@ export function FloatingLogoScene() {
       )}
 
       <Link
-        href={HOME_SECTION_HREF}
-        aria-label="Premium Home Design - Go to home hero section"
+        href={HOME_HREF}
+        aria-label="Premium Home Design - Go to home"
         className="pointer-events-auto absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
         data-cursor="link"
         onClick={handleClick}
@@ -202,7 +199,7 @@ export function FloatingLogoScene() {
         onTouchStart={() => setHovered(true)}
         onTouchEnd={() => setHovered(false)}
       >
-        <span className="sr-only">Premium Home Design - Go to home hero section</span>
+        <span className="sr-only">Premium Home Design - Go to home</span>
       </Link>
     </div>
   );

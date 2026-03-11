@@ -8,11 +8,6 @@ const FloatingLogo = dynamic(
   { ssr: false },
 );
 
-const CustomCursor = dynamic(
-  () => import("@/components/ui/custom-cursor").then((mod) => mod.CustomCursor),
-  { ssr: false },
-);
-
 function shouldEnableEnhancements() {
   if (typeof window === "undefined") return false;
 
@@ -28,6 +23,9 @@ export function LazyEnhancements() {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    // Safety net: always restore the native cursor if a stale class exists.
+    document.body.classList.remove("custom-cursor-enabled");
+
     if (!shouldEnableEnhancements()) {
       return;
     }
@@ -50,7 +48,6 @@ export function LazyEnhancements() {
   return (
     <>
       <FloatingLogo />
-      <CustomCursor />
     </>
   );
 }
