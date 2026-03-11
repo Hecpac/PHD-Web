@@ -85,7 +85,7 @@ const values = [
 
 const teamStructure = [
   {
-    role: "Architecture & Design",
+    role: "Design & Planning",
     description:
       "Concept development, plan refinement, finish direction, and design intent protection across the full project lifecycle.",
   },

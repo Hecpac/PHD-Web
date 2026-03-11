@@ -335,7 +335,7 @@ export const fallbackProcessSteps: ProcessStep[] = [
     stepNumber: 2,
     title: "Concept & Cost Alignment",
     description:
-      "Architecture and builder teams align scope, systems, and cost before drawings are advanced.",
+      "Design and builder teams align scope, systems, and cost before drawings are advanced.",
     deliverables: ["Concept package", "Engineering assumptions", "Updated target budget"],
     decisionGate: "Approve schematic direction",
   },

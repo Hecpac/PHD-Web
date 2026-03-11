@@ -59,8 +59,6 @@ export function CustomCursor() {
     let currentState: CursorState = "default";
     let isVisible = false;
 
-    document.body.classList.add("custom-cursor-enabled");
-
     gsap.set(cursor, { autoAlpha: 0, scale: 1, x: -100, xPercent: -50, y: -100, yPercent: -50 });
 
     const moveX = gsap.quickTo(cursor, "x", { duration: 0, ease: "none" });
@@ -93,6 +91,7 @@ export function CustomCursor() {
 
       if (!isVisible) {
         isVisible = true;
+        document.body.classList.add("custom-cursor-enabled");
         gsap.set(cursor, { autoAlpha: 1 });
       }
 
@@ -113,6 +112,7 @@ export function CustomCursor() {
     const handleMouseLeaveWindow = () => {
       isVisible = false;
       gsap.set(cursor, { autoAlpha: 0 });
+      document.body.classList.remove("custom-cursor-enabled");
       currentState = "default";
       setCursorState("default");
     };
@@ -121,12 +121,14 @@ export function CustomCursor() {
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
     window.addEventListener("mouseleave", handleMouseLeaveWindow);
+    window.addEventListener("blur", handleMouseLeaveWindow);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("mouseleave", handleMouseLeaveWindow);
+      window.removeEventListener("blur", handleMouseLeaveWindow);
       document.body.classList.remove("custom-cursor-enabled");
       gsap.killTweensOf(cursor);
     };
