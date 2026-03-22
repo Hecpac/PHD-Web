@@ -5,7 +5,12 @@ import { BackToTop } from "@/components/layout/back-to-top";
 import { FooterHeightObserver } from "@/components/layout/footer-height-observer";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { SmoothScroll } from "@/components/layout/smooth-scroll";
+import dynamic from "next/dynamic";
+
+const SmoothScroll = dynamic(
+  () => import("@/components/layout/smooth-scroll").then((m) => m.SmoothScroll),
+  { ssr: false },
+);
 
 import { CadMode } from "@/components/ui/cad-mode";
 import { LazyEnhancements } from "@/components/ui/lazy-enhancements";
