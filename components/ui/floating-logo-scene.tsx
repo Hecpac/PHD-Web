@@ -14,7 +14,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, useTexture } from "@react-three/drei";
-import * as THREE from "three";
+import { type Group, MathUtils } from "three";
 
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { getLenisInstance } from "@/lib/lenis";
@@ -55,7 +55,7 @@ class SceneBoundary extends Component<SceneBoundaryProps, SceneBoundaryState> {
 
 function LogoMesh({ paused, hovered }: { paused: boolean; hovered: boolean }) {
   const texture = useTexture(LOGO_SRC);
-  const groupRef = useRef<THREE.Group>(null);
+  const groupRef = useRef<Group>(null);
 
   useFrame((_, delta) => {
     if (groupRef.current && !paused) {
@@ -64,14 +64,14 @@ function LogoMesh({ paused, hovered }: { paused: boolean; hovered: boolean }) {
       const targetRotationY = hovered ? 0.25 : 0;
 
       groupRef.current.scale.setScalar(
-        THREE.MathUtils.lerp(groupRef.current.scale.x, targetScale, delta * 10),
+        MathUtils.lerp(groupRef.current.scale.x, targetScale, delta * 10),
       );
-      groupRef.current.rotation.x = THREE.MathUtils.lerp(
+      groupRef.current.rotation.x = MathUtils.lerp(
         groupRef.current.rotation.x,
         targetRotationX,
         delta * 8,
       );
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(
+      groupRef.current.rotation.y = MathUtils.lerp(
         groupRef.current.rotation.y,
         targetRotationY,
         delta * 8,
