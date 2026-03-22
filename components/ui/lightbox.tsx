@@ -111,7 +111,7 @@ function LightboxContent({ images, initialIndex, onClose, shouldReduceMotion }: 
       ref={overlayRef}
       role="dialog"
       aria-modal="true"
-      aria-label="Image lightbox"
+      aria-label={`Image ${currentIndex + 1} of ${images.length}${currentImage.alt ? `: ${currentImage.alt}` : ""}`}
       className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4"
       initial={reduceMotion ? { opacity: 1 } : { opacity: 0 }}
       animate={{ opacity: 1 }}
