@@ -193,7 +193,7 @@ export function FeaturedProjectsGrid({ projects, prioritizeFirst = false, onApiC
                     <div data-hover-image className="relative h-full w-full will-change-transform">
                       <div className="relative h-full w-full motion-safe:transition-transform motion-safe:duration-[900ms] motion-safe:ease-out motion-safe:group-hover:scale-[1.05]">
                         <Image
-                          src={cardImage?.src ?? "/projects/north-dallas-courtyard-residence/hero.jpg"}
+                          src={cardImage?.src ?? "/projects/duplex/hero.jpg"}
                           alt={cardImage?.alt ?? `${project.title} in ${project.location.city}`}
                           fill
                           sizes="(min-width: 1280px) 40vw, (min-width: 1024px) 45vw, (min-width: 768px) 60vw, (min-width: 640px) 75vw, 90vw"

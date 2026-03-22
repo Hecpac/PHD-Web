@@ -735,7 +735,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     date: "2026-03-05",
     readTime: "6 min read",
     coverImage: {
-      src: "/projects/north-dallas-courtyard-residence/hero.jpg",
+      src: "/projects/pueblo/hero.jpg",
       alt: "Modern custom home in Preston Hollow",
       width: 2000,
       height: 1334,
@@ -755,7 +755,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     date: "2026-02-24",
     readTime: "7 min read",
     coverImage: {
-      src: "/projects/fort-worth-bluff-house/hero.jpg",
+      src: "/projects/pueblo/hero.jpg",
       alt: "Fort Worth Bluff House on a sloped lot",
       width: 2000,
       height: 2666,
@@ -775,7 +775,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     date: "2026-02-10",
     readTime: "6 min read",
     coverImage: {
-      src: "/projects/highland-park-tudor-revival/hero.jpg",
+      src: "/projects/gallagher/hero.jpg",
       alt: "Highland Park Tudor Revival",
       width: 2000,
       height: 1334,
@@ -795,7 +795,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     date: "2026-01-30",
     readTime: "8 min read",
     coverImage: {
-      src: "/projects/southlake-estate-retreat/open-living.jpg",
+      src: "/projects/duplex/hero.jpg",
       alt: "Warm modern interior living space",
       width: 2000,
       height: 1334,
@@ -815,7 +815,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     date: "2026-01-17",
     readTime: "7 min read",
     coverImage: {
-      src: "/projects/southlake-estate-retreat/hero.jpg",
+      src: "/projects/806-mango/hero.jpg",
       alt: "Luxury outdoor pool and patio at twilight",
       width: 2000,
       height: 1126,
@@ -835,7 +835,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     date: "2026-01-08",
     readTime: "6 min read",
     coverImage: {
-      src: "/projects/prosper-linear-pavilion/hero.jpg",
+      src: "/projects/pueblo/hero.jpg",
       alt: "Modern home exterior with native Texas landscaping",
       width: 2000,
       height: 1126,

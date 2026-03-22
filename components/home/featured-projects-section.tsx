@@ -79,7 +79,7 @@ function ProjectCapsule({ project, index }: { project: Project; index: number })
         )}
       >
         <Image
-          src={cardImage?.src ?? "/projects/north-dallas-courtyard-residence/hero.jpg"}
+          src={cardImage?.src ?? "/projects/duplex/hero.jpg"}
           alt={cardImage?.alt ?? project.title}
           fill
           className="object-cover"

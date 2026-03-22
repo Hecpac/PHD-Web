@@ -61,7 +61,7 @@ export default async function ProjectsPage() {
             <div className="grid gap-0 lg:grid-cols-12">
               <div className="relative aspect-[16/10] border-b border-line/80 lg:col-span-7 lg:aspect-auto lg:min-h-[34rem] lg:border-b-0 lg:border-r">
                 <Image
-                  src={leadProject.gallery[0]?.src ?? "/projects/royal-lane/hero.jpg"}
+                  src={leadProject.gallery[0]?.src ?? "/projects/duplex/hero.jpg"}
                   alt={leadProject.gallery[0]?.alt ?? `${leadProject.title} project image`}
                   fill
                   priority
@@ -114,7 +114,7 @@ export default async function ProjectsPage() {
               >
                 <div className="relative aspect-[16/10] border-b border-line/80">
                   <Image
-                    src={project.gallery[0]?.src ?? "/projects/royal-lane/hero.jpg"}
+                    src={project.gallery[0]?.src ?? "/projects/duplex/hero.jpg"}
                     alt={project.gallery[0]?.alt ?? `${project.title} project image`}
                     fill
                     sizes="(min-width: 1280px) 45vw, (min-width: 768px) 50vw, 95vw"
