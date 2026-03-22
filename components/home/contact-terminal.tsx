@@ -347,6 +347,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   }`}
                   role={!state.success ? "alert" : "status"}
                   aria-live="polite"
+                  aria-atomic="true"
                 >
                   {state.message}
                 </p>

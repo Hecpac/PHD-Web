@@ -19,6 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "Read what homeowners across Dallas-Fort Worth say about our design-build process, quality, and communication.",
     },
+    twitter: {
+      card: "summary_large_image",
+      site: "@PHDhomes",
+    },
     alternates: {
       canonical: `${siteUrl}/reviews`,
     },

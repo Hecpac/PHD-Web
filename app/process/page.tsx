@@ -18,6 +18,10 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "A stage-based process with decision gates for custom home design-build projects in Dallas-Fort Worth.",
     },
+    twitter: {
+      card: "summary_large_image",
+      site: "@PHDhomes",
+    },
     alternates: {
       canonical: `${siteUrl}/process`,
     },

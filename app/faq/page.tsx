@@ -19,6 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "Frequently asked questions about custom home design-build services in Dallas-Fort Worth.",
     },
+    twitter: {
+      card: "summary_large_image",
+      site: "@PHDhomes",
+    },
     alternates: {
       canonical: `${siteUrl}/faq`,
     },

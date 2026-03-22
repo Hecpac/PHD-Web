@@ -1,6 +1,8 @@
 import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 
+import { checkRateLimit } from "@/lib/rate-limit";
+
 /**
  * Webhook endpoint for Sanity on-demand revalidation
  *
@@ -13,6 +15,16 @@ import { type NextRequest, NextResponse } from "next/server";
  */
 export async function POST(request: NextRequest) {
   try {
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+      request.headers.get("x-real-ip") ??
+      "unknown";
+
+    const rl = checkRateLimit(`revalidate:${ip}`);
+    if (!rl.allowed) {
+      return NextResponse.json({ ok: false }, { status: 429 });
+    }
+
     const expectedSecret = process.env.REVALIDATE_SECRET;
 
     if (!expectedSecret) {
@@ -31,7 +43,7 @@ export async function POST(request: NextRequest) {
     revalidateTag("sanity", "max");
 
     return NextResponse.json(
-      { revalidated: true, tag: "sanity", now: Date.now() },
+      { revalidated: true, tag: "sanity" },
       { status: 200 },
     );
   } catch (error) {

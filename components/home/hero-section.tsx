@@ -209,7 +209,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                     Premium Home Design
                   </SwissTextReveal>
                 </span>
-                <div className="h-[1px] w-12 bg-white/30" />
+                <div className="h-[1px] w-12 bg-white/30" aria-hidden="true" />
               </div>
             </div>
 

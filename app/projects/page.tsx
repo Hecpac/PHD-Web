@@ -21,6 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "Explore custom home projects delivered across the Dallas-Fort Worth Metroplex.",
     },
+    twitter: {
+      card: "summary_large_image",
+      site: "@PHDhomes",
+    },
     alternates: {
       canonical: `${siteUrl}/projects`,
     },

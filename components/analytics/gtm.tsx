@@ -9,12 +9,14 @@ type Props = { id: string };
  * Render only when NEXT_PUBLIC_GTM_ID is set.
  */
 export function GoogleTagManager({ id }: Props) {
+  // Sanitize: GTM IDs are always GTM-XXXXXX format
+  const safeId = id.replace(/[^a-zA-Z0-9_-]/g, "");
   return (
     <Script
       id="gtm-init"
       strategy="afterInteractive"
       dangerouslySetInnerHTML={{
-        __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${id}');`,
+        __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${safeId}');`,
       }}
     />
   );

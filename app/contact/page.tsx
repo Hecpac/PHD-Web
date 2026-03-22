@@ -19,6 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "Start your Dallas-Fort Worth custom home intake and schedule a design-build consultation.",
     },
+    twitter: {
+      card: "summary_large_image",
+      site: "@PHDhomes",
+    },
     alternates: {
       canonical: `${siteUrl}/contact`,
     },
