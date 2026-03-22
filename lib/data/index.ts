@@ -431,7 +431,7 @@ export async function getFaqs(): Promise<FAQ[]> {
 }
 
 export async function getServiceDetails(): Promise<ServiceDetail[]> {
-  const docs = await fetchFromSanity<SanityServiceDetail[]>(serviceDetailsQuery, fallbackServiceDetails as unknown as SanityServiceDetail[]);
+  const docs = await fetchFromSanity<SanityServiceDetail[]>(serviceDetailsQuery, []);
   if (!hasSanityConfig) return fallbackServiceDetails;
 
   const normalized = (docs as SanityServiceDetail[])
