@@ -215,11 +215,11 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
 
             {/* Col 5-8: The Blueprint (List) */}
             <div className="md:col-span-4 lg:col-span-3 lg:col-start-6">
-              <h2 className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-white/60">
+              <p className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-white/60">
                 <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.1}>
                   OUR EXPERTISE
                 </SwissTextReveal>
-              </h2>
+              </p>
               <ul className="space-y-4 text-xs tracking-wide text-white/90" aria-label="Key proof points">
                 <li className="flex justify-between items-baseline">
                   <span className="text-white/60 mr-4">Focus</span> 
@@ -243,11 +243,11 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
             {/* Col 9-12: About & CTA */}
             <div className="md:col-span-4 lg:col-span-3 lg:col-start-10 flex flex-col justify-between h-full">
               <div>
-                <h2 className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-white/60">
+                <p className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-white/60">
                   <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.15}>
                     THE STUDIO
                   </SwissTextReveal>
-                </h2>
+                </p>
                 <div className="space-y-4 pr-4">
                   <p className="text-sm leading-7 text-white/85 text-pretty max-w-[34ch]">
                     <SwissTextReveal as="span" mode="line" stagger={0.1} delay={0.2}>
