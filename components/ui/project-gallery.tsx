@@ -73,7 +73,7 @@ export function ProjectGallery({ images, projectTitle, onImageClick }: ProjectGa
                   alt={image.alt}
                   width={image.width}
                   height={image.height}
-                  className="h-auto w-full object-cover"
+                  className="h-auto w-full"
                   sizes="(min-width: 1024px) 65vw, 95vw"
                   {...(idx === 0 ? { priority: true, fetchPriority: "high" as const } : {})}
                 />
