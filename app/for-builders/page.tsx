@@ -30,6 +30,10 @@ export function generateMetadata(): Metadata {
       description:
         "Permit-ready custom home floor plans, 3D renders, and full construction documents for DFW builders. 5-7 day turnaround.",
     },
+    twitter: {
+      card: "summary_large_image",
+      site: "@PHDhomes",
+    },
     alternates: {
       canonical: `${siteUrl}/for-builders`,
     },

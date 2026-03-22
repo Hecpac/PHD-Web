@@ -21,6 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "Custom home design-build service area covering Dallas, Fort Worth, Plano, Frisco, Southlake, and the entire DFW Metroplex.",
     },
+    twitter: {
+      card: "summary_large_image",
+      site: "@PHDhomes",
+    },
     alternates: {
       canonical: `${siteUrl}/dallas-fort-worth`,
     },

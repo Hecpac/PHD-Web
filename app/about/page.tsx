@@ -18,6 +18,10 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "Learn how Premium Home Design structures design, preconstruction, and project delivery for modern custom homes across DFW.",
     },
+    twitter: {
+      card: "summary_large_image",
+      site: "@PHDhomes",
+    },
     alternates: {
       canonical: `${siteUrl}/about`,
     },
