@@ -27,7 +27,7 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob: https://cdn.sanity.io",
       "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://cdn.sanity.io",
-      "frame-src 'self' https://calendly.com https://www.premiumhome.design",
+      "frame-src 'self' https://calendly.com",
       "object-src 'none'",
       "base-uri 'self'",
     ].join("; "),
