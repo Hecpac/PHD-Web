@@ -62,6 +62,14 @@ export async function POST(request: Request) {
     return new Response(JSON.stringify({ ok: false }), { status: 429 });
   }
 
+  const contentLength = parseInt(request.headers.get("content-length") ?? "0", 10);
+  if (contentLength > 50_000) {
+    return new Response(
+      JSON.stringify({ ok: false, error: "Payload too large" }),
+      { status: 413 },
+    );
+  }
+
   let body: unknown;
 
   try {
