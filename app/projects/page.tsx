@@ -31,9 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-function getCardSpan(index: number) {
-  if (index % 4 === 0) return "xl:col-span-7";
-  if (index % 4 === 1) return "xl:col-span-5";
+function getCardSpan() {
   return "xl:col-span-6";
 }
 
@@ -112,7 +110,7 @@ export default async function ProjectsPage() {
             {remainingProjects.map((project, index) => (
               <article
                 key={project.id}
-                className={`overflow-hidden border border-line bg-surface transition-colors hover:border-accent/40 ${getCardSpan(index)}`}
+                className={`overflow-hidden border border-line bg-surface transition-colors hover:border-accent/40 ${getCardSpan()}`}
               >
                 <div className="relative aspect-[16/10] border-b border-line/80">
                   <Image
