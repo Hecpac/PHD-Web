@@ -51,6 +51,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     openGraph: {
       title: `${service.title} | DFW Design-Build Services`,
       description: service.summary,
+      images: [{ url: `${siteUrl}/og-default.jpg`, alt: "Premium Home Design" }],
     },
     alternates: {
       canonical: `${siteUrl}/services/${service.slug}`,

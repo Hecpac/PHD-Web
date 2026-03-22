@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       description: `${project.summary} Located in ${project.location.display}, Dallas-Fort Worth Metroplex.`,
       url: `${siteUrl}/projects/${project.slug}`,
       ...(ogImage?.src && {
-        images: [{ url: ogImage.src, alt: ogImage.alt }],
+        images: [{ url: `${siteUrl}${ogImage.src}`, alt: ogImage.alt }],
       }),
     },
     other: {
