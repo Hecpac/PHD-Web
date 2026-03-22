@@ -65,15 +65,14 @@ export function ProjectGallery({ images, projectTitle, onImageClick }: ProjectGa
               <button
                 type="button"
                 onClick={() => onImageClick?.(idx)}
-                className="block w-full focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
+                className="relative block w-full aspect-[3/2] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
                 aria-label={`View ${image.alt} in lightbox`}
               >
                 <Image
                   src={image.src}
                   alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  className="h-auto w-full"
+                  fill
+                  className="object-cover"
                   sizes="(min-width: 1024px) 65vw, 95vw"
                   {...(idx === 0 ? { priority: true, fetchPriority: "high" as const } : {})}
                 />
