@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { gsap } from "@/lib/gsap";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -35,6 +36,7 @@ function resolveCursorState(value?: string): CursorState {
 export function CustomCursor() {
   const [isCoarsePointer, setIsCoarsePointer] = useState<boolean | null>(null);
   const [cursorState, setCursorState] = useState<CursorState>("default");
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(pointer: coarse)");
@@ -47,7 +49,7 @@ export function CustomCursor() {
   }, []);
 
   useEffect(() => {
-    if (isCoarsePointer !== false) {
+    if (isCoarsePointer !== false || prefersReducedMotion) {
       return;
     }
 
@@ -132,9 +134,9 @@ export function CustomCursor() {
       document.body.classList.remove("custom-cursor-enabled");
       gsap.killTweensOf(cursor);
     };
-  }, [isCoarsePointer]);
+  }, [isCoarsePointer, prefersReducedMotion]);
 
-  if (isCoarsePointer !== false) {
+  if (isCoarsePointer !== false || prefersReducedMotion) {
     return null;
   }
 
