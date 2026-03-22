@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: false }, { status: 401 });
     }
 
-    revalidateTag("sanity");
+    revalidateTag("sanity", "max");
 
     return NextResponse.json(
       { revalidated: true, tag: "sanity" },
