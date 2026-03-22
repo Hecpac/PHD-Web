@@ -1,5 +1,7 @@
 import { headers } from "next/headers";
 
+import { checkRateLimit } from "@/lib/rate-limit";
+
 type IncomingEvent = {
   event: string;
   timestamp?: number;
@@ -50,6 +52,16 @@ async function forwardToWebhook(payload: Record<string, unknown>): Promise<void>
 }
 
 export async function POST(request: Request) {
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    request.headers.get("x-real-ip") ??
+    "unknown";
+
+  const rl = checkRateLimit(`analytics:${ip}`);
+  if (!rl.allowed) {
+    return new Response(JSON.stringify({ ok: false }), { status: 429 });
+  }
+
   let body: unknown;
 
   try {
@@ -63,10 +75,6 @@ export async function POST(request: Request) {
   }
 
   const headersList = await headers();
-  const ip =
-    headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    headersList.get("x-real-ip") ??
-    "anonymous";
 
   const payload = {
     ...body,
