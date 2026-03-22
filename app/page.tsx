@@ -36,6 +36,17 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
 
   return {
+    title: { absolute: "Premium Home Design | Custom Home Builder in Dallas-Fort Worth" },
+    description:
+      "Design-build firm delivering custom homes across the Dallas-Fort Worth Metroplex. Integrated planning, transparent budgets, and milestone-verified construction.",
+    keywords: [
+      "custom home builder",
+      "design-build",
+      "Dallas-Fort Worth",
+      "DFW custom homes",
+      "luxury homes",
+      "new construction",
+    ],
     alternates: {
       canonical: siteUrl,
     },
