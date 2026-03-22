@@ -13,6 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "About | Premium Home Design",
     description:
       "Learn how Premium Home Design structures design, preconstruction, and project delivery for modern custom homes across DFW.",
+    keywords: ["about", "design-build", "custom homes", "Dallas-Fort Worth", "architecture"],
     openGraph: {
       title: "About | Premium Home Design",
       description:

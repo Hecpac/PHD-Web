@@ -13,6 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Process | Blueprint for DFW Projects",
     description:
       "A stage-based process with decision gates for custom home design-build projects in Dallas-Fort Worth.",
+    keywords: ["process", "design-build process", "decision gates", "custom home building", "DFW"],
     openGraph: {
       title: "Process | Blueprint for DFW Projects",
       description:

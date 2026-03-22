@@ -25,6 +25,7 @@ export function generateMetadata(): Metadata {
     title: "Architectural Drafting Services Dallas Fort Worth | Outsourced Construction Documents",
     description:
       "Outsource permit-ready construction documents, custom home floor plans, 3D renders, and full CDs to a DFW-exclusive drafting partner. 5-7 day turnaround for Dallas-Fort Worth builders.",
+    keywords: ["B2B", "drafting services", "construction documents", "architects", "builders"],
     openGraph: {
       title: "Architectural Drafting Services Dallas Fort Worth | Outsourced Construction Documents",
       description:

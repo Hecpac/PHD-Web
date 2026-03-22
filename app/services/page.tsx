@@ -20,6 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Services | Capabilities for DFW Homes",
     description:
       "Capabilities and deliverables for design-forward custom home projects in Dallas-Fort Worth.",
+    keywords: ["services", "custom home design", "construction management", "DFW"],
     openGraph: {
       title: "Services | Capabilities for DFW Homes",
       description:

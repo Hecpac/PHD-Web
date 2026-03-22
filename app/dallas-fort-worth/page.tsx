@@ -16,6 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Dallas-Fort Worth Service Area",
     description:
       "Custom home design-build service area covering Dallas, Fort Worth, Plano, Frisco, Southlake, and the entire DFW Metroplex.",
+    keywords: ["Dallas-Fort Worth", "DFW", "service area", "Dallas", "Fort Worth", "Plano", "Frisco"],
     openGraph: {
       title: "Dallas-Fort Worth Service Area | DFW Modern Design-Build",
       description:

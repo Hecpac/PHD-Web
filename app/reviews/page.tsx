@@ -14,6 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Reviews | Client Testimonials",
     description:
       "Read what homeowners across Dallas-Fort Worth say about our design-build process, quality, and communication.",
+    keywords: ["reviews", "testimonials", "client feedback", "custom homes", "DFW"],
     openGraph: {
       title: "Reviews | DFW Custom Home Client Testimonials",
       description:

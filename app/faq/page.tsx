@@ -14,6 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "FAQ | Dallas-Fort Worth Custom Homes",
     description:
       "Frequently asked questions about custom home design-build services in Dallas-Fort Worth.",
+    keywords: ["FAQ", "custom home questions", "design-build", "DFW"],
     openGraph: {
       title: "FAQ | Dallas-Fort Worth Custom Homes",
       description:

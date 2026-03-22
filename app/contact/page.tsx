@@ -14,6 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Contact | Schedule a DFW Consultation",
     description:
       "Start your Dallas-Fort Worth custom home intake and schedule a design-build consultation.",
+    keywords: ["contact", "consultation", "design-build inquiry", "DFW custom homes"],
     openGraph: {
       title: "Contact | Schedule a DFW Consultation",
       description:
