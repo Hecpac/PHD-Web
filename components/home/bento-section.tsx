@@ -12,8 +12,8 @@ const bentoItems: BentoItem[] = [
       "Design, engineering, and construction managed under one agreement. One team, one schedule, one point of accountability across the DFW Metroplex.",
     span: "2x2",
     variant: "image",
-    imageSrc: "/projects/1300-roxkliff/open-living.jpg",
-    imageAlt: "Kitchen and living area in a new construction custom home in Plano, TX",
+    imageSrc: "/projects/duplex/kitchen-dining.jpg",
+    imageAlt: "Open kitchen and dining with marble island in a modern duplex in Dallas",
   },
   {
     id: "bento-projects",
@@ -43,8 +43,8 @@ const bentoItems: BentoItem[] = [
       "Budget alignment, scope verification, and owner approval before advancing. No surprises, no ambiguity.",
     span: "2x1",
     variant: "image",
-    imageSrc: "/projects/north-dallas-courtyard-residence/hero.jpg",
-    imageAlt: "Modern courtyard residence exterior",
+    imageSrc: "/projects/duplex/hero.jpg",
+    imageAlt: "Modern duplex front elevation in East Dallas",
   },
   {
     id: "bento-quality",
@@ -63,8 +63,8 @@ const bentoItems: BentoItem[] = [
       "Every trade partner, code requirement, and site condition is calibrated for DFW. We don't spread thin outside the Metroplex.",
     span: "1x1",
     variant: "image",
-    imageSrc: "/projects/806-mango/exterior-rear.jpg",
-    imageAlt: "Rear exterior of a modern Dallas-Fort Worth home",
+    imageSrc: "/projects/806-mango/rear-pool.jpg",
+    imageAlt: "Rear exterior with pool of a modern home in Coppell, DFW",
   },
 ];
 
