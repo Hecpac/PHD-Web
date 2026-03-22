@@ -56,7 +56,7 @@ export function SwissCard({
       ref={cardRef}
       className={cn(
         "group relative overflow-hidden border border-line bg-surface p-6 transition-[border-color] duration-150",
-        isInteractive && "cursor-pointer mi-card-lift mi-press hover:border-accent/30",
+        isInteractive && "cursor-pointer mi-card-lift mi-press hover:border-accent/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
         className,
       )}
       onMouseMove={handleMouseMove}
