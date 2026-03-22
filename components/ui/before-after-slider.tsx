@@ -77,10 +77,17 @@ export function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
+      role="slider"
+      tabIndex={0}
+      aria-label="Before and after comparison"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={Math.round(sliderPosition)}
       className={cn(
         "relative w-full overflow-hidden select-none touch-none group",
         "aspect-[4/3] md:aspect-[16/9] rounded-xl border border-line bg-surface-2",
         "[container-type:inline-size]", // Enable container queries
+        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
         className
       )}
       onMouseDown={(e) => {
@@ -90,6 +97,16 @@ export function BeforeAfterSlider({
       onTouchStart={(e) => {
         setIsDragging(true);
         handleMove(e.touches[0].clientX);
+      }}
+      onKeyDown={(e) => {
+        const step = 5; // 5% per keypress
+        if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+          e.preventDefault();
+          setSliderPosition((prev) => Math.max(0, prev - step));
+        } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+          e.preventDefault();
+          setSliderPosition((prev) => Math.min(100, prev + step));
+        }
       }}
     >
       {/* Background (After) Image - e.g. 3D Render */}
