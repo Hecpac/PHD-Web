@@ -9,7 +9,6 @@ import dynamic from "next/dynamic";
 
 const SmoothScroll = dynamic(
   () => import("@/components/layout/smooth-scroll").then((m) => m.SmoothScroll),
-  { ssr: false },
 );
 
 import { CadMode } from "@/components/ui/cad-mode";
