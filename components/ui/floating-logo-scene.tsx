@@ -172,15 +172,15 @@ export function FloatingLogoScene() {
     <div className={cn(
       "pointer-events-none fixed bottom-20 right-3 z-[85] md:bottom-24 md:right-6",
       isForBuilders
-        ? "h-24 w-36 md:h-40 md:w-60"
+        ? "h-28 w-44 md:h-48 md:w-72"
         : "h-16 w-36 md:h-28 md:w-64",
     )}>
-      <div className={cn(
-        "pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[100%] blur-[32px]",
-        isForBuilders
-          ? "h-[85%] w-[85%] bg-black/80"
-          : "h-[80%] w-[90%] bg-white/90",
-      )} />
+      {isForBuilders && (
+        <div className="pointer-events-none absolute inset-0 rounded-2xl bg-black/70" />
+      )}
+      {!isForBuilders && (
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white/90 blur-[32px]" />
+      )}
 
       {shouldUseStaticLogo ? (
         fallbackLogo
