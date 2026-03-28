@@ -18,6 +18,7 @@ import { type Group, MathUtils } from "three";
 
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { getLenisInstance } from "@/lib/lenis";
+import { cn } from "@/lib/utils";
 
 const LOGO_DEFAULT = "/logo/PHD_logo-removebg-preview.png";
 const LOGO_DRAFTING = "/logo/PHD_drafting_logo.png";
@@ -168,7 +169,12 @@ export function FloatingLogoScene() {
   const shouldUseStaticLogo = !canRenderScene || sceneFailed;
 
   return (
-    <div className="pointer-events-none fixed bottom-20 right-3 z-[85] h-16 w-36 md:bottom-24 md:right-6 md:h-28 md:w-64">
+    <div className={cn(
+      "pointer-events-none fixed bottom-20 right-3 z-[85] md:bottom-24 md:right-6",
+      isForBuilders
+        ? "h-24 w-36 md:h-40 md:w-60"
+        : "h-16 w-36 md:h-28 md:w-64",
+    )}>
       {!isForBuilders && (
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white/90 blur-[32px]" />
       )}
