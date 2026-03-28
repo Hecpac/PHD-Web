@@ -22,7 +22,8 @@ import { getLenisInstance } from "@/lib/lenis";
 const LOGO_DEFAULT = "/logo/PHD_logo-removebg-preview.png";
 const LOGO_DRAFTING = "/logo/PHD_drafting_logo.png";
 const HOME_HREF = "/";
-const ASPECT = 3040 / 1408;
+const ASPECT_DEFAULT = 3040 / 1408;
+const ASPECT_DRAFTING = 1536 / 1024;
 
 type SceneBoundaryProps = {
   children: ReactNode;
@@ -54,7 +55,7 @@ class SceneBoundary extends Component<SceneBoundaryProps, SceneBoundaryState> {
   }
 }
 
-function LogoMesh({ paused, hovered, logoSrc }: { paused: boolean; hovered: boolean; logoSrc: string }) {
+function LogoMesh({ paused, hovered, logoSrc, aspect }: { paused: boolean; hovered: boolean; logoSrc: string; aspect: number }) {
   const texture = useTexture(logoSrc);
   const groupRef = useRef<Group>(null);
 
@@ -83,7 +84,7 @@ function LogoMesh({ paused, hovered, logoSrc }: { paused: boolean; hovered: bool
   const mesh = (
     <group ref={groupRef}>
       <mesh>
-        <planeGeometry args={[ASPECT, 1]} />
+        <planeGeometry args={[aspect, 1]} />
         <meshBasicMaterial
           map={texture}
           transparent
@@ -128,6 +129,7 @@ export function FloatingLogoScene() {
   const pathname = usePathname();
   const isForBuilders = pathname.startsWith("/for-builders");
   const logoSrc = isForBuilders ? LOGO_DRAFTING : LOGO_DEFAULT;
+  const logoAspect = isForBuilders ? ASPECT_DRAFTING : ASPECT_DEFAULT;
   const logoAlt = isForBuilders ? "Premium Home Drafting" : "Premium Home Design";
   const [hovered, setHovered] = useState(false);
   const [sceneFailed, setSceneFailed] = useState(false);
@@ -188,7 +190,7 @@ export function FloatingLogoScene() {
             <directionalLight position={[-2, -2, 3]} intensity={2.0} />
 
             <Suspense fallback={null}>
-              <LogoMesh paused={shouldReduceMotion} hovered={hovered} logoSrc={logoSrc} />
+              <LogoMesh paused={shouldReduceMotion} hovered={hovered} logoSrc={logoSrc} aspect={logoAspect} />
             </Suspense>
           </Canvas>
         </SceneBoundary>
