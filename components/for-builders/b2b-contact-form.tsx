@@ -21,7 +21,7 @@ const VOLUME_OPTIONS = [
 const SERVICE_OPTIONS = [
   { label: "Floor Plans", name: "service_floor_plans" },
   { label: "3D Renders", name: "service_3d_renders" },
-  { label: "Full CDs", name: "service_full_cds" },
+  { label: "Construction Docs", name: "service_construction_docs" },
   { label: "Permit Support", name: "service_permit_support" },
   { label: "Design from Scratch", name: "service_design_scratch" },
 ] as const;

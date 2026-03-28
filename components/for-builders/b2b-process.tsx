@@ -40,11 +40,11 @@ const steps: Step[] = [
     number: "03",
     title: "Construction Documents",
     description:
-      "Full CD sets including structural coordination, MEP layouts, sections, and details. All documents are formatted for your permit jurisdiction.",
+      "Complete drawing sets including structural coordination, MEP layouts, sections, and details. Delivered as 2 printed 11×17 sets plus PDF via email, formatted for your permit jurisdiction.",
     deliverables: [
-      "Complete CD package",
+      "2 printed plan sets (11×17)",
+      "PDF package via email",
       "Structural coordination sheets",
-      "MEP layout plans",
     ],
   },
   {

@@ -20,7 +20,7 @@ export function SiteFooter() {
       <div className="container-swiss py-12 md:py-14">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="space-y-5 lg:col-span-5">
-            <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">DFW Only</p>
+            <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">DFW & Beyond</p>
             <h2 className="type-title text-ink">
               Design-first custom homes across Dallas-Fort Worth.
             </h2>

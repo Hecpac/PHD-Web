@@ -2,10 +2,9 @@ import { BadgeCheck } from "lucide-react";
 
 const CREDENTIALS = [
   "DFW Permit Experts",
-  "5-7 Day Turnaround",
-  "AutoCAD & Revit",
-  "White-Label Ready",
-  "60+ Homes Documented",
+  "7-10 Day Turnaround",
+  "PDF & Print Delivery",
+  "835+ Homes Documented",
 ] as const;
 
 export function BuilderTrustBar() {

@@ -19,7 +19,8 @@ import { type Group, MathUtils } from "three";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { getLenisInstance } from "@/lib/lenis";
 
-const LOGO_SRC = "/logo/PHD_logo-removebg-preview.png";
+const LOGO_DEFAULT = "/logo/PHD_logo-removebg-preview.png";
+const LOGO_DRAFTING = "/logo/PHD_drafting_logo.png";
 const HOME_HREF = "/";
 const ASPECT = 3040 / 1408;
 
@@ -53,8 +54,8 @@ class SceneBoundary extends Component<SceneBoundaryProps, SceneBoundaryState> {
   }
 }
 
-function LogoMesh({ paused, hovered }: { paused: boolean; hovered: boolean }) {
-  const texture = useTexture(LOGO_SRC);
+function LogoMesh({ paused, hovered, logoSrc }: { paused: boolean; hovered: boolean; logoSrc: string }) {
+  const texture = useTexture(logoSrc);
   const groupRef = useRef<Group>(null);
 
   useFrame((_, delta) => {
@@ -125,6 +126,9 @@ function canCreateWebGlContext() {
 export function FloatingLogoScene() {
   const shouldReduceMotion = useReducedMotion();
   const pathname = usePathname();
+  const isForBuilders = pathname.startsWith("/for-builders");
+  const logoSrc = isForBuilders ? LOGO_DRAFTING : LOGO_DEFAULT;
+  const logoAlt = isForBuilders ? "Premium Home Drafting" : "Premium Home Design";
   const [hovered, setHovered] = useState(false);
   const [sceneFailed, setSceneFailed] = useState(false);
   const canRenderScene = useMemo(() => canCreateWebGlContext(), []);
@@ -150,8 +154,8 @@ export function FloatingLogoScene() {
   const fallbackLogo = (
     <div className="relative z-10 flex h-full w-full items-center justify-center px-3 py-2">
       <Image
-        src={LOGO_SRC}
-        alt="Premium Home Design"
+        src={logoSrc}
+        alt={logoAlt}
         fill
         className="object-contain"
         sizes="256px"
@@ -182,7 +186,7 @@ export function FloatingLogoScene() {
             <directionalLight position={[-2, -2, 3]} intensity={2.0} />
 
             <Suspense fallback={null}>
-              <LogoMesh paused={shouldReduceMotion} hovered={hovered} />
+              <LogoMesh paused={shouldReduceMotion} hovered={hovered} logoSrc={logoSrc} />
             </Suspense>
           </Canvas>
         </SceneBoundary>
@@ -190,7 +194,7 @@ export function FloatingLogoScene() {
 
       <Link
         href={HOME_HREF}
-        aria-label="Premium Home Design - Go to home"
+        aria-label={`${logoAlt} - Go to home`}
         className="pointer-events-auto absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
         data-cursor="link"
         onClick={handleClick}
@@ -199,7 +203,7 @@ export function FloatingLogoScene() {
         onTouchStart={() => setHovered(true)}
         onTouchEnd={() => setHovered(false)}
       >
-        <span className="sr-only">Premium Home Design - Go to home</span>
+        <span className="sr-only">{logoAlt} - Go to home</span>
       </Link>
     </div>
   );

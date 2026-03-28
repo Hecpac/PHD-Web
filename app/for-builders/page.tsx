@@ -24,12 +24,12 @@ export function generateMetadata(): Metadata {
   return {
     title: "Architectural Drafting Services Dallas Fort Worth | Outsourced Construction Documents",
     description:
-      "Outsource permit-ready construction documents, custom home floor plans, 3D renders, and full CDs to a DFW-exclusive drafting partner. 5-7 day turnaround for Dallas-Fort Worth builders.",
+      "Outsource permit-ready construction documents, custom home floor plans, and 3D renders to a DFW drafting partner. 7-10 day turnaround for Dallas-Fort Worth builders.",
     keywords: ["B2B", "drafting services", "construction documents", "architects", "builders"],
     openGraph: {
       title: "Architectural Drafting Services Dallas Fort Worth | Outsourced Construction Documents",
       description:
-        "Permit-ready custom home floor plans, 3D renders, and full construction documents for DFW builders. 5-7 day turnaround.",
+        "Permit-ready custom home floor plans, 3D renders, and construction documents for DFW builders. 7-10 day turnaround.",
     },
     twitter: {
       card: "summary_large_image",
@@ -100,15 +100,11 @@ const VALUE_PROPS = [
   },
   {
     title: "Fast Turnaround",
-    description: "Schematic sets in 5–7 days. Full CDs in 2–3 weeks depending on scope.",
+    description: "Schematic sets delivered in 7–10 business days.",
   },
   {
     title: "Builder-Friendly Format",
-    description: "Documents delivered in AutoCAD, Revit, or PDF — whatever your field team prefers.",
-  },
-  {
-    title: "White-Label Ready",
-    description: "All deliverables can be branded with your company title block and logo.",
+    description: "Plans delivered as printed 11×17 sets and PDF via email — ready for the field.",
   },
 ] as const;
 
@@ -125,25 +121,13 @@ const B2B_FAQS = [
     id: "turnaround",
     title: "What's the typical turnaround time?",
     content:
-      "Schematic sets are delivered in 5–7 business days. Full construction document packages take 2–3 weeks depending on complexity and coordination requirements.",
+      "Schematic sets are delivered in 7–10 business days. We work at the client's pace — no phase moves forward until the current one is fully approved.",
   },
   {
     id: "revisions",
     title: "How are revisions handled?",
     content:
-      "Each project includes one round of revisions at the schematic phase and one at the CD phase. Additional revision rounds are available at a flat hourly rate agreed upfront.",
-  },
-  {
-    id: "software",
-    title: "What software do you use?",
-    content:
-      "We work primarily in AutoCAD and Revit. Files are delivered in your preferred format — DWG, RVT, or PDF. We can also adapt to Chief Architect if needed.",
-  },
-  {
-    id: "white-label",
-    title: "Can deliverables be white-labeled?",
-    content:
-      "Yes. All documents can use your company title block, logo, and branding. Your clients will never see our name on the drawings.",
+      "We work at the client's pace. We do not move forward to the next phase until the current one is fully approved, ensuring complete satisfaction at every step.",
   },
   {
     id: "minimum",
@@ -256,7 +240,7 @@ export default function ForBuildersPage() {
         <Container swiss className="space-y-8">
           <SectionHeading
             eyebrow="FAQ"
-            title="Common questions from builders"
+            title="Common questions"
             description="Straight answers on pricing, turnaround, and how the partnership works."
           />
 

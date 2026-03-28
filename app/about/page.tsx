@@ -49,7 +49,7 @@ const principles = [
 
 const differentiators = [
   {
-    stat: "60+",
+    stat: "835+",
     label: "Custom homes delivered",
     detail: "Across Dallas, Fort Worth, Frisco, Southlake, Prosper, and Highland Park.",
   },

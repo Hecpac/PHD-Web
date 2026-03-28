@@ -10,9 +10,9 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
 const STATS = [
-  { value: "60+", label: "homes documented" },
+  { value: "835+", label: "homes documented" },
   { value: "94%", label: "on-time delivery" },
-  { value: "DFW", label: "exclusive" },
+  { value: "DFW", label: "& beyond" },
 ] as const;
 
 export function B2BHero() {

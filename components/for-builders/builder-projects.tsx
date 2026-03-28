@@ -14,7 +14,7 @@ const BUILDER_PROJECTS = [
     sqFt: "4,200",
     turnaround: "14 days",
     image: "/for-builders/projects/project-1.jpg",
-    services: ["Floor Plans", "Full CDs", "Permit Support"],
+    services: ["Floor Plans", "Construction Docs", "Permit Support"],
   },
   {
     title: "Modern Family Home",
@@ -30,7 +30,7 @@ const BUILDER_PROJECTS = [
     sqFt: "6,800",
     turnaround: "21 days",
     image: "/hectorpachano_architectural_floor_plan_3D_isometric_view_mode_2f29cc4b-8226-422c-9f1a-7f98ce131593_1.png",
-    services: ["Floor Plans", "3D Renders", "Full CDs", "MEP"],
+    services: ["Floor Plans", "3D Renders", "Construction Docs", "MEP"],
   },
   {
     title: "Transitional Custom",
@@ -128,8 +128,8 @@ export function BuilderProjectsShowcase() {
       <Container swiss className="space-y-8">
         <SectionHeading
           eyebrow="Builder Projects"
-          title="Construction documents delivered for DFW custom homes"
-          description="Recent documentation packages produced for local builders — from schematic floor plans to full permit-ready CDs."
+          title="Drafting packages delivered for DFW custom homes"
+          description="Recent documentation packages produced for local builders — from schematic floor plans to permit-ready construction documents."
         />
 
         <div className="flex flex-col gap-10 md:gap-24 relative pb-10">

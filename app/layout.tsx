@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     default: "Premium Home Design | Custom Home Builder in Dallas-Fort Worth",
     template: `%s | ${siteConfig.name}`,
   },
-  description: "Architecture-first custom home builder serving Dallas-Fort Worth. Design-build delivery with decision-gated planning, open-book budgeting, and 60+ homes delivered.",
+  description: "Architecture-first custom home builder serving Dallas-Fort Worth. Design-build delivery with decision-gated planning, open-book budgeting, and 835+ homes delivered.",
   robots: {
     index: true,
     follow: true,
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Premium Home Design | Custom Homes in Dallas-Fort Worth",
-    description: "Architecture-first design-build. 60+ homes delivered across DFW with decision-gated planning.",
+    description: "Architecture-first design-build. 835+ homes delivered across DFW with decision-gated planning.",
     url: getSiteUrl(),
     siteName: siteConfig.name,
     type: "website",
@@ -87,7 +87,7 @@ export const metadata: Metadata = {
     site: "@PHDhomes",
     creator: "@PHDhomes",
     title: "Premium Home Design | Custom Homes in Dallas-Fort Worth",
-    description: "Architecture-first design-build. 60+ homes delivered across DFW with decision-gated planning.",
+    description: "Architecture-first design-build. 835+ homes delivered across DFW with decision-gated planning.",
     images: ["/og-default.jpg"],
   },
 };

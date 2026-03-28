@@ -227,7 +227,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                 </li>
                 <li className="flex justify-between items-baseline">
                   <span className="text-white/60 mr-4">Delivery</span> 
-                  <span className="text-right">60+ Projects Completed</span>
+                  <span className="text-right">835+ Projects Completed</span>
                 </li>
                 <li className="flex justify-between items-baseline">
                   <span className="text-white/60 mr-4">Approach</span> 
@@ -255,8 +255,8 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                     </SwissTextReveal>
                   </p>
                   <ul className="flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.08em] text-white/80" aria-label="Key trust signals">
-                    <li className="rounded-full border border-white/15 bg-white/8 px-2.5 py-1">DFW only</li>
-                    <li className="rounded-full border border-white/15 bg-white/8 px-2.5 py-1">60+ projects</li>
+                    <li className="rounded-full border border-white/15 bg-white/8 px-2.5 py-1">DFW & beyond</li>
+                    <li className="rounded-full border border-white/15 bg-white/8 px-2.5 py-1">835+ projects</li>
                     <li className="rounded-full border border-white/15 bg-white/8 px-2.5 py-1">Response in 1 business day</li>
                   </ul>
                 </div>
