@@ -176,7 +176,7 @@ export function FloatingLogoScene() {
         : "h-16 w-36 md:h-28 md:w-64",
     )}>
       {isForBuilders && (
-        <div className="pointer-events-none absolute inset-0 rounded-2xl bg-black/70" />
+        <div className="pointer-events-none absolute inset-[-16px] rounded-[100%] bg-black/70 blur-[20px]" />
       )}
       {!isForBuilders && (
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white/90 blur-[32px]" />
