@@ -175,7 +175,12 @@ export function FloatingLogoScene() {
         ? "h-24 w-36 md:h-40 md:w-60"
         : "h-16 w-36 md:h-28 md:w-64",
     )}>
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white/90 blur-[32px]" />
+      <div className={cn(
+        "pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[100%] blur-[32px]",
+        isForBuilders
+          ? "h-[85%] w-[85%] bg-black/80"
+          : "h-[80%] w-[90%] bg-white/90",
+      )} />
 
       {shouldUseStaticLogo ? (
         fallbackLogo
