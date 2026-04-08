@@ -112,6 +112,30 @@ const VALUE_PROPS = [
 
 const B2B_FAQS = [
   {
+    id: "services",
+    title: "What services do you provide?",
+    content:
+      "We offer custom home plans, detailed construction drawings, and photorealistic 3D visualizations. We also assist with material selections, design direction, and builder coordination.",
+  },
+  {
+    id: "builders",
+    title: "Do you work with builders?",
+    content:
+      "Yes, we regularly partner with builders as their design and drafting team, providing seamless support from concept to build-ready plans.",
+  },
+  {
+    id: "design-decisions",
+    title: "Can you help with design decisions?",
+    content:
+      "Absolutely. We guide clients through layout, materials, and overall design direction to ensure a cohesive and functional result.",
+  },
+  {
+    id: "differentiator",
+    title: "What makes you different?",
+    content:
+      "We combine design, drafting, and real construction experience, allowing us to create plans that are not only beautiful but also practical and buildable.",
+  },
+  {
     id: "pricing",
     title: "How is pricing structured?",
     content:
