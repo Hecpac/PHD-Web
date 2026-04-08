@@ -138,17 +138,24 @@ export function FloatingLogoScene() {
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (pathname !== "/") {
+      const lenis = getLenisInstance();
+
+      if (pathname === "/") {
+        e.preventDefault();
+        if (lenis) {
+          lenis.scrollTo(0);
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
         return;
       }
 
-      e.preventDefault();
-
-      const lenis = getLenisInstance();
+      // Navigating to "/" from another route. Lenis is a global instance that
+      // persists across soft navigations, so without this reset its internal
+      // animatedScroll leaks from the previous page and the home lands mid-scroll
+      // instead of the hero. Jump Lenis to 0 immediately and let <Link> navigate.
       if (lenis) {
-        lenis.scrollTo(0);
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        lenis.scrollTo(0, { immediate: true, force: true });
       }
     },
     [pathname],
