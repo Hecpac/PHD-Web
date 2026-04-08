@@ -138,12 +138,14 @@ export function FloatingLogoScene() {
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
+      // Only intercept when already on home — smooth-scroll the current page
+      // to the hero instead of a no-op navigation. For every other route, let
+      // <Link> navigate normally; SmoothScroll resets Lenis on route change.
       if (pathname !== "/") {
         return;
       }
 
       e.preventDefault();
-
       const lenis = getLenisInstance();
       if (lenis) {
         lenis.scrollTo(0);
