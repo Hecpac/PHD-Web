@@ -156,13 +156,6 @@ select {
   padding-block: var(--section-padding-md);
 }
 
-@supports (content-visibility: auto) {
-  .content-auto {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 900px;
-  }
-}
-
 .text-reading {
   max-width: var(--reading-width);
 }

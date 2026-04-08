@@ -61,3 +61,7 @@ public/Projects 2/
 
 # client correction screenshots
 /Correcciones/
+
+# visual audit artifacts (scripts/devils-advocate-audit.ts)
+/.devils-advocate/
+/test-results/

@@ -44,9 +44,9 @@ export function LeadMagnetBanner({ className, compact = false }: LeadMagnetBanne
   return (
     <section className={cn("rounded-xl border border-line bg-surface p-4 sm:p-6", className)}>
       <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Free Guide</p>
-      <h3 className="mt-2 text-xl font-semibold tracking-tight text-ink">
+      <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">
         2026 Cost & Timeline Guide to Custom Homes in DFW
-      </h3>
+      </h2>
       <p className="mt-2 text-sm leading-6 text-muted">
         Get the planning framework we use with clients who are 6–12 months away from breaking ground.
       </p>
