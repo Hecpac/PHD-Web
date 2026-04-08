@@ -49,12 +49,11 @@ for (const route of START_ROUTES) {
 
     // Assertions
     const scrollAfter = await page.evaluate(() => window.scrollY);
-    const heroVisible = await page.evaluate(() => {
+    const heroRect = await page.evaluate(() => {
       const hero = document.getElementById("hero");
-      if (!hero) return { found: false };
+      if (!hero) return null;
       const rect = hero.getBoundingClientRect();
       return {
-        found: true,
         top: Math.round(rect.top),
         bottom: Math.round(rect.bottom),
         height: Math.round(rect.height),
@@ -64,12 +63,12 @@ for (const route of START_ROUTES) {
     console.log(`[${route}]`, {
       scrollBefore,
       scrollAfter,
-      heroVisible,
+      heroRect,
     });
 
-    expect(heroVisible.found).toBe(true);
-    // Hero must be at viewport top (<=50px tolerance for margins)
-    expect(Math.abs(heroVisible.top)).toBeLessThanOrEqual(80);
+    expect(heroRect).not.toBeNull();
+    // Hero must be at viewport top (<=80px tolerance for sticky header)
+    expect(Math.abs(heroRect!.top)).toBeLessThanOrEqual(80);
     // scrollY must be at top (tolerance for sticky header offset)
     expect(scrollAfter).toBeLessThan(100);
   });
