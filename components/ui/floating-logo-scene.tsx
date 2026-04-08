@@ -11,7 +11,7 @@ import {
   type ReactNode,
 } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, useTexture } from "@react-three/drei";
 import { type Group, MathUtils } from "three";
@@ -128,6 +128,7 @@ function canCreateWebGlContext() {
 export function FloatingLogoScene() {
   const shouldReduceMotion = useReducedMotion();
   const pathname = usePathname();
+  const router = useRouter();
   const isForBuilders = pathname.startsWith("/for-builders");
   const logoSrc = isForBuilders ? LOGO_DRAFTING : LOGO_DEFAULT;
   const logoAspect = isForBuilders ? ASPECT_DRAFTING : ASPECT_DEFAULT;
@@ -138,10 +139,10 @@ export function FloatingLogoScene() {
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
-      const lenis = getLenisInstance();
+      e.preventDefault();
 
       if (pathname === "/") {
-        e.preventDefault();
+        const lenis = getLenisInstance();
         if (lenis) {
           lenis.scrollTo(0);
         } else {
@@ -150,15 +151,32 @@ export function FloatingLogoScene() {
         return;
       }
 
-      // Navigating to "/" from another route. Lenis is a global instance that
-      // persists across soft navigations, so without this reset its internal
-      // animatedScroll leaks from the previous page and the home lands mid-scroll
-      // instead of the hero. Jump Lenis to 0 immediately and let <Link> navigate.
-      if (lenis) {
-        lenis.scrollTo(0, { immediate: true, force: true });
-      }
+      // Navigating to "/" from another route requires beating two races:
+      //   1. Lenis is a global instance that persists across soft navigations,
+      //      so its internal animatedScroll leaks from the previous page and
+      //      the home lands mid-scroll instead of at the hero.
+      //   2. Next.js's default scroll restoration can re-apply a cached scroll
+      //      position if the user has visited "/" before in this session.
+      //
+      // Force scroll=0 synchronously, disable Next.js's own scroll reset via
+      // router.push({ scroll: false }), and re-assert scroll=0 on the next
+      // animation frame to catch any late state from Lenis's RAF loop.
+      const resetScroll = () => {
+        const l = getLenisInstance();
+        if (l) {
+          l.scrollTo(0, { immediate: true, force: true });
+        }
+        window.scrollTo(0, 0);
+      };
+
+      resetScroll();
+      router.push(HOME_HREF, { scroll: false });
+      requestAnimationFrame(() => {
+        resetScroll();
+        requestAnimationFrame(resetScroll);
+      });
     },
-    [pathname],
+    [pathname, router],
   );
 
   const fallbackLogo = (
