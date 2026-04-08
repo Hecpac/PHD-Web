@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
 import { gsap, ScrollTrigger } from "@/lib/gsap";
@@ -20,6 +21,8 @@ import { setLenisInstance } from "@/lib/lenis";
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
   const rafCallbackRef = useRef<((time: number) => void) | null>(null);
+  const pathname = usePathname();
+  const previousPathnameRef = useRef<string | null>(null);
 
   useIsomorphicLayoutEffect(() => {
     // Respect user preference — skip smooth scroll entirely
@@ -91,6 +94,31 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       }
     };
   }, []);
+
+  // Lenis persists across soft navigations because the root layout never
+  // unmounts. Without this reset, its internal animatedScroll leaks from the
+  // previous page and the new route lands at a stale scroll position instead
+  // of the top. Reset on every route change so Next.js <Link> behaves as
+  // expected (scroll to top on forward navigation). Window.scrollTo is also
+  // called as a fallback when Lenis is not active (mobile / reduced motion).
+  useEffect(() => {
+    if (previousPathnameRef.current === null) {
+      previousPathnameRef.current = pathname;
+      return;
+    }
+
+    if (previousPathnameRef.current === pathname) {
+      return;
+    }
+
+    previousPathnameRef.current = pathname;
+
+    const lenis = lenisRef.current;
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true, force: true });
+    }
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return <>{children}</>;
 }
