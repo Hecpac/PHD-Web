@@ -46,10 +46,10 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   }
 
   return {
-    title: `${service.title} | DFW Custom Home Services`,
+    title: `${service.title} | Custom Home Services — DFW, North Texas & S. Oklahoma`,
     description: service.summary,
     openGraph: {
-      title: `${service.title} | DFW Design-Build Services`,
+      title: `${service.title} | Design-Build Services — DFW, North Texas & S. Oklahoma`,
       description: service.summary,
       images: [{ url: `${siteUrl}/og-default.jpg`, alt: "Premium Home Design" }],
     },
@@ -159,7 +159,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           {/* CTA */}
           <div className="border-t border-line pt-8">
             <p className="mb-4 text-sm text-muted">
-              Ready to discuss {service.title.toLowerCase()} for your DFW project?
+              Ready to discuss {service.title.toLowerCase()} for your project?
             </p>
             <CtaLink
               href="/contact"

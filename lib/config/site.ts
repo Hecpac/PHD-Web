@@ -16,8 +16,8 @@ export const siteConfig: SiteConfig = {
   name: "Premium Home Design",
   shortName: "PHD",
   description:
-    "Build your dream custom home in DFW with our design-build approach. Architecture + construction under one roof. Licensed since 2016.",
-  serviceArea: "Dallas-Fort Worth Metroplex",
+    "Build your dream custom home across Dallas-Fort Worth, North Texas, and Southern Oklahoma with our design-build approach. Architecture + construction under one roof. Licensed since 2016.",
+  serviceArea: "Dallas-Fort Worth, North Texas & Southern Oklahoma",
   contactEmail: "info@premiumhome.design",
   socialLinks: [
     {

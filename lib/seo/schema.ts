@@ -1,5 +1,37 @@
 import { getCtaConfig, getSiteUrl, siteConfig } from "@/lib/config/site";
-import type { BlogPost, FAQ, ProcessStep, Project, Review, ServiceDetail } from "@/lib/types/content";
+import {
+  SERVICE_AREA_CITIES,
+  type BlogPost,
+  type FAQ,
+  type ProcessStep,
+  type Project,
+  type Review,
+  type ServiceDetail,
+} from "@/lib/types/content";
+
+const STATE_NAME: Record<string, string> = {
+  TX: "Texas",
+  OK: "Oklahoma",
+};
+
+/** Schema.org Place[] for areaServed — explicit cities + parent states. */
+function buildAreaServed() {
+  const cities = SERVICE_AREA_CITIES.map((c) => ({
+    "@type": "City" as const,
+    name: c.name,
+    containedInPlace: {
+      "@type": "State" as const,
+      name: STATE_NAME[c.state] ?? c.state,
+    },
+  }));
+
+  const states = Array.from(new Set(SERVICE_AREA_CITIES.map((c) => c.state))).map((code) => ({
+    "@type": "State" as const,
+    name: STATE_NAME[code] ?? code,
+  }));
+
+  return [...states, ...cities];
+}
 
 export function createLocalBusinessSchema(reviews?: Review[]) {
   const siteUrl = getSiteUrl();
@@ -24,18 +56,27 @@ export function createLocalBusinessSchema(reviews?: Review[]) {
       latitude: 32.7767,
       longitude: -96.797,
     },
-    areaServed: {
+    areaServed: [
+      {
+        "@type": "GeoCircle",
+        geoMidpoint: {
+          "@type": "GeoCoordinates",
+          latitude: 32.7767,
+          longitude: -96.797,
+        },
+        // ~80 miles — covers DFW Metroplex, North Texas, and Southern Oklahoma border.
+        geoRadius: "130000",
+      },
+      ...buildAreaServed(),
+    ],
+    serviceArea: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
         latitude: 32.7767,
         longitude: -96.797,
       },
-      geoRadius: "80000",
-    },
-    serviceArea: {
-      "@type": "AdministrativeArea",
-      name: "Dallas-Fort Worth Metroplex",
+      geoRadius: "130000",
     },
     priceRange: "$$$",
     openingHoursSpecification: [
@@ -180,10 +221,7 @@ export function createProjectSchema(project: Project) {
       "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
       name: siteConfig.name,
       url: siteUrl,
-      areaServed: {
-        "@type": "AdministrativeArea",
-        name: "Dallas-Fort Worth Metroplex",
-      },
+      areaServed: buildAreaServed(),
     },
   };
 }
@@ -289,9 +327,9 @@ export function createHowToSchema(steps: ProcessStep[]) {
   return {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: "How to Build a Custom Home in Dallas-Fort Worth",
+    name: "How to Build a Custom Home in DFW, North Texas & Southern Oklahoma",
     description:
-      "A stage-based design-build process with decision gates for custom home projects in the DFW Metroplex.",
+      "A stage-based design-build process with decision gates for custom home projects across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
     url: `${siteUrl}/process`,
     provider: {
       "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
@@ -326,15 +364,9 @@ export function createServiceSchema(service: ServiceDetail) {
       name: siteConfig.name,
       url: siteUrl,
       telephone: phoneE164,
-      areaServed: {
-        "@type": "AdministrativeArea",
-        name: "Dallas-Fort Worth Metroplex",
-      },
+      areaServed: buildAreaServed(),
     },
-    areaServed: {
-      "@type": "AdministrativeArea",
-      name: "Dallas-Fort Worth Metroplex",
-    },
+    areaServed: buildAreaServed(),
     serviceType: service.title,
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -357,24 +389,18 @@ export function createB2BDraftingServiceSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Outsourced Architectural Drafting & Construction Documents for DFW Builders",
+    name: "Outsourced Architectural Drafting & Construction Documents for North Texas & Oklahoma Builders",
     description:
-      "Permit-ready custom home floor plans, 3D renders, and full construction document packages with 5-7 day turnaround for residential builders in Dallas, Fort Worth, Frisco, Plano, and Southlake.",
+      "Permit-ready custom home floor plans, 3D renders, and full construction document packages with 5-7 day turnaround for residential builders across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
     url: `${siteUrl}/for-builders`,
     provider: {
       "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
       name: siteConfig.name,
       url: siteUrl,
       telephone: phoneE164,
-      areaServed: {
-        "@type": "AdministrativeArea",
-        name: "Dallas-Fort Worth Metroplex",
-      },
+      areaServed: buildAreaServed(),
     },
-    areaServed: {
-      "@type": "AdministrativeArea",
-      name: "Dallas-Fort Worth Metroplex",
-    },
+    areaServed: buildAreaServed(),
     audience: {
       "@type": "BusinessAudience",
       audienceType: "Residential builders and general contractors",

@@ -17,14 +17,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "Services | Capabilities for DFW Homes",
+    title: "Services | Capabilities across DFW, North Texas & Southern Oklahoma",
     description:
-      "Capabilities and deliverables for design-forward custom home projects in Dallas-Fort Worth.",
-    keywords: ["services", "custom home design", "construction management", "DFW"],
+      "Capabilities and deliverables for design-forward custom home projects across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+    keywords: [
+      "services",
+      "custom home design",
+      "construction management",
+      "DFW",
+      "North Texas",
+      "Southern Oklahoma",
+    ],
     openGraph: {
-      title: "Services | Capabilities for DFW Homes",
+      title: "Services | Capabilities across DFW, North Texas & Southern Oklahoma",
       description:
-        "Capabilities and deliverables for design-forward custom home projects in Dallas-Fort Worth.",
+        "Capabilities and deliverables for design-forward custom home projects across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
     },
     twitter: {
       card: "summary_large_image",
@@ -59,7 +66,7 @@ export default async function ServicesPage() {
           <SectionHeading
             as="h1"
             eyebrow="Services"
-            title="Full-scope design-build capabilities for DFW"
+            title="Full-scope design-build capabilities across the region"
             description="Every service is structured around deliverables, decision gates, and documented handoffs."
           />
           <div className="grid gap-px border border-line md:grid-cols-2 xl:grid-cols-6">

@@ -24,7 +24,12 @@ import {
   servicesQuery,
 } from "@/lib/sanity/queries";
 import type { BlogPost, FAQ, HomeHero, ProcessStep, Project, Review, Service, ServiceDetail } from "@/lib/types/content";
-import { isDfwCity } from "@/lib/types/content";
+import { isServiceCity, SERVICE_AREA_CITIES } from "@/lib/types/content";
+
+function getStateForCity(city: string): string | undefined {
+  const cityLower = city.trim().toLowerCase();
+  return SERVICE_AREA_CITIES.find((c) => c.name.toLowerCase() === cityLower)?.state;
+}
 
 type SanityImage = {
   url?: string;
@@ -123,7 +128,7 @@ function normalizeProject(doc: SanityProject): Project | null {
   const title = doc.title?.trim();
   const city = doc.location?.city?.trim();
 
-  if (!title || !city || !isDfwCity(city)) {
+  if (!title || !city || !isServiceCity(city)) {
     return null;
   }
 
@@ -137,11 +142,13 @@ function normalizeProject(doc: SanityProject): Project | null {
     location: {
       city,
       neighborhood,
-      display: neighborhood ? `${neighborhood}, ${city}` : `${city}, DFW Metroplex`,
+      display: neighborhood
+        ? `${neighborhood}, ${city}`
+        : `${city}, ${getStateForCity(city) ?? "TX"}`,
     },
     style: doc.style?.trim() || "Modern",
     year: doc.year ?? 2026,
-    summary: doc.summary?.trim() || "Custom home delivery in DFW.",
+    summary: doc.summary?.trim() || "Custom home delivery across DFW, North Texas, and Southern Oklahoma.",
     description: doc.description?.trim() || undefined,
     gallery:
       doc.gallery

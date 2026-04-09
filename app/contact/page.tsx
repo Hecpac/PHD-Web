@@ -11,14 +11,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "Contact | Schedule a DFW Consultation",
+    title: "Contact | Schedule a Consultation — DFW, North Texas & S. Oklahoma",
     description:
-      "Start your Dallas-Fort Worth custom home intake and schedule a design-build consultation.",
-    keywords: ["contact", "consultation", "design-build inquiry", "DFW custom homes"],
+      "Start your custom home intake across Dallas-Fort Worth, North Texas, and Southern Oklahoma — schedule a design-build consultation.",
+    keywords: [
+      "contact",
+      "consultation",
+      "design-build inquiry",
+      "DFW custom homes",
+      "North Texas custom homes",
+      "Southern Oklahoma custom homes",
+    ],
     openGraph: {
-      title: "Contact | Schedule a DFW Consultation",
+      title: "Contact | Schedule a Consultation — DFW, North Texas & S. Oklahoma",
       description:
-        "Start your Dallas-Fort Worth custom home intake and schedule a design-build consultation.",
+        "Start your custom home intake across Dallas-Fort Worth, North Texas, and Southern Oklahoma — schedule a design-build consultation.",
     },
     twitter: {
       card: "summary_large_image",
@@ -46,7 +53,7 @@ export default function ContactPage() {
           <header className="space-y-3">
             <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">BOFU Qualifier</p>
             <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-              Vision Builder — qualify your DFW custom home project
+              Vision Builder — qualify your custom home project
             </h1>
             <p className="max-w-2xl text-sm leading-6 text-muted">
               Skip the generic contact form. Share lot status, target zone, and investment range so we can route your project with the right priority.
@@ -67,7 +74,7 @@ export default function ContactPage() {
               {phoneDisplay}
             </a>
             <span className="text-sm text-muted">Mon–Fri · 9:00 AM–6:00 PM</span>
-            <span className="text-sm text-muted">Dallas–Fort Worth projects only</span>
+            <span className="text-sm text-muted">DFW · North Texas · Southern Oklahoma</span>
             <SocialLinks />
           </div>
 
@@ -78,7 +85,7 @@ export default function ContactPage() {
             </div>
             <div>
               <p className="font-semibold text-ink">Best fit</p>
-              <p className="mt-1 leading-6">Ground-up custom homes, preconstruction, and coordinated project delivery in DFW.</p>
+              <p className="mt-1 leading-6">Ground-up custom homes, preconstruction, and coordinated project delivery across DFW, North Texas, and Southern Oklahoma.</p>
             </div>
             <div>
               <p className="font-semibold text-ink">Not a fit?</p>

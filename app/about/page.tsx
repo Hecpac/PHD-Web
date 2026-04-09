@@ -12,12 +12,20 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "About | Premium Home Design",
     description:
-      "Learn how Premium Home Design structures design, preconstruction, and project delivery for modern custom homes across DFW.",
-    keywords: ["about", "design-build", "custom homes", "Dallas-Fort Worth", "architecture"],
+      "Learn how Premium Home Design structures design, preconstruction, and project delivery for modern custom homes across DFW, North Texas, and Southern Oklahoma.",
+    keywords: [
+      "about",
+      "design-build",
+      "custom homes",
+      "Dallas-Fort Worth",
+      "North Texas",
+      "Southern Oklahoma",
+      "architecture",
+    ],
     openGraph: {
       title: "About | Premium Home Design",
       description:
-        "Learn how Premium Home Design structures design, preconstruction, and project delivery for modern custom homes across DFW.",
+        "Learn how Premium Home Design structures design, preconstruction, and project delivery for modern custom homes across DFW, North Texas, and Southern Oklahoma.",
     },
     twitter: {
       card: "summary_large_image",
@@ -72,9 +80,9 @@ const differentiators = [
 
 const values = [
   {
-    title: "DFW-only focus",
+    title: "Regional focus",
     description:
-      "We build exclusively in the Dallas-Fort Worth Metroplex. This constraint is intentional — it means deeper trade relationships, faster permitting knowledge, and construction timelines calibrated to local conditions.",
+      "We build across Dallas-Fort Worth, North Texas, and Southern Oklahoma — a deliberate ~80-mile service corridor. Tight geography means deeper trade relationships, fluent permitting across multiple jurisdictions, and construction methods calibrated to North Texas and Oklahoma climate and soil conditions.",
   },
   {
     title: "Design-first, builder-backed",
@@ -123,7 +131,7 @@ export default function AboutPage() {
             as="h1"
             titleId="about-heading"
             eyebrow="About"
-            title="A design-build practice focused on modern homes in DFW"
+            title="A design-build practice focused on modern homes across DFW, North Texas & Southern Oklahoma"
             description="We combine design rigor with construction control to deliver custom homes that match the drawings, meet the budget, and finish on schedule."
           />
 
@@ -164,7 +172,7 @@ export default function AboutPage() {
           <SectionHeading
             as="h2"
             eyebrow="How We Think"
-            title="What sets us apart in DFW"
+            title="What sets us apart across the region"
           />
           <div className="grid gap-6 md:grid-cols-3">
             {values.map((value) => (

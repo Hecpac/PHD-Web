@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const twitterImage = post.coverImage?.src ? `${siteUrl}${post.coverImage.src}` : `${siteUrl}/og-default.jpg`;
 
   return {
-    title: `${post.title} | DFW Custom Home Blog`,
+    title: `${post.title} | Custom Home Blog — DFW · North Texas · S. Oklahoma`,
     description: post.excerpt,
     openGraph: {
       title: post.title,

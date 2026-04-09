@@ -9,7 +9,7 @@ import { CtaLink } from "@/components/ui/cta-link";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { trackEvent } from "@/lib/analytics/events";
 import { getCtaConfig } from "@/lib/config/site";
-import { DFW_CITIES } from "@/lib/types/content";
+import { SERVICE_AREA_CITIES } from "@/lib/types/content";
 import { cn } from "@/lib/utils";
 
 type ContactTerminalProps = {
@@ -150,7 +150,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
                 <MapPin className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                DFW-only intake policy
+                DFW · North Texas · S. Oklahoma
               </span>
             </div>
 
@@ -240,7 +240,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               </label>
 
               <label className="space-y-1.5 text-sm">
-                <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">DFW city <span className="text-accent" aria-hidden="true">*</span></span>
+                <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">City <span className="text-accent" aria-hidden="true">*</span></span>
                 <select
                   ref={cityRef}
                   name="city"
@@ -255,9 +255,9 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   <option value="" disabled>
                     Select city
                   </option>
-                  {DFW_CITIES.map((city) => (
-                    <option key={city} value={city}>
-                      {city}
+                  {SERVICE_AREA_CITIES.map((city) => (
+                    <option key={`${city.name}-${city.state}`} value={city.name}>
+                      {city.name}, {city.state}
                     </option>
                   ))}
                 </select>
@@ -308,7 +308,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                     {isPending ? "Submitting…" : "Send Project Brief"}
                   </button>
                   <p className="text-xs text-muted">
-                    No spam. No off-market outreach. DFW project inquiries only.
+                    No spam. No off-market outreach. Project inquiries from DFW, North Texas, and Southern Oklahoma.
                   </p>
                   <div className="flex flex-wrap items-center gap-2.5 rounded-lg border border-line/70 bg-canvas/45 p-2 sm:gap-3">
                     <CtaLink

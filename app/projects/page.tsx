@@ -13,14 +13,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "Portfolio Projects in Dallas-Fort Worth",
+    title: "Portfolio Projects — DFW, North Texas & Southern Oklahoma",
     description:
-      "Explore custom home projects delivered across the Dallas-Fort Worth Metroplex.",
-    keywords: ["portfolio", "custom home projects", "DFW", "design-build"],
+      "Explore custom home projects delivered across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+    keywords: [
+      "portfolio",
+      "custom home projects",
+      "DFW",
+      "North Texas",
+      "Southern Oklahoma",
+      "design-build",
+    ],
     openGraph: {
-      title: "Portfolio Projects in Dallas-Fort Worth",
+      title: "Portfolio Projects — DFW, North Texas & Southern Oklahoma",
       description:
-        "Explore custom home projects delivered across the Dallas-Fort Worth Metroplex.",
+        "Explore custom home projects delivered across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
     },
     twitter: {
       card: "summary_large_image",

@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 
 import { checkRateLimit } from "@/lib/rate-limit";
-import { isDfwCity } from "@/lib/types/content";
+import { isServiceCity } from "@/lib/types/content";
 
 type ContactFormErrors = Partial<{
   name: string;
@@ -116,9 +116,9 @@ function validateForm(fields: {
   }
 
   if (!fields.city) {
-    errors.city = "Please select a DFW city.";
-  } else if (!isDfwCity(fields.city)) {
-    errors.city = "We currently accept projects in DFW only.";
+    errors.city = "Please select your city.";
+  } else if (!isServiceCity(fields.city)) {
+    errors.city = "Please select a city within our service area (DFW, North Texas, or Southern Oklahoma).";
   }
 
   if (!fields.message) {
@@ -154,8 +154,8 @@ function validateVisionBuilder(fields: {
 
   if (!fields.targetZone) {
     errors.targetZone = "Please select your target zone.";
-  } else if (!isDfwCity(fields.targetZone)) {
-    errors.targetZone = "We currently focus on Dallas-Fort Worth only.";
+  } else if (!isServiceCity(fields.targetZone)) {
+    errors.targetZone = "Please choose a city within our service area.";
   }
 
   if (!isInvestmentRange(fields.investmentRange)) {

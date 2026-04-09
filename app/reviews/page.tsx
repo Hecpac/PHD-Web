@@ -13,12 +13,20 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Reviews | Client Testimonials",
     description:
-      "Read what homeowners across Dallas-Fort Worth say about our design-build process, quality, and communication.",
-    keywords: ["reviews", "testimonials", "client feedback", "custom homes", "DFW"],
+      "Read what homeowners across Dallas-Fort Worth, North Texas, and Southern Oklahoma say about our design-build process, quality, and communication.",
+    keywords: [
+      "reviews",
+      "testimonials",
+      "client feedback",
+      "custom homes",
+      "DFW",
+      "North Texas",
+      "Southern Oklahoma",
+    ],
     openGraph: {
-      title: "Reviews | DFW Custom Home Client Testimonials",
+      title: "Reviews | Regional Custom Home Client Testimonials",
       description:
-        "Read what homeowners across Dallas-Fort Worth say about our design-build process, quality, and communication.",
+        "Read what homeowners across Dallas-Fort Worth, North Texas, and Southern Oklahoma say about our design-build process, quality, and communication.",
     },
     twitter: {
       card: "summary_large_image",
@@ -68,8 +76,8 @@ export default async function ReviewsPage() {
             as="h1"
             titleId="reviews-heading"
             eyebrow="Reviews"
-            title="What our DFW homeowners say"
-            description="Selected testimonials from clients across the Dallas-Fort Worth Metroplex about our design-build process, communication, and delivery experience."
+            title="What our regional homeowners say"
+            description="Selected testimonials from clients across Dallas-Fort Worth, North Texas, and Southern Oklahoma about our design-build process, communication, and delivery experience."
           />
 
           <div className="rounded-xl border border-line bg-surface p-4 text-sm text-muted">

@@ -9,7 +9,7 @@ const bentoItems: BentoItem[] = [
     eyebrow: "Single Contract",
     title: "Design-Build Delivery",
     description:
-      "Design, engineering, and construction managed under one agreement. One team, one schedule, one point of accountability across the DFW Metroplex.",
+      "Design, engineering, and construction managed under one agreement. One team, one schedule, one point of accountability across DFW, North Texas, and Southern Oklahoma.",
     span: "2x2",
     variant: "image",
     imageSrc: "/projects/duplex/kitchen-dining.jpg",
@@ -20,7 +20,7 @@ const bentoItems: BentoItem[] = [
     eyebrow: "Track Record",
     // Integrated Counter component
     stat: <Counter value={60} suffix="+" />,
-    statLabel: "Custom homes delivered in DFW",
+    statLabel: "Custom homes delivered across the region",
     title: "Built Portfolio",
     span: "1x1",
     variant: "accent",
@@ -58,9 +58,9 @@ const bentoItems: BentoItem[] = [
   {
     id: "bento-dfw",
     eyebrow: "Service Area",
-    title: "Dallas–Fort Worth Exclusively",
+    title: "DFW · North Texas · Southern Oklahoma",
     description:
-      "Every trade partner, code requirement, and site condition is calibrated for DFW. We don't spread thin outside the Metroplex.",
+      "Trade partners, code knowledge, and site practices calibrated across an ~80-mile corridor — from the Metroplex into Sherman, Durant, and the Oklahoma border.",
     span: "1x1",
     variant: "image",
     imageSrc: "/projects/806-mango/rear-pool.jpg",
@@ -74,7 +74,7 @@ export function BentoSection() {
       <Container swiss className="space-y-10">
         <SectionHeading
           eyebrow="Why Us"
-          title="Engineered for precision, built for DFW"
+          title="Engineered for precision, built across the region"
           description="A design-build practice structured around transparency, schedule control, and documented quality at every milestone."
         />
         <BentoGrid items={bentoItems} className="brand-red-outline border border-line" />

@@ -34,7 +34,7 @@ export function SiteFooter() {
                 Now booking 2026 starts
               </span>
               <span className="inline-flex items-center rounded-full border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
-                Dallas-Fort Worth Metroplex
+                DFW · North Texas · Southern Oklahoma
               </span>
             </div>
 

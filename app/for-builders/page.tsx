@@ -22,14 +22,23 @@ export function generateMetadata(): Metadata {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "Architectural Drafting Services Dallas Fort Worth | Outsourced Construction Documents",
+    title: "Architectural Drafting Services — DFW, North Texas & Southern Oklahoma | Outsourced Construction Documents",
     description:
-      "Outsource permit-ready construction documents, custom home floor plans, and 3D renders to a DFW drafting partner. 7-10 day turnaround for Dallas-Fort Worth builders.",
-    keywords: ["B2B", "drafting services", "construction documents", "architects", "builders"],
+      "Outsource permit-ready construction documents, custom home floor plans, and 3D renders to a regional drafting partner. 7-10 day turnaround for builders across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+    keywords: [
+      "B2B",
+      "drafting services",
+      "construction documents",
+      "architects",
+      "builders",
+      "DFW",
+      "North Texas",
+      "Southern Oklahoma",
+    ],
     openGraph: {
-      title: "Architectural Drafting Services Dallas Fort Worth | Outsourced Construction Documents",
+      title: "Architectural Drafting Services — DFW, North Texas & Southern Oklahoma | Outsourced Construction Documents",
       description:
-        "Permit-ready custom home floor plans, 3D renders, and construction documents for DFW builders. 7-10 day turnaround.",
+        "Permit-ready custom home floor plans, 3D renders, and construction documents for builders across DFW, North Texas, and Southern Oklahoma. 7-10 day turnaround.",
     },
     twitter: {
       card: "summary_large_image",
@@ -90,9 +99,9 @@ const VALUE_PROPS = [
     description: "Scale drafting capacity without hiring full-time staff or managing CAD licenses.",
   },
   {
-    title: "DFW Permit Fluency",
+    title: "Regional Permit Fluency",
     description:
-      "We know the submission requirements for Dallas, Fort Worth, Frisco, Plano, and surrounding cities.",
+      "We know the submission requirements for Dallas, Fort Worth, Frisco, Plano, Sherman, Durant, and other cities across DFW, North Texas, and Southern Oklahoma.",
   },
   {
     title: "Consistent Quality",

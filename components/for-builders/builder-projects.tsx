@@ -128,8 +128,8 @@ export function BuilderProjectsShowcase() {
       <Container swiss className="space-y-8">
         <SectionHeading
           eyebrow="Builder Projects"
-          title="Drafting packages delivered for DFW custom homes"
-          description="Recent documentation packages produced for local builders — from schematic floor plans to permit-ready construction documents."
+          title="Drafting packages delivered for regional custom homes"
+          description="Recent documentation packages produced for builders across DFW, North Texas, and Southern Oklahoma — from schematic floor plans to permit-ready construction documents."
         />
 
         <div className="flex flex-col gap-10 md:gap-24 relative pb-10">

@@ -128,8 +128,8 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
           eyebrow="Featured Projects"
           title={
             <>
-              Built work across the{" "}
-              <em className="not-italic text-accent">DFW Metroplex</em>
+              Built work across{" "}
+              <em className="not-italic text-accent">DFW, North Texas & Southern Oklahoma</em>
             </>
           }
           description="Portfolio evidence comes first. Each project reflects design intent, execution discipline, and documented handoff quality."

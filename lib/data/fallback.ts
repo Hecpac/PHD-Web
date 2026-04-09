@@ -470,7 +470,7 @@ export const fallbackProcessSteps: ProcessStep[] = [
     stepNumber: 1,
     title: "Discovery & Feasibility",
     description:
-      "We validate lot constraints, priorities, and budget ranges for projects in the DFW Metroplex.",
+      "We validate lot constraints, priorities, and budget ranges for projects across DFW, North Texas, and Southern Oklahoma.",
     deliverables: ["Project brief", "Site constraints memo", "Initial budget band"],
     decisionGate: "Proceed to concept planning",
   },
@@ -507,9 +507,9 @@ export const fallbackServiceDetails: ServiceDetail[] = [
     id: "detail-custom-home-design",
     slug: "custom-home-design",
     title: "Custom Home Design",
-    summary: "Architecture-led concept development calibrated for DFW lot conditions, codes, and climate.",
+    summary: "Architecture-led concept development calibrated for North Texas and Southern Oklahoma lot conditions, codes, and climate.",
     description:
-      "Our design process starts with site analysis and program definition specific to the Dallas-Fort Worth Metroplex. We coordinate massing, orientation, and material strategies with structural and MEP consultants from day one, ensuring the design intent survives the transition to construction documentation.",
+      "Our design process starts with site analysis and program definition specific to the DFW, North Texas, and Southern Oklahoma corridor. We coordinate massing, orientation, and material strategies with structural and MEP consultants from day one, ensuring the design intent survives the transition to construction documentation.",
     deliverables: [
       "Site analysis and constraints report",
       "Concept massing and floor plan options",
@@ -576,7 +576,7 @@ export const fallbackServiceDetails: ServiceDetail[] = [
     id: "detail-project-management",
     slug: "project-management",
     title: "Project Management",
-    summary: "Schedule, budget, and quality control for custom homes across the DFW Metroplex.",
+    summary: "Schedule, budget, and quality control for custom homes across DFW, North Texas, and Southern Oklahoma.",
     description:
       "Our project management methodology applies structured oversight to every phase — from preconstruction through closeout. Weekly reporting, milestone inspections, and documented decision gates keep the project on track and the owner informed.",
     deliverables: [
@@ -849,16 +849,16 @@ export const fallbackBlogPosts: BlogPost[] = [
 export const fallbackFaqs: FAQ[] = [
   {
     id: "faq-1",
-    question: "Do you build outside Dallas-Fort Worth?",
+    question: "What area do you serve?",
     answer:
-      "No. We only accept design-build projects within the Dallas-Fort Worth Metroplex. This geographic focus lets us maintain strong relationships with local trade partners, stay current on municipal codes, and provide reliable timelines based on DFW-specific conditions.",
+      "We accept design-build projects across Dallas-Fort Worth, North Texas, and Southern Oklahoma — within roughly 80 miles of Dallas. This regional focus lets us maintain strong relationships with vetted trade partners, stay current on municipal codes across multiple jurisdictions, and provide reliable timelines based on North Texas and Oklahoma site conditions.",
     category: "Service Area",
   },
   {
     id: "faq-2",
-    question: "Can you build on our lot in DFW?",
+    question: "Can you build on our lot in the region?",
     answer:
-      "Yes. We frequently work on client-owned lots and include a feasibility assessment during the Discovery phase. We evaluate zoning, setbacks, soil conditions, floodplain status, and utility access before any design work begins.",
+      "Yes. We frequently work on client-owned lots throughout DFW, North Texas, and Southern Oklahoma, and include a feasibility assessment during the Discovery phase. We evaluate zoning, setbacks, soil conditions, floodplain status, and utility access before any design work begins.",
     category: "Process",
   },
   {
@@ -870,23 +870,23 @@ export const fallbackFaqs: FAQ[] = [
   },
   {
     id: "faq-4",
-    question: "How long does a custom home take to build in DFW?",
+    question: "How long does a custom home take to build in the region?",
     answer:
-      "Most custom homes in the 3,500–6,000 sqft range take 12–18 months from permit to move-in. The preconstruction phase (design, documentation, permitting) typically adds 3–5 months before that. We provide a detailed critical-path schedule during the Concept & Cost Alignment phase.",
+      "Most custom homes in the 3,500–6,000 sqft range take 12–18 months from permit to move-in across DFW, North Texas, and Southern Oklahoma. The preconstruction phase (design, documentation, permitting) typically adds 3–5 months before that. We provide a detailed critical-path schedule during the Concept & Cost Alignment phase.",
     category: "Timeline",
   },
   {
     id: "faq-5",
-    question: "What does a custom home cost per square foot in Dallas-Fort Worth?",
+    question: "What does a custom home cost per square foot across DFW, North Texas, and Southern Oklahoma?",
     answer:
-      "In DFW, efficient custom homes typically begin around $190–$260 per square foot, more tailored homes often land between $260–$380, and high-end custom homes commonly start around $380 and can exceed $650 per square foot. Final pricing depends on site conditions, structural complexity, and finish level. We develop a detailed budget range during Discovery so you have realistic numbers before design advances.",
+      "Across the region, efficient custom homes typically begin around $190–$260 per square foot, more tailored homes often land between $260–$380, and high-end custom homes commonly start around $380 and can exceed $650 per square foot. Final pricing depends on site conditions, structural complexity, and finish level. We develop a detailed budget range during Discovery so you have realistic numbers before design advances.",
     category: "Budget",
   },
   {
     id: "faq-6",
     question: "Do you handle permits and HOA approvals?",
     answer:
-      "Yes. We manage the full permitting process with DFW municipalities and coordinate HOA design review submissions where required. Our team has direct experience with review boards in Highland Park, Southlake, Prosper, Frisco, and other regulated communities.",
+      "Yes. We manage the full permitting process across multiple jurisdictions — DFW municipalities, North Texas counties, and Southern Oklahoma cities — and coordinate HOA design review submissions where required. Our team has direct experience with review boards in Highland Park, Southlake, Prosper, Frisco, Sherman, Durant, and other regulated communities.",
     category: "Process",
   },
   {
@@ -907,21 +907,21 @@ export const fallbackFaqs: FAQ[] = [
     id: "faq-9",
     question: "Can I bring my own design partner or do I have to use yours?",
     answer:
-      "Both options work. We have in-house design capability and also partner with independent design professionals across DFW. If you already have a designer on the team, we join during preconstruction to align the project with construction realities, budget, and schedule.",
+      "Both options work. We have in-house design capability and also partner with independent design professionals across DFW, North Texas, and Southern Oklahoma. If you already have a designer on the team, we join during preconstruction to align the project with construction realities, budget, and schedule.",
     category: "Design",
   },
   {
     id: "faq-10",
     question: "How do you select subcontractors and trade partners?",
     answer:
-      "We maintain a vetted network of DFW-based trade partners built over years of local projects. Every sub is evaluated on quality, reliability, insurance, and licensing. We do not accept the lowest bid by default — we select based on the best value for each scope of work.",
+      "We maintain a vetted network of regional trade partners across DFW, North Texas, and Southern Oklahoma, built over years of local projects. Every sub is evaluated on quality, reliability, insurance, and licensing. We do not accept the lowest bid by default — we select based on the best value for each scope of work.",
     category: "Construction",
   },
   {
     id: "faq-11",
     question: "What financing options are available for a custom home build?",
     answer:
-      "Most clients use a construction-to-permanent loan, which converts to a traditional mortgage at completion. We work with several DFW lenders experienced in custom home financing and can provide referrals. Our draw schedule is structured to align with standard lender inspection milestones.",
+      "Most clients use a construction-to-permanent loan, which converts to a traditional mortgage at completion. We work with several Texas and Oklahoma lenders experienced in custom home financing and can provide referrals. Our draw schedule is structured to align with standard lender inspection milestones.",
     category: "Budget",
   },
   {

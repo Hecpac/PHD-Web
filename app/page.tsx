@@ -36,14 +36,18 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
 
   return {
-    title: { absolute: "Premium Home Design | Custom Home Builder in Dallas-Fort Worth" },
+    title: { absolute: "Premium Home Design | Custom Home Builder — DFW, North Texas & Southern Oklahoma" },
     description:
-      "Design-build firm delivering custom homes across the Dallas-Fort Worth Metroplex. Integrated planning, transparent budgets, and milestone-verified construction.",
+      "Design-build firm delivering custom homes across Dallas-Fort Worth, North Texas, and Southern Oklahoma. Integrated planning, transparent budgets, and milestone-verified construction within ~80 miles of Dallas.",
     keywords: [
       "custom home builder",
       "design-build",
       "Dallas-Fort Worth",
       "DFW custom homes",
+      "North Texas custom homes",
+      "Southern Oklahoma custom homes",
+      "Sherman custom home builder",
+      "Durant custom home builder",
       "luxury homes",
       "new construction",
     ],

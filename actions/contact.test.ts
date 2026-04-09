@@ -73,12 +73,12 @@ describe("submitContactForm delivery", () => {
     expect(result.errors).toMatchObject({
       name: "Name is required.",
       email: "Email is required.",
-      city: "Please select a DFW city.",
+      city: "Please select your city.",
       message: "Project goals are required.",
     });
   });
 
-  it("returns DFW-only city error when city is outside service area", async () => {
+  it("returns service-area error when city is outside coverage", async () => {
     const result = await submitContactForm(
       PREV_STATE,
       makeFormData({
@@ -88,7 +88,9 @@ describe("submitContactForm delivery", () => {
     );
 
     expect(result.success).toBe(false);
-    expect(result.errors.city).toBe("We currently accept projects in DFW only.");
+    expect(result.errors.city).toBe(
+      "Please select a city within our service area (DFW, North Texas, or Southern Oklahoma).",
+    );
   });
 
   it("returns controlled error in production when CONTACT_WEBHOOK_URL is missing — no local write", async () => {

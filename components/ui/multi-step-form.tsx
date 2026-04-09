@@ -6,7 +6,7 @@ import { submitVisionBuilder, type VisionBuilderState } from "@/actions/contact"
 import { CtaLink } from "@/components/ui/cta-link";
 import { trackEvent } from "@/lib/analytics/events";
 import { getCtaConfig } from "@/lib/config/site";
-import { DFW_CITIES } from "@/lib/types/content";
+import { SERVICE_AREA_CITIES } from "@/lib/types/content";
 import { cn } from "@/lib/utils";
 
 const initialState: VisionBuilderState = {
@@ -159,7 +159,7 @@ export function MultiStepForm() {
       return (
         <label className="space-y-2 text-sm" onFocus={handleStart}>
           <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-            Step 2 — Preferred DFW zone
+            Step 2 — Preferred service area city
           </span>
           <select
             name="targetZone"
@@ -172,9 +172,9 @@ export function MultiStepForm() {
             <option value="" disabled>
               Select a city
             </option>
-            {DFW_CITIES.map((city) => (
-              <option key={city} value={city}>
-                {city}
+            {SERVICE_AREA_CITIES.map((city) => (
+              <option key={`${city.name}-${city.state}`} value={city.name}>
+                {city.name}, {city.state}
               </option>
             ))}
           </select>

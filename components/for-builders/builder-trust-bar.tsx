@@ -1,7 +1,7 @@
 import { BadgeCheck } from "lucide-react";
 
 const CREDENTIALS = [
-  "DFW Permit Experts",
+  "Regional Permit Experts",
   "7-10 Day Turnaround",
   "PDF & Print Delivery",
   "835+ Homes Documented",
