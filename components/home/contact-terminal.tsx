@@ -331,7 +331,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   </div>
                 </div>
                 <p className="mt-3 text-xs text-muted">
-                  By submitting, you confirm this project is located in Dallas-Fort Worth.
+                  By submitting, you confirm this project is located in DFW, North Texas, or Southern Oklahoma.
                 </p>
               </div>
             </form>

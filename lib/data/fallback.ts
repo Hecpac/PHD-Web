@@ -186,7 +186,7 @@ export const fallbackProjects: Project[] = [
     summary:
       "A two-story new build mixing cedar siding, stone veneer, and standing-seam metal in a modern farmhouse expression.",
     description:
-      "The Pueblo Residence in Waxahachie combines a modern farmhouse envelope with clean interior finishes. The exterior uses a deliberate mix of horizontal cedar siding, natural stone veneer, and dark standing-seam metal roofing. The angled roofline and large-format windows create a distinctive street presence. Inside, the primary bathroom features a soaking tub with tile surround, separate glass-enclosed shower, and clean ceramic tilework. The design-build scope covered architectural planning, structural coordination, and finish selection.",
+      "The Pueblo Residence in Waxahachie combines a modern farmhouse envelope with clean interior finishes. The exterior uses a deliberate mix of horizontal cedar siding, natural stone veneer, and dark standing-seam metal roofing. The angled roofline and large-format windows create a distinctive street presence. Inside, the primary bathroom features a soaking tub with tile surround, separate glass-enclosed shower, and clean ceramic tilework. The design-build scope covered design planning, structural coordination, and finish selection.",
     gallery: [
       {
         src: "/projects/pueblo/hero.jpg",
@@ -507,7 +507,7 @@ export const fallbackServiceDetails: ServiceDetail[] = [
     id: "detail-custom-home-design",
     slug: "custom-home-design",
     title: "Custom Home Design",
-    summary: "Architecture-led concept development calibrated for North Texas and Southern Oklahoma lot conditions, codes, and climate.",
+    summary: "Design-led concept development calibrated for North Texas and Southern Oklahoma lot conditions, codes, and climate.",
     description:
       "Our design process starts with site analysis and program definition specific to the DFW, North Texas, and Southern Oklahoma corridor. We coordinate massing, orientation, and material strategies with structural and MEP consultants from day one, ensuring the design intent survives the transition to construction documentation.",
     deliverables: [
@@ -519,7 +519,7 @@ export const fallbackServiceDetails: ServiceDetail[] = [
       "Permit-ready construction documentation",
     ],
     benefits: [
-      "Architecture and buildability aligned from the first sketch",
+      "Design and buildability aligned from the first sketch",
       "DFW code and HOA compliance built into the design",
       "Budget-aware design decisions at every stage",
     ],
@@ -596,8 +596,8 @@ export const fallbackServiceDetails: ServiceDetail[] = [
     icon: "ClipboardList",
   },
   {
-    id: "detail-landscape-architecture",
-    slug: "landscape-architecture",
+    id: "detail-landscape-design",
+    slug: "landscape-design",
     title: "Landscape Design",
     summary: "Outdoor environments engineered for the DFW climate and integrated with the home's overall design.",
     description:
@@ -787,7 +787,7 @@ export const fallbackBlogPosts: BlogPost[] = [
   {
     id: "blog-4",
     title: "2026 Interior Design Trends for DFW Custom Homes",
-    slug: "2026-interior-architecture-trends-dfw",
+    slug: "2026-interior-design-trends-dfw",
     excerpt:
       "The strongest 2026 interior direction in DFW favors warmth, tactile materials, layered lighting, and wellness-driven planning over sterile minimalism.",
     category: "Design",
@@ -879,7 +879,7 @@ export const fallbackFaqs: FAQ[] = [
     id: "faq-5",
     question: "What does a custom home cost per square foot across DFW, North Texas, and Southern Oklahoma?",
     answer:
-      "Across the region, efficient custom homes typically begin around $190–$260 per square foot, more tailored homes often land between $260–$380, and high-end custom homes commonly start around $380 and can exceed $650 per square foot. Final pricing depends on site conditions, structural complexity, and finish level. We develop a detailed budget range during Discovery so you have realistic numbers before design advances.",
+      "Custom home pricing in the region varies significantly based on design complexity, structural demands, finish level, site conditions, and municipality requirements. A single square-foot number can be misleading without defined scope — the same figure can represent very different projects. That is why we develop a detailed, project-specific budget range with you during Discovery, so you have realistic numbers tied to your actual program before design advances.",
     category: "Budget",
   },
   {

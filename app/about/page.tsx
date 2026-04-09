@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "Dallas-Fort Worth",
       "North Texas",
       "Southern Oklahoma",
-      "architecture",
+      "custom home design",
     ],
     openGraph: {
       title: "About | Premium Home Design",
@@ -200,32 +200,6 @@ export default function AboutPage() {
                 <h3 className="type-h3-compact text-ink">{item.role}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted">{item.description}</p>
               </article>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Credentials section */}
-      <section className="section-shell border-t border-line section-bone">
-        <Container swiss className="space-y-6">
-          <SectionHeading
-            as="h2"
-            eyebrow="Credentials"
-            title="Licensed, insured, and locally established"
-          />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              "Texas Residential Construction Commission licensed",
-              "General liability and builder's risk insured",
-              "BBB accredited with A+ rating",
-              "Member, Dallas Builders Association",
-              "OSHA 30-hour certified project managers",
-              "ICC-certified building inspectors on staff",
-            ].map((credential) => (
-              <div key={credential} className="flex items-start gap-3 text-sm text-muted">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
-                <span className="leading-6">{credential}</span>
-              </div>
             ))}
           </div>
         </Container>

@@ -19,7 +19,7 @@ type ServicePageProps = {
 const FAQ_CATEGORY_MAP: Record<string, string[]> = {
   "custom-home-design": ["Design", "Process", "Timeline"],
   "interior-design": ["Design", "Process", "Budget"],
-  "landscape-architecture": ["Design", "Process", "Service Area"],
+  "landscape-design": ["Design", "Process", "Service Area"],
   "3d-rendering": ["Design", "Process"],
   consulting: ["Process", "Budget", "Timeline"],
   "project-management": ["Process", "Timeline", "Budget"],

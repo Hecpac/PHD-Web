@@ -16,7 +16,7 @@ export const siteConfig: SiteConfig = {
   name: "Premium Home Design",
   shortName: "PHD",
   description:
-    "Build your dream custom home across Dallas-Fort Worth, North Texas, and Southern Oklahoma with our design-build approach. Architecture + construction under one roof. Licensed since 2016.",
+    "Build your dream custom home across Dallas-Fort Worth, North Texas, and Southern Oklahoma with our design-build approach. Design + construction under one roof. Licensed since 2016.",
   serviceArea: "Dallas-Fort Worth, North Texas & Southern Oklahoma",
   contactEmail: "info@premiumhome.design",
   socialLinks: [
@@ -51,7 +51,7 @@ export const siteNavigation: readonly NavItem[] = [
       { href: "/services/interior-design", label: "Interior Design & Planning" },
       { href: "/services/consulting", label: "Consulting Services" },
       { href: "/services/project-management", label: "Project Management" },
-      { href: "/services/landscape-architecture", label: "Landscape Design" },
+      { href: "/services/landscape-design", label: "Landscape Design" },
       { href: "/services/3d-rendering", label: "3D Rendering Visualization" },
       { href: "/services/feasibility-studies", label: "Feasibility Studies" },
     ],

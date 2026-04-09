@@ -12,9 +12,7 @@ type BlogListProps = {
   posts: BlogPost[];
 };
 
-const CATEGORY_ALIASES: Record<string, string> = {
-  Architecture: "Outdoor Living",
-};
+const CATEGORY_ALIASES: Record<string, string> = {};
 
 export function BlogList({ posts }: BlogListProps) {
   const pathname = usePathname();
