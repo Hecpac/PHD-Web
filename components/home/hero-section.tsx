@@ -204,7 +204,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
             {/* Col 1-4: Brand Name + Line */}
             <div className="md:col-span-4 lg:col-span-4 flex flex-col gap-6">
               <div className="flex items-center gap-4">
-                <span className="font-mono text-xs uppercase tracking-[0.15em] font-medium text-white/90">
+                <span className="font-mono text-xs uppercase tracking-[0.15em] font-medium text-white">
                   <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.04}>
                     Premium Home Design
                   </SwissTextReveal>
@@ -215,26 +215,26 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
 
             {/* Col 5-8: The Blueprint (List) */}
             <div className="md:col-span-4 lg:col-span-3 lg:col-start-6">
-              <p className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-white/60">
+              <p className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-white">
                 <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.1}>
                   OUR EXPERTISE
                 </SwissTextReveal>
               </p>
-              <ul className="space-y-4 text-xs tracking-wide text-white/90" aria-label="Key proof points">
+              <ul className="space-y-4 text-xs tracking-wide text-white" aria-label="Key proof points">
                 <li className="flex justify-between items-baseline">
-                  <span className="text-white/60 mr-4">Focus</span> 
+                  <span className="text-white/80 mr-4">Focus</span> 
                   <span className="text-right">Custom Residential Design</span>
                 </li>
                 <li className="flex justify-between items-baseline">
-                  <span className="text-white/60 mr-4">Delivery</span> 
+                  <span className="text-white/80 mr-4">Delivery</span> 
                   <span className="text-right">835+ Projects Completed</span>
                 </li>
                 <li className="flex justify-between items-baseline">
-                  <span className="text-white/60 mr-4">Approach</span> 
+                  <span className="text-white/80 mr-4">Approach</span> 
                   <span className="text-right">Precision-Driven Workflow</span>
                 </li>
                 <li className="flex justify-between items-baseline">
-                  <span className="text-white/60 mr-4">Style</span> 
+                  <span className="text-white/80 mr-4">Style</span> 
                   <span className="text-right">Modern & Transitional</span>
                 </li>
               </ul>
@@ -243,18 +243,18 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
             {/* Col 9-12: About & CTA */}
             <div className="md:col-span-4 lg:col-span-3 lg:col-start-10 flex flex-col justify-between h-full">
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-white/60">
+                <p className="font-mono text-[10px] uppercase tracking-[0.15em] font-medium mb-6 text-white">
                   <SwissTextReveal as="span" mode="word" stagger={0.08} delay={0.15}>
                     THE STUDIO
                   </SwissTextReveal>
                 </p>
                 <div className="space-y-4 pr-4">
-                  <p className="text-sm leading-7 text-white/85 text-pretty max-w-[34ch]">
+                  <p className="text-sm leading-7 text-white text-pretty max-w-[34ch]">
                     <SwissTextReveal as="span" mode="line" stagger={0.1} delay={0.2}>
                       {"Custom homes across Dallas-Fort Worth — from concept and cost alignment to permit-ready documentation and builder-coordinated delivery."}
                     </SwissTextReveal>
                   </p>
-                  <ul className="flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.08em] text-white/80" aria-label="Key trust signals">
+                  <ul className="flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.08em] text-white" aria-label="Key trust signals">
                     <li className="rounded-full border border-white/15 bg-white/8 px-2.5 py-1">DFW & beyond</li>
                     <li className="rounded-full border border-white/15 bg-white/8 px-2.5 py-1">835+ projects</li>
                     <li className="rounded-full border border-white/15 bg-white/8 px-2.5 py-1">Response in 1 business day</li>
@@ -272,7 +272,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
                 >
                   Schedule a Consultation
                 </CtaLink>
-                <p className="text-[11px] text-white/60">Ground-up custom homes, preconstruction & coordinated delivery.</p>
+                <p className="text-[11px] text-white">Ground-up custom homes, preconstruction & coordinated delivery.</p>
               </div>
             </div>
           </div>
@@ -281,7 +281,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
           <div className="w-full mt-auto mb-2">
             <h1
               ref={titleRef}
-              className="text-[7vw] sm:text-[6vw] lg:text-[5vw] xl:text-[4.5vw] leading-[0.85] tracking-tighter font-normal uppercase opacity-90 will-change-transform pb-2 md:pb-4 flex items-baseline gap-x-[1.5vw] whitespace-nowrap"
+              className="text-[7vw] sm:text-[6vw] lg:text-[5vw] xl:text-[4.5vw] leading-[0.85] tracking-tighter font-normal uppercase will-change-transform pb-2 md:pb-4 flex items-baseline gap-x-[1.5vw] whitespace-nowrap"
               style={{ wordSpacing: "-0.02em" }}
             >
               <SwissTextReveal as="span" mode="word" stagger={0.12} delay={0.14} className="text-white">
