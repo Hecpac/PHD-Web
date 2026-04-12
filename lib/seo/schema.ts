@@ -89,7 +89,10 @@ export function createLocalBusinessSchema(reviews?: Review[]) {
         closes: "18:00",
       },
     ],
-    sameAs: siteConfig.socialLinks.map((social) => social.href),
+    sameAs: [
+      ...siteConfig.socialLinks.map((social) => social.href),
+      ...siteConfig.entityLinks,
+    ],
   };
 
   if (reviews && reviews.length > 0) {
@@ -476,4 +479,62 @@ export function createBlogBreadcrumbSchema(post?: BlogPost) {
   }
 
   return createBreadcrumbSchema(items);
+}
+
+export function createFounderSchema() {
+  const siteUrl = getSiteUrl();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Hector Pachano",
+    jobTitle: "Founder",
+    worksFor: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteUrl,
+    },
+    sameAs: ["https://www.instagram.com/pachanodesign"],
+  };
+}
+
+export function createOrganizationSchema() {
+  const siteUrl = getSiteUrl();
+  const { phoneE164 } = getCtaConfig();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.name,
+    alternateName: siteConfig.shortName,
+    url: siteUrl,
+    logo: `${siteUrl}/logo/logo.png`,
+    foundingDate: "2016",
+    description: siteConfig.description,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: siteConfig.address.street,
+      addressLocality: siteConfig.address.city,
+      addressRegion: siteConfig.address.state,
+      postalCode: siteConfig.address.zip,
+      addressCountry: "US",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: phoneE164,
+      contactType: "customer service",
+      areaServed: "US",
+      availableLanguage: ["English", "Spanish"],
+    },
+    founder: {
+      "@type": "Person",
+      name: "Hector Pachano",
+      jobTitle: "Founder",
+      sameAs: ["https://www.instagram.com/pachanodesign"],
+    },
+    sameAs: [
+      ...siteConfig.socialLinks.map((social) => social.href),
+      ...siteConfig.entityLinks,
+    ],
+  };
 }
