@@ -17,6 +17,7 @@ type SiteConfig = {
     display: string;
   };
   socialLinks: readonly SocialLink[];
+  entityLinks: readonly string[];
 };
 
 export const siteConfig: SiteConfig = {
@@ -46,6 +47,10 @@ export const siteConfig: SiteConfig = {
       label: "Instagram",
       href: "https://www.instagram.com/premium.homedesign",
     },
+  ] as const,
+  entityLinks: [
+    "https://www.google.com/maps/place/Premium+Home+Design",
+    "https://www.instagram.com/pachanodesign",
   ] as const,
 };
 
