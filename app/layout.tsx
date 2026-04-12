@@ -19,7 +19,12 @@ import { GoogleTagManager } from "@/components/analytics/gtm";
 import { UTMTracker } from "@/components/analytics/utm-tracker";
 import { getSiteUrl, siteConfig } from "@/lib/config/site";
 import { getReviews } from "@/lib/data";
-import { createLocalBusinessSchema, createWebSiteSchema } from "@/lib/seo/schema";
+import {
+  createLocalBusinessSchema,
+  createOrganizationSchema,
+  createFounderSchema,
+  createWebSiteSchema,
+} from "@/lib/seo/schema";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
@@ -135,6 +140,8 @@ export default async function RootLayout({
         <UTMTracker />
         <JsonLd data={createWebSiteSchema()} />
         <JsonLd data={createLocalBusinessSchema(reviews)} />
+        <JsonLd data={createOrganizationSchema()} />
+        <JsonLd data={createFounderSchema()} />
         <SiteHeader />
         <SmoothScroll>
           <div
