@@ -2,24 +2,65 @@ import type { BlogPost, FAQ, ProcessStep, Project, Review, Service, ServiceDetai
 
 export const fallbackProjects: Project[] = [
   {
+    id: "fallback-project-roxcliff",
+    title: "Roxcliff Residence",
+    slug: "roxcliff",
+    location: {
+      city: "Dallas",
+      display: "Roxcliff",
+    },
+    summary:
+      "A modern residential build coordinated end-to-end by PHD — drafting, floor plans, interior design, construction, and custom cabinetry resolved on the same team. Clean white interiors with carefully detailed lighting and material transitions.",
+    description:
+      "Roxcliff is a ground-up residence delivered under PHD's all-in-one model. The interiors center on a restrained white-and-light-wood palette, with custom cabinetry and lighting detail designed and coordinated by the same people who managed construction. No external handoffs — drafting, design intent, field execution, and cabinetry all lived on one team from concept to completion.",
+    gallery: [
+      { src: "/projects/roxcliff/40.jpg", alt: "Roxcliff Residence front elevation at sunset with stone entry and floor-to-ceiling glass", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/36.jpg", alt: "Roxcliff Residence rear elevation at sunset with pool and spa", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/38.jpg", alt: "Roxcliff Residence backyard view with covered patio and balcony at sunset", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/01.jpg", alt: "Roxcliff Residence interior view with vertical pendant lighting", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/02.jpg", alt: "Roxcliff Residence interior view", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/03.jpg", alt: "Roxcliff Residence interior view", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/04.jpg", alt: "Roxcliff Residence interior view", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/05.jpg", alt: "Roxcliff Residence interior view", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/06.jpg", alt: "Roxcliff Residence interior view", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/07.jpg", alt: "Roxcliff Residence interior view", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/08.jpg", alt: "Roxcliff Residence interior view", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/09.jpg", alt: "Roxcliff Residence interior view", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/10.jpg", alt: "Roxcliff Residence interior view", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/11.jpg", alt: "Roxcliff Residence interior view", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/12.jpg", alt: "Roxcliff Residence interior view", width: 3000, height: 2000 },
+    ],
+    highlights: [
+      "All-in-one delivery — drafting, design, construction, and cabinetry in-house",
+      "Modern white-and-light-wood interior palette with custom lighting detail",
+      "Coordinated finish and cabinet execution without external vendor handoffs",
+    ],
+    isFeatured: true,
+    featuredOrder: 1,
+    heroImage: {
+      src: "/projects/roxcliff/40.jpg",
+      alt: "Roxcliff Residence front elevation at sunset with stone entry and floor-to-ceiling glass",
+      width: 3000,
+      height: 2000,
+    },
+  },
+  {
     id: "fallback-project-1",
-    title: "1930 Bickers",
+    title: "Bickers Residence",
     slug: "1930-bickers",
     location: {
       city: "Dallas",
       neighborhood: "Bickers",
       display: "Bickers, Dallas",
     },
-    style: "Modern Contemporary",
-    year: 2024,
     summary:
       "A ground-up two-story residence in Dallas featuring double-height ceilings, a floating wood staircase, and a curated palette of matte tile, oak, and matte-black hardware.",
     description:
-      "The 1930 Bickers project is a new-construction custom home in an established Dallas neighborhood. The design centers on a double-height entry with a skylight and a floating staircase with oak treads and integrated LED step lighting. The open-plan main level connects a white-cabinet kitchen with herringbone tile backsplash to the main living areas. Upstairs, the primary suite includes a walk-in glass shower with textured accent tile and rain-head fixture. A dedicated laundry and built-in storage optimize everyday function without sacrificing material consistency.",
+      "The Bickers Residence is a new-construction custom home in an established Dallas neighborhood. The design centers on a double-height entry with a skylight and a floating staircase with oak treads and integrated LED step lighting. The open-plan main level connects a white-cabinet kitchen with herringbone tile backsplash to the main living areas. Upstairs, the primary suite includes a walk-in glass shower with textured accent tile and rain-head fixture. A dedicated laundry and built-in storage optimize everyday function without sacrificing material consistency.",
     gallery: [
       {
         src: "/projects/1930-bickers/hero.jpg",
-        alt: "1930 Bickers staircase and double-height living space in Dallas",
+        alt: "Bickers Residence staircase and double-height living space in Dallas",
         width: 2400,
         height: 1800,
       },
@@ -71,21 +112,14 @@ export const fallbackProjects: Project[] = [
       "Double-height entry with skylight",
       "Full design-build coordination from concept to turnover",
     ],
-    specs: {
-      sqft: 3200,
-      beds: 4,
-      baths: 3,
-      stories: 2,
-    },
     isFeatured: true,
-    featuredOrder: 1,
+    featuredOrder: 2,
     heroImage: {
       src: "/projects/1930-bickers/hero.jpg",
-      alt: "1930 Bickers staircase and double-height living space in Dallas",
+      alt: "Bickers Residence staircase and double-height living space in Dallas",
       width: 2400,
       height: 1800,
     },
-    tags: ["Modern Contemporary", "3,200 sqft", "Dallas"],
   },
   {
     id: "fallback-project-2",
@@ -96,8 +130,6 @@ export const fallbackProjects: Project[] = [
       neighborhood: "East Dallas",
       display: "East Dallas, TX",
     },
-    style: "Modern Contemporary",
-    year: 2025,
     summary:
       "A spec-built modern duplex featuring open-plan living, marble-waterfall kitchen islands, and spa-grade primary bathrooms across mirrored floorplans.",
     description:
@@ -157,21 +189,14 @@ export const fallbackProjects: Project[] = [
       "Marble-waterfall kitchen islands with copper pendants",
       "Spa-grade primary bathrooms with freestanding tubs",
     ],
-    specs: {
-      sqft: 2800,
-      beds: 3,
-      baths: 3,
-      stories: 2,
-    },
     isFeatured: true,
-    featuredOrder: 2,
+    featuredOrder: 3,
     heroImage: {
       src: "/projects/duplex/hero.jpg",
       alt: "Modern duplex front elevation with black and white facade",
       width: 2400,
       height: 1600,
     },
-    tags: ["Modern Contemporary", "2,800 sqft", "Duplex"],
   },
   {
     id: "fallback-project-3",
@@ -181,8 +206,6 @@ export const fallbackProjects: Project[] = [
       city: "Waxahachie",
       display: "Waxahachie, TX",
     },
-    style: "Modern Farmhouse",
-    year: 2022,
     summary:
       "A two-story new build mixing cedar siding, stone veneer, and standing-seam metal in a modern farmhouse expression.",
     description:
@@ -242,41 +265,32 @@ export const fallbackProjects: Project[] = [
       "Angled roofline with large-format windows",
       "Full design-build from site planning to finishes",
     ],
-    specs: {
-      sqft: 2600,
-      beds: 3,
-      baths: 2,
-      stories: 2,
-    },
     isFeatured: true,
-    featuredOrder: 3,
+    featuredOrder: 4,
     heroImage: {
       src: "/projects/pueblo/hero.jpg",
       alt: "Pueblo Residence front elevation with cedar and stone facade",
       width: 2400,
       height: 1599,
     },
-    tags: ["Modern Farmhouse", "2,600 sqft", "Waxahachie"],
   },
   {
     id: "fallback-project-4",
-    title: "1962 Gallagher",
+    title: "Gallagher Residence",
     slug: "gallagher",
     location: {
       city: "Dallas",
       neighborhood: "North Dallas",
       display: "North Dallas, TX",
     },
-    style: "Modern Stucco",
-    year: 2026,
     summary:
       "A full-scope renovation transforming a dated ranch into a modern stucco residence with updated interiors and a reimagined floor plan.",
     description:
-      "The 1962 Gallagher project in North Dallas is a whole-house renovation that replaced the original 1960s ranch exterior with a modern stucco-and-stone facade, new black aluminum windows, and a reconfigured driveway. Inside, the team gutted and rebuilt all bathrooms with white shaker vanities, dark concrete-look countertops, and matte-black fixtures. The scope included structural modifications, new MEP systems, and a complete interior finish package — flooring, paint, lighting, and millwork — all coordinated through a single design-build contract.",
+      "The Gallagher Residence in North Dallas is a whole-house renovation that replaced the original 1960s ranch exterior with a modern stucco-and-stone facade, new black aluminum windows, and a reconfigured driveway. Inside, the team gutted and rebuilt all bathrooms with white shaker vanities, dark concrete-look countertops, and matte-black fixtures. The scope included structural modifications, new MEP systems, and a complete interior finish package — flooring, paint, lighting, and millwork — all coordinated through a single design-build contract.",
     gallery: [
       {
         src: "/projects/gallagher/hero.jpg",
-        alt: "1962 Gallagher modern stucco exterior in North Dallas",
+        alt: "Gallagher Residence modern stucco exterior in North Dallas",
         width: 2400,
         height: 1800,
       },
@@ -294,31 +308,31 @@ export const fallbackProjects: Project[] = [
       },
       {
         src: "/projects/gallagher/interior-01.jpg",
-        alt: "1962 Gallagher interior renovation detail",
+        alt: "Gallagher Residence interior renovation detail",
         width: 2400,
         height: 1800,
       },
       {
         src: "/projects/gallagher/interior-02.jpg",
-        alt: "1962 Gallagher interior renovation detail",
+        alt: "Gallagher Residence interior renovation detail",
         width: 2400,
         height: 1800,
       },
       {
         src: "/projects/gallagher/interior-03.jpg",
-        alt: "1962 Gallagher interior renovation detail",
+        alt: "Gallagher Residence interior renovation detail",
         width: 2400,
         height: 1800,
       },
       {
         src: "/projects/gallagher/interior-04.jpg",
-        alt: "1962 Gallagher interior renovation detail",
+        alt: "Gallagher Residence interior renovation detail",
         width: 2400,
         height: 1800,
       },
       {
         src: "/projects/gallagher/interior-05.jpg",
-        alt: "1962 Gallagher interior renovation detail",
+        alt: "Gallagher Residence interior renovation detail",
         width: 2400,
         height: 1800,
       },
@@ -328,41 +342,32 @@ export const fallbackProjects: Project[] = [
       "All-new bathroom finishes with matte-black hardware",
       "Single-contract design-build from demo to certificate of occupancy",
     ],
-    specs: {
-      sqft: 2400,
-      beds: 3,
-      baths: 2,
-      stories: 1,
-    },
     isFeatured: true,
-    featuredOrder: 4,
+    featuredOrder: 5,
     heroImage: {
       src: "/projects/gallagher/hero.jpg",
-      alt: "1962 Gallagher modern stucco exterior in North Dallas",
+      alt: "Gallagher Residence modern stucco exterior in North Dallas",
       width: 2400,
       height: 1800,
     },
-    tags: ["Modern Stucco", "2,400 sqft", "Renovation"],
   },
   {
     id: "fallback-project-5",
-    title: "806 Mango Ct",
+    title: "Mango Court Residence",
     slug: "806-mango-ct",
     location: {
       city: "Coppell",
       neighborhood: "Coppell",
-      display: "Coppell, TX 75019",
+      display: "Coppell, TX",
     },
-    style: "Modern Transitional",
-    year: 2021,
     summary:
       "A ground-up modern home in Coppell with white-brick and cedar exterior, pool with water feature, and open-plan living designed for indoor-outdoor entertaining.",
     description:
-      "The 806 Mango Ct project in Coppell is a new-construction custom home designed around indoor-outdoor living. The two-story white-brick and cedar-panel facade frames large-format black aluminum windows. The rear elevation opens to a covered patio, pool with raised water feature, and horizontal cedar privacy fence. Inside, the open-plan main level features light oak floors, a concrete fireplace surround, and floor-to-ceiling sliding doors to the pool area. The design-build team managed every phase from foundation engineering through pool construction and landscape coordination.",
+      "The Mango Court Residence in Coppell is a new-construction custom home designed around indoor-outdoor living. The two-story white-brick and cedar-panel facade frames large-format black aluminum windows. The rear elevation opens to a covered patio, pool with raised water feature, and horizontal cedar privacy fence. Inside, the open-plan main level features light oak floors, a concrete fireplace surround, and floor-to-ceiling sliding doors to the pool area. The design-build team managed every phase from foundation engineering through pool construction and landscape coordination.",
     gallery: [
       {
         src: "/projects/806-mango/hero.jpg",
-        alt: "806 Mango Ct exterior at night with accent lighting",
+        alt: "Mango Court Residence exterior at night with accent lighting",
         width: 2400,
         height: 1800,
       },
@@ -392,7 +397,7 @@ export const fallbackProjects: Project[] = [
       },
       {
         src: "/projects/806-mango/drone.jpg",
-        alt: "Aerial drone view of 806 Mango during construction",
+        alt: "Aerial drone view of Mango Court Residence during construction",
         width: 2400,
         height: 1350,
       },
@@ -408,20 +413,13 @@ export const fallbackProjects: Project[] = [
       "White-brick and cedar-panel exterior",
       "Full design-build from foundation to landscape",
     ],
-    specs: {
-      sqft: 3400,
-      beds: 4,
-      baths: 3,
-      stories: 2,
-    },
     isFeatured: false,
     heroImage: {
       src: "/projects/806-mango/hero.jpg",
-      alt: "806 Mango Ct exterior at night with accent lighting",
+      alt: "Mango Court Residence exterior at night with accent lighting",
       width: 2400,
       height: 1800,
     },
-    tags: ["Modern Transitional", "3,400 sqft", "Coppell"],
   },
 ];
 
@@ -669,57 +667,48 @@ export const fallbackServiceDetails: ServiceDetail[] = [
 export const fallbackReviews: Review[] = [
   {
     id: "review-1",
-    author: "Michael & Sarah T.",
-    location: "Preston Hollow, Dallas",
+    author: "Veronica Marin",
+    location: "Dallas, TX",
     rating: 5,
-    text: "From the first feasibility meeting to the day we moved in, every step was documented and transparent. The decision gate process gave us confidence that we were never going to be surprised by a budget overrun. Our home in Preston Hollow turned out exactly as the 3D renderings showed.",
+    text: "Quiero dar infinitamente, las gracias a la compañía Premium Home Design por haberme construido mi casa estoy tan feliz y tan contenta. Me encantó todo desde la cocina el baño, la recámaras, la sala todo la verdad es que se los recomiendo 100% ellos siempre están al pendiente hasta en el más mínimo detalle.",
     projectType: "New Construction",
-    date: "2025-08-15",
+    date: "2026-02-01",
   },
   {
     id: "review-2",
-    author: "Jennifer L.",
-    location: "Westover Hills, Fort Worth",
+    author: "Martin G.",
+    location: "Dallas, TX",
     rating: 5,
-    text: "We interviewed four builders in the DFW area before choosing this team. The difference was the design-first approach — they didn't just want to build a house, they wanted to protect the design intent through every phase of construction. The weekly reports kept us informed without overwhelming us.",
+    text: "Wish I could give 10 stars! Premium Home Design is a great company, with great people. I had my house built by them and wow! Great communication, fast responders. Whenever you have a question/doubt or anything really they respond so fast! I would definitely recommend them 100/100 times!",
     projectType: "New Construction",
-    date: "2025-06-20",
+    date: "2026-01-01",
   },
   {
     id: "review-3",
-    author: "David & Maria R.",
-    location: "Southlake",
+    author: "Alan Daoust",
+    location: "Dallas, TX",
     rating: 5,
-    text: "The preconstruction process was incredibly thorough. They caught a drainage issue on our lot that two other builders missed. The feasibility study alone saved us from a costly mistake. Our Southlake home was delivered on time and on budget.",
-    projectType: "New Construction",
-    date: "2025-04-10",
+    text: "Premium Home Design exceeded our expectations in every way. They completed a full remodel of our entire first floor, and the final result is absolutely stunning — we truly love our home. The finished space matched the design renderings perfectly, which speaks volumes about their attention to detail and craftsmanship. They finished ahead of their initial deadline, allowing us to move back in earlier than expected.",
+    projectType: "Renovation",
+    date: "2026-01-01",
   },
   {
     id: "review-4",
-    author: "Robert K.",
-    location: "Frisco",
+    author: "Rose Cerda",
+    location: "Dallas, TX",
     rating: 5,
-    text: "As someone who's built three custom homes, I can say this was the most organized process I've experienced. The milestone QA inspections caught things before they became problems. Our Frisco project came in under the original timeline.",
-    projectType: "New Construction",
-    date: "2025-02-28",
+    text: "Very happy with the outcome of my addition, from the design to the execution. The team is committed to build your dream design at the best possible price. I look forward to working with them in the future.",
+    projectType: "Addition",
+    date: "2026-01-01",
   },
   {
     id: "review-5",
-    author: "Amanda & Chris P.",
-    location: "Highland Park, Dallas",
+    author: "Edgar Santamaria",
+    location: "Dallas, TX",
     rating: 5,
-    text: "Working within Highland Park's strict building guidelines required a team that understood local codes inside and out. They navigated the approval process smoothly and delivered a modern home that respects the neighborhood's character while pushing design boundaries.",
-    projectType: "Major Renovation",
-    date: "2024-11-12",
-  },
-  {
-    id: "review-6",
-    author: "Thomas W.",
-    location: "Prosper",
-    rating: 5,
-    text: "The interior design coordination was seamless. Every material selection was made before framing started, which meant zero delays from indecision. The landscape design team also delivered an outdoor space that handles the Texas heat beautifully.",
-    projectType: "New Construction",
-    date: "2024-09-05",
+    text: "We had the privilege of collaborating with Premium Home Design on our home renovation project. From the very beginning, we were struck by their professionalism and genuine passion for their work. They demonstrated exceptional listening skills and effectively incorporated our needs into the design of our new home. The final outcome was breathtaking and great quality work! Their design sense is truly remarkable, and their work consistently exceeds our expectations.",
+    projectType: "Renovation",
+    date: "2026-01-01",
   },
 ];
 
@@ -731,7 +720,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     excerpt:
       "An up-to-date 2026 breakdown of custom home construction costs per square foot in DFW, from efficient luxury builds to fully bespoke estates.",
     category: "Budget",
-    author: "DFW Design-Build Team",
+    author: "Premium Home Design",
     date: "2026-03-05",
     readTime: "6 min read",
     coverImage: {
@@ -751,7 +740,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     excerpt:
       "Understanding the Blackland Prairie soil of DFW and why engineered post-tension slabs or pier and beam foundations remain critical in 2026.",
     category: "Engineering",
-    author: "DFW Design-Build Team",
+    author: "Premium Home Design",
     date: "2026-02-24",
     readTime: "7 min read",
     coverImage: {
@@ -771,7 +760,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     excerpt:
       "A current guide to zoning, ARC, and HOA review in premium DFW municipalities like Highland Park, University Park, and Southlake.",
     category: "Regulations",
-    author: "DFW Design-Build Team",
+    author: "Premium Home Design",
     date: "2026-02-10",
     readTime: "6 min read",
     coverImage: {
@@ -791,7 +780,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     excerpt:
       "The strongest 2026 interior direction in DFW favors warmth, tactile materials, layered lighting, and wellness-driven planning over sterile minimalism.",
     category: "Design",
-    author: "DFW Design-Build Team",
+    author: "Premium Home Design",
     date: "2026-01-30",
     readTime: "8 min read",
     coverImage: {
@@ -811,7 +800,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     excerpt:
       "How 2026 DFW outdoor living spaces balance heat, storm exposure, hospitality, and year-round usability without feeling overbuilt.",
     category: "Outdoor Living",
-    author: "DFW Design-Build Team",
+    author: "Premium Home Design",
     date: "2026-01-17",
     readTime: "7 min read",
     coverImage: {
@@ -831,7 +820,7 @@ export const fallbackBlogPosts: BlogPost[] = [
     excerpt:
       "A 2026 guide to plant selection, irrigation zoning, and hardscape strategy for landscapes that stay disciplined under North Texas heat.",
     category: "Landscape",
-    author: "DFW Design-Build Team",
+    author: "Premium Home Design",
     date: "2026-01-08",
     readTime: "6 min read",
     coverImage: {

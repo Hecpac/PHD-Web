@@ -9,6 +9,13 @@ type SiteConfig = {
   description: string;
   serviceArea: string;
   contactEmail: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+    display: string;
+  };
   socialLinks: readonly SocialLink[];
 };
 
@@ -19,6 +26,13 @@ export const siteConfig: SiteConfig = {
     "Build your dream custom home across Dallas-Fort Worth, North Texas, and Southern Oklahoma with our design-build approach. Design + construction under one roof. Licensed since 2016.",
   serviceArea: "Dallas-Fort Worth, North Texas & Southern Oklahoma",
   contactEmail: "info@premiumhome.design",
+  address: {
+    street: "511 E John W Carpenter Fwy, Suite 597",
+    city: "Irving",
+    state: "TX",
+    zip: "75062",
+    display: "511 E John W Carpenter Fwy, Suite 597, Irving, TX 75062",
+  },
   socialLinks: [
     {
       label: "TikTok",

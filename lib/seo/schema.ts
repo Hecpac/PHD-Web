@@ -47,14 +47,16 @@ export function createLocalBusinessSchema(reviews?: Review[]) {
     email: siteConfig.contactEmail,
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Dallas",
-      addressRegion: "TX",
+      streetAddress: siteConfig.address.street,
+      addressLocality: siteConfig.address.city,
+      addressRegion: siteConfig.address.state,
+      postalCode: siteConfig.address.zip,
       addressCountry: "US",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 32.7767,
-      longitude: -96.797,
+      latitude: 32.978,
+      longitude: -97.0319,
     },
     areaServed: [
       {
@@ -192,7 +194,7 @@ export function createProjectSchema(project: Project) {
     description: project.summary,
     url: `${siteUrl}/projects/${project.slug}`,
     image: image ? `${siteUrl}${image.src}` : undefined,
-    datePosted: `${project.year}-01-01`,
+    ...(project.year && { datePosted: `${project.year}-01-01` }),
     ...(project.specs?.sqft && {
       floorSize: {
         "@type": "QuantitativeValue",

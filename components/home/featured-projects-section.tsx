@@ -98,7 +98,7 @@ function ProjectCapsule({ project, index }: { project: Project; index: number })
           {project.title}
         </h3>
         <p className="mb-8 font-mono text-xs uppercase tracking-widest text-white/80 sm:text-sm">
-          {project.location.display} · {project.year}
+          {project.location.display}
         </p>
         <CtaLink
           href={`/projects/${project.slug}`}

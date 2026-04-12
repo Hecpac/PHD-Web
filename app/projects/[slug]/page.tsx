@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     keywords: [
       `custom home ${project.location.city}`,
       "custom home Dallas-Fort Worth",
-      `${project.style} home ${project.location.city}`,
+      ...(project.style ? [`${project.style} home ${project.location.city}`] : []),
       "DFW custom home builder",
       "North Texas custom home builder",
       "Southern Oklahoma custom home builder",
@@ -73,7 +73,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   };
 }
 
-function getContextualCta(project: { location: { city: string }; style: string }) {
+function getContextualCta(project: { location: { city: string } }) {
   const city = project.location.city.toLowerCase();
 
   if (city.includes("highland park")) {
@@ -102,7 +102,7 @@ function getContextualCta(project: { location: { city: string }; style: string }
 
   return {
     title: `Planning in ${project.location.city}?`,
-    body: `Discuss design-build scope, budget guardrails, and execution path for a ${project.style.toLowerCase()} custom home.`,
+    body: `Discuss design-build scope, budget guardrails, and execution path for a custom home in ${project.location.city}.`,
     button: `Book ${project.location.city} Consultation`,
   };
 }
@@ -140,18 +140,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           </div>
 
           <aside className="space-y-5 lg:col-span-4" aria-label="Project details">
-            <div className="rounded-2xl border border-line bg-surface p-5">
-              <h2 className="text-lg font-semibold">Project Specs</h2>
-              <ul className="mt-3 space-y-2 text-sm text-muted">
-                {project.specs?.sqft ? <li>{project.specs.sqft.toLocaleString()} sq ft</li> : null}
-                {project.specs?.beds ? <li>{project.specs.beds} bedrooms</li> : null}
-                {project.specs?.baths ? <li>{project.specs.baths} bathrooms</li> : null}
-                {project.specs?.stories ? <li>{project.specs.stories} stories</li> : null}
-                <li>{project.style} style</li>
-                <li>Completed in {project.year}</li>
-              </ul>
-            </div>
-
             <div className="rounded-2xl border border-line bg-surface p-5">
               <h2 className="text-lg font-semibold">Highlights</h2>
               <ul className="mt-3 space-y-2 text-sm text-muted">

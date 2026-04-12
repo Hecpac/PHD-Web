@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { Container } from "@/components/layout/container";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -12,20 +13,23 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "About | Premium Home Design",
     description:
-      "Learn how Premium Home Design structures design, preconstruction, and project delivery for modern custom homes across DFW, North Texas, and Southern Oklahoma.",
+      "All-in-one residential design studio founded by a husband-and-wife team with 10+ years in drafting, interior design, construction coordination, and custom cabinetry across DFW, North Texas, and Southern Oklahoma.",
     keywords: [
       "about",
-      "design-build",
-      "custom homes",
+      "Premium Home Design",
+      "husband and wife design studio",
+      "all-in-one residential design",
+      "custom home design",
+      "interior design",
+      "custom cabinetry",
       "Dallas-Fort Worth",
       "North Texas",
       "Southern Oklahoma",
-      "custom home design",
     ],
     openGraph: {
       title: "About | Premium Home Design",
       description:
-        "Learn how Premium Home Design structures design, preconstruction, and project delivery for modern custom homes across DFW, North Texas, and Southern Oklahoma.",
+        "All-in-one residential design studio founded by a husband-and-wife team with 10+ years in drafting, interior design, construction coordination, and custom cabinetry across DFW, North Texas, and Southern Oklahoma.",
     },
     twitter: {
       card: "summary_large_image",
@@ -39,19 +43,19 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const principles = [
   {
-    title: "Design intent protected",
+    title: "Seamless process",
     description:
-      "Design decisions are documented and enforced through construction — not diluted by value-engineering shortcuts.",
+      "One team, one timeline, one direction. No handoffs between designer, builder, and cabinetmaker — and no gaps where details fall through.",
   },
   {
-    title: "Transparent process",
+    title: "Cohesive design vision",
     description:
-      "Schedules, budgets, and decision gates are shared openly. You approve every milestone before the project advances.",
+      "Every drawing, finish, and cabinet is coordinated against the same design intent, so the home reads as one considered space rather than a patchwork of vendors.",
   },
   {
-    title: "Quality from day one",
+    title: "Tailored to each client",
     description:
-      "Milestone inspections, documented punch lists, and warranty walkthroughs ensure standards are met at every phase.",
+      "We don't repeat floor plans or reuse spec packages. Every project is shaped around the family who will live in it — the way they move, cook, host, and rest.",
   },
 ];
 
@@ -80,37 +84,19 @@ const differentiators = [
 
 const values = [
   {
-    title: "Regional focus",
+    title: "Everything under one roof",
     description:
-      "We build across Dallas-Fort Worth, North Texas, and Southern Oklahoma — a deliberate ~80-mile service corridor. Tight geography means deeper trade relationships, fluent permitting across multiple jurisdictions, and construction methods calibrated to North Texas and Oklahoma climate and soil conditions.",
+      "Drafting, floor plans, interior design, construction coordination, and custom cabinetry all live on the same team. You never have to translate intent across vendors or chase accountability when something doesn't match the drawings.",
   },
   {
-    title: "Design-first, builder-backed",
+    title: "A design vision that stays intact",
     description:
-      "Most builders treat design as a preliminary step. We treat it as the foundation. Our team protects design intent through every construction decision.",
+      "Because the same people design the space and coordinate its construction, decisions made on paper show up in the finished home. Nothing gets value-engineered into something it was never meant to be.",
   },
   {
-    title: "No surprises",
+    title: "Efficient from concept to completion",
     description:
-      "Our phased process with documented decision gates means you always know the scope, cost, and timeline before the next phase begins. Change orders are documented with full cost and schedule impact before any work proceeds.",
-  },
-];
-
-const teamStructure = [
-  {
-    role: "Design & Planning",
-    description:
-      "Concept development, plan refinement, finish direction, and design intent protection across the full project lifecycle.",
-  },
-  {
-    role: "Preconstruction & Estimating",
-    description:
-      "Scope alignment, allowances, milestone budgeting, and feasibility review before drawings move too far ahead of cost reality.",
-  },
-  {
-    role: "Project Delivery",
-    description:
-      "Field coordination, critical-path scheduling, trade management, and client communication from permit through handover.",
+      "Fewer handoffs means fewer delays. Our integrated approach compresses the number of meetings, clarifications, and rework loops that usually stretch residential projects past their deadline.",
   },
 ];
 
@@ -131,8 +117,8 @@ export default function AboutPage() {
             as="h1"
             titleId="about-heading"
             eyebrow="About"
-            title="A design-build practice focused on modern homes across DFW, North Texas & Southern Oklahoma"
-            description="We combine design rigor with construction control to deliver custom homes that match the drawings, meet the budget, and finish on schedule."
+            title="A true all-in-one studio for residential design and construction"
+            description="From drafting and floor plans to interior design, construction coordination, and custom cabinetry — every detail is handled by our team, in one place. Our integrated approach eliminates the need to juggle multiple vendors, allowing for a seamless process, a cohesive design vision, and efficient execution from concept to completion."
           />
 
           <div className="grid gap-4 md:grid-cols-3">
@@ -185,22 +171,43 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Team structure section */}
-      <section className="section-shell border-t border-line section-bone">
-        <Container swiss className="space-y-8">
+      {/* Our Story section */}
+      <section
+        className="section-shell border-t border-line section-bone"
+        aria-labelledby="our-story-heading"
+      >
+        <Container swiss className="space-y-10">
           <SectionHeading
             as="h2"
-            eyebrow="Team Structure"
-            title="A coordinated team across design, cost, and delivery"
-            description="We currently present the practice through role coverage and operating structure rather than individual bios. The goal is simple: clear accountability from concept to handover."
+            titleId="our-story-heading"
+            eyebrow="Our Story"
+            title="Founded by a husband-and-wife team with 10+ years in residential design and construction"
           />
-          <div className="grid gap-6 md:grid-cols-3">
-            {teamStructure.map((item) => (
-              <article key={item.role} className="border border-line bg-surface p-6">
-                <h3 className="type-h3-compact text-ink">{item.role}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted">{item.description}</p>
-              </article>
-            ))}
+          <div className="grid gap-10 md:grid-cols-[minmax(0,460px)_1fr] md:items-center">
+            <div className="mx-auto w-full max-w-[460px] overflow-hidden border border-line bg-surface md:mx-0">
+              <Image
+                src="/about/founders.jpg"
+                alt="Founders of Premium Home Design reviewing architectural plans on site"
+                width={735}
+                height={1316}
+                sizes="(min-width: 768px) 460px, min(100vw, 460px)"
+                className="h-auto w-full"
+              />
+            </div>
+            <div className="space-y-6">
+              <p className="type-subhead max-w-prose text-muted">
+                At Premium Home Design, we provide a true all-in-one experience for residential projects.
+              </p>
+              <p className="max-w-prose text-base leading-7 text-muted">
+                From drafting and floor plans to interior design, construction coordination, and custom cabinetry design, every detail is handled by our team — all in one place.
+              </p>
+              <p className="max-w-prose text-base leading-7 text-muted">
+                Our integrated approach eliminates the need to work with multiple vendors, allowing for a seamless process, a cohesive design vision, and efficient execution from concept to completion.
+              </p>
+              <p className="max-w-prose text-base leading-7 text-muted">
+                Founded by a husband-and-wife team with over 10 years of experience in residential design and construction, we are committed to delivering thoughtful, well-executed spaces tailored to each client.
+              </p>
+            </div>
           </div>
         </Container>
       </section>

@@ -44,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 function BlogListFallback({ posts }: { posts: Awaited<ReturnType<typeof getBlogPosts>> }) {
   return (
-    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+    <div className="grid gap-x-8 gap-y-2 md:grid-cols-2">
       {posts.map((post) => (
         <BlogCard key={post.id} post={post} />
       ))}

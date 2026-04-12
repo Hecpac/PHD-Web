@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
+import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import type { BlogPost } from "@/lib/types/content";
@@ -11,6 +12,14 @@ import { ALL_CATEGORY, BlogCategoryFilter } from "./blog-category-filter";
 type BlogListProps = {
   posts: BlogPost[];
 };
+
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
 const CATEGORY_ALIASES: Record<string, string> = {};
 
@@ -93,21 +102,14 @@ export function BlogList({ posts }: BlogListProps) {
     router.push(nextUrl, { scroll: false });
   };
 
-  return (
-    <div className="space-y-8">
-      <BlogCategoryFilter
-        categories={categories}
-        activeCategory={activeCategory}
-        onCategoryChange={handleCategoryChange}
-      />
-
-      {filteredPosts.length > 0 ? (
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {filteredPosts.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
-        </div>
-      ) : (
+  if (filteredPosts.length === 0) {
+    return (
+      <div className="space-y-8">
+        <BlogCategoryFilter
+          categories={categories}
+          activeCategory={activeCategory}
+          onCategoryChange={handleCategoryChange}
+        />
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <p className="type-heading text-muted">No posts found</p>
           <p className="mt-2 text-sm text-muted">
@@ -122,7 +124,52 @@ export function BlogList({ posts }: BlogListProps) {
             View all posts
           </button>
         </div>
-      )}
+      </div>
+    );
+  }
+
+  const [leadPost, ...remainingPosts] = filteredPosts;
+
+  return (
+    <div className="space-y-10">
+      <BlogCategoryFilter
+        categories={categories}
+        activeCategory={activeCategory}
+        onCategoryChange={handleCategoryChange}
+      />
+
+      {/* Lead article */}
+      <article className="group relative border-b border-line pb-10">
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <span className="type-mono-label text-accent">{leadPost.category}</span>
+            <span className="text-xs text-muted">{leadPost.readTime}</span>
+          </div>
+          <h2 className="type-display max-w-3xl text-balance transition-colors duration-150 group-hover:text-accent">
+            <Link
+              href={`/blogs/${leadPost.slug}`}
+              className="after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              {leadPost.title}
+            </Link>
+          </h2>
+          <p className="type-subhead max-w-prose text-muted">
+            {leadPost.excerpt}
+          </p>
+          <p className="text-xs text-muted">
+            {leadPost.author} &middot; {formatDate(leadPost.date)}
+          </p>
+        </div>
+      </article>
+
+      {/* Remaining articles */}
+      {remainingPosts.length > 0 ? (
+        <div className="grid gap-x-8 gap-y-2 md:grid-cols-2">
+          {remainingPosts.map((post) => (
+            <BlogCard key={post.id} post={post} />
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }

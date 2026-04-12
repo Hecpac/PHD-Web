@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
-import { CtaLink } from "@/components/ui/cta-link";
 import { JsonLd } from "@/components/ui/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getSiteUrl } from "@/lib/config/site";
@@ -13,21 +13,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "Portfolio Projects — DFW, North Texas & Southern Oklahoma",
+    title: "Projects — DFW, North Texas & Southern Oklahoma",
     description:
-      "Explore custom home projects delivered across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+      "Selected residential work delivered by Premium Home Design across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
     keywords: [
       "portfolio",
       "custom home projects",
+      "residential design",
       "DFW",
       "North Texas",
       "Southern Oklahoma",
-      "design-build",
     ],
     openGraph: {
-      title: "Portfolio Projects — DFW, North Texas & Southern Oklahoma",
+      title: "Projects — DFW, North Texas & Southern Oklahoma",
       description:
-        "Explore custom home projects delivered across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+        "Selected residential work delivered by Premium Home Design across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
     },
     twitter: {
       card: "summary_large_image",
@@ -39,113 +39,78 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-function getCardSpan() {
-  return "xl:col-span-6";
-}
-
 export default async function ProjectsPage() {
   const projects = await getProjects();
-  const [leadProject, ...remainingProjects] = projects;
 
   return (
-    <section className="section-shell" aria-labelledby="projects-heading">
+    <>
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Home", href: "/" },
           { name: "Projects", href: "/projects" },
         ])}
       />
-      <Container swiss className="space-y-10 md:space-y-12">
-        <SectionHeading
-          as="h1"
-          titleId="projects-heading"
-          eyebrow="Portfolio"
-          title="Custom home projects in DFW"
-          description="Built work that demonstrates design clarity, planning discipline, and field execution quality."
-        />
 
-        {leadProject ? (
-          <article className="overflow-hidden border border-line bg-surface">
-            <div className="grid gap-0 lg:grid-cols-12">
-              <div className="relative aspect-[16/10] border-b border-line/80 lg:col-span-7 lg:aspect-auto lg:min-h-[34rem] lg:border-b-0 lg:border-r">
-                <Image
-                  src={leadProject.gallery[0]?.src ?? "/projects/duplex/hero.jpg"}
-                  alt={leadProject.gallery[0]?.alt ?? `${leadProject.title} project image`}
-                  fill
-                  priority
-                  fetchPriority="high"
-                  sizes="(min-width: 1280px) 56vw, (min-width: 1024px) 58vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
+      <section className="section-shell" aria-labelledby="projects-heading">
+        <Container swiss>
+          <SectionHeading
+            as="h1"
+            titleId="projects-heading"
+            eyebrow="Projects"
+            title="Selected residential work"
+            description="Every project below was drafted, designed, built, and finished by the same integrated team."
+          />
+        </Container>
+      </section>
 
-              <div className="flex min-w-0 flex-col justify-between gap-6 p-6 sm:p-8 lg:col-span-5">
-                <div className="space-y-4">
-                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-                    Featured Case · {leadProject.location.display}
-                  </p>
-                  <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                    {leadProject.title}
-                  </h2>
-                  <p className="text-reading text-sm leading-7 text-muted">{leadProject.summary}</p>
-                </div>
-
-                <div className="space-y-5 border-t border-line pt-5">
-                  {leadProject.tags?.length ? (
-                    <ul className="flex flex-wrap gap-2" aria-label="Project tags">
-                      {leadProject.tags.map((tag) => (
-                        <li
-                          key={tag}
-                          className="rounded-sm border border-line bg-surface-2 px-3 py-1 text-xs text-muted"
-                        >
-                          {tag}
-                        </li>
-                      ))}
-                    </ul>
+      <section
+        className="border-t border-line bg-line"
+        aria-label="Project gallery"
+      >
+        <ul className="grid list-none grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => {
+            const coverImage = project.heroImage ?? project.gallery[0];
+            return (
+              <li key={project.id} className="relative">
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="group relative block aspect-[4/5] overflow-hidden bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                  aria-label={`${project.title} — ${project.location.display}`}
+                >
+                  {coverImage ? (
+                    <Image
+                      src={coverImage.src}
+                      alt={coverImage.alt}
+                      fill
+                      priority={index < 3}
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+                    />
                   ) : null}
 
-                  <CtaLink href={`/projects/${leadProject.slug}`} variant="ghost" className="px-0">
-                    Review full case study
-                  </CtaLink>
-                </div>
-              </div>
-            </div>
-          </article>
-        ) : null}
-
-        {remainingProjects.length ? (
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-12" aria-label="Additional projects">
-            {remainingProjects.map((project, index) => (
-              <article
-                key={project.id}
-                className={`overflow-hidden border border-line bg-surface transition-colors hover:border-accent/40 ${getCardSpan()}`}
-              >
-                <div className="relative aspect-[16/10] border-b border-line/80">
-                  <Image
-                    src={project.gallery[0]?.src ?? "/projects/duplex/hero.jpg"}
-                    alt={project.gallery[0]?.alt ?? `${project.title} project image`}
-                    fill
-                    sizes="(min-width: 1280px) 45vw, (min-width: 768px) 50vw, 95vw"
-                    className="object-cover"
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100"
                   />
-                </div>
 
-                <div className="space-y-3 p-5 sm:p-6">
-                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-                    {project.location.display}
-                  </p>
-                  <h2 className="text-balance text-2xl font-semibold tracking-tight">{project.title}</h2>
-                  <p className="line-clamp-3 text-sm leading-6 text-muted">{project.summary}</p>
-
-                  <CtaLink href={`/projects/${project.slug}`} variant="ghost" className="px-0">
-                    View project details
-                  </CtaLink>
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : null}
-      </Container>
-    </section>
+                  <div className="absolute inset-x-0 bottom-0 flex flex-col gap-2 p-6 text-white sm:p-7">
+                    <span className="type-mono-label text-white/80">
+                      {project.location.display}
+                    </span>
+                    <h2 className="text-balance text-2xl font-semibold leading-tight tracking-tight sm:text-3xl">
+                      {project.title}
+                    </h2>
+                    <span className="mt-1 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/80 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                      View project
+                      <span aria-hidden className="inline-block">→</span>
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    </>
   );
 }

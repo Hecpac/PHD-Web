@@ -71,8 +71,8 @@ export type Project = {
     neighborhood?: string;
     display: string;
   };
-  style: string;
-  year: number;
+  style?: string;
+  year?: number;
   summary: string;
   description?: string;
   gallery: GalleryImage[];

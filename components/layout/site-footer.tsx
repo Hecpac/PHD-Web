@@ -53,6 +53,15 @@ export function SiteFooter() {
 
             <div className="space-y-2 pt-1">
               <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address.display)}`}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Office address (opens Google Maps)"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
+              >
+                {siteConfig.address.display}
+              </a>
+              <a
                 href={`mailto:${siteConfig.contactEmail}`}
                 aria-label={`Email ${siteConfig.contactEmail}`}
                 className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
