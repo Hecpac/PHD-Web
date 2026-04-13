@@ -8,7 +8,11 @@ export function FooterHeightObserver() {
     if (!footer) return;
 
     const update = () => {
-      document.documentElement.style.setProperty("--footer-height", `${footer.offsetHeight}px`);
+      const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+      document.documentElement.style.setProperty(
+        "--footer-height",
+        isDesktop ? `${footer.offsetHeight}px` : "0px"
+      );
     };
 
     const ro = new ResizeObserver(update);
