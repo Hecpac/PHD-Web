@@ -12,8 +12,7 @@ export function SiteFooter() {
   return (
     <footer
       id="site-footer"
-      className="relative border-t border-line bg-surface lg:fixed lg:bottom-0 lg:left-0 lg:right-0 lg:bg-surface/65"
-      style={{ zIndex: -1 }}
+      className="relative border-t border-line bg-surface lg:fixed lg:bottom-0 lg:left-0 lg:right-0 lg:z-[-1] lg:bg-surface/65"
       role="contentinfo"
       aria-label="Site footer"
     >
