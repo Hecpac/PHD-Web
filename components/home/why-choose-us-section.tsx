@@ -245,7 +245,7 @@ export function WhyChooseUsSection() {
       });
 
       const mm = gsap.matchMedia();
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
+      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
         // Heading entrance animation
         if (headingRef.current) {
           animateSwissEntrance(headingRef.current, {

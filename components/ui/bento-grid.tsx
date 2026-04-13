@@ -154,7 +154,8 @@ export function BentoGrid({ items, className }: BentoGridProps) {
 
     const mm = gsap.matchMedia();
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
+    // Desktop only: entrance animation (mobile cells stay visible by default)
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
       animateSwissEntrance(cells, {
         y: 60,
         scale: 0.96,
@@ -168,13 +169,11 @@ export function BentoGrid({ items, className }: BentoGridProps) {
         },
       });
 
-      // Refresh ScrollTrigger after grid images load
-      // to recalculate positions
       ScrollTrigger.refresh();
     });
 
-    // Reduced motion: opacity-only fade, no translate
-    mm.add("(prefers-reduced-motion: reduce)", () => {
+    // Desktop reduced motion: opacity-only fade
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: reduce)", () => {
       gsap.from(cells, {
         opacity: 0,
         duration: 0.3,
