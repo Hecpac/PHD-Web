@@ -198,7 +198,7 @@ export function MobileMenu({
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
-            className="fixed top-0 left-0 h-[100dvh] w-full z-[60] overscroll-contain bg-ink/30 px-3 pb-3 pt-[5.25rem] backdrop-blur-[2px]"
+            className="fixed top-0 left-0 h-[100dvh] w-full z-[60] overscroll-contain bg-ink/60 px-3 pb-3 pt-[5.25rem] backdrop-blur-sm"
             variants={prefersReduced ? undefined : overlayVariants}
             initial={prefersReduced ? undefined : "hidden"}
             animate={prefersReduced ? undefined : "visible"}
