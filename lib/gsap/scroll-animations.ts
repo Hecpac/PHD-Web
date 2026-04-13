@@ -60,7 +60,7 @@ export interface StaggerRevealOptions {
 export function createStaggerReveal({ trigger, targets, stagger = 0.08, y = 40, start = "top 80%" }: StaggerRevealOptions) {
   const mm = gsap.matchMedia();
 
-  mm.add("(prefers-reduced-motion: no-preference)", () => {
+  mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
     animateSwissEntrance(targets, {
       y,
       stagger,
@@ -72,7 +72,8 @@ export function createStaggerReveal({ trigger, targets, stagger = 0.08, y = 40, 
     });
   });
 
-  mm.add("(prefers-reduced-motion: reduce)", () => {
+  // Mobile + reduced motion: no animation, ensure visible
+  mm.add("(max-width: 1023px), (prefers-reduced-motion: reduce)", () => {
     gsap.set(targets, { opacity: 1, y: 0 });
   });
 

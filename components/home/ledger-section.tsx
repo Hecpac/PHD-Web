@@ -39,7 +39,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
       });
 
       const mm = gsap.matchMedia();
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
+      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
         const cards = gsap.utils.toArray<HTMLElement>(gridRef.current!.querySelectorAll(".ledger-card"));
         cards.forEach((card) => {
           const rows = gsap.utils.toArray<HTMLElement>(card.querySelectorAll("[data-ledger-row]"));
