@@ -123,7 +123,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const socialProof = contextualReviews.length > 0 ? contextualReviews : reviews.slice(0, 1);
 
   return (
-    <article className="py-8 sm:py-12 lg:py-16">
+    <article className="py-4 sm:py-12 lg:py-16">
       <JsonLd data={createProjectPageBreadcrumbSchema(project)} />
       <JsonLd data={createProjectSchema(project)} />
       <PageIntentTracker entityType="project" slug={project.slug} />
@@ -176,10 +176,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           </aside>
         </div>
 
-        <SocialProofStrip
-          title={`Client feedback from ${project.location.city} and nearby areas`}
-          reviews={socialProof}
-        />
+        <div className="hidden sm:block">
+          <SocialProofStrip
+            title={`Client feedback from ${project.location.city} and nearby areas`}
+            reviews={socialProof}
+          />
+        </div>
       </Container>
     </article>
   );
