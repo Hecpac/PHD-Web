@@ -51,7 +51,7 @@ export default function ContactPage() {
       <section className="section-shell border-t border-line">
         <Container swiss className="space-y-6 pt-6">
           <header className="space-y-3">
-            <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">BOFU Qualifier</p>
+            <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Project Intake</p>
             <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
               Vision Builder — qualify your custom home project
             </h1>

@@ -117,10 +117,16 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
   const { scheduleUrl, phoneHref, phoneDisplay } = getCtaConfig();
   const cta = getContextualCta(project);
-  const contextualReviews = reviews
-    .filter((review) => review.location.toLowerCase().includes(project.location.city.toLowerCase()))
-    .slice(0, 1);
-  const socialProof = contextualReviews.length > 0 ? contextualReviews : reviews.slice(0, 1);
+  const cityMatches = reviews.filter((review) =>
+    review.location.toLowerCase().includes(project.location.city.toLowerCase()),
+  );
+  const hashCode = slug.split("").reduce((h, c) => ((h * 31 + c.charCodeAt(0)) | 0), 0);
+  const reviewIndex = cityMatches.length > 1
+    ? Math.abs(hashCode) % cityMatches.length
+    : 0;
+  const socialProof = cityMatches.length > 0
+    ? [cityMatches[reviewIndex]]
+    : [reviews[0]];
 
   return (
     <article className="py-4 sm:py-12 lg:py-16">
@@ -151,6 +157,38 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 ))}
               </ul>
             </div>
+
+            {project.specs && (
+              <div className="rounded-xl border border-line bg-surface p-3 sm:rounded-2xl sm:p-5">
+                <h2 className="text-sm font-semibold sm:text-lg">Project Specs</h2>
+                <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-xs sm:mt-3 sm:gap-y-2 sm:text-sm">
+                  {project.specs.sqft != null && (
+                    <>
+                      <dt className="font-medium">Size</dt>
+                      <dd className="text-muted">{project.specs.sqft.toLocaleString()} sqft</dd>
+                    </>
+                  )}
+                  {project.specs.beds != null && (
+                    <>
+                      <dt className="font-medium">Bedrooms</dt>
+                      <dd className="text-muted">{project.specs.beds}</dd>
+                    </>
+                  )}
+                  {project.specs.baths != null && (
+                    <>
+                      <dt className="font-medium">Bathrooms</dt>
+                      <dd className="text-muted">{project.specs.baths}</dd>
+                    </>
+                  )}
+                  {project.specs.stories != null && (
+                    <>
+                      <dt className="font-medium">Stories</dt>
+                      <dd className="text-muted">{project.specs.stories}</dd>
+                    </>
+                  )}
+                </dl>
+              </div>
+            )}
 
             <div className="rounded-xl border border-line bg-surface p-3 sm:rounded-2xl sm:p-5">
               <h2 className="text-sm font-semibold sm:text-lg">{cta.title}</h2>
