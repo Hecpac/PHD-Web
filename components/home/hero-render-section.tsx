@@ -32,7 +32,7 @@ export function HeroRenderSection() {
   return (
     <section
       aria-label="Render 3D"
-      className="relative z-40 w-full overflow-hidden border-y border-line bg-black"
+      className="relative lg:z-40 w-full overflow-hidden border-y border-line bg-black"
     >
       <div
         ref={containerRef}

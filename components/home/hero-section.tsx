@@ -152,7 +152,7 @@ export function HeroSection({ heroImage, children }: HeroSectionProps) {
       ref={heroRef}
       id="hero"
       aria-label="Hero — DFW custom home builder"
-      className="relative lg:sticky lg:top-0 z-0 -mt-14 mb-14 h-screen w-full overflow-hidden md:-mt-[72px] md:mb-[72px]"
+      className="relative lg:sticky lg:top-0 lg:z-0 -mt-14 mb-14 h-screen w-full overflow-hidden md:-mt-[72px] md:mb-[72px]"
     >
       {/* Overscroll easter egg — visible on rubber-band pull-down */}
       <div

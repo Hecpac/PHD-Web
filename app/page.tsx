@@ -72,7 +72,7 @@ export default async function HomePage() {
       <HeroSection heroImage={heroData.heroImage} />
       <HeroRenderSection />
       
-      <div className="relative z-50 bg-canvas">
+      <div className="relative lg:z-50 bg-canvas">
         <LedgerSection services={services} />
         <HowWeWorkSection />
         <BlueprintSection steps={processSteps} />
