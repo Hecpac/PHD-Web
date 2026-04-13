@@ -74,7 +74,7 @@ export default async function ProjectsPage() {
               <li key={project.id} className="relative">
                 <Link
                   href={`/projects/${project.slug}`}
-                  className="group relative block aspect-[4/5] overflow-hidden bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                  className="group relative block aspect-[3/4] overflow-hidden bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:aspect-[4/5]"
                   aria-label={`${project.title} — ${project.location.display}`}
                 >
                   {coverImage ? (
