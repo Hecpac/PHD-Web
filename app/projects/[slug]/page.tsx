@@ -127,11 +127,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <JsonLd data={createProjectPageBreadcrumbSchema(project)} />
       <JsonLd data={createProjectSchema(project)} />
       <PageIntentTracker entityType="project" slug={project.slug} />
-      <Container swiss className="space-y-8">
-        <hgroup className="space-y-4">
+      <Container swiss className="space-y-4 sm:space-y-8">
+        <hgroup className="space-y-2 sm:space-y-4">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{project.location.display}</p>
-          <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">{project.title}</h1>
-          <p className="text-reading text-base leading-7 text-muted">{project.summary}</p>
+          <h1 className="text-balance text-2xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">{project.title}</h1>
+          <p className="text-reading text-sm leading-6 text-muted sm:text-base sm:leading-7">{project.summary}</p>
         </hgroup>
 
         <div className="grid gap-5 lg:grid-cols-12">

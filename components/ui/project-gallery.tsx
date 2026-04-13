@@ -65,7 +65,7 @@ export function ProjectGallery({ images, projectTitle, onImageClick }: ProjectGa
               <button
                 type="button"
                 onClick={() => onImageClick?.(idx)}
-                className="relative block w-full aspect-[4/3] sm:aspect-[3/2] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
+                className="relative block w-full aspect-[16/9] sm:aspect-[3/2] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
                 aria-label={`View ${image.alt} in lightbox`}
               >
                 <Image
