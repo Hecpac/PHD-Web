@@ -122,7 +122,7 @@ export function ParallaxStickyCards() {
     <section
       ref={sectionRef}
       aria-label="Our process"
-      className="relative z-10 h-screen w-full overflow-hidden"
+      className="relative z-10 h-[70vh] w-full overflow-hidden md:h-[80vh] lg:h-screen"
     >
       {CARDS.map((card, i) => (
         <div
