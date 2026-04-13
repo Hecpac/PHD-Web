@@ -107,11 +107,7 @@ export function ParallaxStickyCards() {
         return () => {};
       });
 
-      // Mobile: simple fade sequence, no pin
-      mm.add("(max-width: 767px)", () => {
-        gsap.set(cards[1], { y: "0%" });
-        gsap.set(cards[2], { y: "0%" });
-      });
+      // Mobile: cards are in normal flow, no animation needed
 
       return () => mm.revert();
     },
@@ -122,7 +118,7 @@ export function ParallaxStickyCards() {
     <section
       ref={sectionRef}
       aria-label="Our process"
-      className="relative z-10 h-[70vh] w-full overflow-hidden md:h-[80vh] lg:h-screen"
+      className="relative z-10 w-full md:h-[80vh] md:overflow-hidden lg:h-screen"
     >
       {CARDS.map((card, i) => (
         <div
@@ -130,12 +126,8 @@ export function ParallaxStickyCards() {
           ref={(el) => {
             cardsRef.current[i] = el;
           }}
-          className={`absolute inset-0 flex items-center ${card.bg}`}
-          style={{
-            zIndex: i + 1,
-            transform: i > 0 ? "translateY(100%)" : "none",
-            willChange: "transform, opacity",
-          }}
+          className={`flex items-center py-16 md:absolute md:inset-0 md:py-0 ${i > 0 ? "md:translate-y-full" : ""} ${card.bg}`}
+          style={{ zIndex: i + 1 }}
         >
           <Container swiss className="w-full">
             <div className="grid grid-cols-1 gap-y-10 md:grid-cols-12 md:gap-x-6 md:items-center">
