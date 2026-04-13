@@ -123,7 +123,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const socialProof = contextualReviews.length > 0 ? contextualReviews : reviews.slice(0, 1);
 
   return (
-    <article className="section-shell">
+    <article className="py-8 sm:py-12 lg:py-16">
       <JsonLd data={createProjectPageBreadcrumbSchema(project)} />
       <JsonLd data={createProjectSchema(project)} />
       <PageIntentTracker entityType="project" slug={project.slug} />
