@@ -134,28 +134,28 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <p className="text-reading text-sm leading-6 text-muted sm:text-base sm:leading-7">{project.summary}</p>
         </hgroup>
 
-        <div className="grid gap-5 lg:grid-cols-12">
+        <div className="grid gap-3 sm:gap-5 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <ProjectGallerySection images={project.gallery} projectTitle={project.title} />
           </div>
 
-          <aside className="space-y-5 lg:col-span-4" aria-label="Project details">
-            <div className="rounded-2xl border border-line bg-surface p-5">
-              <h2 className="text-lg font-semibold">Highlights</h2>
-              <ul className="mt-3 space-y-2 text-sm text-muted">
+          <aside className="space-y-3 sm:space-y-5 lg:col-span-4" aria-label="Project details">
+            <div className="rounded-xl border border-line bg-surface p-3 sm:rounded-2xl sm:p-5">
+              <h2 className="text-sm font-semibold sm:text-lg">Highlights</h2>
+              <ul className="mt-2 space-y-1 text-xs text-muted sm:mt-3 sm:space-y-2 sm:text-sm">
                 {project.highlights.map((highlight) => (
                   <li key={highlight} className="flex gap-2">
-                    <span aria-hidden className="mt-1 h-1.5 w-1.5 rounded-full bg-accent" />
+                    <span aria-hidden className="mt-1 h-1 w-1 shrink-0 rounded-full bg-accent sm:h-1.5 sm:w-1.5" />
                     <span>{highlight}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-line bg-surface p-5">
-              <h2 className="text-lg font-semibold">{cta.title}</h2>
-              <p className="mt-2 text-sm leading-6 text-muted">{cta.body}</p>
-              <div className="mt-4 flex flex-wrap items-center gap-3">
+            <div className="rounded-xl border border-line bg-surface p-3 sm:rounded-2xl sm:p-5">
+              <h2 className="text-sm font-semibold sm:text-lg">{cta.title}</h2>
+              <p className="mt-1 text-xs leading-5 text-muted sm:mt-2 sm:text-sm sm:leading-6">{cta.body}</p>
+              <div className="mt-3 flex flex-wrap items-center gap-2 sm:mt-4 sm:gap-3">
                 <BookingModal
                   bookingUrl={scheduleUrl}
                   triggerLabel={cta.button}

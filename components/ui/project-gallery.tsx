@@ -48,7 +48,7 @@ export function ProjectGallery({ images, projectTitle, onImageClick }: ProjectGa
       {/* Viewport */}
       <div
         ref={emblaRef}
-        className="overflow-hidden rounded-2xl border border-line bg-surface"
+        className="overflow-hidden rounded-xl border border-line bg-surface sm:rounded-2xl"
         tabIndex={0}
         onKeyDown={handleKeyDown}
         role="region"
