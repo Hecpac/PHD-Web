@@ -36,10 +36,7 @@ function StepCard({
       initial={reduceMotion ? false : { opacity: 0, y: 24 }}
       animate={isInView && !reduceMotion ? { opacity: 1, y: 0 } : undefined}
       transition={{ ...springTransition, delay: index * 0.08 }}
-      className="sticky h-auto min-w-0 md:static md:h-full"
-      style={{
-        top: `calc(5rem + ${index * 1.5}rem)`, // mobile sticky stack offset
-      }}
+      className="relative h-auto min-w-0 md:h-full"
     >
       <CardContainer containerClassName="h-full" className="w-full h-full">
         <CardBody className="brand-red-outline brand-red-surface flex h-full w-full flex-col rounded-xl border border-line bg-surface p-6 sm:p-8 shadow-sm hover:shadow-2xl hover:shadow-accent/[0.1] transition-[border-color,box-shadow,transform] duration-300">
