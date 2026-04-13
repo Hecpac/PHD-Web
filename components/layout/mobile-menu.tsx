@@ -60,15 +60,36 @@ export function MobileMenu({
     }
   }, []);
 
-  // Lock body scroll when open
+  // Lock body scroll when open (iOS-safe: position:fixed preserves scroll)
   useEffect(() => {
     if (open) {
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
       document.body.style.overflow = "hidden";
     } else {
+      const top = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
       document.body.style.overflow = "";
+      if (top) {
+        window.scrollTo(0, -parseInt(top, 10));
+      }
     }
     return () => {
+      const top = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
       document.body.style.overflow = "";
+      if (top) {
+        window.scrollTo(0, -parseInt(top, 10));
+      }
     };
   }, [open]);
 

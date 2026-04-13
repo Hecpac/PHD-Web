@@ -285,7 +285,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   aria-required="true"
                   aria-invalid={Boolean(state.errors?.message) || undefined}
                   aria-describedby={state.errors?.message ? messageErrorId : undefined}
-                  rows={6}
+                  rows={4}
                   enterKeyHint="send"
                   className={cn(inputClass, state.errors?.message && "border-danger")}
                   placeholder="Tell us lot status, target timeline, style direction, and budget guardrails…"

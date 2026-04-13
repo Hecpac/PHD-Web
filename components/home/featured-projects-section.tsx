@@ -67,7 +67,7 @@ function ProjectCapsule({ project, index }: { project: Project; index: number })
     <div
       ref={containerRef}
       className={cn(
-        "relative h-[68vh] w-full overflow-hidden rounded-[2.5rem] shadow-2xl sm:h-[72vh] sm:rounded-[3.5rem] lg:sticky lg:top-0 lg:h-screen"
+        "relative h-[68dvh] w-full overflow-hidden rounded-[2.5rem] shadow-2xl sm:h-[72dvh] sm:rounded-[3.5rem] lg:sticky lg:top-0 lg:h-dvh"
       )}
       style={{ zIndex: index + 1 }}
     >
