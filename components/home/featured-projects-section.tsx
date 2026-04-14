@@ -67,7 +67,7 @@ function ProjectCapsule({ project, index }: { project: Project; index: number })
     <div
       ref={containerRef}
       className={cn(
-        "relative h-[68dvh] w-full overflow-hidden rounded-[2.5rem] shadow-2xl sm:h-[72dvh] sm:rounded-[3.5rem] lg:sticky lg:top-0 lg:h-dvh"
+        "relative h-[60dvh] w-full overflow-hidden rounded-[2.5rem] shadow-2xl sm:h-[68dvh] sm:rounded-[3.5rem] lg:sticky lg:top-0 lg:h-dvh"
       )}
       style={{ zIndex: index + 1 }}
     >
@@ -86,7 +86,7 @@ function ProjectCapsule({ project, index }: { project: Project; index: number })
           sizes="100vw"
           priority={index === 0}
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/60 lg:bg-black/50" />
       </div>
 
       {/* Contenido centrado verticalmente */}
@@ -138,7 +138,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
 
       {/* Edge-to-edge con px mínimo para mostrar bordes redondeados vs fondo rojo */}
       <div className="px-3 sm:px-4">
-        <div className="relative flex flex-col">
+        <div className="relative flex flex-col gap-4 lg:gap-0">
           {projects.map((project, index) => (
             <ProjectCapsule key={project.id} project={project} index={index} />
           ))}
