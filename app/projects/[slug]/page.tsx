@@ -45,19 +45,18 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
   return {
     title: `${project.title} | ${project.location.city}`,
-    description: `${project.summary} Located in ${project.location.display}, within our DFW · North Texas · Southern Oklahoma service area.`,
+    description: `${project.summary} Located in ${project.location.display}, within our DFW · North Texas service area.`,
     keywords: [
       `custom home ${project.location.city}`,
       "custom home Dallas-Fort Worth",
       ...(project.style ? [`${project.style} home ${project.location.city}`] : []),
       "DFW custom home builder",
       "North Texas custom home builder",
-      "Southern Oklahoma custom home builder",
       "design-build Dallas-Fort Worth",
     ],
     openGraph: {
       title: `${project.title} | Custom Home in ${project.location.city}`,
-      description: `${project.summary} Located in ${project.location.display}, within our DFW · North Texas · Southern Oklahoma service area.`,
+      description: `${project.summary} Located in ${project.location.display}, within our DFW · North Texas service area.`,
       url: `${siteUrl}/projects/${project.slug}`,
       ...(ogImage?.src && {
         images: [{ url: `${siteUrl}${ogImage.src}`, alt: ogImage.alt }],

@@ -129,7 +129,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
           title={
             <>
               Built work across{" "}
-              <em className="not-italic text-accent">DFW, North Texas & Southern Oklahoma</em>
+              <em className="not-italic text-accent">DFW & North Texas</em>
             </>
           }
           description="Portfolio evidence comes first. Each project reflects design intent, execution discipline, and documented handoff quality."

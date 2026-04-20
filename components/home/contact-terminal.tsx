@@ -150,7 +150,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
                 <MapPin className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                DFW · North Texas · S. Oklahoma
+                DFW · North Texas
               </span>
             </div>
 
@@ -308,7 +308,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                     {isPending ? "Submitting…" : "Send Project Brief"}
                   </button>
                   <p className="text-xs text-muted">
-                    No spam. No off-market outreach. Project inquiries from DFW, North Texas, and Southern Oklahoma.
+                    No spam. No off-market outreach. Project inquiries from DFW & North Texas.
                   </p>
                   <div className="flex flex-wrap items-center gap-2.5 rounded-lg border border-line/70 bg-canvas/45 p-2 sm:gap-3">
                     <CtaLink
@@ -331,7 +331,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   </div>
                 </div>
                 <p className="mt-3 text-xs text-muted">
-                  By submitting, you confirm this project is located in DFW, North Texas, or Southern Oklahoma.
+                  By submitting, you confirm this project is located in DFW or North Texas.
                 </p>
               </div>
             </form>

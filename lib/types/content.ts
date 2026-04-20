@@ -1,6 +1,6 @@
 /**
- * Cities within ~80 mi of Dallas where we accept project intake.
- * Spans the DFW Metroplex, North Texas, and Southern Oklahoma.
+ * Cities where we accept project intake.
+ * Covers the DFW Metroplex and North Texas.
  * Single source of truth — used by forms, validation, and SEO schema.
  */
 export const SERVICE_AREA_CITIES = [
@@ -40,9 +40,6 @@ export const SERVICE_AREA_CITIES = [
   { name: "Waxahachie", state: "TX" },
   { name: "Weatherford", state: "TX" },
   { name: "Granbury", state: "TX" },
-  // Southern Oklahoma border (~80–100 mi)
-  { name: "Durant", state: "OK" },
-  { name: "Ardmore", state: "OK" },
 ] as const;
 
 export type ServiceAreaCity = (typeof SERVICE_AREA_CITIES)[number];

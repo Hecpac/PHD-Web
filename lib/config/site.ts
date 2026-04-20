@@ -24,8 +24,8 @@ export const siteConfig: SiteConfig = {
   name: "Premium Home Design",
   shortName: "PHD",
   description:
-    "Build your dream custom home across Dallas-Fort Worth, North Texas, and Southern Oklahoma with our design-build approach. Design + construction under one roof. Licensed since 2016.",
-  serviceArea: "Dallas-Fort Worth, North Texas & Southern Oklahoma",
+    "Build your dream custom home across Dallas-Fort Worth & North Texas with our design-build approach. Design + construction under one roof. Licensed since 2016.",
+  serviceArea: "Dallas-Fort Worth & North Texas",
   contactEmail: "info@premiumhome.design",
   address: {
     street: "511 E John W Carpenter Fwy, Suite 597",

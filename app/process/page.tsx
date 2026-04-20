@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Process | Blueprint for Regional Custom Home Projects",
     description:
-      "A stage-based process with decision gates for custom home design-build projects across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+      "A stage-based process with decision gates for custom home design-build projects across Dallas-Fort Worth & North Texas.",
     keywords: [
       "process",
       "design-build process",
@@ -20,12 +20,11 @@ export async function generateMetadata(): Promise<Metadata> {
       "custom home building",
       "DFW",
       "North Texas",
-      "Southern Oklahoma",
     ],
     openGraph: {
       title: "Process | Blueprint for Regional Custom Home Projects",
       description:
-        "A stage-based process with decision gates for custom home design-build projects across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+        "A stage-based process with decision gates for custom home design-build projects across Dallas-Fort Worth & North Texas.",
     },
     twitter: {
       card: "summary_large_image",

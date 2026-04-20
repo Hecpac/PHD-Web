@@ -13,21 +13,20 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "Projects — DFW, North Texas & Southern Oklahoma",
+    title: "Projects — DFW & North Texas",
     description:
-      "Selected residential work delivered by Premium Home Design across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+      "Selected residential work delivered by Premium Home Design across Dallas-Fort Worth and North Texas.",
     keywords: [
       "portfolio",
       "custom home projects",
       "residential design",
       "DFW",
       "North Texas",
-      "Southern Oklahoma",
     ],
     openGraph: {
-      title: "Projects — DFW, North Texas & Southern Oklahoma",
+      title: "Projects — DFW & North Texas",
       description:
-        "Selected residential work delivered by Premium Home Design across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+        "Selected residential work delivered by Premium Home Design across Dallas-Fort Worth and North Texas.",
     },
     twitter: {
       card: "summary_large_image",

@@ -89,7 +89,7 @@ describe("submitContactForm delivery", () => {
 
     expect(result.success).toBe(false);
     expect(result.errors.city).toBe(
-      "Please select a city within our service area (DFW, North Texas, or Southern Oklahoma).",
+      "Please select a city within our service area (DFW or North Texas).",
     );
   });
 

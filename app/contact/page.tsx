@@ -11,21 +11,20 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "Contact | Schedule a Consultation — DFW, North Texas & S. Oklahoma",
+    title: "Contact | Schedule a Consultation — DFW & North Texas",
     description:
-      "Start your custom home intake across Dallas-Fort Worth, North Texas, and Southern Oklahoma — schedule a design-build consultation.",
+      "Start your custom home intake across Dallas-Fort Worth & North Texas — schedule a design-build consultation.",
     keywords: [
       "contact",
       "consultation",
       "design-build inquiry",
       "DFW custom homes",
       "North Texas custom homes",
-      "Southern Oklahoma custom homes",
     ],
     openGraph: {
-      title: "Contact | Schedule a Consultation — DFW, North Texas & S. Oklahoma",
+      title: "Contact | Schedule a Consultation — DFW & North Texas",
       description:
-        "Start your custom home intake across Dallas-Fort Worth, North Texas, and Southern Oklahoma — schedule a design-build consultation.",
+        "Start your custom home intake across Dallas-Fort Worth & North Texas — schedule a design-build consultation.",
     },
     twitter: {
       card: "summary_large_image",
@@ -74,7 +73,7 @@ export default function ContactPage() {
               {phoneDisplay}
             </a>
             <span className="text-sm text-muted">Mon–Fri · 9:00 AM–6:00 PM</span>
-            <span className="text-sm text-muted">DFW · North Texas · Southern Oklahoma</span>
+            <span className="text-sm text-muted">DFW · North Texas</span>
             <SocialLinks />
           </div>
 
@@ -85,7 +84,7 @@ export default function ContactPage() {
             </div>
             <div>
               <p className="font-semibold text-ink">Best fit</p>
-              <p className="mt-1 leading-6">Ground-up custom homes, preconstruction, and coordinated project delivery across DFW, North Texas, and Southern Oklahoma.</p>
+              <p className="mt-1 leading-6">Ground-up custom homes, preconstruction, and coordinated project delivery across DFW & North Texas.</p>
             </div>
             <div>
               <p className="font-semibold text-ink">Not a fit?</p>

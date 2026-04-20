@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "About | Premium Home Design",
     description:
-      "All-in-one residential design studio founded by a husband-and-wife team with 10+ years in drafting, interior design, construction coordination, and custom cabinetry across DFW, North Texas, and Southern Oklahoma.",
+      "All-in-one residential design studio founded by a husband-and-wife team with 10+ years in drafting, interior design, construction coordination, and custom cabinetry across DFW & North Texas.",
     keywords: [
       "about",
       "Premium Home Design",
@@ -24,12 +24,11 @@ export async function generateMetadata(): Promise<Metadata> {
       "custom cabinetry",
       "Dallas-Fort Worth",
       "North Texas",
-      "Southern Oklahoma",
     ],
     openGraph: {
       title: "About | Premium Home Design",
       description:
-        "All-in-one residential design studio founded by a husband-and-wife team with 10+ years in drafting, interior design, construction coordination, and custom cabinetry across DFW, North Texas, and Southern Oklahoma.",
+        "All-in-one residential design studio founded by a husband-and-wife team with 10+ years in drafting, interior design, construction coordination, and custom cabinetry across DFW & North Texas.",
     },
     twitter: {
       card: "summary_large_image",

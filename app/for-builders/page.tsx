@@ -22,9 +22,9 @@ export function generateMetadata(): Metadata {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "Architectural Drafting Services — DFW, North Texas & Southern Oklahoma | Outsourced Construction Documents",
+    title: "Architectural Drafting Services — DFW & North Texas | Outsourced Construction Documents",
     description:
-      "Outsource permit-ready construction documents, custom home floor plans, and 3D renders to a regional drafting partner. 7-10 day turnaround for builders across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+      "Outsource permit-ready construction documents, custom home floor plans, and 3D renders to a regional drafting partner. 7-10 day turnaround for builders across Dallas-Fort Worth & North Texas.",
     keywords: [
       "B2B",
       "drafting services",
@@ -33,12 +33,11 @@ export function generateMetadata(): Metadata {
       "builders",
       "DFW",
       "North Texas",
-      "Southern Oklahoma",
     ],
     openGraph: {
-      title: "Architectural Drafting Services — DFW, North Texas & Southern Oklahoma | Outsourced Construction Documents",
+      title: "Architectural Drafting Services — DFW & North Texas | Outsourced Construction Documents",
       description:
-        "Permit-ready custom home floor plans, 3D renders, and construction documents for builders across DFW, North Texas, and Southern Oklahoma. 7-10 day turnaround.",
+        "Permit-ready custom home floor plans, 3D renders, and construction documents for builders across DFW & North Texas. 7-10 day turnaround.",
     },
     twitter: {
       card: "summary_large_image",
@@ -101,7 +100,7 @@ const VALUE_PROPS = [
   {
     title: "Regional Permit Fluency",
     description:
-      "We know the submission requirements for Dallas, Fort Worth, Frisco, Plano, Sherman, Durant, and other cities across DFW, North Texas, and Southern Oklahoma.",
+      "We know the submission requirements for Dallas, Fort Worth, Frisco, Plano, Sherman, and other cities across DFW & North Texas.",
   },
   {
     title: "Consistent Quality",

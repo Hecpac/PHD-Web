@@ -148,7 +148,7 @@ function normalizeProject(doc: SanityProject): Project | null {
     },
     style: doc.style?.trim() || "Modern",
     year: doc.year ?? 2026,
-    summary: doc.summary?.trim() || "Custom home delivery across DFW, North Texas, and Southern Oklahoma.",
+    summary: doc.summary?.trim() || "Custom home delivery across DFW & North Texas.",
     description: doc.description?.trim() || undefined,
     gallery:
       doc.gallery

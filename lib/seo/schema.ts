@@ -11,7 +11,6 @@ import {
 
 const STATE_NAME: Record<string, string> = {
   TX: "Texas",
-  OK: "Oklahoma",
 };
 
 /** Schema.org Place[] for areaServed — explicit cities + parent states. */
@@ -66,7 +65,7 @@ export function createLocalBusinessSchema(reviews?: Review[]) {
           latitude: 32.7767,
           longitude: -96.797,
         },
-        // ~80 miles — covers DFW Metroplex, North Texas, and Southern Oklahoma border.
+        // Covers DFW Metroplex and North Texas.
         geoRadius: "130000",
       },
       ...buildAreaServed(),
@@ -332,9 +331,9 @@ export function createHowToSchema(steps: ProcessStep[]) {
   return {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: "How to Build a Custom Home in DFW, North Texas & Southern Oklahoma",
+    name: "How to Build a Custom Home in DFW & North Texas",
     description:
-      "A stage-based design-build process with decision gates for custom home projects across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+      "A stage-based design-build process with decision gates for custom home projects across Dallas-Fort Worth & North Texas.",
     url: `${siteUrl}/process`,
     provider: {
       "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
@@ -394,9 +393,9 @@ export function createB2BDraftingServiceSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Outsourced Architectural Drafting & Construction Documents for North Texas & Oklahoma Builders",
+    name: "Outsourced Architectural Drafting & Construction Documents for North Texas Builders",
     description:
-      "Permit-ready custom home floor plans, 3D renders, and full construction document packages with 5-7 day turnaround for residential builders across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+      "Permit-ready custom home floor plans, 3D renders, and full construction document packages with 5-7 day turnaround for residential builders across Dallas-Fort Worth & North Texas.",
     url: `${siteUrl}/for-builders`,
     provider: {
       "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],

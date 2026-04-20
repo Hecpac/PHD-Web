@@ -17,21 +17,20 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "Services | Capabilities across DFW, North Texas & Southern Oklahoma",
+    title: "Services | Capabilities across DFW & North Texas",
     description:
-      "Capabilities and deliverables for design-forward custom home projects across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+      "Capabilities and deliverables for design-forward custom home projects across Dallas-Fort Worth & North Texas.",
     keywords: [
       "services",
       "custom home design",
       "construction management",
       "DFW",
       "North Texas",
-      "Southern Oklahoma",
     ],
     openGraph: {
-      title: "Services | Capabilities across DFW, North Texas & Southern Oklahoma",
+      title: "Services | Capabilities across DFW & North Texas",
       description:
-        "Capabilities and deliverables for design-forward custom home projects across Dallas-Fort Worth, North Texas, and Southern Oklahoma.",
+        "Capabilities and deliverables for design-forward custom home projects across Dallas-Fort Worth & North Texas.",
     },
     twitter: {
       card: "summary_large_image",

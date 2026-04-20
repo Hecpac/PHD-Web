@@ -24,8 +24,8 @@ export function DfwSection() {
       <Container swiss className="relative z-10 space-y-8">
         <SectionHeading
           eyebrow="Service Area"
-          title="Dallas-Fort Worth, North Texas & Southern Oklahoma"
-          description="A regional design-build practice grounded in DFW, extending across North Texas and Southern Oklahoma — local permitting fluency, trade relationships, and execution quality across the corridor."
+          title="Dallas-Fort Worth & North Texas"
+          description="A regional design-build practice grounded in DFW, extending across North Texas — local permitting fluency, trade relationships, and execution quality across the corridor."
         />
 
         <div className="brand-red-outline brand-red-surface rounded-xl border border-line bg-surface p-6 shadow-sm">

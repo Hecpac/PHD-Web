@@ -3,43 +3,44 @@ import type { BlogPost, FAQ, ProcessStep, Project, Review, Service, ServiceDetai
 export const fallbackProjects: Project[] = [
   {
     id: "fallback-project-roxcliff",
-    title: "Roxcliff Residence",
+    title: "Rockcliff Residence",
     slug: "roxcliff",
     location: {
-      city: "Dallas",
-      display: "Dallas, TX",
+      city: "Plano",
+      display: "Plano, TX",
     },
     summary:
       "A modern residential build coordinated end-to-end by PHD — drafting, floor plans, interior design, construction, and custom cabinetry resolved on the same team. Clean white interiors with carefully detailed lighting and material transitions.",
     description:
-      "Roxcliff is a ground-up residence delivered under PHD's all-in-one model. The interiors center on a restrained white-and-light-wood palette, with custom cabinetry and lighting detail designed and coordinated by the same people who managed construction. No external handoffs — drafting, design intent, field execution, and cabinetry all lived on one team from concept to completion.",
+      "Rockcliff is a ground-up residence delivered under PHD's all-in-one model. The interiors center on a restrained white-and-light-wood palette, with custom cabinetry and lighting detail designed and coordinated by the same people who managed construction. No external handoffs — drafting, design intent, field execution, and cabinetry all lived on one team from concept to completion.",
     gallery: [
-      { src: "/projects/roxcliff/40.jpg", alt: "Roxcliff Residence front elevation at sunset with stone entry and floor-to-ceiling glass", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/36.jpg", alt: "Roxcliff Residence rear elevation at sunset with pool and spa", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/38.jpg", alt: "Roxcliff Residence backyard view with covered patio and balcony at sunset", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/01.jpg", alt: "Roxcliff Residence interior view with vertical pendant lighting", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/02.jpg", alt: "Roxcliff Residence open-plan living area with white walls and oak flooring", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/03.jpg", alt: "Roxcliff Residence kitchen with custom white cabinetry and island", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/04.jpg", alt: "Roxcliff Residence dining area with designer lighting fixture", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/05.jpg", alt: "Roxcliff Residence primary bedroom with floor-to-ceiling windows", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/06.jpg", alt: "Roxcliff Residence primary bathroom with freestanding tub", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/07.jpg", alt: "Roxcliff Residence hallway with recessed lighting and wood accents", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/08.jpg", alt: "Roxcliff Residence staircase detail with metal railing", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/09.jpg", alt: "Roxcliff Residence guest bathroom with modern tile work", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/10.jpg", alt: "Roxcliff Residence outdoor covered patio with seating area", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/11.jpg", alt: "Roxcliff Residence laundry room with built-in storage", width: 3000, height: 2000 },
-      { src: "/projects/roxcliff/12.jpg", alt: "Roxcliff Residence garage and driveway approach", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/40.jpg", alt: "Rockcliff Residence front elevation at sunset with stone entry and floor-to-ceiling glass", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/36.jpg", alt: "Rockcliff Residence rear elevation at sunset with pool and spa", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/38.jpg", alt: "Rockcliff Residence backyard view with covered patio and balcony at sunset", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/01.jpg", alt: "Rockcliff Residence interior view with vertical pendant lighting", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/02.jpg", alt: "Rockcliff Residence open-plan living area with white walls and oak flooring", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/03.jpg", alt: "Rockcliff Residence kitchen with custom white cabinetry and island", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/04.jpg", alt: "Rockcliff Residence dining area with designer lighting fixture", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/05.jpg", alt: "Rockcliff Residence primary bedroom with floor-to-ceiling windows", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/06.jpg", alt: "Rockcliff Residence primary bathroom with freestanding tub", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/07.jpg", alt: "Rockcliff Residence hallway with recessed lighting and wood accents", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/08.jpg", alt: "Rockcliff Residence staircase detail with metal railing", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/09.jpg", alt: "Rockcliff Residence guest bathroom with modern tile work", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/10.jpg", alt: "Rockcliff Residence outdoor covered patio with seating area", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/11.jpg", alt: "Rockcliff Residence laundry room with built-in storage", width: 3000, height: 2000 },
+      { src: "/projects/roxcliff/12.jpg", alt: "Rockcliff Residence garage and driveway approach", width: 3000, height: 2000 },
     ],
     highlights: [
       "All-in-one delivery — drafting, design, construction, and cabinetry in-house",
       "Modern white-and-light-wood interior palette with custom lighting detail",
       "Coordinated finish and cabinet execution without external vendor handoffs",
     ],
+    specs: { sqft: 4200, beds: 4, baths: 4, stories: 2 },
     isFeatured: true,
     featuredOrder: 1,
     heroImage: {
       src: "/projects/roxcliff/40.jpg",
-      alt: "Roxcliff Residence front elevation at sunset with stone entry and floor-to-ceiling glass",
+      alt: "Rockcliff Residence front elevation at sunset with stone entry and floor-to-ceiling glass",
       width: 3000,
       height: 2000,
     },
@@ -51,7 +52,7 @@ export const fallbackProjects: Project[] = [
     location: {
       city: "Dallas",
       neighborhood: "Bickers",
-      display: "Bickers, Dallas",
+      display: "Dallas, TX",
     },
     summary:
       "A ground-up two-story residence in Dallas featuring double-height ceilings, a floating wood staircase, and a curated palette of matte tile, oak, and matte-black hardware.",
@@ -112,6 +113,7 @@ export const fallbackProjects: Project[] = [
       "Double-height entry with skylight",
       "Full design-build coordination from concept to turnover",
     ],
+    specs: { sqft: 3800, beds: 4, baths: 3, stories: 2 },
     isFeatured: true,
     featuredOrder: 2,
     heroImage: {
@@ -189,6 +191,7 @@ export const fallbackProjects: Project[] = [
       "Marble-waterfall kitchen islands with copper pendants",
       "Spa-grade primary bathrooms with freestanding tubs",
     ],
+    specs: { sqft: 5600, beds: 6, baths: 6, stories: 2 },
     isFeatured: true,
     featuredOrder: 3,
     heroImage: {
@@ -203,8 +206,8 @@ export const fallbackProjects: Project[] = [
     title: "Pueblo Residence",
     slug: "pueblo",
     location: {
-      city: "Waxahachie",
-      display: "Waxahachie, TX",
+      city: "Dallas",
+      display: "Dallas, TX",
     },
     summary:
       "A two-story new build mixing cedar siding, stone veneer, and standing-seam metal in a modern farmhouse expression.",
@@ -265,6 +268,7 @@ export const fallbackProjects: Project[] = [
       "Angled roofline with large-format windows",
       "Full design-build from site planning to finishes",
     ],
+    specs: { sqft: 3200, beds: 4, baths: 3, stories: 1 },
     isFeatured: true,
     featuredOrder: 4,
     heroImage: {
@@ -280,8 +284,7 @@ export const fallbackProjects: Project[] = [
     slug: "gallagher",
     location: {
       city: "Dallas",
-      neighborhood: "North Dallas",
-      display: "North Dallas, TX",
+      display: "Dallas, TX",
     },
     summary:
       "A full-scope renovation transforming a dated ranch into a modern stucco residence with updated interiors and a reimagined floor plan.",
@@ -342,6 +345,7 @@ export const fallbackProjects: Project[] = [
       "All-new bathroom finishes with matte-black hardware",
       "Single-contract design-build from demo to certificate of occupancy",
     ],
+    specs: { sqft: 2800, beds: 3, baths: 2, stories: 1 },
     isFeatured: true,
     featuredOrder: 5,
     heroImage: {
@@ -413,6 +417,7 @@ export const fallbackProjects: Project[] = [
       "White-brick and cedar-panel exterior",
       "Full design-build from foundation to landscape",
     ],
+    specs: { sqft: 3500, beds: 4, baths: 3, stories: 2 },
     isFeatured: false,
     heroImage: {
       src: "/projects/806-mango/hero.jpg",
@@ -468,7 +473,7 @@ export const fallbackProcessSteps: ProcessStep[] = [
     stepNumber: 1,
     title: "Discovery & Feasibility",
     description:
-      "We validate lot constraints, priorities, and budget ranges for projects across DFW, North Texas, and Southern Oklahoma.",
+      "We validate lot constraints, priorities, and budget ranges for projects across DFW & North Texas.",
     deliverables: ["Project brief", "Site constraints memo", "Initial budget band"],
     decisionGate: "Proceed to concept planning",
   },
@@ -505,9 +510,9 @@ export const fallbackServiceDetails: ServiceDetail[] = [
     id: "detail-custom-home-design",
     slug: "custom-home-design",
     title: "Custom Home Design",
-    summary: "Design-led concept development calibrated for North Texas and Southern Oklahoma lot conditions, codes, and climate.",
+    summary: "Design-led concept development calibrated for North Texas lot conditions, codes, and climate.",
     description:
-      "Our design process starts with site analysis and program definition specific to the DFW, North Texas, and Southern Oklahoma corridor. We coordinate massing, orientation, and material strategies with structural and MEP consultants from day one, ensuring the design intent survives the transition to construction documentation.",
+      "Our design process starts with site analysis and program definition specific to the DFW & North Texas corridor. We coordinate massing, orientation, and material strategies with structural and MEP consultants from day one, ensuring the design intent survives the transition to construction documentation.",
     deliverables: [
       "Site analysis and constraints report",
       "Concept massing and floor plan options",
@@ -574,7 +579,7 @@ export const fallbackServiceDetails: ServiceDetail[] = [
     id: "detail-project-management",
     slug: "project-management",
     title: "Project Management",
-    summary: "Schedule, budget, and quality control for custom homes across DFW, North Texas, and Southern Oklahoma.",
+    summary: "Schedule, budget, and quality control for custom homes across DFW & North Texas.",
     description:
       "Our project management methodology applies structured oversight to every phase — from preconstruction through closeout. Weekly reporting, milestone inspections, and documented decision gates keep the project on track and the owner informed.",
     deliverables: [
@@ -677,7 +682,7 @@ export const fallbackReviews: Review[] = [
   {
     id: "review-2",
     author: "Martin G.",
-    location: "Dallas, TX",
+    location: "Coppell, TX",
     rating: 5,
     text: "Wish I could give 10 stars! Premium Home Design is a great company, with great people. I had my house built by them and wow! Great communication, fast responders. Whenever you have a question/doubt or anything really they respond so fast! I would definitely recommend them 100/100 times!",
     projectType: "New Construction",
@@ -686,7 +691,7 @@ export const fallbackReviews: Review[] = [
   {
     id: "review-3",
     author: "Alan Daoust",
-    location: "Dallas, TX",
+    location: "Waxahachie, TX",
     rating: 5,
     text: "Premium Home Design exceeded our expectations in every way. They completed a full remodel of our entire first floor, and the final result is absolutely stunning — we truly love our home. The finished space matched the design renderings perfectly, which speaks volumes about their attention to detail and craftsmanship. They finished ahead of their initial deadline, allowing us to move back in earlier than expected.",
     projectType: "Renovation",
@@ -695,7 +700,7 @@ export const fallbackReviews: Review[] = [
   {
     id: "review-4",
     author: "Rose Cerda",
-    location: "Dallas, TX",
+    location: "East Dallas, TX",
     rating: 5,
     text: "Very happy with the outcome of my addition, from the design to the execution. The team is committed to build your dream design at the best possible price. I look forward to working with them in the future.",
     projectType: "Addition",
@@ -704,7 +709,7 @@ export const fallbackReviews: Review[] = [
   {
     id: "review-5",
     author: "Edgar Santamaria",
-    location: "Dallas, TX",
+    location: "North Dallas, TX",
     rating: 5,
     text: "We had the privilege of collaborating with Premium Home Design on our home renovation project. From the very beginning, we were struck by their professionalism and genuine passion for their work. They demonstrated exceptional listening skills and effectively incorporated our needs into the design of our new home. The final outcome was breathtaking and great quality work! Their design sense is truly remarkable, and their work consistently exceeds our expectations.",
     projectType: "Renovation",
@@ -840,14 +845,14 @@ export const fallbackFaqs: FAQ[] = [
     id: "faq-1",
     question: "What area do you serve?",
     answer:
-      "We accept design-build projects across Dallas-Fort Worth, North Texas, and Southern Oklahoma — within roughly 80 miles of Dallas. This regional focus lets us maintain strong relationships with vetted trade partners, stay current on municipal codes across multiple jurisdictions, and provide reliable timelines based on North Texas and Oklahoma site conditions.",
+      "We accept design-build projects across the DFW Metroplex & North Texas. This regional focus lets us maintain strong relationships with vetted trade partners, stay current on municipal codes across multiple jurisdictions, and provide reliable timelines based on North Texas conditions.",
     category: "Service Area",
   },
   {
     id: "faq-2",
     question: "Can you build on our lot in the region?",
     answer:
-      "Yes. We frequently work on client-owned lots throughout DFW, North Texas, and Southern Oklahoma, and include a feasibility assessment during the Discovery phase. We evaluate zoning, setbacks, soil conditions, floodplain status, and utility access before any design work begins.",
+      "Yes. We frequently work on client-owned lots throughout DFW & North Texas, and include a feasibility assessment during the Discovery phase. We evaluate zoning, setbacks, soil conditions, floodplain status, and utility access before any design work begins.",
     category: "Process",
   },
   {
@@ -861,12 +866,12 @@ export const fallbackFaqs: FAQ[] = [
     id: "faq-4",
     question: "How long does a custom home take to build in the region?",
     answer:
-      "Most custom homes in the 3,500–6,000 sqft range take 12–18 months from permit to move-in across DFW, North Texas, and Southern Oklahoma. The preconstruction phase (design, documentation, permitting) typically adds 3–5 months before that. We provide a detailed critical-path schedule during the Concept & Cost Alignment phase.",
+      "Most custom homes in the 3,500–6,000 sqft range take 6–18 months from permit to move-in across DFW & North Texas. We provide a detailed critical-path schedule during the Concept & Cost Alignment phase.",
     category: "Timeline",
   },
   {
     id: "faq-5",
-    question: "What does a custom home cost per square foot across DFW, North Texas, and Southern Oklahoma?",
+    question: "What does a custom home cost per square foot across DFW & North Texas?",
     answer:
       "Custom home pricing in the region varies significantly based on design complexity, structural demands, finish level, site conditions, and municipality requirements. A single square-foot number can be misleading without defined scope — the same figure can represent very different projects. That is why we develop a detailed, project-specific budget range with you during Discovery, so you have realistic numbers tied to your actual program before design advances.",
     category: "Budget",
@@ -875,7 +880,7 @@ export const fallbackFaqs: FAQ[] = [
     id: "faq-6",
     question: "Do you handle permits and HOA approvals?",
     answer:
-      "Yes. We manage the full permitting process across multiple jurisdictions — DFW municipalities, North Texas counties, and Southern Oklahoma cities — and coordinate HOA design review submissions where required. Our team has direct experience with review boards in Highland Park, Southlake, Prosper, Frisco, Sherman, Durant, and other regulated communities.",
+      "Yes. We manage the full permitting process across multiple jurisdictions — DFW municipalities and North Texas counties — and coordinate HOA design review submissions where required. Our team has direct experience with review boards in Highland Park, Southlake, Prosper, Frisco, Sherman, and other regulated communities.",
     category: "Process",
   },
   {
@@ -896,21 +901,21 @@ export const fallbackFaqs: FAQ[] = [
     id: "faq-9",
     question: "Can I bring my own design partner or do I have to use yours?",
     answer:
-      "Both options work. We have in-house design capability and also partner with independent design professionals across DFW, North Texas, and Southern Oklahoma. If you already have a designer on the team, we join during preconstruction to align the project with construction realities, budget, and schedule.",
+      "Both options work. We have in-house design capability and also partner with independent design professionals across DFW & North Texas. If you already have a designer on the team, we join during preconstruction to align the project with construction realities, budget, and schedule.",
     category: "Design",
   },
   {
     id: "faq-10",
     question: "How do you select subcontractors and trade partners?",
     answer:
-      "We maintain a vetted network of regional trade partners across DFW, North Texas, and Southern Oklahoma, built over years of local projects. Every sub is evaluated on quality, reliability, insurance, and licensing. We do not accept the lowest bid by default — we select based on the best value for each scope of work.",
+      "We maintain a vetted network of regional trade partners across DFW & North Texas, built over years of local projects. Every sub is evaluated on quality, reliability, insurance, and licensing. We do not accept the lowest bid by default — we select based on the best value for each scope of work.",
     category: "Construction",
   },
   {
     id: "faq-11",
     question: "What financing options are available for a custom home build?",
     answer:
-      "Most clients use a construction-to-permanent loan, which converts to a traditional mortgage at completion. We work with several Texas and Oklahoma lenders experienced in custom home financing and can provide referrals. Our draw schedule is structured to align with standard lender inspection milestones.",
+      "Most clients use a construction-to-permanent loan, which converts to a traditional mortgage at completion. We work with several Texas lenders experienced in custom home financing and can provide referrals. Our draw schedule is structured to align with standard lender inspection milestones.",
     category: "Budget",
   },
   {

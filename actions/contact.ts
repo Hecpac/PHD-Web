@@ -118,7 +118,7 @@ function validateForm(fields: {
   if (!fields.city) {
     errors.city = "Please select your city.";
   } else if (!isServiceCity(fields.city)) {
-    errors.city = "Please select a city within our service area (DFW, North Texas, or Southern Oklahoma).";
+    errors.city = "Please select a city within our service area (DFW or North Texas).";
   }
 
   if (!fields.message) {

@@ -46,10 +46,10 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   }
 
   return {
-    title: `${service.title} | Custom Home Services — DFW, North Texas & S. Oklahoma`,
+    title: `${service.title} | Custom Home Services — DFW & North Texas`,
     description: service.summary,
     openGraph: {
-      title: `${service.title} | Design-Build Services — DFW, North Texas & S. Oklahoma`,
+      title: `${service.title} | Design-Build Services — DFW & North Texas`,
       description: service.summary,
       images: [{ url: `${siteUrl}/og-default.jpg`, alt: "Premium Home Design" }],
     },

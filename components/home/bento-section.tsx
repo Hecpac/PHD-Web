@@ -9,7 +9,7 @@ const bentoItems: BentoItem[] = [
     eyebrow: "Single Contract",
     title: "Design-Build Delivery",
     description:
-      "Design, engineering, and construction managed under one agreement. One team, one schedule, one point of accountability across DFW, North Texas, and Southern Oklahoma.",
+      "Design, engineering, and construction managed under one agreement. One team, one schedule, one point of accountability across DFW & North Texas.",
     span: "2x2",
     variant: "image",
     imageSrc: "/projects/duplex/kitchen-dining.jpg",
@@ -58,9 +58,9 @@ const bentoItems: BentoItem[] = [
   {
     id: "bento-dfw",
     eyebrow: "Service Area",
-    title: "DFW · North Texas · Southern Oklahoma",
+    title: "DFW · North Texas",
     description:
-      "Trade partners, code knowledge, and site practices calibrated across an ~80-mile corridor — from the Metroplex into Sherman, Durant, and the Oklahoma border.",
+      "Trade partners, code knowledge, and site practices calibrated across the Metroplex and North Texas — from downtown Dallas to Sherman and the outer corridor.",
     span: "1x1",
     variant: "image",
     imageSrc: "/projects/806-mango/rear-pool.jpg",

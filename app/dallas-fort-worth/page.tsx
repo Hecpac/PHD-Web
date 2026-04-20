@@ -13,27 +13,24 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
 
   return {
-    title: "Service Area — DFW, North Texas & Southern Oklahoma",
+    title: "Service Area — DFW & North Texas",
     description:
-      "Custom home design-build service area covering Dallas-Fort Worth, North Texas (Sherman, Denton, Weatherford), and Southern Oklahoma (Durant, Ardmore) — within ~80 miles of Dallas.",
+      "Custom home design-build service area covering Dallas-Fort Worth & North Texas (Sherman, Denton, Weatherford) — across the DFW Metroplex & North Texas.",
     keywords: [
       "Dallas-Fort Worth",
       "DFW",
       "North Texas",
-      "Southern Oklahoma",
       "service area",
       "Dallas",
       "Fort Worth",
       "Plano",
       "Frisco",
       "Sherman",
-      "Durant",
-      "Ardmore",
     ],
     openGraph: {
-      title: "Service Area | DFW · North Texas · Southern Oklahoma Design-Build",
+      title: "Service Area | DFW · North Texas Design-Build",
       description:
-        "Custom home design-build service area covering Dallas-Fort Worth, North Texas, and Southern Oklahoma within ~80 miles of Dallas.",
+        "Custom home design-build service area covering Dallas-Fort Worth & North Texas across the DFW Metroplex.",
     },
     twitter: {
       card: "summary_large_image",
@@ -49,17 +46,17 @@ const whyRegional = [
   {
     title: "Deeper trade relationships",
     description:
-      "Years of building across DFW, North Texas, and Southern Oklahoma means we work with the same vetted subcontractors project after project. This reduces risk, improves quality, and keeps timelines tight.",
+      "Years of building across DFW & North Texas means we work with the same vetted subcontractors project after project. This reduces risk, improves quality, and keeps timelines tight.",
   },
   {
     title: "Multi-jurisdiction permitting fluency",
     description:
-      "Every municipality has different codes, review timelines, and inspection processes. We know the specifics for each city we serve — from Highland Park's design review board to Prosper's rapid-growth infrastructure requirements and southern Oklahoma county filings.",
+      "Every municipality has different codes, review timelines, and inspection processes. We know the specifics for each city we serve — from Highland Park's design review board to Prosper's rapid-growth infrastructure requirements.",
   },
   {
     title: "Climate-calibrated construction",
     description:
-      "North Texas and Southern Oklahoma share expansive clay soils, summer heat loads, and storm patterns that demand specific foundation, envelope, and drainage strategies. Our methods are tuned for the regional conditions, not generic best practices.",
+      "North Texas has expansive clay soils, summer heat loads, and storm patterns that demand specific foundation, envelope, and drainage strategies. Our methods are tuned for North Texas conditions, not generic best practices.",
   },
 ];
 
@@ -68,9 +65,9 @@ const marketFacts = [
   {
     stat: String(SERVICE_AREA_CITIES.length),
     label: "Cities served",
-    detail: "DFW, North Texas, and Southern Oklahoma",
+    detail: "DFW & North Texas",
   },
-  { stat: "~80 mi", label: "Service radius", detail: "Measured from downtown Dallas" },
+  { stat: "DFW+", label: "Service area", detail: "DFW Metroplex & North Texas" },
   { stat: "$250–$500+", label: "Cost per sqft range", detail: "Varies by city, lot, and finishes" },
 ];
 
@@ -93,8 +90,8 @@ export default function DallasFortWorthPage() {
             as="h1"
             titleId="dfw-heading"
             eyebrow="Service Area"
-            title="Custom homes across DFW, North Texas & Southern Oklahoma"
-            description="Regional focus is a strategic choice. Within ~80 miles of Dallas, we deliver better outcomes — fluent permitting across multiple jurisdictions, deeper trade networks, and construction methods proven for North Texas and Southern Oklahoma conditions."
+            title="Custom homes across DFW & North Texas"
+            description="Regional focus is a strategic choice. Across the DFW Metroplex & North Texas, we deliver better outcomes — fluent permitting across multiple jurisdictions, deeper trade networks, and construction methods proven for North Texas conditions."
           />
 
           {/* DFW market stats */}
@@ -116,7 +113,7 @@ export default function DallasFortWorthPage() {
           <SectionHeading
             eyebrow="Cities We Serve"
             title={`${SERVICE_AREA_CITIES.length} communities across the region`}
-            description="We accept projects in the following cities and their surrounding neighborhoods, spanning DFW, North Texas, and Southern Oklahoma."
+            description="We accept projects in the following cities and their surrounding neighborhoods, spanning DFW & North Texas."
           />
 
           <div className="grid grid-cols-2 gap-px border border-line sm:grid-cols-3 md:grid-cols-4">
@@ -167,11 +164,11 @@ export default function DallasFortWorthPage() {
             <ul className="space-y-3 text-sm leading-6 text-muted">
               <li className="flex items-start gap-3">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
-                Active project intake covers DFW, North Texas, and Southern Oklahoma — within ~80 miles of Dallas.
+                Active project intake covers the DFW Metroplex & North Texas.
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
-                Project pages and recommendations are scoped to North Texas and Southern Oklahoma market realities.
+                Project pages and recommendations are scoped to North Texas market realities.
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />

@@ -66,7 +66,7 @@ export default async function BlogsPage() {
             titleId="blog-heading"
             eyebrow="Blog"
             title="Insights on building custom homes across the region"
-            description="Practical knowledge from our design-build team on design, process, budgets, and the realities of building across Dallas-Fort Worth, North Texas, and Southern Oklahoma."
+            description="Practical knowledge from our design-build team on design, process, budgets, and the realities of building across Dallas-Fort Worth & North Texas."
           />
 
           <LeadMagnetBanner compact />
