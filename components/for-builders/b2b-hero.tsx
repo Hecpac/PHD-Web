@@ -150,18 +150,20 @@ export function B2BHero() {
             <CtaLink
               href="#b2b-services"
               variant="primary"
+              withArrow
               eventName="cta_schedule_click"
               eventPayload={{ source: "b2b_hero", intent: "explore_services" }}
-              className="bg-[#d4af37] text-black hover:bg-[#b5952f] focus-visible:ring-offset-black"
+              className="rounded-full bg-white text-black hover:bg-white/90 shadow-lg shadow-white/10 focus-visible:ring-offset-black"
             >
               Explore Services
             </CtaLink>
             <CtaLink
               href="#b2b-contact"
               variant="secondary"
+              withArrow
               eventName="cta_schedule_click"
               eventPayload={{ source: "b2b_hero", intent: "consultation" }}
-              className="border-white/40 text-white hover:text-white/80"
+              className="rounded-full border-white/30 text-white backdrop-blur-sm hover:bg-white/10 hover:border-white/50"
             >
               Schedule Consultation
             </CtaLink>
@@ -170,7 +172,7 @@ export function B2BHero() {
               variant="ghost"
               eventName="cta_call_click"
               eventPayload={{ source: "b2b_hero" }}
-              className="text-[#d4af37] hover:text-[#b5952f]"
+              className="text-white/70 hover:text-white"
             >
               {phoneDisplay}
             </CtaLink>
