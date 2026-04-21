@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 import type { NavItem } from "@/lib/config/site";
 import type { CtaConfig } from "@/lib/config/site";
@@ -41,6 +42,7 @@ export function MobileMenu({
   cta,
   tone = "light",
 }: MobileMenuProps) {
+  const t = useTranslations("layout");
   const [open, setOpen] = useState(false);
   const [expandedHref, setExpandedHref] = useState<string | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -208,7 +210,7 @@ export function MobileMenu({
               }
             }}
           >
-            <div className="mx-auto flex h-full w-full max-w-md flex-col overflow-hidden rounded-2xl border border-line/80 bg-canvas shadow-[0_28px_55px_rgb(0_0_0/0.24)]">
+            <div className="mx-auto flex h-full w-full max-w-md flex-col overflow-hidden rounded-2xl border border-line/80 bg-white shadow-[0_28px_55px_rgb(0_0_0/0.24)]">
               <div className="flex items-center justify-between border-b border-line/80 px-5 py-4">
                 <p className="type-mono-label text-muted">Navigation</p>
                 <button
@@ -277,7 +279,7 @@ export function MobileMenu({
 
               {/* CTAs at bottom */}
               <motion.div
-                className="shrink-0 border-t border-line/80 bg-surface/60 px-5 py-5"
+                className="shrink-0 border-t border-line/80 bg-neutral-50 px-5 py-5"
                 variants={prefersReduced ? undefined : itemVariants}
                 initial={prefersReduced ? undefined : "hidden"}
                 animate={prefersReduced ? undefined : "visible"}
@@ -288,13 +290,13 @@ export function MobileMenu({
                     {...(cta.scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
                     className="flex min-h-12 items-center justify-center rounded-md border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                   >
-                    Schedule Consultation
+                    {t("footer.scheduleConsultation")}
                   </a>
                   <a
                     href={cta.phoneHref}
                     className="flex min-h-12 items-center justify-center rounded-md border border-ink bg-transparent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-ink hover:bg-ink hover:text-canvas focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                   >
-                    Call {cta.phoneDisplay}
+                    {t("footer.callPrefix")} {cta.phoneDisplay}
                   </a>
                 </div>
               </motion.div>
