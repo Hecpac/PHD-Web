@@ -2,6 +2,7 @@
 
 import { useActionState, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 import { submitLeadMagnet, type LeadMagnetState } from "@/actions/lead-magnet";
 import { cn } from "@/lib/utils";
@@ -18,6 +19,7 @@ type LeadMagnetBannerProps = {
 };
 
 export function LeadMagnetBanner({ className, compact = false }: LeadMagnetBannerProps) {
+  const t = useTranslations("leadMagnet");
   const [state, formAction, isPending] = useActionState(submitLeadMagnet, initialState);
   const pathname = usePathname();
   const [utm] = useState(() => {
@@ -43,12 +45,12 @@ export function LeadMagnetBanner({ className, compact = false }: LeadMagnetBanne
 
   return (
     <section className={cn("rounded-xl border border-line bg-surface p-4 sm:p-6", className)}>
-      <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Free Guide</p>
+      <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("eyebrow")}</p>
       <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">
-        2026 Cost & Timeline Guide to Custom Homes in DFW
+        {t("title")}
       </h2>
       <p className="mt-2 text-sm leading-6 text-muted">
-        Get the planning framework we use with clients who are 6–12 months away from breaking ground.
+        {t("description")}
       </p>
 
       <form action={formAction} className={cn("mt-4 flex flex-col gap-3", compact ? "sm:flex-row" : "sm:max-w-xl")}> 
@@ -60,7 +62,7 @@ export function LeadMagnetBanner({ className, compact = false }: LeadMagnetBanne
         <input type="hidden" name="utm_term" value={utm.term} />
 
         <label className="sr-only" htmlFor="lead-magnet-email">
-          Email
+          {t("emailLabel")}
         </label>
         <input
           id="lead-magnet-email"
@@ -68,7 +70,7 @@ export function LeadMagnetBanner({ className, compact = false }: LeadMagnetBanne
           type="email"
           required
           autoComplete="email"
-          placeholder="Your email"
+          placeholder={t("emailPlaceholder")}
           className={cn(
             "min-h-11 flex-1 rounded-md border border-line bg-canvas px-3 text-sm text-ink placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
             state.errors?.email && "border-danger",
@@ -81,7 +83,7 @@ export function LeadMagnetBanner({ className, compact = false }: LeadMagnetBanne
           disabled={isPending}
           className="min-h-11 rounded-md border border-accent bg-accent px-4 text-sm font-semibold text-on-accent disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {isPending ? "Sending…" : "Get the Guide"}
+          {isPending ? t("sending") : t("getGuide")}
         </button>
       </form>
 

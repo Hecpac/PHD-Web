@@ -1,0 +1,230 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
+import { PageIntentTracker } from "@/components/analytics/page-intent-tracker";
+import { Container } from "@/components/layout/container";
+import { BookingModal } from "@/components/ui/booking-modal";
+import { CtaLink } from "@/components/ui/cta-link";
+import { JsonLd } from "@/components/ui/json-ld";
+import { ProjectGallerySection } from "@/components/ui/project-gallery-section";
+import { SocialProofStrip } from "@/components/ui/social-proof-strip";
+import { getProjectBySlug, getProjects, getReviews } from "@/lib/data";
+import { getCtaConfig, getSiteUrl } from "@/lib/config/site";
+import {
+  createProjectPageBreadcrumbSchema,
+  createProjectSchema,
+} from "@/lib/seo/schema";
+
+type ProjectPageProps = {
+  params: Promise<{
+    slug: string;
+    locale: string;
+  }>;
+};
+
+export async function generateStaticParams() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ slug: project.slug }));
+}
+
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
+
+  const siteUrl = getSiteUrl();
+
+  if (!project) {
+    return {
+      title: "Project Not Found",
+      alternates: {
+        canonical: `${siteUrl}/projects`,
+      },
+    };
+  }
+
+  const ogImage = project.heroImage ?? project.gallery[0];
+
+  return {
+    title: `${project.title} | ${project.location.city}`,
+    description: `${project.summary} Located in ${project.location.display}, within our DFW · North Texas service area.`,
+    keywords: [
+      `custom home ${project.location.city}`,
+      "custom home Dallas-Fort Worth",
+      ...(project.style ? [`${project.style} home ${project.location.city}`] : []),
+      "DFW custom home builder",
+      "North Texas custom home builder",
+      "design-build Dallas-Fort Worth",
+    ],
+    openGraph: {
+      title: `${project.title} | Custom Home in ${project.location.city}`,
+      description: `${project.summary} Located in ${project.location.display}, within our DFW · North Texas service area.`,
+      url: `${siteUrl}/projects/${project.slug}`,
+      ...(ogImage?.src && {
+        images: [{ url: `${siteUrl}${ogImage.src}`, alt: ogImage.alt }],
+      }),
+    },
+    other: {
+      "geo.region": "US-TX",
+      "geo.placename": `${project.location.city}, TX`,
+    },
+    alternates: {
+      canonical: `${siteUrl}/projects/${project.slug}`,
+    },
+  };
+}
+
+function getContextualCta(
+  project: { location: { city: string } },
+  t: (key: string, values?: Record<string, string>) => string,
+) {
+  const city = project.location.city.toLowerCase();
+
+  if (city.includes("highland park")) {
+    return {
+      title: t("ctaHighlandParkTitle"),
+      body: t("ctaHighlandParkBody"),
+      button: t("ctaHighlandParkButton"),
+    };
+  }
+
+  if (city.includes("southlake")) {
+    return {
+      title: t("ctaSouthlakeTitle"),
+      body: t("ctaSouthlakeBody"),
+      button: t("ctaSouthlakeButton"),
+    };
+  }
+
+  if (city.includes("prosper")) {
+    return {
+      title: t("ctaProsperTitle"),
+      body: t("ctaProsperBody"),
+      button: t("ctaProsperButton"),
+    };
+  }
+
+  return {
+    title: t("ctaDefaultTitle", { city: project.location.city }),
+    body: t("ctaDefaultBody", { city: project.location.city }),
+    button: t("ctaDefaultButton", { city: project.location.city }),
+  };
+}
+
+export default async function ProjectDetailPage({ params }: ProjectPageProps) {
+  const { slug, locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("projectDetailPage");
+  const [project, reviews] = await Promise.all([getProjectBySlug(slug, locale), getReviews(locale)]);
+
+  if (!project) {
+    notFound();
+  }
+
+  const { scheduleUrl, phoneHref, phoneDisplay } = getCtaConfig();
+  const cta = getContextualCta(project, t);
+  const cityMatches = reviews.filter((review) =>
+    review.location.toLowerCase().includes(project.location.city.toLowerCase()),
+  );
+  const hashCode = slug.split("").reduce((h, c) => ((h * 31 + c.charCodeAt(0)) | 0), 0);
+  const reviewIndex = cityMatches.length > 1
+    ? Math.abs(hashCode) % cityMatches.length
+    : 0;
+  const socialProof = cityMatches.length > 0
+    ? [cityMatches[reviewIndex]]
+    : [reviews[0]];
+
+  return (
+    <article className="py-4 sm:py-12 lg:py-16">
+      <JsonLd data={createProjectPageBreadcrumbSchema(project)} />
+      <JsonLd data={createProjectSchema(project)} />
+      <PageIntentTracker entityType="project" slug={project.slug} />
+      <Container swiss className="space-y-4 sm:space-y-8">
+        <hgroup className="space-y-2 sm:space-y-4">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{project.location.display}</p>
+          <h1 className="text-balance text-2xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">{project.title}</h1>
+          <p className="text-reading text-sm leading-6 text-muted sm:text-base sm:leading-7">{project.summary}</p>
+        </hgroup>
+
+        <div className="grid gap-3 sm:gap-5 lg:grid-cols-12">
+          <div className="lg:col-span-8">
+            <ProjectGallerySection images={project.gallery} projectTitle={project.title} />
+          </div>
+
+          <aside className="space-y-3 sm:space-y-5 lg:col-span-4" aria-label="Project details">
+            <div className="rounded-xl border border-line bg-surface p-3 sm:rounded-2xl sm:p-5">
+              <h2 className="text-sm font-semibold sm:text-lg">{t("highlights")}</h2>
+              <ul className="mt-2 space-y-1 text-xs text-muted sm:mt-3 sm:space-y-2 sm:text-sm">
+                {project.highlights.map((highlight) => (
+                  <li key={highlight} className="flex gap-2">
+                    <span aria-hidden className="mt-1 h-1 w-1 shrink-0 rounded-full bg-accent sm:h-1.5 sm:w-1.5" />
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {project.specs && (
+              <div className="rounded-xl border border-line bg-surface p-3 sm:rounded-2xl sm:p-5">
+                <h2 className="text-sm font-semibold sm:text-lg">{t("projectSpecs")}</h2>
+                <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-xs sm:mt-3 sm:gap-y-2 sm:text-sm">
+                  {project.specs.sqft != null && (
+                    <>
+                      <dt className="font-medium">{t("specSize")}</dt>
+                      <dd className="text-muted">{project.specs.sqft.toLocaleString()} sqft</dd>
+                    </>
+                  )}
+                  {project.specs.beds != null && (
+                    <>
+                      <dt className="font-medium">{t("specBedrooms")}</dt>
+                      <dd className="text-muted">{project.specs.beds}</dd>
+                    </>
+                  )}
+                  {project.specs.baths != null && (
+                    <>
+                      <dt className="font-medium">{t("specBathrooms")}</dt>
+                      <dd className="text-muted">{project.specs.baths}</dd>
+                    </>
+                  )}
+                  {project.specs.stories != null && (
+                    <>
+                      <dt className="font-medium">{t("specStories")}</dt>
+                      <dd className="text-muted">{project.specs.stories}</dd>
+                    </>
+                  )}
+                </dl>
+              </div>
+            )}
+
+            <div className="rounded-xl border border-line bg-surface p-3 sm:rounded-2xl sm:p-5">
+              <h2 className="text-sm font-semibold sm:text-lg">{cta.title}</h2>
+              <p className="mt-1 text-xs leading-5 text-muted sm:mt-2 sm:text-sm sm:leading-6">{cta.body}</p>
+              <div className="mt-3 flex flex-wrap items-center gap-2 sm:mt-4 sm:gap-3">
+                <BookingModal
+                  bookingUrl={scheduleUrl}
+                  triggerLabel={cta.button}
+                  analyticsId="project_primary_schedule"
+                />
+                <CtaLink
+                  href={phoneHref}
+                  eventName="cta_call_click"
+                  variant="secondary"
+                  data-analytics-cta="project_primary_call"
+                >
+                  {t("callPhone", { phone: phoneDisplay })}
+                </CtaLink>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div className="hidden sm:block">
+          <SocialProofStrip
+            title={t("socialProofTitle", { city: project.location.city })}
+            reviews={socialProof}
+          />
+        </div>
+      </Container>
+    </article>
+  );
+}

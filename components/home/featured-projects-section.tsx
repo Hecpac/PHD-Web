@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Container } from "@/components/layout/container";
@@ -18,6 +19,7 @@ function ProjectCapsule({ project, index }: { project: Project; index: number })
   const containerRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations("featuredProjects");
 
   const cardImage = getCardImage(project);
 
@@ -106,7 +108,7 @@ function ProjectCapsule({ project, index }: { project: Project; index: number })
           eventName="gallery_interaction"
           className="border-white/20 bg-white/10 text-white backdrop-blur-md transition-colors duration-300 hover:border-white hover:bg-white hover:text-ink"
         >
-          Explore Project
+          {t("exploreProject")}
         </CtaLink>
       </div>
     </div>
@@ -118,6 +120,8 @@ type FeaturedProjectsSectionProps = {
 };
 
 export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionProps) {
+  const t = useTranslations("featuredProjects");
+
   return (
     <section
       id="featured-projects"
@@ -125,14 +129,9 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
     >
       <Container swiss className="mb-16 space-y-10">
         <SectionHeading
-          eyebrow="Featured Projects"
-          title={
-            <>
-              Built work across{" "}
-              <em className="not-italic text-accent">DFW & North Texas</em>
-            </>
-          }
-          description="Portfolio evidence comes first. Each project reflects design intent, execution discipline, and documented handoff quality."
+          eyebrow={t("eyebrow")}
+          title={t("title")}
+          description={t("description")}
         />
       </Container>
 

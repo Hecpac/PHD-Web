@@ -347,8 +347,8 @@ function normalizeFaq(doc: SanityFaq): FAQ | null {
   };
 }
 
-export async function getProjects(): Promise<Project[]> {
-  const docs = await fetchFromSanity<SanityProject[]>(projectsQuery, fallbackProjects);
+export async function getProjects(locale = "en"): Promise<Project[]> {
+  const docs = await fetchFromSanity<SanityProject[]>(projectsQuery, fallbackProjects, { locale });
 
   if (!hasSanityConfig) {
     return docs as Project[];
@@ -361,12 +361,12 @@ export async function getProjects(): Promise<Project[]> {
   return normalized.length > 0 ? normalized : fallbackProjects;
 }
 
-export async function getProjectBySlug(slug: string): Promise<Project | null> {
+export async function getProjectBySlug(slug: string, locale = "en"): Promise<Project | null> {
   if (!hasSanityConfig || !sanityClient) {
     return fallbackProjects.find((project) => project.slug === slug) ?? null;
   }
 
-  const doc = await fetchFromSanity<SanityProject | null>(projectBySlugQuery, null, { slug });
+  const doc = await fetchFromSanity<SanityProject | null>(projectBySlugQuery, null, { slug, locale });
 
   if (doc) {
     const normalized = normalizeProject(doc);
@@ -378,9 +378,9 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
   return fallbackProjects.find((project) => project.slug === slug) ?? null;
 }
 
-export async function getFeaturedProjects(): Promise<Project[]> {
+export async function getFeaturedProjects(locale = "en"): Promise<Project[]> {
   const fallbackFeatured = fallbackProjects.filter((p) => p.isFeatured);
-  const docs = await fetchFromSanity<SanityProject[]>(featuredProjectsWithHeroQuery, fallbackFeatured);
+  const docs = await fetchFromSanity<SanityProject[]>(featuredProjectsWithHeroQuery, fallbackFeatured, { locale });
 
   if (!hasSanityConfig) {
     return docs as Project[];
@@ -393,8 +393,8 @@ export async function getFeaturedProjects(): Promise<Project[]> {
   return normalized.length > 0 ? normalized : fallbackFeatured;
 }
 
-export async function getServices(): Promise<Service[]> {
-  const docs = await fetchFromSanity<SanityService[]>(servicesQuery, fallbackServices);
+export async function getServices(locale = "en"): Promise<Service[]> {
+  const docs = await fetchFromSanity<SanityService[]>(servicesQuery, fallbackServices, { locale });
 
   if (!hasSanityConfig) {
     return docs as Service[];
@@ -408,8 +408,8 @@ export async function getServices(): Promise<Service[]> {
   return normalized.length > 0 ? normalized : fallbackServices;
 }
 
-export async function getProcessSteps(): Promise<ProcessStep[]> {
-  const docs = await fetchFromSanity<SanityProcessStep[]>(processStepsQuery, fallbackProcessSteps);
+export async function getProcessSteps(locale = "en"): Promise<ProcessStep[]> {
+  const docs = await fetchFromSanity<SanityProcessStep[]>(processStepsQuery, fallbackProcessSteps, { locale });
 
   if (!hasSanityConfig) {
     return docs as ProcessStep[];
@@ -423,8 +423,8 @@ export async function getProcessSteps(): Promise<ProcessStep[]> {
   return normalized.length > 0 ? normalized : fallbackProcessSteps;
 }
 
-export async function getFaqs(): Promise<FAQ[]> {
-  const docs = await fetchFromSanity<SanityFaq[]>(faqsQuery, fallbackFaqs);
+export async function getFaqs(locale = "en"): Promise<FAQ[]> {
+  const docs = await fetchFromSanity<SanityFaq[]>(faqsQuery, fallbackFaqs, { locale });
 
   if (!hasSanityConfig) {
     return docs as FAQ[];
@@ -437,8 +437,8 @@ export async function getFaqs(): Promise<FAQ[]> {
   return normalized.length > 0 ? normalized : fallbackFaqs;
 }
 
-export async function getServiceDetails(): Promise<ServiceDetail[]> {
-  const docs = await fetchFromSanity<SanityServiceDetail[]>(serviceDetailsQuery, []);
+export async function getServiceDetails(locale = "en"): Promise<ServiceDetail[]> {
+  const docs = await fetchFromSanity<SanityServiceDetail[]>(serviceDetailsQuery, [], { locale });
   if (!hasSanityConfig) return fallbackServiceDetails;
 
   const normalized = (docs as SanityServiceDetail[])
@@ -448,11 +448,11 @@ export async function getServiceDetails(): Promise<ServiceDetail[]> {
   return normalized.length > 0 ? normalized : fallbackServiceDetails;
 }
 
-export async function getServiceDetailBySlug(slug: string): Promise<ServiceDetail | null> {
+export async function getServiceDetailBySlug(slug: string, locale = "en"): Promise<ServiceDetail | null> {
   if (!hasSanityConfig || !sanityClient) {
     return fallbackServiceDetails.find((s) => s.slug === slug) ?? null;
   }
-  const doc = await fetchFromSanity<SanityServiceDetail | null>(serviceDetailBySlugQuery, null, { slug });
+  const doc = await fetchFromSanity<SanityServiceDetail | null>(serviceDetailBySlugQuery, null, { slug, locale });
   if (doc) {
     const normalized = normalizeServiceDetail(doc);
     if (normalized) return normalized;
@@ -460,8 +460,8 @@ export async function getServiceDetailBySlug(slug: string): Promise<ServiceDetai
   return fallbackServiceDetails.find((s) => s.slug === slug) ?? null;
 }
 
-export async function getReviews(): Promise<Review[]> {
-  const docs = await fetchFromSanity<SanityReview[]>(reviewsQuery, []);
+export async function getReviews(locale = "en"): Promise<Review[]> {
+  const docs = await fetchFromSanity<SanityReview[]>(reviewsQuery, [], { locale });
   if (!hasSanityConfig) return fallbackReviews;
 
   const normalized = (docs as SanityReview[])
@@ -471,8 +471,8 @@ export async function getReviews(): Promise<Review[]> {
   return normalized.length > 0 ? normalized : fallbackReviews;
 }
 
-export async function getBlogPosts(): Promise<BlogPost[]> {
-  const docs = await fetchFromSanity<SanityBlogPost[]>(blogPostsQuery, []);
+export async function getBlogPosts(locale = "en"): Promise<BlogPost[]> {
+  const docs = await fetchFromSanity<SanityBlogPost[]>(blogPostsQuery, [], { locale });
   if (!hasSanityConfig) return sortBlogPostsByDateDesc(fallbackBlogPosts);
 
   const normalized = (docs as SanityBlogPost[])
@@ -484,12 +484,12 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     : sortBlogPostsByDateDesc(fallbackBlogPosts);
 }
 
-export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+export async function getBlogPostBySlug(slug: string, locale = "en"): Promise<BlogPost | null> {
   if (!hasSanityConfig || !sanityClient) {
     return fallbackBlogPosts.find((post) => post.slug === slug) ?? null;
   }
 
-  const doc = await fetchFromSanity<SanityBlogPost | null>(blogPostBySlugQuery, null, { slug });
+  const doc = await fetchFromSanity<SanityBlogPost | null>(blogPostBySlugQuery, null, { slug, locale });
   if (doc) {
     const normalized = normalizeBlogPost(doc);
     if (normalized) return normalized;

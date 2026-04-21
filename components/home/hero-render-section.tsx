@@ -2,8 +2,10 @@
 
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslations } from "next-intl";
 
 export function HeroRenderSection() {
+  const t = useTranslations("heroRender");
   const containerRef = useRef<HTMLDivElement>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
@@ -31,7 +33,7 @@ export function HeroRenderSection() {
 
   return (
     <section
-      aria-label="Render 3D"
+      aria-label={t("ariaLabel")}
       className="relative lg:z-40 w-full overflow-hidden border-y border-line bg-black"
     >
       <div
@@ -47,7 +49,7 @@ export function HeroRenderSection() {
             loop
             playsInline
             preload="metadata"
-            aria-label="3D render showcase"
+            aria-label={t("videoAlt")}
           >
             {/* WebM for better compression (~2MB), MP4 as fallback */}
             <source src="/media/render-3d.webm" type="video/webm" />

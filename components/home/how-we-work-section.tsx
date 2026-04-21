@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
 
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -9,17 +10,16 @@ import { gsap, useGSAP } from "@/lib/gsap";
 
 type Step = {
   number: string;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   icon: React.ReactNode;
 };
 
 const steps: Step[] = [
   {
     number: "01",
-    title: "Discovery & Feasibility",
-    description:
-      "We evaluate your lot, program, and budget range. Site constraints, zoning, and HOA requirements are documented before any design work begins.",
+    titleKey: "step1Title",
+    descriptionKey: "step1Description",
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <circle cx="17" cy="17" r="11" stroke="currentColor" strokeWidth="2" />
@@ -29,9 +29,8 @@ const steps: Step[] = [
   },
   {
     number: "02",
-    title: "Concept & Cost Alignment",
-    description:
-      "Design and builder teams align scope, systems, and cost targets. You approve the schematic direction before drawings advance.",
+    titleKey: "step2Title",
+    descriptionKey: "step2Description",
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <rect x="6" y="6" width="28" height="28" rx="3" stroke="currentColor" strokeWidth="2" />
@@ -41,9 +40,8 @@ const steps: Step[] = [
   },
   {
     number: "03",
-    title: "Documentation & Permits",
-    description:
-      "Construction documents are coordinated across all trades. Bid-ready scopes, a milestone schedule, and permit submittals are prepared for review.",
+    titleKey: "step3Title",
+    descriptionKey: "step3Description",
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <path d="M10 6h14l10 10v18a2 2 0 01-2 2H10a2 2 0 01-2-2V8a2 2 0 012-2z" stroke="currentColor" strokeWidth="2" />
@@ -53,9 +51,8 @@ const steps: Step[] = [
   },
   {
     number: "04",
-    title: "Build & Handover",
-    description:
-      "Construction is managed through QA checkpoints and weekly owner reporting. Punch completion and warranty orientation close out the project.",
+    titleKey: "step4Title",
+    descriptionKey: "step4Description",
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <path d="M8 34l6-6M20 6l14 14-10 10L10 16z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
@@ -66,6 +63,7 @@ const steps: Step[] = [
 ];
 
 export function HowWeWorkSection() {
+  const t = useTranslations("howWeWork");
   const cardsRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -126,9 +124,9 @@ export function HowWeWorkSection() {
           <div className="lg:col-span-4 lg:relative">
             <div className="lg:sticky lg:top-32">
               <SectionHeading
-                eyebrow="How We Work"
-                title="A structured path from feasibility to handover"
-                description="Every project moves through four decision-gated phases: lot and feasibility review, concept and cost alignment, permit-ready documentation, and managed execution."
+                eyebrow={t("eyebrow")}
+                title={t("title")}
+                description={t("description")}
               />
             </div>
           </div>
@@ -143,11 +141,11 @@ export function HowWeWorkSection() {
                 style={{ top: `calc(5rem + ${index * 12}px)`, zIndex: index + 1 }}
               >
                 <div className="font-mono text-xs font-medium tracking-widest text-muted">
-                  STEP {step.number}
+                  {t("stepLabel")} {step.number}
                 </div>
                 <div className="mt-4 text-ink/80">{step.icon}</div>
-                <h3 className="mt-6 type-h3-standard text-ink">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{step.description}</p>
+                <h3 className="mt-6 type-h3-standard text-ink">{t(step.titleKey)}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{t(step.descriptionKey)}</p>
                 <div className="mt-6 h-0.5 w-10 rounded-full bg-accent" />
               </div>
             ))}
@@ -157,7 +155,7 @@ export function HowWeWorkSection() {
         {/* CTA */}
         <div className="flex flex-col items-center gap-3 text-center sm:gap-4">
           <p className="max-w-2xl text-muted">
-            If you already have a lot, a target area, or an early budget range, we can usually tell you quickly whether the project is ready for the next phase.
+            {t("ctaDescription")}
           </p>
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:justify-center">
             <CtaLink
@@ -166,7 +164,7 @@ export function HowWeWorkSection() {
               eventName="cta_schedule_click"
               className="w-full min-h-12 px-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
             >
-              Start Project Intake
+              {t("ctaStart")}
             </CtaLink>
             <CtaLink
               href="/contact"
@@ -174,7 +172,7 @@ export function HowWeWorkSection() {
               eventName="cta_schedule_click"
               className="w-full min-h-12 px-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:w-auto"
             >
-              View Full Intake Page
+              {t("ctaViewIntake")}
             </CtaLink>
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useId, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 import { Container } from "@/components/layout/container";
@@ -20,6 +21,7 @@ type LedgerSectionProps = {
 const springTransition = { type: "spring" as const, stiffness: 70, damping: 18 };
 
 export function LedgerSection({ services, id = "ledger", withHeading = true }: LedgerSectionProps) {
+  const t = useTranslations("ledger");
   const [openId, setOpenId] = useState<string>(services[0]?.id ?? "");
   const shouldReduceMotion = useReducedMotion();
   const uid = useId();
@@ -100,9 +102,9 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
         {withHeading ? (
           <div ref={headingRef}>
             <SectionHeading
-              eyebrow="The Ledger"
-              title="Capabilities tied to real deliverables"
-              description="Each service is defined by outputs, owners, and checkpoints so you can see what is actually being delivered before the project advances."
+              eyebrow={t("eyebrow")}
+              title={t("title")}
+              description={t("description")}
             />
           </div>
         ) : null}
@@ -211,7 +213,7 @@ export function LedgerSection({ services, id = "ledger", withHeading = true }: L
                               exit={{ opacity: 0 }}
                               transition={shouldReduceMotion ? { duration: 0.01 } : { duration: 0.15 }}
                             >
-                              +{extraDeliverables.length} more
+                              +{extraDeliverables.length} {t("more")}
                             </motion.p>
                           ) : null}
                         </AnimatePresence>

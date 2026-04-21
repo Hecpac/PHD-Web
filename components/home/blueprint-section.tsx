@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
 import { motion, useReducedMotion, useInView } from "framer-motion";
 
 import { Container } from "@/components/layout/container";
@@ -22,10 +23,14 @@ function StepCard({
   step,
   index,
   reduceMotion,
+  deliverablesLabel,
+  decisionGateLabel,
 }: {
   step: ProcessStep;
   index: number;
   reduceMotion: boolean;
+  deliverablesLabel: string;
+  decisionGateLabel: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
@@ -60,7 +65,7 @@ function StepCard({
             {step.deliverables.length > 0 && (
               <CardItem translateZ="25" className="pt-6">
                 <div className="mb-4 font-mono text-[14px] font-semibold uppercase tracking-[0.05em] text-ink">
-                  Deliverables
+                  {deliverablesLabel}
                 </div>
                 <ul className="space-y-3">
                   {step.deliverables.map((item) => (
@@ -77,7 +82,7 @@ function StepCard({
             {step.decisionGate ? (
               <CardItem translateZ="40" className="mt-auto border-t border-line/80 pt-6 text-sm text-ink w-full">
                 <p>
-                  <span className="font-bold text-accent">Decision Gate:</span> {step.decisionGate}
+                  <span className="font-bold text-accent">{decisionGateLabel}</span> {step.decisionGate}
                 </p>
               </CardItem>
             ) : null}
@@ -94,6 +99,7 @@ export function BlueprintSection({
   withHeading = true,
   headingAs,
 }: BlueprintSectionProps) {
+  const t = useTranslations("blueprint");
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -105,18 +111,18 @@ export function BlueprintSection({
         {withHeading ? (
           <SectionHeading
             as={headingAs}
-            eyebrow="The Blueprint"
-            title="Process defined by decision gates"
-            description="Each phase has clear inputs, outputs, and approval thresholds. Nothing moves forward without alignment."
+            eyebrow={t("eyebrow")}
+            title={t("title")}
+            description={t("description")}
           />
         ) : null}
 
-        <h2 className="sr-only">Process steps</h2>
+        <h2 className="sr-only">{t("stepsHeading")}</h2>
 
         {/* Mobile: Sticky stack using flex-col. Desktop: Grid layout */}
         <div className="relative mt-12 flex flex-col gap-6 sm:mt-16 sm:gap-8 md:grid md:grid-cols-2 xl:grid-cols-4 pb-12 md:pb-0">
           {steps.map((step, idx) => (
-            <StepCard key={step.id} step={step} index={idx} reduceMotion={!!shouldReduceMotion} />
+            <StepCard key={step.id} step={step} index={idx} reduceMotion={!!shouldReduceMotion} deliverablesLabel={t("deliverables")} decisionGateLabel={t("decisionGate")} />
           ))}
         </div>
       </Container>

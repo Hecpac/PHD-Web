@@ -1,7 +1,7 @@
 import { groq } from "next-sanity";
 
 export const projectsQuery = groq`
-  *[_type == "project"] | order(year desc) {
+  *[_type == "project" && language == $locale] | order(year desc) {
     _id,
     title,
     "slug": slug.current,
@@ -25,7 +25,7 @@ export const projectsQuery = groq`
 `;
 
 export const projectBySlugQuery = groq`
-  *[_type == "project" && slug.current == $slug][0] {
+  *[_type == "project" && slug.current == $slug && language == $locale][0] {
     _id,
     title,
     "slug": slug.current,
@@ -49,7 +49,7 @@ export const projectBySlugQuery = groq`
 `;
 
 export const featuredProjectsWithHeroQuery = groq`
-  *[_type == "project" && isFeatured == true] | order(featuredOrder asc) [0...6] {
+  *[_type == "project" && isFeatured == true && language == $locale] | order(featuredOrder asc) [0...6] {
     _id,
     title,
     "slug": slug.current,
@@ -81,7 +81,7 @@ export const featuredProjectsWithHeroQuery = groq`
 `;
 
 export const servicesQuery = groq`
-  *[_type == "service"] | order(order asc) {
+  *[_type == "service" && language == $locale] | order(order asc) {
     _id,
     title,
     summary,
@@ -92,7 +92,7 @@ export const servicesQuery = groq`
 `;
 
 export const processStepsQuery = groq`
-  *[_type == "processStep"] | order(stepNumber asc) {
+  *[_type == "processStep" && language == $locale] | order(stepNumber asc) {
     _id,
     stepNumber,
     title,
@@ -103,7 +103,7 @@ export const processStepsQuery = groq`
 `;
 
 export const faqsQuery = groq`
-  *[_type == "faq"] | order(category asc, question asc) {
+  *[_type == "faq" && language == $locale] | order(category asc, question asc) {
     _id,
     question,
     answer,
@@ -112,7 +112,7 @@ export const faqsQuery = groq`
 `;
 
 export const serviceDetailsQuery = groq`
-  *[_type == "serviceDetail"] | order(order asc) {
+  *[_type == "serviceDetail" && language == $locale] | order(order asc) {
     _id,
     "slug": slug.current,
     title,
@@ -126,7 +126,7 @@ export const serviceDetailsQuery = groq`
 `;
 
 export const serviceDetailBySlugQuery = groq`
-  *[_type == "serviceDetail" && slug.current == $slug][0] {
+  *[_type == "serviceDetail" && slug.current == $slug && language == $locale][0] {
     _id,
     "slug": slug.current,
     title,
@@ -140,7 +140,7 @@ export const serviceDetailBySlugQuery = groq`
 `;
 
 export const reviewsQuery = groq`
-  *[_type == "review"] | order(date desc) {
+  *[_type == "review" && language == $locale] | order(date desc) {
     _id,
     author,
     location,
@@ -152,7 +152,7 @@ export const reviewsQuery = groq`
 `;
 
 export const blogPostsQuery = groq`
-  *[_type == "blogPost"] | order(date desc) {
+  *[_type == "blogPost" && language == $locale] | order(date desc) {
     _id,
     title,
     "slug": slug.current,
@@ -165,7 +165,7 @@ export const blogPostsQuery = groq`
 `;
 
 export const blogPostBySlugQuery = groq`
-  *[_type == "blogPost" && slug.current == $slug][0] {
+  *[_type == "blogPost" && slug.current == $slug && language == $locale][0] {
     _id,
     title,
     "slug": slug.current,

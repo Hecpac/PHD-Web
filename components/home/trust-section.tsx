@@ -1,41 +1,34 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const trustPoints = [
-  {
-    title: "Documented Decision Gates",
-    description: "Key approvals are explicit at every stage, from concept alignment to release-to-build.",
-  },
-  {
-    title: "Builder + Design Coordination",
-    description: "Design intent and construction realities are coordinated before field execution.",
-  },
-  {
-    title: "Transparent Owner Updates",
-    description: "Progress, issues, and next decisions are communicated in plain language and on cadence.",
-  },
-];
+const TRUST_POINT_KEYS = ["point1", "point2", "point3"] as const;
 
 export function TrustSection() {
+  const t = useTranslations("trust");
+
   return (
     <section
       id="trust"
       className="section-shell section-intake-gradient border-t border-line"
-      aria-label="Trust points"
+      aria-label={t("ariaLabel")}
     >
       <Container swiss className="space-y-8">
         <SectionHeading
-          eyebrow="Trust"
-          title="Confidence built through evidence, not claims"
-          description="Our process is designed to reduce surprises and keep design quality intact during execution."
+          eyebrow={t("eyebrow")}
+          title={t("title")}
+          description={t("description")}
         />
 
-        <ul className="grid gap-6 md:grid-cols-3" aria-label="Trust points">
-          {trustPoints.map((item) => (
-            <li key={item.title}>
+        <ul className="grid gap-6 md:grid-cols-3" aria-label={t("ariaLabel")}>
+          {TRUST_POINT_KEYS.map((key) => (
+            <li key={key}>
               <article className="rounded-xl border border-line bg-surface p-6 shadow-[var(--shadow-card)]">
-                <h3 className="type-h3-compact">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">{item.description}</p>
+                <h3 className="type-h3-compact">{t(`${key}Title`)}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted">{t(`${key}Description`)}</p>
               </article>
             </li>
           ))}

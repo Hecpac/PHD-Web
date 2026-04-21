@@ -1,9 +1,11 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 import { CtaLink } from "@/components/ui/cta-link";
+import { Link } from "@/i18n/navigation";
 import { getCtaConfig, siteConfig, siteNavigation } from "@/lib/config/site";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const t = await getTranslations("layout");
   const { phoneDisplay, phoneHref, scheduleUrl } = getCtaConfig();
   const serviceNav = siteNavigation.find((item) => item.href === "/services");
   const serviceChildren = serviceNav?.children ?? [];
@@ -19,34 +21,33 @@ export function SiteFooter() {
       <div className="container-swiss py-12 md:py-14">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="space-y-5 lg:col-span-5">
-            <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">DFW & Beyond</p>
+            <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("footer.eyebrow")}</p>
             <h2 className="type-title text-ink">
-              Design-first custom homes across Dallas-Fort Worth.
+              {t("footer.heading")}
             </h2>
             <p className="max-w-md text-sm leading-6 text-muted">
-              We operate as a focused regional team so your project gets consistent planning,
-              trade coordination, and schedule control from concept to handover.
+              {t("footer.description")}
             </p>
 
             <div className="flex flex-wrap gap-2">
               <span className="inline-flex items-center rounded-full border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
-                Now booking 2026 starts
+                {t("footer.bookingBadge")}
               </span>
               <span className="inline-flex items-center rounded-full border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
-                DFW · North Texas
+                {t("footer.regionBadge")}
               </span>
             </div>
 
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <CtaLink href={phoneHref} eventName="cta_call_click" variant="secondary" className="bg-canvas">
-                Call {phoneDisplay}
+                {t("footer.callPrefix")} {phoneDisplay}
               </CtaLink>
               <CtaLink
                 href={scheduleUrl}
                 {...(scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
                 eventName="cta_schedule_click"
               >
-                Schedule Consultation
+                {t("footer.scheduleConsultation")}
               </CtaLink>
             </div>
 
@@ -86,7 +87,7 @@ export function SiteFooter() {
 
           <div className="grid gap-8 sm:grid-cols-2 lg:col-span-7">
             <nav aria-label="Footer primary navigation" className="space-y-3">
-              <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Explore</p>
+              <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("footer.explore")}</p>
               <ul className="space-y-2">
                 {siteNavigation.map((item) => (
                   <li key={item.href}>
@@ -94,7 +95,7 @@ export function SiteFooter() {
                       href={item.href}
                       className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-ink hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
                     >
-                      {item.label}
+                      {t(`nav.${item.tKey}`)}
                     </Link>
                   </li>
                 ))}
@@ -102,7 +103,7 @@ export function SiteFooter() {
             </nav>
 
             <div className="space-y-3">
-              <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Core Services</p>
+              <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("footer.coreServices")}</p>
               <ul className="space-y-2">
                 {serviceChildren.slice(0, 5).map((item) => (
                   <li key={item.href}>
@@ -110,7 +111,7 @@ export function SiteFooter() {
                       href={item.href}
                       className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
                     >
-                      {item.label}
+                      {t(`nav.${item.tKey}`)}
                     </Link>
                   </li>
                 ))}
@@ -119,7 +120,7 @@ export function SiteFooter() {
                 href="/services"
                 className="inline-flex min-h-[44px] min-w-[44px] items-center pt-1 text-sm font-medium text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
               >
-                View full services
+                {t("footer.viewFullServices")}
               </Link>
             </div>
           </div>
@@ -130,7 +131,7 @@ export function SiteFooter() {
             href="/dallas-fort-worth"
             className="inline-flex min-h-[44px] min-w-[44px] items-center text-sm text-muted underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:min-h-7"
           >
-            Service Area: Dallas&ndash;Fort Worth
+            {t("footer.serviceArea")}
           </Link>
           <p className="text-xs text-muted">
             &copy; {copyrightYear} {siteConfig.name}

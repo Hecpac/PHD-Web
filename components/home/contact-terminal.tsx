@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect, useId, useRef, useState } from "react";
 import { ArrowUpRight, BadgeCheck, Clock3, MapPin } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { submitContactForm, type ContactFormState } from "@/actions/contact";
 import { Container } from "@/components/layout/container";
@@ -24,6 +25,7 @@ const initialState: ContactFormState = {
 };
 
 export function ContactTerminal({ id = "contact", withHeading = true }: ContactTerminalProps) {
+  const t = useTranslations("contactTerminal");
   const startedRef = useRef(false);
   const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
   const [utm] = useState(() => {
@@ -116,25 +118,25 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
       <Container swiss className="space-y-8 md:space-y-12">
         {withHeading ? (
           <SectionHeading
-            eyebrow="Project Intake"
-            title="Start your DFW project intake"
-            description="Share your scope, timeline, and location. We review every brief with a decision-gate lens before recommending next steps."
+            eyebrow={t("eyebrow")}
+            title={t("title")}
+            description={t("description")}
           />
         ) : null}
 
         <div className="grid gap-6 md:gap-8 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,1.9fr)]">
           <aside className="rounded-xl border border-line/95 bg-surface/94 p-5 sm:p-6 md:p-7">
-            <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Intake Workflow</p>
-            <h3 className="mt-3 type-h3-standard tracking-tight text-ink">Fast, clear, and decision-ready.</h3>
+            <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("workflowTitle")}</p>
+            <h3 className="mt-3 type-h3-standard tracking-tight text-ink">{t("workflowSubtitle")}</h3>
             <p className="mt-3 text-sm leading-6 text-muted">
-              We review your brief against scope, site constraints, and budget signals before the first call.
+              {t("workflowDescription")}
             </p>
 
             <ol className="mt-6 space-y-3 sm:mt-6 sm:space-y-4">
               {[
-                "Submit project brief and city.",
-                "Receive fit-check and follow-up call.",
-                "Get next-step path with decision gates.",
+                t("workflowStep1"),
+                t("workflowStep2"),
+                t("workflowStep3"),
               ].map((step, index) => (
                 <li key={step} className="flex items-start gap-3 rounded-lg border border-line/90 bg-canvas/92 p-3">
                   <span className="font-mono text-xs font-bold text-accent">0{index + 1}</span>
@@ -146,23 +148,23 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
             <div className="mt-6 flex flex-wrap gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
                 <Clock3 className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                Typical reply in 1 business day
+                {t("replyTime")}
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-canvas px-2.5 py-1 text-xs text-muted">
                 <MapPin className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                DFW · North Texas
+                {t("regionBadge")}
               </span>
             </div>
 
             <div className="mt-6 border-t border-line/85 pt-4">
-              <p className="text-xs text-muted">Prefer to talk first?</p>
+              <p className="text-xs text-muted">{t("preferCall")}</p>
               <CtaLink
                 href={phoneHref}
                 eventName="cta_call_click"
                 variant="ghost"
                 className="mt-2 min-h-11 rounded-md px-2 text-ink/92 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
               >
-                Call {phoneDisplay} <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
+                {t("callPrefix")} {phoneDisplay} <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
               </CtaLink>
             </div>
           </aside>
@@ -170,18 +172,18 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
           <div className="rounded-xl border border-line/95 bg-surface/96 p-5 sm:p-6 md:p-8">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-line pb-3 sm:mb-6 sm:pb-4">
               <p className="text-xs text-muted">
-                <span className="text-accent" aria-hidden="true">*</span> Required fields
+                <span className="text-accent" aria-hidden="true">*</span> {t("requiredFields")}
               </p>
               <p className="inline-flex items-center gap-1.5 text-xs text-muted">
                 <BadgeCheck className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                DFW city validation enabled
+                {t("cityValidation")}
               </p>
             </div>
 
             <form ref={formRef} action={formAction} className="grid gap-4 sm:gap-6 md:grid-cols-2" onFocus={onFormFocus} noValidate>
               <div className="hidden" aria-hidden="true">
                 <label>
-                  Website
+                  {t("honeypotLabel")}
                   <input type="text" name="website" tabIndex={-1} autoComplete="off" />
                 </label>
               </div>
@@ -193,7 +195,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               <input type="hidden" name="utm_landing_path" value={utm.landingPath} />
 
               <label className="space-y-1.5 text-sm">
-                <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Full name <span className="text-accent" aria-hidden="true">*</span></span>
+                <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("nameLabel")} <span className="text-accent" aria-hidden="true">*</span></span>
                 <input
                   ref={nameRef}
                   name="name"
@@ -215,7 +217,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               </label>
 
               <label className="space-y-1.5 text-sm">
-                <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Email <span className="text-accent" aria-hidden="true">*</span></span>
+                <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("emailLabel")} <span className="text-accent" aria-hidden="true">*</span></span>
                 <input
                   ref={emailRef}
                   name="email"
@@ -230,7 +232,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   aria-invalid={Boolean(state.errors?.email) || undefined}
                   aria-describedby={state.errors?.email ? emailErrorId : undefined}
                   className={cn(inputClass, state.errors?.email && "border-danger")}
-                  placeholder="jane@example.com…"
+                  placeholder={t("emailPlaceholder")}
                 />
                 {state.errors?.email ? (
                   <p id={emailErrorId} className="text-xs text-danger">
@@ -240,7 +242,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               </label>
 
               <label className="space-y-1.5 text-sm">
-                <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">City <span className="text-accent" aria-hidden="true">*</span></span>
+                <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("cityLabel")} <span className="text-accent" aria-hidden="true">*</span></span>
                 <select
                   ref={cityRef}
                   name="city"
@@ -253,7 +255,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   className={cn(inputClass, cityHasError && "border-danger")}
                 >
                   <option value="" disabled>
-                    Select city
+                    {t("citySelect")}
                   </option>
                   {SERVICE_AREA_CITIES.map((city) => (
                     <option key={`${city.name}-${city.state}`} value={city.name}>
@@ -264,7 +266,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
               </label>
 
               <label className="space-y-1.5 text-sm">
-                <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Phone (optional)</span>
+                <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("phoneLabel")}</span>
                 <input
                   name="phone"
                   type="tel"
@@ -272,12 +274,12 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   inputMode="tel"
                   enterKeyHint="next"
                   className={inputClass}
-                  placeholder="(469) 555-0101…"
+                  placeholder={t("phonePlaceholder")}
                 />
               </label>
 
               <label className="space-y-1.5 text-sm md:col-span-2">
-                <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Project goals <span className="text-accent" aria-hidden="true">*</span></span>
+                <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("goalsLabel")} <span className="text-accent" aria-hidden="true">*</span></span>
                 <textarea
                   ref={messageRef}
                   name="message"
@@ -288,7 +290,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   rows={4}
                   enterKeyHint="send"
                   className={cn(inputClass, state.errors?.message && "border-danger")}
-                  placeholder="Tell us lot status, target timeline, style direction, and budget guardrails…"
+                  placeholder={t("goalsPlaceholder")}
                 />
                 {state.errors?.message ? (
                   <p id={messageErrorId} className="text-xs text-danger">
@@ -302,13 +304,13 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                   <button
                     type="submit"
                     disabled={isPending}
-                    aria-label="Submit project brief"
+                    aria-label={t("submitAriaLabel")}
                     className="inline-flex w-full min-h-12 items-center justify-center rounded-lg border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent shadow-[0_10px_20px_rgb(0_0_0/0.18)] transition-colors duration-150 hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isPending ? "Submitting…" : "Send Project Brief"}
+                    {isPending ? t("submitting") : t("submitButton")}
                   </button>
                   <p className="text-xs text-muted">
-                    No spam. No off-market outreach. Project inquiries from DFW & North Texas.
+                    {t("disclaimer")}
                   </p>
                   <div className="flex flex-wrap items-center gap-2.5 rounded-lg border border-line/70 bg-canvas/45 p-2 sm:gap-3">
                     <CtaLink
@@ -318,7 +320,7 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                       variant="secondary"
                       className="min-h-11 rounded-md border-line/80 bg-surface/78 px-4 py-2 text-sm text-ink/92 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                     >
-                      Schedule Instead
+                      {t("scheduleInstead")}
                     </CtaLink>
                     <CtaLink
                       href={phoneHref}
@@ -326,12 +328,12 @@ export function ContactTerminal({ id = "contact", withHeading = true }: ContactT
                       variant="ghost"
                       className="min-h-11 rounded-md px-2 text-sm text-ink/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                     >
-                      Call {phoneDisplay}
+                      {t("callPrefix")} {phoneDisplay}
                     </CtaLink>
                   </div>
                 </div>
                 <p className="mt-3 text-xs text-muted">
-                  By submitting, you confirm this project is located in DFW or North Texas.
+                  {t("consentText")}
                 </p>
               </div>
             </form>

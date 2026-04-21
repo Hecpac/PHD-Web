@@ -1,4 +1,7 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin();
 
 const securityHeaders = [
   // Prevent the site from being embedded in iframes (clickjacking)
@@ -41,7 +44,7 @@ const nextConfig: NextConfig = {
       { source: "/about-us", destination: "/about", permanent: true },
       { source: "/portfolio", destination: "/projects", permanent: true },
       { source: "/construction-services-dfw", destination: "/services", permanent: true },
-      { source: "/es", destination: "/", permanent: true },
+      // /es redirect removed — handled by next-intl middleware
     ];
   },
   async headers() {
@@ -67,4 +70,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

@@ -2,28 +2,39 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useScroll, useMotionValueEvent } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 import { AnimatedNavLink } from "@/components/layout/animated-nav-link";
+import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 import { NavDropdown } from "@/components/layout/nav-dropdown";
 import { CtaLink } from "@/components/ui/cta-link";
 import { SocialLinks } from "@/components/ui/social-links";
 import { getCtaConfig, siteNavigation } from "@/lib/config/site";
+import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
+  const t = useTranslations("layout");
   const ctaConfig = getCtaConfig();
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const [isAtTop, setIsAtTop] = useState(true);
   const supportsTransparentHeader =
-    pathname === "/" || pathname === "/es" || pathname.startsWith("/for-builders");
+    pathname === "/" || pathname.startsWith("/for-builders");
   const isSolidHeader = !supportsTransparentHeader || !isAtTop;
   const navTone = isSolidHeader ? "dark" : "light";
   const mobileLogoSrc = isSolidHeader ? "/logo/PHD_logo-removebg-preview.png" : "/logo/PHD_logo_white.png";
+
+  const translatedNav = siteNavigation.map((item) => ({
+    ...item,
+    label: t(`nav.${item.tKey}`),
+    children: item.children?.map((child) => ({
+      ...child,
+      label: t(`nav.${child.tKey}`),
+    })),
+  }));
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsAtTop(latest <= 50);
@@ -44,7 +55,7 @@ export function SiteHeader() {
           <Link
             href="/"
             className="relative block h-10 w-[7.5rem] shrink-0 md:hidden"
-            aria-label="Go to homepage"
+            aria-label={t("goToHomepage")}
           >
             <Image
               src={mobileLogoSrc}
@@ -59,7 +70,7 @@ export function SiteHeader() {
             aria-label="Primary navigation"
             className="hidden items-center gap-4 md:flex lg:gap-8"
           >
-            {siteNavigation.map((item) =>
+            {translatedNav.map((item) =>
               item.children ? (
                 <NavDropdown
                   key={item.href}
@@ -93,6 +104,8 @@ export function SiteHeader() {
               )}
             />
 
+            <LocaleSwitcher tone={navTone} />
+
             <CtaLink
               href={ctaConfig.scheduleUrl}
               variant="secondary"
@@ -105,11 +118,11 @@ export function SiteHeader() {
                   : "border-white/20 bg-white/5 text-white backdrop-blur-md hover:scale-[1.02] hover:border-white/40 hover:bg-white/10 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
               )}
             >
-              SCHEDULE
+              {t("schedule")}
             </CtaLink>
 
             <div className="md:hidden">
-              <MobileMenu navigation={siteNavigation} cta={ctaConfig} tone={navTone} />
+              <MobileMenu navigation={translatedNav} cta={ctaConfig} tone={navTone} />
             </div>
           </div>
         </div>

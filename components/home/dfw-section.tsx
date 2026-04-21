@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -12,6 +13,8 @@ const featuredCities = SERVICE_AREA_CITIES.slice(0, 8).map((c) => c.name);
 const TOPO_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='10' fill='none' stroke='%23cb213118' stroke-width='.5'/%3E%3Ccircle cx='30' cy='30' r='20' fill='none' stroke='%23cb213112' stroke-width='.5'/%3E%3Ccircle cx='30' cy='30' r='28' fill='none' stroke='%23cb21310d' stroke-width='.5'/%3E%3C/svg%3E")`;
 
 export function DfwSection() {
+  const t = useTranslations("dfw");
+
   return (
     <section
       id="dfw"
@@ -23,17 +26,17 @@ export function DfwSection() {
     >
       <Container swiss className="relative z-10 space-y-8">
         <SectionHeading
-          eyebrow="Service Area"
-          title="Dallas-Fort Worth & North Texas"
-          description="A regional design-build practice grounded in DFW, extending across North Texas — local permitting fluency, trade relationships, and execution quality across the corridor."
+          eyebrow={t("eyebrow")}
+          title={t("title")}
+          description={t("description")}
         />
 
         <div className="brand-red-outline brand-red-surface rounded-xl border border-line bg-surface p-6 shadow-sm">
           <p className="text-sm leading-6 text-muted">
-            Active intake includes {featuredCities.join(", ")}, and other communities within ~80 miles of Dallas.
+            {t("intakePrefix")} {featuredCities.join(", ")}, {t("intakeSuffix")}
           </p>
           <Link href="/dallas-fort-worth" className="mt-4 inline-flex min-h-[44px] min-w-[44px] items-center text-sm font-bold uppercase tracking-[0.05em] text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
-            View full service area
+            {t("viewServiceArea")}
           </Link>
         </div>
       </Container>

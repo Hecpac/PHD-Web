@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -40,6 +41,7 @@ function ReviewCard({ review, className }: { review: Review; className?: string 
 }
 
 export function TestimonialsSection({ reviews }: TestimonialsSectionProps) {
+  const t = useTranslations("testimonials");
   const shouldReduceMotion = useReducedMotion();
 
   if (!reviews || reviews.length === 0) return null;
@@ -60,15 +62,15 @@ export function TestimonialsSection({ reviews }: TestimonialsSectionProps) {
       <Container swiss className="mb-12 sm:mb-16">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
-            eyebrow="Testimonials"
-            title="Selected client proof from across DFW"
-            description="Read how homeowners describe our communication, process control, and design-build delivery after working with the team in Dallas–Fort Worth."
+            eyebrow={t("eyebrow")}
+            title={t("title")}
+            description={t("description")}
           />
           <Link
             href="/reviews"
             className="mb-2 inline-flex min-h-[44px] items-center text-sm font-bold uppercase tracking-[0.05em] text-accent underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
-            View all reviews
+            {t("viewAll")}
           </Link>
         </div>
       </Container>

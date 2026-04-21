@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
 
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -12,6 +13,7 @@ type GsapProcessTimelineProps = {
 };
 
 export function GsapProcessTimeline({ steps }: GsapProcessTimelineProps) {
+  const t = useTranslations("processPage");
   const rootRef = useRef<HTMLElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
 
@@ -73,9 +75,9 @@ export function GsapProcessTimeline({ steps }: GsapProcessTimelineProps) {
       <Container swiss className="space-y-10">
         <SectionHeading
           as="h1"
-          eyebrow="Execution Timeline"
-          title="Pre-construction → Permits → Build"
-          description="A vertical timeline engineered for decision gates, with each phase tied to explicit outputs and approvals."
+          eyebrow={t("eyebrow")}
+          title={t("title")}
+          description={t("description")}
         />
 
         <div className="relative">
@@ -96,14 +98,14 @@ export function GsapProcessTimeline({ steps }: GsapProcessTimelineProps) {
 
                 <article className="rounded-xl border border-line bg-surface p-5 sm:p-6">
                   <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-                    Phase {String(step.stepNumber).padStart(2, "0")}
+                    {t("phaseLabel")} {String(step.stepNumber).padStart(2, "0")}
                   </p>
                   <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">{step.title}</h2>
                   <p className="mt-3 text-sm leading-6 text-muted">{step.description}</p>
 
                   {step.deliverables.length > 0 ? (
                     <div className="mt-5">
-                      <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Deliverables</p>
+                      <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("deliverables")}</p>
                       <ul className="mt-2 space-y-2">
                         {step.deliverables.map((item) => (
                           <li key={item} className="flex gap-2 text-sm text-ink">
@@ -117,7 +119,7 @@ export function GsapProcessTimeline({ steps }: GsapProcessTimelineProps) {
 
                   {step.decisionGate ? (
                     <p className="mt-5 border-t border-line pt-4 text-sm text-ink">
-                      <span className="font-semibold text-accent">Decision Gate:</span> {step.decisionGate}
+                      <span className="font-semibold text-accent">{t("decisionGate")}</span> {step.decisionGate}
                     </p>
                   ) : null}
                 </article>

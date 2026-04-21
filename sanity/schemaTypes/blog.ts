@@ -20,6 +20,18 @@ export const blogPostType = defineType({
   },
   fields: [
     defineField({
+      name: "language",
+      type: "string",
+      options: {
+        list: [
+          { title: "English", value: "en" },
+          { title: "Español", value: "es" },
+        ],
+      },
+      initialValue: "en",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "title",
       type: "string",
       validation: (rule) => rule.required().min(10),

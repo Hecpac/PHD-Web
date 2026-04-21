@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useEffect, useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 
 import { submitVisionBuilder, type VisionBuilderState } from "@/actions/contact";
 import { CtaLink } from "@/components/ui/cta-link";
@@ -18,32 +19,33 @@ const initialState: VisionBuilderState = {
 const LOT_STATUS_OPTIONS = ["have-lot", "looking-lot"] as const;
 const INVESTMENT_RANGE_OPTIONS = ["1.5-3m", "3m+"] as const;
 
-const stepTitles = [
-  "Lot status",
-  "Target zone",
-  "Investment range",
-  "Contact details",
-] as const;
-
-const lotLabels: Record<(typeof LOT_STATUS_OPTIONS)[number], string> = {
-  "have-lot": "I already have a lot",
-  "looking-lot": "I’m still looking for land",
-};
-
-const investmentLabels: Record<(typeof INVESTMENT_RANGE_OPTIONS)[number], string> = {
-  "1.5-3m": "$1.5M – $3M",
-  "3m+": "$3M+",
-};
-
 const inputClass =
   "w-full min-h-11 rounded-lg border border-line bg-canvas px-3.5 py-3 text-sm text-ink placeholder:text-muted focus-visible:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface";
 
 export function MultiStepForm() {
+  const t = useTranslations("contactPage");
   const [step, setStep] = useState(0);
   const [started, setStarted] = useState(false);
   const [lotStatus, setLotStatus] = useState<(typeof LOT_STATUS_OPTIONS)[number] | "">("");
   const [targetZone, setTargetZone] = useState("");
   const [investmentRange, setInvestmentRange] = useState<(typeof INVESTMENT_RANGE_OPTIONS)[number] | "">("");
+
+  const stepTitles = useMemo(() => [
+    t("stepLotStatus"),
+    t("stepTargetZone"),
+    t("stepInvestmentRange"),
+    t("stepContactDetails"),
+  ] as const, [t]);
+
+  const lotLabels: Record<(typeof LOT_STATUS_OPTIONS)[number], string> = useMemo(() => ({
+    "have-lot": t("haveLot"),
+    "looking-lot": t("lookingForLand"),
+  }), [t]);
+
+  const investmentLabels: Record<(typeof INVESTMENT_RANGE_OPTIONS)[number], string> = useMemo(() => ({
+    "1.5-3m": t("investment15to3m"),
+    "3m+": t("investment3mPlus"),
+  }), [t]);
 
   const [state, formAction, isPending] = useActionState(submitVisionBuilder, initialState);
   const [utm] = useState(() => {
@@ -69,7 +71,7 @@ export function MultiStepForm() {
   });
   const { phoneDisplay, phoneHref } = getCtaConfig();
 
-  const progress = useMemo(() => ((step + 1) / stepTitles.length) * 100, [step]);
+  const progress = useMemo(() => ((step + 1) / stepTitles.length) * 100, [step, stepTitles.length]);
 
   const canContinue = useMemo(() => {
     if (step === 0) return lotStatus.length > 0;
@@ -125,7 +127,7 @@ export function MultiStepForm() {
       return (
         <fieldset className="space-y-3" onFocus={handleStart}>
           <legend className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-            Step 1 — Do you already have land?
+            {t("step1Legend")}
           </legend>
           <div className="grid gap-3 sm:grid-cols-2">
             {LOT_STATUS_OPTIONS.map((value) => (
@@ -159,7 +161,7 @@ export function MultiStepForm() {
       return (
         <label className="space-y-2 text-sm" onFocus={handleStart}>
           <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-            Step 2 — Preferred service area city
+            {t("step2Legend")}
           </span>
           <select
             name="targetZone"
@@ -170,7 +172,7 @@ export function MultiStepForm() {
             aria-invalid={Boolean(state.errors?.targetZone) || undefined}
           >
             <option value="" disabled>
-              Select a city
+              {t("selectCity")}
             </option>
             {SERVICE_AREA_CITIES.map((city) => (
               <option key={`${city.name}-${city.state}`} value={city.name}>
@@ -187,7 +189,7 @@ export function MultiStepForm() {
       return (
         <fieldset className="space-y-3" onFocus={handleStart}>
           <legend className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-            Step 3 — Investment range
+            {t("step3Legend")}
           </legend>
           <div className="grid gap-3 sm:grid-cols-2">
             {INVESTMENT_RANGE_OPTIONS.map((value) => (
@@ -226,7 +228,7 @@ export function MultiStepForm() {
         <input type="hidden" name="investmentRange" value={investmentRange} />
 
         <label className="space-y-1.5 text-sm">
-          <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Full name *</span>
+          <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("fullName")}</span>
           <input
             name="name"
             autoComplete="name"
@@ -238,7 +240,7 @@ export function MultiStepForm() {
         </label>
 
         <label className="space-y-1.5 text-sm">
-          <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Email *</span>
+          <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("email")}</span>
           <input
             name="email"
             type="email"
@@ -251,19 +253,19 @@ export function MultiStepForm() {
         </label>
 
         <label className="space-y-1.5 text-sm sm:col-span-1">
-          <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">Phone (optional)</span>
+          <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">{t("phoneOptional")}</span>
           <input name="phone" type="tel" autoComplete="tel" className={inputClass} />
         </label>
 
         <label className="space-y-1.5 text-sm sm:col-span-2">
           <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-            Notes (optional)
+            {t("notesOptional")}
           </span>
           <textarea
             name="message"
             rows={4}
             className={cn(inputClass, state.errors?.message && "border-danger")}
-            placeholder="Style direction, target move-in timeline, constraints, etc."
+            placeholder={t("notesPlaceholder")}
           />
           {state.errors?.message ? <p className="text-xs text-danger">{state.errors.message}</p> : null}
         </label>
@@ -275,9 +277,9 @@ export function MultiStepForm() {
     <section className="rounded-xl border border-line/95 bg-surface/96 p-5 sm:p-6 md:p-8">
       <div className="mb-5 space-y-3 border-b border-line pb-4">
         <div className="flex items-center justify-between text-xs text-muted">
-          <p>Vision Builder</p>
+          <p>{t("formTitle")}</p>
           <p>
-            Step {step + 1} of {stepTitles.length}
+            {t("stepOf", { step: step + 1, total: stepTitles.length })}
           </p>
         </div>
         <div className="h-1.5 rounded-full bg-line">
@@ -313,7 +315,7 @@ export function MultiStepForm() {
               onClick={handleBack}
               className="min-h-11 rounded-md border border-line px-4 text-sm text-ink"
             >
-              Back
+              {t("back")}
             </button>
           ) : null}
 
@@ -324,7 +326,7 @@ export function MultiStepForm() {
               disabled={!canContinue}
               className="min-h-11 rounded-md border border-accent bg-accent px-5 text-sm font-semibold text-on-accent disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Continue
+              {t("continue")}
             </button>
           ) : (
             <button
@@ -333,7 +335,7 @@ export function MultiStepForm() {
               onClick={handleStart}
               className="min-h-11 rounded-md border border-accent bg-accent px-5 text-sm font-semibold text-on-accent disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {isPending ? "Submitting…" : "Submit Vision"}
+              {isPending ? t("submitting") : t("submitVision")}
             </button>
           )}
 

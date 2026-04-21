@@ -57,29 +57,31 @@ export const siteConfig: SiteConfig = {
 export type NavItem = {
   href: string;
   label: string;
-  children?: readonly { href: string; label: string }[];
+  tKey: string;
+  children?: readonly { href: string; label: string; tKey: string }[];
 };
 
 export const siteNavigation: readonly NavItem[] = [
-  { href: "/about", label: "About" },
+  { href: "/about", label: "About", tKey: "about" },
   {
     href: "/services",
     label: "Services",
+    tKey: "services",
     children: [
-      { href: "/services/custom-home-design", label: "Custom Home Design" },
-      { href: "/services/interior-design", label: "Interior Design & Planning" },
-      { href: "/services/consulting", label: "Consulting Services" },
-      { href: "/services/project-management", label: "Project Management" },
-      { href: "/services/landscape-design", label: "Landscape Design" },
-      { href: "/services/3d-rendering", label: "3D Rendering Visualization" },
-      { href: "/services/feasibility-studies", label: "Feasibility Studies" },
+      { href: "/services/custom-home-design", label: "Custom Home Design", tKey: "customHomeDesign" },
+      { href: "/services/interior-design", label: "Interior Design & Planning", tKey: "interiorDesign" },
+      { href: "/services/consulting", label: "Consulting Services", tKey: "consulting" },
+      { href: "/services/project-management", label: "Project Management", tKey: "projectManagement" },
+      { href: "/services/landscape-design", label: "Landscape Design", tKey: "landscapeDesign" },
+      { href: "/services/3d-rendering", label: "3D Rendering Visualization", tKey: "rendering3d" },
+      { href: "/services/feasibility-studies", label: "Feasibility Studies", tKey: "feasibilityStudies" },
     ],
   },
-  { href: "/for-builders", label: "For Builders" },
-  { href: "/projects", label: "Projects" },
-  { href: "/reviews", label: "Reviews" },
-  { href: "/blogs", label: "Blogs" },
-  { href: "/contact", label: "Contact" },
+  { href: "/for-builders", label: "For Builders", tKey: "forBuilders" },
+  { href: "/projects", label: "Projects", tKey: "projects" },
+  { href: "/reviews", label: "Reviews", tKey: "reviews" },
+  { href: "/blogs", label: "Blogs", tKey: "blogs" },
+  { href: "/contact", label: "Contact", tKey: "contact" },
 ] as const;
 
 const DEFAULT_SITE_URL = "https://www.premiumhome.design";

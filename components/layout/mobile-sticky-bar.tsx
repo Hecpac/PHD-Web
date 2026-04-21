@@ -1,11 +1,13 @@
 "use client";
 
 import { CalendarDays, Phone } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { CtaLink } from "@/components/ui/cta-link";
 import { getCtaConfig } from "@/lib/config/site";
 
 export function MobileStickyBar() {
+  const t = useTranslations("layout");
   const { phoneDisplay, phoneHref, scheduleUrl } = getCtaConfig();
 
   return (
@@ -18,7 +20,7 @@ export function MobileStickyBar() {
           className="min-h-11 flex-1 rounded-md border-line bg-surface px-2 text-[12px] font-semibold uppercase tracking-[0.04em]"
         >
           <Phone className="mr-1.5 h-3.5 w-3.5" />
-          Call {phoneDisplay}
+          {t("footer.callPrefix")} {phoneDisplay}
         </CtaLink>
 
         <CtaLink
@@ -28,7 +30,7 @@ export function MobileStickyBar() {
           className="min-h-11 flex-1 rounded-md px-2 text-[12px] font-semibold uppercase tracking-[0.04em]"
         >
           <CalendarDays className="mr-1.5 h-3.5 w-3.5" />
-          Schedule
+          {t("schedule")}
         </CtaLink>
       </div>
     </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import type { AnchorHTMLAttributes, MouseEvent } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 import { trackEvent, type AnalyticsEventName } from "@/lib/analytics/events";
 import { cn } from "@/lib/utils";

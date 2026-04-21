@@ -6,6 +6,18 @@ export const faqType = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "language",
+      type: "string",
+      options: {
+        list: [
+          { title: "English", value: "en" },
+          { title: "Español", value: "es" },
+        ],
+      },
+      initialValue: "en",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "question",
       type: "string",
       validation: (rule) => rule.required(),
