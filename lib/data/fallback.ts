@@ -1003,3 +1003,90 @@ export const fallbackFaqs: FAQ[] = [
     category: "Process",
   },
 ];
+
+export const fallbackFaqsEs: FAQ[] = [
+  {
+    id: "faq-1",
+    question: "¿Qué área cubren?",
+    answer:
+      "Aceptamos proyectos de diseño-construcción en toda la Metróplex de DFW y Norte de Texas. Este enfoque regional nos permite mantener relaciones sólidas con socios comerciales verificados, estar al día con los códigos municipales de múltiples jurisdicciones, y ofrecer cronogramas confiables basados en las condiciones del Norte de Texas.",
+    category: "Área de Servicio",
+  },
+  {
+    id: "faq-2",
+    question: "¿Pueden construir en nuestro lote en la región?",
+    answer:
+      "Sí. Trabajamos frecuentemente en lotes propiedad de clientes en todo DFW y Norte de Texas, e incluimos una evaluación de factibilidad durante la fase de Descubrimiento. Evaluamos zonificación, retiros, condiciones del suelo, estado de zona inundable y acceso a servicios antes de iniciar cualquier trabajo de diseño.",
+    category: "Proceso",
+  },
+  {
+    id: "faq-3",
+    question: "¿Cómo mantienen la transparencia en las decisiones de presupuesto?",
+    answer:
+      "Cada fase incluye entregables claros, puertas de decisión y seguimiento de partidas. Usted aprueba el alcance y costo en cada hito antes de que el proyecto avance. Los reportes semanales incluyen estado del presupuesto, seguimiento de órdenes de cambio y balances de partidas para que no haya sorpresas.",
+    category: "Presupuesto",
+  },
+  {
+    id: "faq-4",
+    question: "¿Cuánto tiempo toma construir una casa personalizada en la región?",
+    answer:
+      "La mayoría de las casas personalizadas de 325–560 m² toman de 6 a 18 meses desde el permiso hasta la mudanza en DFW y Norte de Texas. Proporcionamos un cronograma detallado de ruta crítica durante la fase de Concepto y Alineación de Costos.",
+    category: "Cronograma",
+  },
+  {
+    id: "faq-5",
+    question: "¿Cuánto cuesta una casa personalizada por metro cuadrado en DFW y Norte de Texas?",
+    answer:
+      "Los precios de casas personalizadas en la región varían significativamente según la complejidad del diseño, demandas estructurales, nivel de acabados, condiciones del sitio y requisitos municipales. Un número por metro cuadrado puede ser engañoso sin un alcance definido. Por eso desarrollamos un rango de presupuesto detallado y específico con usted durante el Descubrimiento, para que tenga números realistas vinculados a su programa real antes de avanzar el diseño.",
+    category: "Presupuesto",
+  },
+  {
+    id: "faq-6",
+    question: "¿Manejan permisos y aprobaciones de HOA?",
+    answer:
+      "Sí. Gestionamos el proceso completo de permisos en múltiples jurisdicciones — municipios de DFW y condados del Norte de Texas — y coordinamos las presentaciones de revisión de HOA cuando sea necesario. Nuestro equipo tiene experiencia directa con juntas de revisión en Highland Park, Southlake, Prosper, Frisco, Sherman y otras comunidades reguladas.",
+    category: "Proceso",
+  },
+  {
+    id: "faq-7",
+    question: "¿Qué pasa si quiero cambiar algo durante la construcción?",
+    answer:
+      "Las órdenes de cambio son parte normal de la construcción personalizada. Documentamos cada solicitud de cambio con alcance escrito, impacto en costo e impacto en cronograma antes de que cualquier trabajo proceda. Usted aprueba o rechaza cada cambio por escrito — sin acuerdos verbales, sin ambigüedad.",
+    category: "Proceso",
+  },
+  {
+    id: "faq-8",
+    question: "¿Proporcionan garantía en su trabajo?",
+    answer:
+      "Sí. Proporcionamos una garantía integral que cubre elementos estructurales, sistemas principales (HVAC, plomería, eléctrico) y mano de obra. Los términos específicos se detallan en su contrato. También realizamos un recorrido de orientación de garantía al mudarse y una revisión de seguimiento al mes 11.",
+    category: "Garantía",
+  },
+  {
+    id: "faq-9",
+    question: "¿Puedo traer mi propio diseñador o debo usar el de ustedes?",
+    answer:
+      "Ambas opciones funcionan. Tenemos capacidad de diseño interna y también colaboramos con profesionales de diseño independientes en DFW y Norte de Texas. Si ya tiene un diseñador en el equipo, nos unimos durante la preconstrucción para alinear el proyecto con las realidades constructivas, presupuesto y cronograma.",
+    category: "Diseño",
+  },
+  {
+    id: "faq-10",
+    question: "¿Cómo seleccionan subcontratistas y socios comerciales?",
+    answer:
+      "Mantenemos una red verificada de socios comerciales regionales en DFW y Norte de Texas, construida a lo largo de años de proyectos locales. Cada subcontratista es evaluado en calidad, confiabilidad, seguros y licencias. No aceptamos la oferta más baja por defecto — seleccionamos basándonos en el mejor valor para cada alcance de trabajo.",
+    category: "Construcción",
+  },
+  {
+    id: "faq-11",
+    question: "¿Qué opciones de financiamiento están disponibles para construir una casa personalizada?",
+    answer:
+      "La mayoría de los clientes utilizan un préstamo de construcción a permanente, que se convierte en hipoteca tradicional al completarse. Trabajamos con varios prestamistas de Texas con experiencia en financiamiento de casas personalizadas y podemos proporcionar referencias. Nuestro cronograma de desembolsos está estructurado para alinearse con los hitos de inspección estándar de los prestamistas.",
+    category: "Presupuesto",
+  },
+  {
+    id: "faq-12",
+    question: "¿Qué tan involucrado estaré durante el proceso de construcción?",
+    answer:
+      "Tan involucrado como desee. Como mínimo, participará en recorridos de hitos, aprobaciones de puertas de decisión y revisiones semanales de avance. Muchos clientes visitan el sitio regularmente. Proporcionamos un gerente de proyecto dedicado como su único punto de contacto durante toda la construcción.",
+    category: "Proceso",
+  },
+];

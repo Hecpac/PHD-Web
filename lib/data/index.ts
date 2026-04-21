@@ -1,6 +1,7 @@
 import {
   fallbackBlogPosts,
   fallbackFaqs,
+  fallbackFaqsEs,
   fallbackProcessSteps,
   fallbackProcessStepsEs,
   fallbackProjects,
@@ -428,7 +429,8 @@ export async function getProcessSteps(locale = "en"): Promise<ProcessStep[]> {
 }
 
 export async function getFaqs(locale = "en"): Promise<FAQ[]> {
-  const docs = await fetchFromSanity<SanityFaq[]>(faqsQuery, fallbackFaqs, { locale });
+  const fb = locale === "es" ? fallbackFaqsEs : fallbackFaqs;
+  const docs = await fetchFromSanity<SanityFaq[]>(faqsQuery, fb, { locale });
 
   if (!hasSanityConfig) {
     return docs as FAQ[];
@@ -438,7 +440,7 @@ export async function getFaqs(locale = "en"): Promise<FAQ[]> {
     .map(normalizeFaq)
     .filter((faq): faq is FAQ => Boolean(faq));
 
-  return normalized.length > 0 ? normalized : fallbackFaqs;
+  return normalized.length > 0 ? normalized : fb;
 }
 
 export async function getServiceDetails(locale = "en"): Promise<ServiceDetail[]> {

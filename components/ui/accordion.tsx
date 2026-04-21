@@ -56,14 +56,10 @@ export function AccordionItem({
         aria-labelledby={triggerId}
         aria-hidden={!isOpen}
         initial={false}
-        animate={
-          shouldReduceMotion
-            ? { opacity: isOpen ? 1 : 0 }
-            : { height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }
-        }
+        animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
         transition={
           shouldReduceMotion
-            ? { duration: 0.15 }
+            ? { duration: 0 }
             : { duration: isOpen ? 0.3 : 0.2, ease: isOpen ? "easeOut" : "easeIn" }
         }
         className={cn("overflow-hidden", !isOpen && "pointer-events-none")}
