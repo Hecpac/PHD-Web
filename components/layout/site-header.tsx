@@ -112,10 +112,10 @@ export function SiteHeader() {
               {...(ctaConfig.scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
               eventName="cta_schedule_click"
               className={cn(
-                "hidden items-center justify-center rounded-full px-5 py-2.5 font-mono text-[10px] font-medium tracking-[0.1em] transition-[transform,background-color,border-color,color,box-shadow] duration-300 md:inline-flex sm:text-[11px]",
+                "hidden items-center justify-center rounded-full border-transparent bg-red-600 px-5 py-2.5 font-mono text-[10px] font-medium tracking-[0.1em] text-white shadow-[0_10px_24px_rgb(220_38_38/0.35)] transition-[transform,background-color,border-color,color,box-shadow] duration-300 hover:scale-[1.04] hover:bg-red-700 hover:shadow-[0_14px_28px_rgb(220_38_38/0.45)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 md:inline-flex sm:text-[11px]",
                 isSolidHeader
-                  ? "border-line/80 bg-surface/90 text-ink shadow-[0_10px_24px_rgb(0_0_0/0.08)] hover:scale-[1.02] hover:border-line hover:bg-surface hover:text-ink active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-                  : "border-white/20 bg-white/5 text-white backdrop-blur-md hover:scale-[1.02] hover:border-white/40 hover:bg-white/10 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
+                  ? "focus-visible:ring-offset-canvas"
+                  : "focus-visible:ring-offset-black",
               )}
             >
               {t("schedule")}
