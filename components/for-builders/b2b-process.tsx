@@ -2,6 +2,8 @@
 
 import { useRef } from "react";
 
+import { useTranslations } from "next-intl";
+
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { gsap, useGSAP } from "@/lib/gsap";
@@ -13,55 +15,36 @@ type Step = {
   deliverables: string[];
 };
 
-const steps: Step[] = [
-  {
-    number: "01",
-    title: "Scope & Brief",
-    description:
-      "We review your plans, scope, and timeline requirements. Site constraints, lot survey, and HOA/city requirements are cataloged before any drafting begins.",
-    deliverables: [
-      "Scope-of-work agreement",
-      "Timeline & milestone schedule",
-      "Document checklist",
-    ],
-  },
-  {
-    number: "02",
-    title: "Schematic Drafting",
-    description:
-      "Floor plans, elevations, and initial 3D views are developed from your direction. Revisions are tracked and coordinated before advancing to CDs.",
-    deliverables: [
-      "Preliminary floor plans",
-      "Exterior elevations",
-      "3D schematic views",
-    ],
-  },
-  {
-    number: "03",
-    title: "Construction Documents",
-    description:
-      "Complete drawing sets including structural coordination, MEP layouts, sections, and details. Delivered as 2 printed 11×17 sets plus PDF via email, formatted for your permit jurisdiction.",
-    deliverables: [
-      "2 printed plan sets (11×17)",
-      "PDF package via email",
-      "Structural coordination sheets",
-    ],
-  },
-  {
-    number: "04",
-    title: "Permit Support & Handoff",
-    description:
-      "We handle revision rounds from city review, coordinate with engineers of record, and deliver final permit-ready documents in your preferred format.",
-    deliverables: [
-      "City revision responses",
-      "Engineer coordination",
-      "Final permit-ready set",
-    ],
-  },
-];
-
 export function B2BProcess() {
+  const t = useTranslations("forBuildersPage");
   const cardsRef = useRef<HTMLDivElement>(null);
+
+  const steps: Step[] = [
+    {
+      number: "01",
+      title: t("processStep1Title"),
+      description: t("processStep1Desc"),
+      deliverables: [t("processStep1Del1"), t("processStep1Del2"), t("processStep1Del3")],
+    },
+    {
+      number: "02",
+      title: t("processStep2Title"),
+      description: t("processStep2Desc"),
+      deliverables: [t("processStep2Del1"), t("processStep2Del2"), t("processStep2Del3")],
+    },
+    {
+      number: "03",
+      title: t("processStep3Title"),
+      description: t("processStep3Desc"),
+      deliverables: [t("processStep3Del1"), t("processStep3Del2"), t("processStep3Del3")],
+    },
+    {
+      number: "04",
+      title: t("processStep4Title"),
+      description: t("processStep4Desc"),
+      deliverables: [t("processStep4Del1"), t("processStep4Del2"), t("processStep4Del3")],
+    },
+  ];
 
   useGSAP(
     () => {
@@ -123,9 +106,9 @@ export function B2BProcess() {
           <div className="lg:col-span-4 lg:relative">
             <div className="lg:sticky lg:top-32">
               <SectionHeading
-                eyebrow="Our Process"
-                title="From brief to permit-ready in four phases"
-                description="Every engagement follows a structured workflow. No ambiguity, no scope creep — clear deliverables at each gate."
+                eyebrow={t("processEyebrow")}
+                title={t("processTitle")}
+                description={t("processDescription")}
               />
             </div>
           </div>
@@ -140,7 +123,7 @@ export function B2BProcess() {
                 style={{ top: `calc(20vh + ${index * 12}px)`, zIndex: index + 1 }}
               >
                 <div className="font-mono text-xs font-medium tracking-widest text-muted">
-                  PHASE {step.number}
+                  {t("processPhaseLabel")} {step.number}
                 </div>
                 <h3 className="mt-4 type-h3-standard text-ink">{step.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{step.description}</p>

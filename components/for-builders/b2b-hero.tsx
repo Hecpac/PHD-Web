@@ -2,6 +2,8 @@
 
 import { useRef } from "react";
 
+import { useTranslations } from "next-intl";
+
 import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { SwissTextReveal } from "@/components/ui/swiss-text-reveal";
@@ -9,13 +11,8 @@ import { getCtaConfig } from "@/lib/config/site";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
-const STATS = [
-  { value: "835+", label: "homes documented" },
-  { value: "94%", label: "on-time delivery" },
-  { value: "DFW", label: "& beyond" },
-] as const;
-
 export function B2BHero() {
+  const t = useTranslations("forBuildersPage");
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
@@ -23,6 +20,12 @@ export function B2BHero() {
   const mediaRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const { phoneDisplay, phoneHref } = getCtaConfig();
+
+  const STATS = [
+    { value: t("heroStat1Value"), label: t("heroStat1Label") },
+    { value: t("heroStat2Value"), label: t("heroStat2Label") },
+    { value: t("heroStat3Value"), label: t("heroStat3Label") },
+  ];
 
   useGSAP(
     () => {
@@ -101,7 +104,7 @@ export function B2BHero() {
     <section
       ref={sectionRef}
       id="b2b-hero"
-      aria-label="Premium Custom Home Design and Visualization for DFW builders"
+      aria-label={t("heroAriaLabel")}
       className="relative -mt-14 min-h-[85vh] overflow-hidden border-b border-line bg-black md:-mt-[72px]"
     >
       {/* Background media — elegant dark video */}
@@ -121,17 +124,17 @@ export function B2BHero() {
       <Container swiss className="relative z-10 flex min-h-[85vh] flex-col justify-center py-24 md:py-32">
           <div ref={contentRef} className="max-w-3xl space-y-6">
             <span className="block font-mono text-xs uppercase tracking-[0.2em] text-[#d4af37]">
-              Custom Home Plans & Photorealistic 3D Visualizations
+              {t("heroEyebrow")}
             </span>
 
             <h1 className="type-hero max-w-2xl text-white leading-[1.1]">
               <SwissTextReveal mode="word" as="span" noInitialHide>
-                Designed with Vision. Built with Confidence.
+                {t("heroTitle")}
               </SwissTextReveal>
             </h1>
 
             <p className="max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
-              Working with our team to realize your dream home is a collaborative journey. We transform initial ideas into detailed concept plans and bring them to life with realistic 3D visualizations, ensuring every detail is refined before construction begins.
+              {t("heroDescription")}
             </p>
           </div>
 
@@ -155,7 +158,7 @@ export function B2BHero() {
               eventPayload={{ source: "b2b_hero", intent: "explore_services" }}
               className="rounded-full bg-white text-black hover:bg-white/90 shadow-lg shadow-white/10 focus-visible:ring-offset-black"
             >
-              Explore Services
+              {t("heroCtaExplore")}
             </CtaLink>
             <CtaLink
               href="#b2b-contact"
@@ -165,7 +168,7 @@ export function B2BHero() {
               eventPayload={{ source: "b2b_hero", intent: "consultation" }}
               className="rounded-full border-white/30 text-white backdrop-blur-sm hover:bg-white/10 hover:border-white/50"
             >
-              Schedule Consultation
+              {t("heroCtaSchedule")}
             </CtaLink>
             <CtaLink
               href={phoneHref}

@@ -3,47 +3,50 @@
 import { useRef } from "react";
 import Image from "next/image";
 
+import { useTranslations } from "next-intl";
+
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { gsap, useGSAP } from "@/lib/gsap";
 
-const BUILDER_PROJECTS = [
-  {
-    title: "Modern Farmhouse",
-    location: "Frisco, TX",
-    sqFt: "4,200",
-    turnaround: "14 days",
-    image: "/for-builders/projects/project-1.jpg",
-    services: ["Floor Plans", "Construction Docs", "Permit Support"],
-  },
-  {
-    title: "Modern Family Home",
-    location: "Dallas, TX",
-    sqFt: "5,400",
-    turnaround: "18 days",
-    image: "/hectorpachano_Photorealistic_3D_architectural_render_of_a_lux_302dcd34-2992-410a-baca-2a11508e029c_0.png",
-    services: ["Concept Design", "3D Renders", "Floor Plans"],
-  },
-  {
-    title: "Contemporary Estate",
-    location: "Southlake, TX",
-    sqFt: "6,800",
-    turnaround: "21 days",
-    image: "/hectorpachano_architectural_floor_plan_3D_isometric_view_mode_2f29cc4b-8226-422c-9f1a-7f98ce131593_1.png",
-    services: ["Floor Plans", "3D Renders", "Construction Docs", "MEP"],
-  },
-  {
-    title: "Transitional Custom",
-    location: "Plano, TX",
-    sqFt: "3,600",
-    turnaround: "10 days",
-    image: "/for-builders/projects/project-3.jpg",
-    services: ["Floor Plans", "Elevations", "Permit Support"],
-  },
-] as const;
-
 export function BuilderProjectsShowcase() {
+  const t = useTranslations("forBuildersPage");
   const sectionRef = useRef<HTMLElement>(null);
+
+  const BUILDER_PROJECTS = [
+    {
+      title: t("project1Title"),
+      location: t("project1Location"),
+      sqFt: "4,200",
+      turnaround: t("project1Turnaround"),
+      image: "/for-builders/projects/project-1.jpg",
+      services: [t("projectServiceFloorPlans"), t("projectServiceConstructionDocs"), t("projectServicePermitSupport")],
+    },
+    {
+      title: t("project2Title"),
+      location: t("project2Location"),
+      sqFt: "5,400",
+      turnaround: t("project2Turnaround"),
+      image: "/hectorpachano_Photorealistic_3D_architectural_render_of_a_lux_302dcd34-2992-410a-baca-2a11508e029c_0.png",
+      services: [t("projectServiceConceptDesign"), t("projectService3dRenders"), t("projectServiceFloorPlans")],
+    },
+    {
+      title: t("project3Title"),
+      location: t("project3Location"),
+      sqFt: "6,800",
+      turnaround: t("project3Turnaround"),
+      image: "/hectorpachano_architectural_floor_plan_3D_isometric_view_mode_2f29cc4b-8226-422c-9f1a-7f98ce131593_1.png",
+      services: [t("projectServiceFloorPlans"), t("projectService3dRenders"), t("projectServiceConstructionDocs"), t("projectServiceMEP")],
+    },
+    {
+      title: t("project4Title"),
+      location: t("project4Location"),
+      sqFt: "3,600",
+      turnaround: t("project4Turnaround"),
+      image: "/for-builders/projects/project-3.jpg",
+      services: [t("projectServiceFloorPlans"), t("projectServiceElevations"), t("projectServicePermitSupport")],
+    },
+  ];
 
   useGSAP(
     () => {
@@ -127,9 +130,9 @@ export function BuilderProjectsShowcase() {
     >
       <Container swiss className="space-y-8">
         <SectionHeading
-          eyebrow="Builder Projects"
-          title="Drafting packages delivered for regional custom homes"
-          description="Recent documentation packages produced for builders across DFW & North Texas — from schematic floor plans to permit-ready construction documents."
+          eyebrow={t("projectsEyebrow")}
+          title={t("projectsTitle")}
+          description={t("projectsDescription")}
         />
 
         <div className="flex flex-col gap-10 md:gap-24 relative pb-10">

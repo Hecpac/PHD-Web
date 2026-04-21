@@ -3,6 +3,8 @@
 import { useActionState, useEffect, useId, useRef, useState } from "react";
 import { ArrowUpRight, BadgeCheck } from "lucide-react";
 
+import { useTranslations } from "next-intl";
+
 import { submitContactForm, type ContactFormState } from "@/actions/contact";
 import { Container } from "@/components/layout/container";
 import { CtaLink } from "@/components/ui/cta-link";
@@ -11,21 +13,6 @@ import { trackEvent } from "@/lib/analytics/events";
 import { getCtaConfig } from "@/lib/config/site";
 import { cn } from "@/lib/utils";
 
-const VOLUME_OPTIONS = [
-  "1–3 homes/month",
-  "4–8 homes/month",
-  "9–15 homes/month",
-  "15+ homes/month",
-] as const;
-
-const SERVICE_OPTIONS = [
-  { label: "Floor Plans", name: "service_floor_plans" },
-  { label: "3D Renders", name: "service_3d_renders" },
-  { label: "Construction Docs", name: "service_construction_docs" },
-  { label: "Permit Support", name: "service_permit_support" },
-  { label: "Design from Scratch", name: "service_design_scratch" },
-] as const;
-
 const initialState: ContactFormState = {
   success: false,
   message: "",
@@ -33,8 +20,24 @@ const initialState: ContactFormState = {
 };
 
 export function B2BContactForm() {
+  const t = useTranslations("forBuildersPage");
   const startedRef = useRef(false);
   const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
+
+  const VOLUME_OPTIONS = [
+    t("formVolume1"),
+    t("formVolume2"),
+    t("formVolume3"),
+    t("formVolume4"),
+  ];
+
+  const SERVICE_OPTIONS = [
+    { label: t("formServiceFloorPlans"), name: "service_floor_plans" },
+    { label: t("formService3dRenders"), name: "service_3d_renders" },
+    { label: t("formServiceConstructionDocs"), name: "service_construction_docs" },
+    { label: t("formServicePermitSupport"), name: "service_permit_support" },
+    { label: t("formServiceDesignScratch"), name: "service_design_scratch" },
+  ];
   const [utm] = useState(() => {
     if (typeof window === "undefined") {
       return { source: "", medium: "", campaign: "", content: "", term: "", landingPath: "" };
@@ -139,30 +142,29 @@ export function B2BContactForm() {
     >
       <Container swiss className="space-y-8 md:space-y-12">
         <SectionHeading
-          eyebrow="Get Started"
-          title="Request a drafting quote"
-          description="Tell us about your volume and project types. We'll respond within 1 business day with scope and pricing."
+          eyebrow={t("formEyebrow")}
+          title={t("formTitle")}
+          description={t("formDescription")}
         />
 
         <div className="grid gap-6 md:gap-8 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,1.9fr)]">
           {/* Left sidebar */}
           <aside className="rounded-xl border border-line/95 bg-surface/94 p-5 sm:p-6 md:p-7">
             <p className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-              Partner Onboarding
+              {t("formSidebarEyebrow")}
             </p>
             <h3 className="mt-3 type-h3-standard tracking-tight text-ink">
-              Simple, builder-friendly intake.
+              {t("formSidebarTitle")}
             </h3>
             <p className="mt-3 text-sm leading-6 text-muted">
-              We evaluate your typical project scope, volume, and turnaround needs to build a
-              tailored drafting workflow.
+              {t("formSidebarDesc")}
             </p>
 
             <ol className="mt-6 space-y-3">
               {[
-                "Submit company info and volume.",
-                "Receive scope proposal within 1 day.",
-                "Approve and start your first project.",
+                t("formStep1"),
+                t("formStep2"),
+                t("formStep3"),
               ].map((step, index) => (
                 <li
                   key={step}
@@ -175,7 +177,7 @@ export function B2BContactForm() {
             </ol>
 
             <div className="mt-6 border-t border-line/85 pt-4">
-              <p className="text-xs text-muted">Prefer to talk first?</p>
+              <p className="text-xs text-muted">{t("formPreferTalk")}</p>
               <CtaLink
                 href={phoneHref}
                 eventName="cta_call_click"
@@ -183,7 +185,7 @@ export function B2BContactForm() {
                 variant="ghost"
                 className="mt-2 min-h-11 rounded-md px-2 text-ink/92 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
               >
-                Call {phoneDisplay} <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
+                {phoneDisplay} <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
               </CtaLink>
             </div>
           </aside>
@@ -192,11 +194,11 @@ export function B2BContactForm() {
           <div className="rounded-xl border border-line/95 bg-surface/96 p-5 sm:p-6 md:p-8">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-line pb-3 sm:mb-6 sm:pb-4">
               <p className="text-xs text-muted">
-                <span className="text-accent" aria-hidden="true">*</span> Required fields
+                <span className="text-accent" aria-hidden="true">*</span> {t("formRequiredFields")}
               </p>
               <p className="inline-flex items-center gap-1.5 text-xs text-muted">
                 <BadgeCheck className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                Builder partner form
+                {t("formBuilderPartner")}
               </p>
             </div>
 
@@ -216,7 +218,7 @@ export function B2BContactForm() {
 
               <label className="space-y-1.5 text-sm">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-                  Company name <span className="text-accent" aria-hidden="true">*</span>
+                  {t("formCompanyName")} <span className="text-accent" aria-hidden="true">*</span>
                 </span>
                 <input
                   ref={companyRef}
@@ -229,7 +231,7 @@ export function B2BContactForm() {
                   aria-invalid={Boolean(state.errors?.name) || undefined}
                   aria-describedby={state.errors?.name ? nameErrorId : undefined}
                   className={cn(inputClass, state.errors?.name && "border-danger")}
-                  placeholder="Acme Builders LLC…"
+                  placeholder={t("formCompanyPlaceholder")}
                 />
                 {state.errors?.name ? (
                   <p id={nameErrorId} className="text-xs text-danger">{state.errors.name}</p>
@@ -238,7 +240,7 @@ export function B2BContactForm() {
 
               <label className="space-y-1.5 text-sm">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-                  Contact name <span className="text-accent" aria-hidden="true">*</span>
+                  {t("formContactName")} <span className="text-accent" aria-hidden="true">*</span>
                 </span>
                 <input
                   ref={contactRef}
@@ -249,13 +251,13 @@ export function B2BContactForm() {
                   required
                   aria-required="true"
                   className={inputClass}
-                  placeholder="John Martinez…"
+                  placeholder={t("formContactPlaceholder")}
                 />
               </label>
 
               <label className="space-y-1.5 text-sm">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-                  Email <span className="text-accent" aria-hidden="true">*</span>
+                  {t("formEmail")} <span className="text-accent" aria-hidden="true">*</span>
                 </span>
                 <input
                   ref={emailRef}
@@ -271,7 +273,7 @@ export function B2BContactForm() {
                   aria-invalid={Boolean(state.errors?.email) || undefined}
                   aria-describedby={state.errors?.email ? emailErrorId : undefined}
                   className={cn(inputClass, state.errors?.email && "border-danger")}
-                  placeholder="john@acmebuilders.com…"
+                  placeholder={t("formEmailPlaceholder")}
                 />
                 {state.errors?.email ? (
                   <p id={emailErrorId} className="text-xs text-danger">{state.errors.email}</p>
@@ -280,7 +282,7 @@ export function B2BContactForm() {
 
               <label className="space-y-1.5 text-sm">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-                  Phone (optional)
+                  {t("formPhoneOptional")}
                 </span>
                 <input
                   name="phone"
@@ -289,13 +291,13 @@ export function B2BContactForm() {
                   inputMode="tel"
                   enterKeyHint="next"
                   className={inputClass}
-                  placeholder="(469) 555-0101…"
+                  placeholder={t("formPhonePlaceholder")}
                 />
               </label>
 
               <label className="space-y-1.5 text-sm">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-                  Monthly volume <span className="text-accent" aria-hidden="true">*</span>
+                  {t("formMonthlyVolume")} <span className="text-accent" aria-hidden="true">*</span>
                 </span>
                 <select
                   name="volume"
@@ -306,7 +308,7 @@ export function B2BContactForm() {
                   aria-describedby={state.errors?.city ? cityErrorId : undefined}
                   className={cn(inputClass, state.errors?.city && "border-danger")}
                 >
-                  <option value="" disabled>Select volume</option>
+                  <option value="" disabled>{t("formSelectVolume")}</option>
                   {VOLUME_OPTIONS.map((opt) => (
                     <option key={opt} value={opt}>{opt}</option>
                   ))}
@@ -318,7 +320,7 @@ export function B2BContactForm() {
 
               <fieldset className="space-y-2 md:col-span-2">
                 <legend className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-                  Services needed
+                  {t("formServicesNeeded")}
                 </legend>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                   {SERVICE_OPTIONS.map((opt) => (
@@ -340,7 +342,7 @@ export function B2BContactForm() {
 
               <label className="space-y-1.5 text-sm md:col-span-2">
                 <span className="font-mono text-xs uppercase tracking-[0.05em] text-muted">
-                  Project details <span className="text-accent" aria-hidden="true">*</span>
+                  {t("formProjectDetails")} <span className="text-accent" aria-hidden="true">*</span>
                 </span>
                 <textarea
                   ref={messageRef}
@@ -352,7 +354,7 @@ export function B2BContactForm() {
                   rows={5}
                   enterKeyHint="send"
                   className={cn(inputClass, state.errors?.message && "border-danger")}
-                  placeholder="Typical project types, preferred software output (Revit, AutoCAD), turnaround expectations…"
+                  placeholder={t("formProjectPlaceholder")}
                 />
                 {state.errors?.message ? (
                   <p id={messageErrorId} className="text-xs text-danger">{state.errors.message}</p>
@@ -363,13 +365,13 @@ export function B2BContactForm() {
                 <button
                   type="submit"
                   disabled={isPending}
-                  aria-label="Submit partner inquiry"
+                  aria-label={t("formSubmitAriaLabel")}
                   className="inline-flex w-full min-h-12 items-center justify-center rounded-lg border border-accent bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.05em] text-on-accent shadow-[0_10px_20px_rgb(0_0_0/0.18)] transition-colors duration-150 hover:bg-accent-hover active:bg-accent-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isPending ? "Submitting…" : "Request Quote"}
+                  {isPending ? t("formSubmitting") : t("formRequestQuote")}
                 </button>
                 <p className="mt-3 text-xs text-muted">
-                  We respond to all builder inquiries within 1 business day.
+                  {t("formResponseNote")}
                 </p>
               </div>
             </form>

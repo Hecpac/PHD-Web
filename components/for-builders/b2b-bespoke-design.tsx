@@ -1,23 +1,25 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { Container } from "@/components/layout/container";
 import { BeforeAfterSlider } from "@/components/ui/before-after-slider";
 
 export function B2BBespokeDesign() {
+  const t = useTranslations("forBuildersPage");
+
   return (
     <section id="bespoke-design" className="section-shell relative z-10 border-t border-line bg-black">
       <Container swiss className="relative z-10 space-y-16">
         <div className="max-w-3xl">
            <h2 className="type-heading text-[#d4af37] mb-6">
-              Custom Home Plans
+              {t("bespokeTitle")}
            </h2>
            <p className="text-2xl md:text-3xl font-light text-white leading-relaxed tracking-tight">
-             Bespoke Designs Tailored to Your Lifestyle.
+             {t("bespokeSubtitle")}
            </p>
            <p className="mt-6 text-lg text-white/70 max-w-2xl leading-relaxed">
-             Working with our team to realize your dream home is a collaborative journey. 
-             We transform initial ideas into detailed concept plans and bring them to life 
-             with realistic 3D visualizations, ensuring every detail is refined before construction begins.
+             {t("bespokeDescription")}
            </p>
         </div>
 
@@ -26,8 +28,8 @@ export function B2BBespokeDesign() {
            <BeforeAfterSlider
              beforeImage="/for-builders/Gemini_Generated_Image_8lcca98lcca98lcc.jpeg"
              afterImage="/for-builders/hectorpachano_Photorealistic_3D_architectural_interior_render_25ba458a-f690-49de-85ad-fba993fb05a0_1.png"
-             beforeLabel="Blueprint & Planning"
-             afterLabel="Photorealistic Render"
+             beforeLabel={t("bespokeBeforeLabel")}
+             afterLabel={t("bespokeAfterLabel")}
              className="shadow-2xl shadow-black/50"
            />
         </div>
@@ -40,8 +42,8 @@ export function B2BBespokeDesign() {
                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                  </svg>
               </div>
-              <h3 className="text-xl font-bold text-white">Tailored Floor Plans</h3>
-              <p className="text-white/60">Drafting Precision</p>
+              <h3 className="text-xl font-bold text-white">{t("bespokePillar1Title")}</h3>
+              <p className="text-white/60">{t("bespokePillar1Subtitle")}</p>
            </div>
 
            <div className="space-y-3">
@@ -52,8 +54,8 @@ export function B2BBespokeDesign() {
                     <path d="M21 15l-5-5L5 21" />
                  </svg>
               </div>
-              <h3 className="text-xl font-bold text-white">3D Visualizations</h3>
-              <p className="text-white/60">Realistic Rendering</p>
+              <h3 className="text-xl font-bold text-white">{t("bespokePillar2Title")}</h3>
+              <p className="text-white/60">{t("bespokePillar2Subtitle")}</p>
            </div>
 
            <div className="space-y-3">
@@ -62,8 +64,8 @@ export function B2BBespokeDesign() {
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                  </svg>
               </div>
-              <h3 className="text-xl font-bold text-white">Smart Space Planning</h3>
-              <p className="text-white/60">Modern Custom Features</p>
+              <h3 className="text-xl font-bold text-white">{t("bespokePillar3Title")}</h3>
+              <p className="text-white/60">{t("bespokePillar3Subtitle")}</p>
            </div>
         </div>
       </Container>

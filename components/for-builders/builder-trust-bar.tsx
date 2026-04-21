@@ -1,16 +1,21 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { BadgeCheck } from "lucide-react";
 
-const CREDENTIALS = [
-  "Regional Permit Experts",
-  "7-10 Day Turnaround",
-  "PDF & Print Delivery",
-  "835+ Homes Documented",
-] as const;
-
 export function BuilderTrustBar() {
+  const t = useTranslations("forBuildersPage");
+
+  const CREDENTIALS = [
+    t("trustCredential1"),
+    t("trustCredential2"),
+    t("trustCredential3"),
+    t("trustCredential4"),
+  ];
+
   return (
     <section
-      aria-label="Builder credentials"
+      aria-label={t("trustAriaLabel")}
       className="border-b border-line bg-black py-4"
     >
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 md:justify-start md:px-6">
