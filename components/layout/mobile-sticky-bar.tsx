@@ -17,7 +17,7 @@ export function MobileStickyBar() {
           href={phoneHref}
           variant="secondary"
           eventName="cta_call_click"
-          className="min-h-11 flex-1 rounded-md border-line bg-surface px-2 text-[12px] font-semibold uppercase tracking-[0.04em]"
+          className="min-h-11 flex-1 rounded-md border-red-600 bg-red-600 px-2 text-[12px] font-semibold uppercase tracking-[0.04em] text-white active:bg-red-700"
         >
           <Phone className="mr-1.5 h-3.5 w-3.5" />
           {t("footer.callPrefix")} {phoneDisplay}
@@ -27,7 +27,7 @@ export function MobileStickyBar() {
           href={scheduleUrl}
           {...(scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
           eventName="cta_schedule_click"
-          className="min-h-11 flex-1 rounded-md px-2 text-[12px] font-semibold uppercase tracking-[0.04em]"
+          className="min-h-11 flex-1 rounded-md border-red-600 bg-red-600 px-2 text-[12px] font-semibold uppercase tracking-[0.04em] text-white active:bg-red-700"
         >
           <CalendarDays className="mr-1.5 h-3.5 w-3.5" />
           {t("schedule")}
