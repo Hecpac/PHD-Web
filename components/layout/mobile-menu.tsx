@@ -154,10 +154,7 @@ export function MobileMenu({
         ref={buttonRef}
         type="button"
         className={cn(
-          "relative flex h-[44px] w-[44px] items-center justify-center rounded-lg border bg-transparent shadow-[0_3px_12px_rgb(0_0_0/0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 md:hidden",
-          isDarkTone
-            ? "border-line/80 bg-surface/90 text-ink focus-visible:outline-accent"
-            : "border-white/30 text-white focus-visible:outline-white/50",
+          "relative flex h-[44px] w-[44px] items-center justify-center rounded-lg border border-red-600 bg-red-600 text-white shadow-[0_3px_12px_rgb(220_38_38/0.3)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 active:bg-red-700 md:hidden",
         )}
         aria-expanded={open}
         aria-controls={menuId}
@@ -169,21 +166,21 @@ export function MobileMenu({
           <span
             className={cn(
               "block h-0.5 w-full transition-transform duration-200",
-              isDarkTone ? "bg-ink" : "bg-white",
+              "bg-white",
               open && "translate-y-[9px] rotate-45",
             )}
           />
           <span
             className={cn(
               "block h-0.5 w-full transition-opacity duration-200",
-              isDarkTone ? "bg-ink" : "bg-white",
+              "bg-white",
               open && "opacity-0",
             )}
           />
           <span
             className={cn(
               "block h-0.5 w-full transition-transform duration-200",
-              isDarkTone ? "bg-ink" : "bg-white",
+              "bg-white",
               open && "-translate-y-[9px] -rotate-45",
             )}
           />

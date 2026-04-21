@@ -106,21 +106,6 @@ export function SiteHeader() {
 
             <LocaleSwitcher tone={navTone} />
 
-            <CtaLink
-              href={ctaConfig.scheduleUrl}
-              variant="secondary"
-              {...(ctaConfig.scheduleUrl.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
-              eventName="cta_schedule_click"
-              className={cn(
-                "hidden items-center justify-center rounded-full border-transparent bg-red-600 px-5 py-2.5 font-mono text-[10px] font-medium tracking-[0.1em] text-white shadow-[0_10px_24px_rgb(220_38_38/0.35)] transition-[transform,background-color,border-color,color,box-shadow] duration-300 hover:scale-[1.04] hover:bg-red-700 hover:shadow-[0_14px_28px_rgb(220_38_38/0.45)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 md:inline-flex sm:text-[11px]",
-                isSolidHeader
-                  ? "focus-visible:ring-offset-canvas"
-                  : "focus-visible:ring-offset-black",
-              )}
-            >
-              {t("schedule")}
-            </CtaLink>
-
             <div className="md:hidden">
               <MobileMenu navigation={translatedNav} cta={ctaConfig} tone={navTone} />
             </div>
