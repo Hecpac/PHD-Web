@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { HeroSection } from "@/components/home/hero-section";
 import { HeroRenderSection } from "@/components/home/hero-render-section";
@@ -59,6 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const [heroData, services, processSteps, featuredProjects, reviews, faqs] = await Promise.all([
     getHomeHero(),
     getServices(locale),
