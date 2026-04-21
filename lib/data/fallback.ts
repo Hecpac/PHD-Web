@@ -467,6 +467,45 @@ export const fallbackServices: Service[] = [
   },
 ];
 
+export const fallbackServicesEs: Service[] = [
+  {
+    id: "service-custom-home-design",
+    title: "Diseño de Casas Personalizadas",
+    summary: "Alineamos la intención de diseño, sistemas estructurales y constructibilidad desde el primer día.",
+    deliverables: [
+      "Paquete de concepto y planificación volumétrica",
+      "Reuniones de alineación de diseño con presupuesto",
+      "Entrega de documentación lista para permisos",
+    ],
+    order: 1,
+    icon: "Compass",
+  },
+  {
+    id: "service-precon",
+    title: "Preconstrucción y Presupuesto",
+    summary: "Alcance, cronograma y controles de riesgo antes de iniciar la construcción.",
+    deliverables: [
+      "Alcance de oficios y nivelación de ofertas",
+      "Matriz de presupuesto por fases y partidas",
+      "Cronograma base de ruta crítica",
+    ],
+    order: 2,
+    icon: "Ruler",
+  },
+  {
+    id: "service-construction",
+    title: "Gestión de Construcción",
+    summary: "Rigor en la ejecución con puntos de control de calidad verificados y cadencia de comunicación.",
+    deliverables: [
+      "Reportes semanales de avance al propietario",
+      "Inspecciones de calidad por hito",
+      "Cierre de pendientes y orientación de garantía",
+    ],
+    order: 3,
+    icon: "Hammer",
+  },
+];
+
 export const fallbackProcessSteps: ProcessStep[] = [
   {
     id: "step-1",
@@ -502,6 +541,44 @@ export const fallbackProcessSteps: ProcessStep[] = [
     description:
       "Construction is managed through QA checkpoints, owner walkthroughs, and closeout documentation.",
     deliverables: ["Progress reporting", "Punch completion", "Warranty handoff packet"],
+  },
+];
+
+export const fallbackProcessStepsEs: ProcessStep[] = [
+  {
+    id: "step-1",
+    stepNumber: 1,
+    title: "Descubrimiento y Factibilidad",
+    description:
+      "Validamos restricciones del lote, prioridades y rangos de presupuesto para proyectos en DFW y Norte de Texas.",
+    deliverables: ["Resumen del proyecto", "Memo de restricciones del sitio", "Rango presupuestario inicial"],
+    decisionGate: "Proceder a planificación conceptual",
+  },
+  {
+    id: "step-2",
+    stepNumber: 2,
+    title: "Concepto y Alineación de Costos",
+    description:
+      "Los equipos de diseño y construcción alinean alcance, sistemas y costos antes de avanzar los planos.",
+    deliverables: ["Paquete conceptual", "Supuestos de ingeniería", "Presupuesto objetivo actualizado"],
+    decisionGate: "Aprobar dirección esquemática",
+  },
+  {
+    id: "step-3",
+    stepNumber: 3,
+    title: "Documentación y Permisos",
+    description:
+      "La documentación técnica se coordina, revisa y prepara para permisos y adquisiciones.",
+    deliverables: ["Set de permisos", "Alcances listos para licitación", "Cronograma de hitos"],
+    decisionGate: "Liberar a construcción",
+  },
+  {
+    id: "step-4",
+    stepNumber: 4,
+    title: "Construcción y Entrega",
+    description:
+      "La construcción se gestiona mediante puntos de control de calidad, recorridos con el propietario y documentación de cierre.",
+    deliverables: ["Reportes de avance", "Cierre de pendientes", "Paquete de entrega y garantía"],
   },
 ];
 

@@ -2,10 +2,12 @@ import {
   fallbackBlogPosts,
   fallbackFaqs,
   fallbackProcessSteps,
+  fallbackProcessStepsEs,
   fallbackProjects,
   fallbackReviews,
   fallbackServiceDetails,
   fallbackServices,
+  fallbackServicesEs,
 } from "@/lib/data/fallback";
 import { hasSanityConfig, sanityClient } from "@/lib/sanity/client";
 import type { QueryParams } from "next-sanity";
@@ -394,7 +396,8 @@ export async function getFeaturedProjects(locale = "en"): Promise<Project[]> {
 }
 
 export async function getServices(locale = "en"): Promise<Service[]> {
-  const docs = await fetchFromSanity<SanityService[]>(servicesQuery, fallbackServices, { locale });
+  const fb = locale === "es" ? fallbackServicesEs : fallbackServices;
+  const docs = await fetchFromSanity<SanityService[]>(servicesQuery, fb, { locale });
 
   if (!hasSanityConfig) {
     return docs as Service[];
@@ -405,11 +408,12 @@ export async function getServices(locale = "en"): Promise<Service[]> {
     .filter((service): service is Service => Boolean(service))
     .sort((a, b) => a.order - b.order);
 
-  return normalized.length > 0 ? normalized : fallbackServices;
+  return normalized.length > 0 ? normalized : fb;
 }
 
 export async function getProcessSteps(locale = "en"): Promise<ProcessStep[]> {
-  const docs = await fetchFromSanity<SanityProcessStep[]>(processStepsQuery, fallbackProcessSteps, { locale });
+  const fb = locale === "es" ? fallbackProcessStepsEs : fallbackProcessSteps;
+  const docs = await fetchFromSanity<SanityProcessStep[]>(processStepsQuery, fb, { locale });
 
   if (!hasSanityConfig) {
     return docs as ProcessStep[];
@@ -420,7 +424,7 @@ export async function getProcessSteps(locale = "en"): Promise<ProcessStep[]> {
     .filter((step): step is ProcessStep => Boolean(step))
     .sort((a, b) => a.stepNumber - b.stepNumber);
 
-  return normalized.length > 0 ? normalized : fallbackProcessSteps;
+  return normalized.length > 0 ? normalized : fb;
 }
 
 export async function getFaqs(locale = "en"): Promise<FAQ[]> {
